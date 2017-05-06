@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="网络">
+        <menu>
+            <item
+                android:id="@+id/nav_Retrofit"
+                android:icon="@drawable/ic_menu_camera"
+                android:title="Retrofit"/>
+
+            <item
+                android:id="@+id/nav_Volley"
+                android:icon="@drawable/ic_menu_manage"
+                android:title="Volley"/>
+        </menu>
+    </item>
+
+    <item android:title="数据库">
+        <menu>
+            <item
+                android:id="@+id/nav_Realm"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="Realm"/>
+
+            <item
+                android:id="@+id/nav_GreenDAO"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="GreenDAO"/>
+        </menu>
+    </item>
+
+    <item android:title="响应式编程">
+        <menu>
+            <item
+                android:id="@+id/nav_RxJava"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="RxJava"/>
+        </menu>
+    </item>
+
+    <item android:title="注解">
+        <menu>
+            <item
+                android:id="@+id/nav_Daggar2"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="Daggar2"/>
+        </menu>
+    </item>
+
+    <item android:title="RecyclerView">
+        <menu>
+            <item
+                android:id="@+id/nav_recycler_singleChoice"
+                android:icon="@drawable/ic_menu_share"
+                android:title="RecyclerView 单选"/>
+            <item
+                android:id="@+id/nav_recycler_multiChoice"
+                android:icon="@drawable/ic_menu_send"
+                android:title="RecyclerView 多选"/>
+            <item
+                android:id="@+id/nav_suspend_single"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Recyclerview 单悬浮"/>
+            <item
+                android:id="@+id/nav_suspend_multi"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Recyclerview 多悬浮"/>
+        </menu>
+    </item>
+
+    <item android:title="效果">
+        <menu>
+            <item
+                android:id="@+id/nav_eatBaoZi"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="仿大众点评加载动画"/>
+            <item
+                android:id="@+id/nav_pullAndLoad"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="自定义下拉刷新头"/>
+            <item
+                android:id="@+id/nav_alphaToolbar"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="渐变Toolbar"/>
+            <item
+                android:id="@+id/nav_transition"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="转场动画"/>
+        </menu>
+    </item>
+
+</menu>

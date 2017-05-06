@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/AppTheme.PopupOverlay"/>
+
+    <Button
+        android:id="@+id/btn_get"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Get @path"/>
+
+    <Button
+        android:id="@+id/btn_get_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="GET @query"/>
+
+    <Button
+        android:id="@+id/btn_commitFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="文件上传"/>
+
+    <Button
+        android:id="@+id/btn_downFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="文件下载"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

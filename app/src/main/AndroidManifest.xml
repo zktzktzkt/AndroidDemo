@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="demo.zkttestdemo">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- 相机权限 -->
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
+
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <!-- 存储卡权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <!-- 写文件的权限 -->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="demo.zkttestdemo.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name="demo.zkttestdemo.recyclerview.suspendsingle.SuspendSingleActivity"/>
+        <activity android:name="demo.zkttestdemo.recyclerview.suspendmulti.SuspendMultiActivity"/>
+        <activity android:name="demo.zkttestdemo.retrofit.RetrofitActivity"/>
+        <activity android:name="demo.zkttestdemo.recyclerview.singlechoice.SingleChoiceActivity"/>
+        <activity android:name="demo.zkttestdemo.recyclerview.multichoice.MultiChoiceActivity"/>
+        <activity android:name="demo.zkttestdemo.effect.loadingdialog.EatBaoZiActivity"/>
+        <activity android:name="demo.zkttestdemo.effect.pullAndload.MTPtrActivity"/>
+        <activity android:name="demo.zkttestdemo.effect.pullAndload.AliPtrActivity"/>
+        <activity android:name="demo.zkttestdemo.effect.pullAndload.PtrAndloadActivity"/>
+        <activity android:name="demo.zkttestdemo.effect.alphatoolbar.AlphaToolbarActivity"/>
+        <activity android:name="demo.zkttestdemo.effect.transition.TransitionActivity"/>
+        <activity android:name="demo.zkttestdemo.effect.transition.TransitionTwoActivity"/>
+    </application>
+
+</manifest>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false"
+    >
+
+    <item android:drawable="@drawable/dropdown_anim_00" android:duration="100"/>
+    <item android:drawable="@drawable/dropdown_anim_01" android:duration="100"/>
+    <item android:drawable="@drawable/dropdown_anim_02" android:duration="100"/>
+    <item android:drawable="@drawable/dropdown_anim_03" android:duration="100"/>
+    <item android:drawable="@drawable/dropdown_anim_04" android:duration="100"/>
+    <item android:drawable="@drawable/dropdown_anim_05" android:duration="100"/>
+    <item android:drawable="@drawable/dropdown_anim_06" android:duration="100"/>
+    <item android:drawable="@drawable/dropdown_anim_07" android:duration="100"/>
+    <item android:drawable="@drawable/dropdown_anim_08" android:duration="100"/>
+    <item android:drawable="@drawable/dropdown_anim_09" android:duration="100"/>
+    <item android:drawable="@drawable/dropdown_anim_10" android:duration="100"/>
+    <item android:drawable="@drawable/trip_hplus_contacts_dianping_loading_fullscreen_anim_01" android:duration="100"/>
+    <item android:drawable="@drawable/trip_hplus_contacts_dianping_loading_fullscreen_anim_02" android:duration="130"/>
+    <item android:drawable="@drawable/trip_hplus_contacts_dianping_loading_fullscreen_anim_03" android:duration="130"/>
+    <item android:drawable="@drawable/trip_hplus_contacts_dianping_loading_fullscreen_anim_02" android:duration="130"/>
+    <item android:drawable="@drawable/trip_hplus_contacts_dianping_loading_fullscreen_anim_03" android:duration="130"/>
+    <item android:drawable="@drawable/trip_hplus_contacts_dianping_loading_fullscreen_anim_02" android:duration="130"/>
+    <item android:drawable="@drawable/trip_hplus_contacts_dianping_loading_fullscreen_anim_03" android:duration="130"/>
+
+</animation-list>
