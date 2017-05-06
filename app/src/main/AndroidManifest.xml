@@ -42,6 +42,7 @@
         <activity android:name="demo.zkttestdemo.effect.alphatoolbar.AlphaToolbarActivity"/>
         <activity android:name="demo.zkttestdemo.effect.transition.TransitionActivity"/>
         <activity android:name="demo.zkttestdemo.effect.transition.TransitionTwoActivity"/>
+        <activity android:name=".recyclerview.diffUtil.DiffUtilActivity" />
     </application>
 
 </manifest>

@@ -40,6 +40,7 @@ import demo.zkttestdemo.effect.alphatoolbar.AlphaToolbarActivity;
 import demo.zkttestdemo.effect.loadingdialog.EatBaoZiActivity;
 import demo.zkttestdemo.effect.pullAndload.PtrAndloadActivity;
 import demo.zkttestdemo.effect.transition.TransitionActivity;
+import demo.zkttestdemo.recyclerview.diffUtil.DiffUtilActivity;
 import demo.zkttestdemo.recyclerview.multichoice.MultiChoiceActivity;
 import demo.zkttestdemo.recyclerview.singlechoice.SingleChoiceActivity;
 import demo.zkttestdemo.recyclerview.suspendmulti.SuspendMultiActivity;
@@ -149,14 +150,17 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_eatBaoZi) {
             Intent intent = new Intent(this, EatBaoZiActivity.class);
             startActivity(intent);
-        }else if(id == R.id.nav_pullAndLoad){
+        } else if (id == R.id.nav_pullAndLoad) {
             Intent intent = new Intent(this, PtrAndloadActivity.class);
             startActivity(intent);
-        }else if(id == R.id.nav_alphaToolbar){
+        } else if (id == R.id.nav_alphaToolbar) {
             Intent intent = new Intent(this, AlphaToolbarActivity.class);
             startActivity(intent);
-        }else if(id == R.id.nav_transition){
+        } else if (id == R.id.nav_transition) {
             Intent intent = new Intent(this, TransitionActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_recycler_diff_util) {
+            Intent intent = new Intent(this, DiffUtilActivity.class);
             startActivity(intent);
         }
 
