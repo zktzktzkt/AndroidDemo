@@ -46,6 +46,7 @@ import demo.zkttestdemo.recyclerview.singlechoice.SingleChoiceActivity;
 import demo.zkttestdemo.recyclerview.suspendmulti.SuspendMultiActivity;
 import demo.zkttestdemo.recyclerview.suspendsingle.SuspendSingleActivity;
 import demo.zkttestdemo.retrofit.RetrofitActivity;
+import demo.zkttestdemo.rxjava.RxJavaActivity;
 import demo.zkttestdemo.utils.FileUtils;
 import demo.zkttestdemo.utils.ImgUtil;
 
@@ -132,7 +133,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_Daggar2) {
 
         } else if (id == R.id.nav_RxJava) {
-
+            Intent intent = new Intent(this, RxJavaActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_Volley) {
 
         } else if (id == R.id.nav_suspend_single) {

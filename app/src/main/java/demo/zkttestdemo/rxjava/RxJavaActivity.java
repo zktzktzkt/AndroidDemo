@@ -94,16 +94,10 @@ public class RxJavaActivity extends AppCompatActivity {
                         return s.hashCode();
                     }
                 })
-                .map(new Function<Integer, String>() {
+                .subscribe(new Consumer<Integer>() {
                     @Override
-                    public String apply(@NonNull Integer integer) throws Exception {
-                        return null;
-                    }
-                })
-                .subscribe(new Consumer<String>() {
-                    @Override
-                    public void accept(@NonNull String s) throws Exception {
-                        LogUtil.e(s);
+                    public void accept(@NonNull Integer integer) throws Exception {
+                        LogUtil.e(integer+"");
                     }
                 });
 

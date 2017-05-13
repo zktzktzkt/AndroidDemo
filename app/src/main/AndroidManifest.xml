@@ -43,6 +43,7 @@
         <activity android:name="demo.zkttestdemo.effect.transition.TransitionActivity"/>
         <activity android:name="demo.zkttestdemo.effect.transition.TransitionTwoActivity"/>
         <activity android:name=".recyclerview.diffUtil.DiffUtilActivity" />
+        <activity android:name=".rxjava.RxJavaActivity"/>
     </application>
 
 </manifest>
