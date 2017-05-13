@@ -37,6 +37,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import demo.zkttestdemo.effect.alphatoolbar.AlphaToolbarActivity;
+import demo.zkttestdemo.effect.keyboardbug.KeyBoardBugActivity;
 import demo.zkttestdemo.effect.loadingdialog.EatBaoZiActivity;
 import demo.zkttestdemo.effect.pullAndload.PtrAndloadActivity;
 import demo.zkttestdemo.effect.transition.TransitionActivity;
@@ -136,6 +137,10 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, RxJavaActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_Volley) {
+
+        }  else if (id == R.id.nav_keyboard_bug) {
+            Intent intent = new Intent(this, KeyBoardBugActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_suspend_single) {
             Intent intent = new Intent(this, SuspendSingleActivity.class);

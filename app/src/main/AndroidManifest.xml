@@ -21,7 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="demo.zkttestdemo.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -30,20 +30,25 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="demo.zkttestdemo.recyclerview.suspendsingle.SuspendSingleActivity"/>
-        <activity android:name="demo.zkttestdemo.recyclerview.suspendmulti.SuspendMultiActivity"/>
-        <activity android:name="demo.zkttestdemo.retrofit.RetrofitActivity"/>
-        <activity android:name="demo.zkttestdemo.recyclerview.singlechoice.SingleChoiceActivity"/>
-        <activity android:name="demo.zkttestdemo.recyclerview.multichoice.MultiChoiceActivity"/>
-        <activity android:name="demo.zkttestdemo.effect.loadingdialog.EatBaoZiActivity"/>
-        <activity android:name="demo.zkttestdemo.effect.pullAndload.MTPtrActivity"/>
-        <activity android:name="demo.zkttestdemo.effect.pullAndload.AliPtrActivity"/>
-        <activity android:name="demo.zkttestdemo.effect.pullAndload.PtrAndloadActivity"/>
-        <activity android:name="demo.zkttestdemo.effect.alphatoolbar.AlphaToolbarActivity"/>
-        <activity android:name="demo.zkttestdemo.effect.transition.TransitionActivity"/>
-        <activity android:name="demo.zkttestdemo.effect.transition.TransitionTwoActivity"/>
-        <activity android:name=".recyclerview.diffUtil.DiffUtilActivity" />
+        <activity android:name=".recyclerview.suspendsingle.SuspendSingleActivity"/>
+        <activity android:name=".recyclerview.suspendmulti.SuspendMultiActivity"/>
+        <activity android:name=".retrofit.RetrofitActivity"/>
+        <activity android:name=".recyclerview.singlechoice.SingleChoiceActivity"/>
+        <activity android:name=".recyclerview.multichoice.MultiChoiceActivity"/>
+        <activity android:name=".effect.loadingdialog.EatBaoZiActivity"/>
+        <activity android:name=".effect.pullAndload.MTPtrActivity"/>
+        <activity android:name=".effect.pullAndload.AliPtrActivity"/>
+        <activity android:name=".effect.pullAndload.PtrAndloadActivity"/>
+        <activity android:name=".effect.alphatoolbar.AlphaToolbarActivity"/>
+        <activity android:name=".effect.transition.TransitionActivity"/>
+        <activity android:name=".effect.transition.TransitionTwoActivity"/>
+        <activity android:name=".recyclerview.diffUtil.DiffUtilActivity"/>
         <activity android:name=".rxjava.RxJavaActivity"/>
+        <activity
+            android:name=".effect.keyboardbug.KeyBoardBugActivity"
+            android:windowSoftInputMode="adjustResize"> <!--adjustResize是收缩adjustPan是向上挤-->
+
+        </activity>
     </application>
 
 </manifest>
