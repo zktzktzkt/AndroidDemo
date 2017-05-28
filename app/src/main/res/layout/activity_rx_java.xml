@@ -50,5 +50,12 @@
         android:text="do On Next"
         />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="io"
+        android:text="io线程切换"
+        />
+
 
 </LinearLayout>

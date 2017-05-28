@@ -6,12 +6,12 @@
             <item
                 android:id="@+id/nav_Retrofit"
                 android:icon="@drawable/ic_menu_camera"
-                android:title="Retrofit" />
+                android:title="Retrofit"/>
 
             <item
                 android:id="@+id/nav_Volley"
                 android:icon="@drawable/ic_menu_manage"
-                android:title="Volley" />
+                android:title="Volley"/>
         </menu>
     </item>
 
@@ -20,12 +20,12 @@
             <item
                 android:id="@+id/nav_Realm"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="Realm" />
+                android:title="Realm"/>
 
             <item
                 android:id="@+id/nav_GreenDAO"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="GreenDAO" />
+                android:title="GreenDAO"/>
         </menu>
     </item>
 
@@ -34,7 +34,7 @@
             <item
                 android:id="@+id/nav_RxJava"
                 android:icon="@drawable/ic_menu_slideshow"
-                android:title="RxJava" />
+                android:title="RxJava"/>
         </menu>
     </item>
 
@@ -43,7 +43,7 @@
             <item
                 android:id="@+id/nav_Daggar2"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="Daggar2" />
+                android:title="Daggar2"/>
         </menu>
     </item>
 
@@ -52,23 +52,23 @@
             <item
                 android:id="@+id/nav_recycler_singleChoice"
                 android:icon="@drawable/ic_menu_share"
-                android:title="RecyclerView 单选" />
+                android:title="RecyclerView 单选"/>
             <item
                 android:id="@+id/nav_recycler_multiChoice"
                 android:icon="@drawable/ic_menu_send"
-                android:title="RecyclerView 多选" />
+                android:title="RecyclerView 多选"/>
             <item
                 android:id="@+id/nav_suspend_single"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Recyclerview 单悬浮" />
+                android:title="Recyclerview 单悬浮"/>
             <item
                 android:id="@+id/nav_suspend_multi"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Recyclerview 多悬浮" />
+                android:title="Recyclerview 多悬浮"/>
             <item
                 android:id="@+id/nav_recycler_diff_util"
                 android:icon="@drawable/ic_menu_camera"
-                android:title="DiffUtil" />
+                android:title="DiffUtil"/>
         </menu>
     </item>
 
@@ -77,23 +77,31 @@
             <item
                 android:id="@+id/nav_eatBaoZi"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="仿大众点评加载动画" />
+                android:title="仿大众点评加载动画"/>
             <item
                 android:id="@+id/nav_pullAndLoad"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="自定义下拉刷新头" />
+                android:title="自定义下拉刷新头"/>
             <item
                 android:id="@+id/nav_alphaToolbar"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="渐变Toolbar" />
+                android:title="渐变Toolbar"/>
             <item
                 android:id="@+id/nav_transition"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="转场动画" />
+                android:title="转场动画"/>
             <item
                 android:id="@+id/nav_keyboard_bug"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="键盘不遮挡Edittext" />
+                android:title="键盘不遮挡Edittext"/>
+            <item
+                android:id="@+id/nav_audio_reord"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="仿微信语音录制"/>
+            <item
+                android:id="@+id/nav_coordinator"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="CoordinatorLayout使用"/>
         </menu>
     </item>
 

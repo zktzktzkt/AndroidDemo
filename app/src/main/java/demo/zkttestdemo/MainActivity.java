@@ -37,10 +37,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import demo.zkttestdemo.effect.alphatoolbar.AlphaToolbarActivity;
+import demo.zkttestdemo.effect.coordinator.CoordinatorActivity;
 import demo.zkttestdemo.effect.keyboardbug.KeyBoardBugActivity;
 import demo.zkttestdemo.effect.loadingdialog.EatBaoZiActivity;
 import demo.zkttestdemo.effect.pullAndload.PtrAndloadActivity;
 import demo.zkttestdemo.effect.transition.TransitionActivity;
+import demo.zkttestdemo.effect.wxaudio.AudioActivity;
 import demo.zkttestdemo.recyclerview.diffUtil.DiffUtilActivity;
 import demo.zkttestdemo.recyclerview.multichoice.MultiChoiceActivity;
 import demo.zkttestdemo.recyclerview.singlechoice.SingleChoiceActivity;
@@ -140,6 +142,13 @@ public class MainActivity extends AppCompatActivity
 
         }  else if (id == R.id.nav_keyboard_bug) {
             Intent intent = new Intent(this, KeyBoardBugActivity.class);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_audio_reord) {
+            Intent intent = new Intent(this, AudioActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_coordinator) {
+            Intent intent = new Intent(this, CoordinatorActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_suspend_single) {

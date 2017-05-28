@@ -15,10 +15,12 @@ import demo.zkttestdemo.R;
 import demo.zkttestdemo.utils.LogUtil;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableSubscriber;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
+import io.reactivex.schedulers.Schedulers;
 
 
 public class RxJavaActivity extends AppCompatActivity {
@@ -181,9 +183,26 @@ public class RxJavaActivity extends AppCompatActivity {
                 .subscribe(new Consumer<Integer>() {
                     @Override
                     public void accept(@NonNull Integer integer) throws Exception {
-
+                        LogUtil.e(integer + "");
                     }
                 });
+    }
 
+    public void io(View view){
+        Flowable.just("121212")
+                .map(new Function<String, Long>() {
+                    @Override
+                    public Long apply(String s) throws Exception {
+                        return Long.parseLong(s);
+                    }
+                })
+                .observeOn(Schedulers.io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Long>() {
+                    @Override
+                    public void accept(@NonNull Long s) throws Exception {
+                        LogUtil.e(s+"");
+                    }
+                });
     }
 }
