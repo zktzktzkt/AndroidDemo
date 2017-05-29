@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="demo.zkttestdemo.effect.paykeyboard.PayKeyboardActivity">
+
+    <demo.zkttestdemo.effect.paykeyboard.PasswordEdittext
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@null"
+        android:padding="20dp"
+        android:text="1111"
+        app:bgColor="#d1d2d6"
+        app:bgCorner="5dp"
+        app:bgSize="1dp"
+        app:divisionLineColor="#d1d2d6"
+        app:divisionLineSize="1dp"
+        app:passwordColor="#d1d2d6"
+        app:passwordNumber="4"
+        app:passwordRadius="5dp"
+        />
+</RelativeLayout>

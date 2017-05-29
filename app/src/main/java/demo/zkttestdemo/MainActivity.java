@@ -40,6 +40,7 @@ import demo.zkttestdemo.effect.alphatoolbar.AlphaToolbarActivity;
 import demo.zkttestdemo.effect.coordinator.CoordinatorActivity;
 import demo.zkttestdemo.effect.keyboardbug.KeyBoardBugActivity;
 import demo.zkttestdemo.effect.loadingdialog.EatBaoZiActivity;
+import demo.zkttestdemo.effect.paykeyboard.PayKeyboardActivity;
 import demo.zkttestdemo.effect.pullAndload.PtrAndloadActivity;
 import demo.zkttestdemo.effect.transition.TransitionActivity;
 import demo.zkttestdemo.effect.wxaudio.AudioActivity;
@@ -149,6 +150,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_coordinator) {
             Intent intent = new Intent(this, CoordinatorActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_pay_keyboard) {
+            Intent intent = new Intent(this, PayKeyboardActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_suspend_single) {

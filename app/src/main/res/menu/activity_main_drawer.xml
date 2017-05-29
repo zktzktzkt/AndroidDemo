@@ -102,6 +102,10 @@
                 android:id="@+id/nav_coordinator"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="CoordinatorLayout使用"/>
+            <item
+                android:id="@+id/nav_pay_keyboard"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="仿支付宝支付键盘"/>
         </menu>
     </item>
 
