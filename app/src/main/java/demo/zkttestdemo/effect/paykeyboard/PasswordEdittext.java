@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.inputmethod.EditorInfo;
@@ -119,6 +120,14 @@ public class PasswordEdittext extends EditText {
         drawDivisionLine(canvas);
         //画密码
         drawPassword(canvas);
+
+        //当前密码是不是满了
+        if (mListener != null) {
+            String password = getText().toString().trim();
+            if (password.length() >= mPasswordNumber) {
+                mListener.passwordFull(password);
+            }
+        }
     }
 
     /**
@@ -183,5 +192,47 @@ public class PasswordEdittext extends EditText {
         }
     }
 
+    /**
+     * 添加一个密码
+     */
+    public void addPassword(String number) {
+        //把之前的密码取出来
+        String password = getText().toString().trim();
+        if (password.length() >= mPasswordNumber) {
+            return;
+        }
 
+        password += number;
+        setText(password);
+    }
+
+    /**
+     * 删除最后一位密码
+     */
+    public void deleteLastPassword() {
+        String password = getText().toString().trim();
+        //判断当前密码是不是空
+        if (TextUtils.isEmpty(password)) {
+            return;
+        }
+
+        password = password.substring(0, password.length() - 1);
+        setText(password);
+    }
+
+    private PasswordFullListener mListener;
+
+    /**
+     * 设置当前密码是否已经填满
+     */
+    public void setOnPasswordFullListener(PasswordFullListener listener) {
+        this.mListener = listener;
+    }
+
+    /**
+     * 密码已经全部填满
+     */
+    public interface PasswordFullListener {
+        void passwordFull(String password);
+    }
 }
