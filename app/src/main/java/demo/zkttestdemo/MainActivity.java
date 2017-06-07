@@ -44,6 +44,7 @@ import demo.zkttestdemo.effect.paykeyboard.PayKeyboardActivity;
 import demo.zkttestdemo.effect.pullAndload.PtrAndloadActivity;
 import demo.zkttestdemo.effect.transition.TransitionActivity;
 import demo.zkttestdemo.effect.wxaudio.AudioActivity;
+import demo.zkttestdemo.realm.RealmActivity;
 import demo.zkttestdemo.recyclerview.diffUtil.DiffUtilActivity;
 import demo.zkttestdemo.recyclerview.multichoice.MultiChoiceActivity;
 import demo.zkttestdemo.recyclerview.singlechoice.SingleChoiceActivity;
@@ -100,6 +101,12 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -107,12 +114,6 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
     }
 
     @Override
@@ -136,12 +137,15 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_Daggar2) {
 
+        } else if (id == R.id.nav_realm) {
+            Intent intent = new Intent(this, RealmActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_RxJava) {
             Intent intent = new Intent(this, RxJavaActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_Volley) {
 
-        }  else if (id == R.id.nav_keyboard_bug) {
+        } else if (id == R.id.nav_keyboard_bug) {
             Intent intent = new Intent(this, KeyBoardBugActivity.class);
             startActivity(intent);
 
@@ -151,7 +155,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_coordinator) {
             Intent intent = new Intent(this, CoordinatorActivity.class);
             startActivity(intent);
-        }else if (id == R.id.nav_pay_keyboard) {
+        } else if (id == R.id.nav_pay_keyboard) {
             Intent intent = new Intent(this, PayKeyboardActivity.class);
             startActivity(intent);
 

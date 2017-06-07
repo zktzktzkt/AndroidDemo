@@ -22,10 +22,18 @@ public class SingleChoiceActivity extends Activity {
         setContentView(R.layout.activity_single_choice);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(new SingleChoiceAdapter(this));
         //取消item的动画，防止item刷新产生闪烁
         ((DefaultItemAnimator)recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
 
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        });
     }
+
 }

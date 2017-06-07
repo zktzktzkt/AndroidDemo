@@ -47,6 +47,7 @@
         <activity android:name=".effect.transition.TransitionTwoActivity"/>
         <activity android:name=".recyclerview.diffUtil.DiffUtilActivity"/>
         <activity android:name=".rxjava.RxJavaActivity"/>
+        <activity android:name=".realm.RealmActivity"/>
         <activity
             android:name=".effect.keyboardbug.KeyBoardBugActivity"
             android:windowSoftInputMode="adjustResize"> <!-- adjustResize是收缩adjustPan是向上挤 -->

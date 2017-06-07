@@ -18,7 +18,7 @@
     <item android:title="数据库">
         <menu>
             <item
-                android:id="@+id/nav_Realm"
+                android:id="@+id/nav_realm"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="Realm"/>
 
