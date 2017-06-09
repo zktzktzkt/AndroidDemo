@@ -107,7 +107,7 @@ public class AudioManager {
         if (isPrepared) {
             // mMediaRecorder.getMaxAmplitude() 1-32767
             try {
-                return maxLevel * mMediaRecorder.getMaxAmplitude() / 32768 + 1;
+                return maxLevel * mMediaRecorder.getMaxAmplitude() / 14800; //32768 + 1
             } catch (Exception e) {
                 // 忽略产生的异常
             }
