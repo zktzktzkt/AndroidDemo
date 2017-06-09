@@ -45,7 +45,8 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
 
         mDialogManager = new DialogManager(getContext());
 
-        String dir = Environment.getExternalStorageDirectory() + "/imooc_recorder_audios";
+       // String dir = Environment.getExternalStorageDirectory() + "/imooc_recorder_audios";
+        String dir = getContext().getExternalCacheDir() + "/imooc_recorder_audios";
         mAudioManager = AudioManager.getInstance(dir);
         mAudioManager.setOnAudioStateListner(this);
 
