@@ -124,8 +124,13 @@ public class RealmActivity extends Activity implements View.OnClickListener {
         mRealm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                User user = mRealm.where(User.class).findFirst();
-                user.setAge(44);
+                for (int i = 0; i < userList.size(); i++) {
+                    if (userList.get(i).getAge() == 7) {
+                        User user = mRealm.where(User.class).equalTo("age", 7).findFirst();
+                        user.setAge(44);
+                    }
+                }
+
                 Toast.makeText(RealmActivity.this, "改", Toast.LENGTH_SHORT).show();
             }
         });

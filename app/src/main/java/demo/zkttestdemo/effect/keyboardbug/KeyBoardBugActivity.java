@@ -18,4 +18,5 @@ public class KeyBoardBugActivity extends AppCompatActivity {
         EditText et_edit = (EditText) findViewById(R.id.et_edit);
 
     }
+
 }

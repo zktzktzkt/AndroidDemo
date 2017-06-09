@@ -71,7 +71,6 @@ public class AudioActivity extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
-
                 if (mAnimView != null) {
                     mAnimView.setBackgroundResource(R.drawable.adj);
                     mAnimView = null;

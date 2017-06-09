@@ -50,7 +50,7 @@
         <activity android:name=".realm.RealmActivity"/>
         <activity
             android:name=".effect.keyboardbug.KeyBoardBugActivity"
-            android:windowSoftInputMode="adjustResize"> <!-- adjustResize是收缩adjustPan是向上挤 -->
+            android:windowSoftInputMode="adjustPan"> <!-- adjustResize是收缩 adjustPan是向上挤 -->
 
         </activity>
         <activity android:name=".effect.wxaudio.AudioActivity">

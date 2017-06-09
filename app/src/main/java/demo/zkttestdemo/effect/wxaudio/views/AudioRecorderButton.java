@@ -82,8 +82,10 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
         public void run() {
             while (isRecording) {
                 try {
+                    //计时
                     Thread.sleep(100);
                     mTime += 0.1f;
+                    //发送音量改变的消息
                     mHandler.sendEmptyMessage(MSG_VOICE_CHANGE);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
