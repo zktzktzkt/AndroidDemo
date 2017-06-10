@@ -41,6 +41,7 @@ import demo.zkttestdemo.effect.coordinator.CoordinatorActivity;
 import demo.zkttestdemo.effect.keyboardbug.KeyBoardBugActivity;
 import demo.zkttestdemo.effect.loadingdialog.EatBaoZiActivity;
 import demo.zkttestdemo.effect.paykeyboard.PayKeyboardActivity;
+import demo.zkttestdemo.effect.progress.ProgressArcActivity;
 import demo.zkttestdemo.effect.pullAndload.PtrAndloadActivity;
 import demo.zkttestdemo.effect.transition.TransitionActivity;
 import demo.zkttestdemo.effect.wxaudio.AudioActivity;
@@ -147,6 +148,10 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_keyboard_bug) {
             Intent intent = new Intent(this, KeyBoardBugActivity.class);
+            startActivity(intent);
+
+        }else if (id == R.id.nav_progress_arc) {
+            Intent intent = new Intent(this, ProgressArcActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_audio_reord) {
