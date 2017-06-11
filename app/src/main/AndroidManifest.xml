@@ -61,6 +61,8 @@
         </activity>
         <activity android:name=".effect.progress.ProgressArcActivity">
         </activity>
+        <activity android:name=".kotlin.KotlinActivity">
+        </activity>
     </application>
 
 </manifest>

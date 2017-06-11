@@ -45,6 +45,7 @@ import demo.zkttestdemo.effect.progress.ProgressArcActivity;
 import demo.zkttestdemo.effect.pullAndload.PtrAndloadActivity;
 import demo.zkttestdemo.effect.transition.TransitionActivity;
 import demo.zkttestdemo.effect.wxaudio.AudioActivity;
+import demo.zkttestdemo.kotlin.KotlinActivity;
 import demo.zkttestdemo.realm.RealmActivity;
 import demo.zkttestdemo.recyclerview.diffUtil.DiffUtilActivity;
 import demo.zkttestdemo.recyclerview.multichoice.MultiChoiceActivity;
@@ -136,7 +137,10 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_Retrofit) {
             Intent intent = new Intent(this, RetrofitActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_Daggar2) {
+        } else if (id == R.id.nav_kotlin) {
+            Intent intent = new Intent(this, KotlinActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_Daggar2) {
 
         } else if (id == R.id.nav_realm) {
             Intent intent = new Intent(this, RealmActivity.class);
