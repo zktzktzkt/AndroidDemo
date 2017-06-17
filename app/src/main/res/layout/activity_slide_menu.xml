@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<demo.zkttestdemo.effect.slidemenu.ViewDragLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".effect.slidemenu.SlideMenuActivity">
+
+    <LinearLayout
+        android:id="@+id/mContentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:text="zhou
+                \ngithub地址：https://github.com/zktzktzkt"
+            android:textColor="#202020"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mBehindLayout"
+        android:layout_width="140dp"
+        android:layout_height="80dp">
+
+        <ImageView
+            android:id="@+id/add"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:background="#4cd964"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:src="@android:drawable/ic_menu_add"/>
+
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:background="#ff2020"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:src="@android:drawable/ic_menu_delete"/>
+    </LinearLayout>
+
+
+</demo.zkttestdemo.effect.slidemenu.ViewDragLayout>

@@ -100,6 +100,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="渐变Toolbar"/>
             <item
+                android:id="@+id/nav_slideMenu"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="侧滑菜单"/>
+            <item
                 android:id="@+id/nav_transition"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="转场动画"/>

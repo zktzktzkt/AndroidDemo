@@ -43,6 +43,7 @@ import demo.zkttestdemo.effect.loadingdialog.EatBaoZiActivity;
 import demo.zkttestdemo.effect.paykeyboard.PayKeyboardActivity;
 import demo.zkttestdemo.effect.progress.ProgressArcActivity;
 import demo.zkttestdemo.effect.pullAndload.PtrAndloadActivity;
+import demo.zkttestdemo.effect.slidemenu.SlideMenuActivity;
 import demo.zkttestdemo.effect.transition.TransitionActivity;
 import demo.zkttestdemo.effect.wxaudio.AudioActivity;
 import demo.zkttestdemo.kotlin.KotlinActivity;
@@ -142,6 +143,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         }else if (id == R.id.nav_Daggar2) {
 
+        }else if (id == R.id.nav_slideMenu) {
+            Intent intent = new Intent(this, SlideMenuActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_realm) {
             Intent intent = new Intent(this, RealmActivity.class);
             startActivity(intent);
