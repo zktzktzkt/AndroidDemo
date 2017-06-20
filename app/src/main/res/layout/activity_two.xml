@@ -21,6 +21,14 @@
     </android.support.v7.widget.Toolbar>
 
     <Button
+        android:id="@+id/btn_1"
+        android:layout_width="276dp"
+        android:layout_height="42dp"
+        android:text="跳转到第一个Activity"
+        tools:layout_editor_absoluteX="54dp"
+        tools:layout_editor_absoluteY="42dp"/>
+
+    <Button
         android:id="@+id/btn_2"
         android:layout_width="276dp"
         android:layout_height="42dp"

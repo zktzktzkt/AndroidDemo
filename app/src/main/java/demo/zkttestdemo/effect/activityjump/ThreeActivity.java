@@ -8,6 +8,7 @@ import android.view.View;
 import demo.zkttestdemo.R;
 
 public class ThreeActivity extends AppCompatActivity {
+    public static final int THREE_RESULT = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +20,7 @@ public class ThreeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.putExtra("three_result", "我是从第三个Activity传过来的数据");
-                setResult(TwoActivity.THREE_RESULT, intent);
+                setResult(THREE_RESULT, intent);
                 finish();
             }
         });

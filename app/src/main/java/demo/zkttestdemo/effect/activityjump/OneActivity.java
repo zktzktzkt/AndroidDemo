@@ -10,7 +10,6 @@ import demo.zkttestdemo.R;
 
 public class OneActivity extends AppCompatActivity {
     public static final int ONE_REQUEST = 1;
-    public static final int THREE_RESULT = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +28,11 @@ public class OneActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == ONE_REQUEST && resultCode == THREE_RESULT) {
-            ((TextView)findViewById(R.id.textView)).setText(data.getStringExtra("three_result"));
+        if (requestCode == ONE_REQUEST && resultCode == ThreeActivity.THREE_RESULT) {
+            ((TextView) findViewById(R.id.textView)).setText(data.getStringExtra("three_result"));
+
+        } else if (requestCode == ONE_REQUEST && resultCode == TwoActivity.TWO_RESULT) {
+            ((TextView) findViewById(R.id.textView)).setText(data.getStringExtra("two_result"));
         }
     }
 }
