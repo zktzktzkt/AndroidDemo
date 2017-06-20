@@ -23,10 +23,11 @@ import demo.zkttestdemo.R;
 public class JSSearchActivity extends AppCompatActivity {
 
     boolean isExpand = false;
+
     private ImageView ivImg;
     private ScrollView scrollView;
-    private TextView tv_search;
-    private LinearLayout ll_search;
+    private TextView tvSearch;
+    private LinearLayout llSearch;
     private Toolbar toolbar;
 
 
@@ -37,8 +38,8 @@ public class JSSearchActivity extends AppCompatActivity {
 
         ivImg = (ImageView) findViewById(R.id.iv_img);
         scrollView = (ScrollView) findViewById(R.id.scrollView);
-        tv_search = (TextView) findViewById(R.id.tv_search);
-        ll_search = (LinearLayout) findViewById(R.id.ll_search);
+        tvSearch = (TextView) findViewById(R.id.tv_search);
+        llSearch = (LinearLayout) findViewById(R.id.ll_search);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         //设置全屏透明状态栏
@@ -94,25 +95,25 @@ public class JSSearchActivity extends AppCompatActivity {
 
     private void expand() {
         //设置伸展状态时的布局
-        tv_search.setText("搜索简书的内容和朋友");
-        RelativeLayout.LayoutParams LayoutParams = (RelativeLayout.LayoutParams) ll_search.getLayoutParams();
+        tvSearch.setText("搜索简书的内容和朋友");
+        RelativeLayout.LayoutParams LayoutParams = (RelativeLayout.LayoutParams) llSearch.getLayoutParams();
         LayoutParams.width = LayoutParams.MATCH_PARENT;
         LayoutParams.setMargins(dip2px(10), dip2px(10), dip2px(10), dip2px(10));
-        ll_search.setLayoutParams(LayoutParams);
+        llSearch.setLayoutParams(LayoutParams);
         //开始动画
-        beginDelayedTransition(ll_search);
+        beginDelayedTransition(llSearch);
     }
 
 
     private void reduce() {
         //设置收缩状态时的布局
-        tv_search.setText("搜索");
-        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) ll_search.getLayoutParams();
+        tvSearch.setText("搜索");
+        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) llSearch.getLayoutParams();
         layoutParams.width = dip2px(80);
         layoutParams.setMargins(dip2px(10), dip2px(10), dip2px(10), dip2px(10));
-        ll_search.setLayoutParams(layoutParams);
+        llSearch.setLayoutParams(layoutParams);
         //开始动画
-        beginDelayedTransition(ll_search);
+        beginDelayedTransition(llSearch);
     }
 
     /**
