@@ -100,6 +100,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="自定义下拉刷新头"/>
             <item
+                android:id="@+id/nav_JSSearch"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="仿简书searchview伸展动画"/>
+            <item
                 android:id="@+id/nav_progress_arc"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="自定义弧形progress"/>

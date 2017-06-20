@@ -39,6 +39,7 @@ import java.io.IOException;
 import demo.zkttestdemo.effect.activityjump.OneActivity;
 import demo.zkttestdemo.effect.alphatoolbar.AlphaToolbarActivity;
 import demo.zkttestdemo.effect.coordinator.CoordinatorActivity;
+import demo.zkttestdemo.effect.jssearchdemo.JSSearchActivity;
 import demo.zkttestdemo.effect.keyboardbug.KeyBoardBugActivity;
 import demo.zkttestdemo.effect.loadingdialog.EatBaoZiActivity;
 import demo.zkttestdemo.effect.paykeyboard.PayKeyboardActivity;
@@ -147,6 +148,9 @@ public class MainActivity extends AppCompatActivity
 
         }else if (id == R.id.nav_activityJump) {
             Intent intent = new Intent(this, OneActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_JSSearch) {
+            Intent intent = new Intent(this, JSSearchActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_slideMenu) {
             Intent intent = new Intent(this, SlideMenuActivity.class);
