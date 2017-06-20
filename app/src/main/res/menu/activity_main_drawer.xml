@@ -88,6 +88,14 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="仿大众点评加载动画"/>
             <item
+                android:id="@+id/nav_activityJump"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="三级Activity跳转"/>
+            <item
+                android:id="@+id/nav_viewDragHelper"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="ViewDragHelper练习"/>
+            <item
                 android:id="@+id/nav_pullAndLoad"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="自定义下拉刷新头"/>

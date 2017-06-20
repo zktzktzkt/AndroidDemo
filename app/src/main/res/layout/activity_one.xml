@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="demo.zkttestdemo.effect.activityjump.OneActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Activity ONE"
+            android:textColor="@android:color/white"/>
+    </android.support.v7.widget.Toolbar>
+
+    <Button
+        android:id="@+id/btn_1"
+        android:layout_width="276dp"
+        android:layout_height="42dp"
+        android:text="跳转到第二个Activity"
+        tools:layout_editor_absoluteX="54dp"
+        tools:layout_editor_absoluteY="42dp"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text=""
+        android:textSize="18sp"/>
+
+
+</LinearLayout>

@@ -36,6 +36,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import demo.zkttestdemo.effect.activityjump.OneActivity;
 import demo.zkttestdemo.effect.alphatoolbar.AlphaToolbarActivity;
 import demo.zkttestdemo.effect.coordinator.CoordinatorActivity;
 import demo.zkttestdemo.effect.keyboardbug.KeyBoardBugActivity;
@@ -45,6 +46,7 @@ import demo.zkttestdemo.effect.progress.ProgressArcActivity;
 import demo.zkttestdemo.effect.pullAndload.PtrAndloadActivity;
 import demo.zkttestdemo.effect.slidemenu.SlideMenuActivity;
 import demo.zkttestdemo.effect.transition.TransitionActivity;
+import demo.zkttestdemo.effect.viewdraghelper.ViewDragHelperDemoActivity;
 import demo.zkttestdemo.effect.wxaudio.AudioActivity;
 import demo.zkttestdemo.kotlin.KotlinActivity;
 import demo.zkttestdemo.realm.RealmActivity;
@@ -143,7 +145,10 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         }else if (id == R.id.nav_Daggar2) {
 
-        }else if (id == R.id.nav_slideMenu) {
+        }else if (id == R.id.nav_activityJump) {
+            Intent intent = new Intent(this, OneActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_slideMenu) {
             Intent intent = new Intent(this, SlideMenuActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_realm) {
@@ -151,6 +156,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_RxJava) {
             Intent intent = new Intent(this, RxJavaActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_viewDragHelper) {
+            Intent intent = new Intent(this, ViewDragHelperDemoActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_Volley) {
 

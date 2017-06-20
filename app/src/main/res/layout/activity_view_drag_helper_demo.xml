@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<demo.zkttestdemo.effect.viewdraghelper.VDHLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/root_vdh"
+    tools:context="demo.zkttestdemo.effect.viewdraghelper.ViewDragHelperDemoActivity">
+
+    <TextView
+        android:id="@+id/child1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="CommonDragView"/>
+
+    <TextView
+        android:id="@+id/child2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:text="AutobackView"/>
+
+    <TextView
+        android:id="@+id/child3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:background="@android:color/holo_red_dark"
+        android:gravity="center"
+        android:text="EdgeTrackerView"/>
+
+</demo.zkttestdemo.effect.viewdraghelper.VDHLinearLayout>

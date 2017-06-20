@@ -65,6 +65,14 @@
         </activity>
         <activity android:name=".effect.slidemenu.SlideMenuActivity">
         </activity>
+        <activity android:name=".effect.viewdraghelper.ViewDragHelperDemoActivity">
+        </activity>
+        <activity android:name=".effect.activityjump.OneActivity">
+        </activity>
+        <activity android:name=".effect.activityjump.TwoActivity">
+        </activity>
+        <activity android:name=".effect.activityjump.ThreeActivity">
+        </activity>
     </application>
 
 </manifest>
