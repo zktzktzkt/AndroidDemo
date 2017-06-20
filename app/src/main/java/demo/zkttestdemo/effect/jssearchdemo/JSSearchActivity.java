@@ -18,30 +18,29 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
 import demo.zkttestdemo.R;
 
 public class JSSearchActivity extends AppCompatActivity {
 
-    @Bind(R.id.iv_img)
-    ImageView ivImg;
-    @Bind(R.id.scrollView)
-    ScrollView scrollView;
-    @Bind(R.id.tv_search)
-    TextView tvSearch;
-    @Bind(R.id.ll_search)
-    LinearLayout llSearch;
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
-
     boolean isExpand = false;
+    private ImageView ivImg;
+    private ScrollView scrollView;
+    private TextView tv_search;
+    private LinearLayout ll_search;
+    private Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jssearch);
-        ButterKnife.bind(this);
+
+        ivImg = (ImageView) findViewById(R.id.iv_img);
+        scrollView = (ScrollView) findViewById(R.id.scrollView);
+        tv_search = (TextView) findViewById(R.id.tv_search);
+        ll_search = (LinearLayout) findViewById(R.id.ll_search);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         //设置全屏透明状态栏
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -95,25 +94,25 @@ public class JSSearchActivity extends AppCompatActivity {
 
     private void expand() {
         //设置伸展状态时的布局
-        tvSearch.setText("搜索简书的内容和朋友");
-        RelativeLayout.LayoutParams LayoutParams = (RelativeLayout.LayoutParams) llSearch.getLayoutParams();
+        tv_search.setText("搜索简书的内容和朋友");
+        RelativeLayout.LayoutParams LayoutParams = (RelativeLayout.LayoutParams) ll_search.getLayoutParams();
         LayoutParams.width = LayoutParams.MATCH_PARENT;
         LayoutParams.setMargins(dip2px(10), dip2px(10), dip2px(10), dip2px(10));
-        llSearch.setLayoutParams(LayoutParams);
+        ll_search.setLayoutParams(LayoutParams);
         //开始动画
-        beginDelayedTransition(llSearch);
+        beginDelayedTransition(ll_search);
     }
 
 
     private void reduce() {
         //设置收缩状态时的布局
-        tvSearch.setText("搜索");
-        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) llSearch.getLayoutParams();
+        tv_search.setText("搜索");
+        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) ll_search.getLayoutParams();
         layoutParams.width = dip2px(80);
         layoutParams.setMargins(dip2px(10), dip2px(10), dip2px(10), dip2px(10));
-        llSearch.setLayoutParams(layoutParams);
+        ll_search.setLayoutParams(layoutParams);
         //开始动画
-        beginDelayedTransition(llSearch);
+        beginDelayedTransition(ll_search);
     }
 
     /**

@@ -26,15 +26,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/night1" />
+                    android:src="@drawable/night1"/>
             </FrameLayout>
         </FrameLayout>
     </ScrollView>
 
     <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/toolbar"
         android:background="@android:color/white"
         android:fitsSystemWindows="true">
 
@@ -48,9 +48,9 @@
                 android:layout_width="80dp"
                 android:layout_height="30dp"
                 android:layout_alignParentRight="true"
+                android:layout_marginBottom="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
                 android:background="@drawable/shape_bg"
                 android:gravity="center">
 
@@ -61,7 +61,7 @@
                     android:drawableLeft="@drawable/search"
                     android:gravity="center_vertical"
                     android:text="搜索"
-                    android:textColor="#8A8A8A" />
+                    android:textColor="#8A8A8A"/>
             </LinearLayout>
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
