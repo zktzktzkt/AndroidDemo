@@ -19,6 +19,28 @@
         <attr name="bgSize" format="dimension"/>
         <!--背景边框的圆角大小-->
         <attr name="bgCorner" format="dimension"/>
+    </declare-styleable>
 
+    <!--********************************自定义圆形进度条************************-->
+    <declare-styleable name="CircleProgressBar">
+        <!--文字大小-->
+        <attr name="text_size" format="dimension"/>
+        <!--文字颜色-->
+        <attr name="text_color" format="color"/>
+        <!--文本-->
+        <attr name="text" format="string"/>
+        <!--边框宽度-->
+        <attr name="stroke_width" format="integer"/>
+        <!--未走的进度的颜色-->
+        <attr name="normal_color" format="color"/>
+        <!--已走的进度的颜色-->
+        <attr name="progress_color" format="color"/>
+        <!--已走的进度 0-360 -->
+        <attr name="progress" format="integer"/>
+        <!--类型：填充型还是环形-->
+        <attr name="progress_style" format="enum">
+            <enum name="STROKE" value="0"/>
+            <enum name="FILL" value="1"/>
+        </attr>
     </declare-styleable>
 </resources>

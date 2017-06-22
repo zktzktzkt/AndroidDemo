@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="demo.zkttestdemo.effect.circleprogress.CircleProgressActivity">
+
+    <demo.zkttestdemo.effect.circleprogress.CircleProgressBar
+        android:id="@+id/circleProgressBar"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerInParent="true"
+        app:normal_color="#A5A5A5"
+        app:progress="30"
+        app:progress_color="#FA9025"
+        app:progress_style="STROKE"
+        app:stroke_width="20"
+        app:text_color="#ff0000"
+        app:text_size="30sp"
+        />
+</RelativeLayout>
