@@ -13,7 +13,7 @@
         android:layout_height="300dp"
         android:layout_centerInParent="true"
         app:normal_color="#A5A5A5"
-        app:progress="30"
+        app:progress="0"
         app:progress_color="#FA9025"
         app:progress_style="STROKE"
         app:stroke_width="20"

@@ -27,7 +27,7 @@ public class CircleProgressBar extends View {
     private int textColor = normalColor;//文字颜色
     private float textSize = 20;//文字大小
     private int progress = 0;//进度条
-    private String centerText = "100%";//中心填充文字
+    private String centerText = "0%";//中心填充文字
     private Paint fontPaint = null;
     private Paint.Style progress_style = Paint.Style.STROKE;//填充式还是环形式
 
@@ -76,16 +76,12 @@ public class CircleProgressBar extends View {
         width = MeasureSpec.getSize(widthMeasureSpec);
         height = MeasureSpec.getSize(heightMeasureSpec);
 
-        if (height > width)  //高大于宽
-        {
-            rectF = new RectF(strokeWidth, (height / 2 - width / 2) + strokeWidth,
-                    width - strokeWidth, (height / 2 - width / 2) - strokeWidth);
-        } else if (width > height)  //宽大于高
-        {
+        if (height > width || width > height) {
+            int min = Math.min(width, height);
             rectF = new RectF(strokeWidth, strokeWidth,
-                    width - strokeWidth, height - strokeWidth);
-        } else //宽等于高
-        {
+                    min - strokeWidth, min - strokeWidth);
+
+        } else {
             rectF = new RectF(strokeWidth, strokeWidth,
                     width - strokeWidth, height - strokeWidth);
         }
@@ -108,7 +104,13 @@ public class CircleProgressBar extends View {
         fontMetrics = fontPaint.getFontMetrics();
         float textWidth = fontPaint.measureText(centerText);
         float textHeight = fontPaint.ascent() + fontPaint.descent();
-        canvas.drawText(centerText, width / 2 - textWidth / 2, height / 2 - textHeight / 2, fontPaint);
+
+        if (getMeasuredHeight() > getMeasuredWidth() || getMeasuredHeight() < getMeasuredWidth()) {
+            int min = Math.min(getMeasuredHeight(), getMeasuredWidth());
+            canvas.drawText(centerText, min / 2 - textWidth / 2, min / 2 - textHeight / 2, fontPaint);
+        } else {
+            canvas.drawText(centerText, getMeasuredWidth() / 2 - textWidth / 2, getMeasuredHeight() / 2 - textHeight / 2, fontPaint);
+        }
     }
 
     /**
