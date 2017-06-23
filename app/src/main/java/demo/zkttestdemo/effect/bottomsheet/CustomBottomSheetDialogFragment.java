@@ -1,4 +1,4 @@
-package demo.zkttestdemo.effect.behavior;
+package demo.zkttestdemo.effect.bottomsheet;
 
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetDialogFragment;
