@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="demo.zkttestdemo.effect.behavior.ZHBottomSheetActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btnBehavior"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BottomSheetBehavior"
+            android:textAllCaps="false"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btnDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BottomSheetDialog"
+            android:textAllCaps="false"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btnDialogFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BottomSheetDialogFragment"
+            android:textAllCaps="false"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey"
+        android:orientation="vertical"
+        app:behavior_hideable="true"
+        app:behavior_peekHeight="0dp"
+        app:layout_behavior="@string/bottom_sheet_behavior">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@color/colorPrimaryDark"
+            android:gravity="center"
+            android:text="向上/向下拖动"
+            android:textColor="@android:color/white"
+            />
+
+        <include layout="@layout/include_bottom_sheet_layout"/>
+
+    </LinearLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

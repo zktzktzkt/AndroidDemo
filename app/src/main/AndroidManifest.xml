@@ -77,6 +77,10 @@
         </activity>
         <activity android:name=".effect.circleprogress.CircleProgressActivity">
         </activity>
+        <activity android:name=".effect.behavior.ZHBottomSheetActivity">
+        </activity>
+        <activity android:name=".effect.behavior.BottomSheetActivity">
+        </activity>
     </application>
 
 </manifest>

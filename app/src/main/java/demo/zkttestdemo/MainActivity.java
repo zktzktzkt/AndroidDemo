@@ -38,6 +38,7 @@ import java.io.IOException;
 
 import demo.zkttestdemo.effect.activityjump.OneActivity;
 import demo.zkttestdemo.effect.alphatoolbar.AlphaToolbarActivity;
+import demo.zkttestdemo.effect.behavior.BottomSheetActivity;
 import demo.zkttestdemo.effect.circleprogress.CircleProgressActivity;
 import demo.zkttestdemo.effect.coordinator.CoordinatorActivity;
 import demo.zkttestdemo.effect.jssearchdemo.JSSearchActivity;
@@ -152,6 +153,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_JSSearch) {
             Intent intent = new Intent(this, JSSearchActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_bottomSheet) {
+            Intent intent = new Intent(this, BottomSheetActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_circleProgress) {
             Intent intent = new Intent(this, CircleProgressActivity.class);
