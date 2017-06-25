@@ -32,6 +32,13 @@
             android:layout_height="wrap_content"
             android:text="BottomSheetDialogFragment"
             android:textAllCaps="false"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btnPopupOnTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="底部弹出PopupWindow"
+            android:textAllCaps="false"/>
     </LinearLayout>
 
 

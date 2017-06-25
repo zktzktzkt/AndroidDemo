@@ -1,5 +1,6 @@
 package demo.zkttestdemo.effect.bottomsheet;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
@@ -116,6 +117,14 @@ public class ZHBottomSheetActivity extends AppCompatActivity {
             }
 
         }*/
+
+        /***********************************Popupwindow显示在某个布局上方*****************/
+        findViewById(R.id.btnPopupOnTop).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ZHBottomSheetActivity.this, PopUpBottomSheetActivity.class));
+            }
+        });
 
     }
 
