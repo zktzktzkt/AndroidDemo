@@ -43,4 +43,18 @@
             <enum name="FILL" value="1"/>
         </attr>
     </declare-styleable>
+    <!--********************************自定义tablayout*****************-->
+    <declare-styleable name="Indicator">
+        <attr name="indicatorColor" format="color"/>
+        <attr name="array" format="integer"/>
+        <attr name="text_nomal_color" format="color"/>
+        <attr name="text_press_color" format="color"/>
+        <attr name="text_nomal_size" format="integer"/>
+        <attr name="text_press_size" format="integer"/>
+        <attr name="selected" format="integer"/>
+        <attr name="isFull" format="boolean"/>
+        <attr name="speed" format="integer"/>
+        <attr name="multiply" format="float"/>
+        <attr name="line_hegith" format="integer"/>
+    </declare-styleable>
 </resources>

@@ -81,6 +81,10 @@
         </activity>
         <activity android:name=".effect.bottomsheet.PopUpBottomSheetActivity">
         </activity>
+        <activity android:name=".effect.ninegridview.NineGridViewActivity">
+        </activity>
+        <activity android:name=".effect.tablayout.MyTablayoutActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -48,6 +48,7 @@ import demo.zkttestdemo.effect.paykeyboard.PayKeyboardActivity;
 import demo.zkttestdemo.effect.progress.ProgressArcActivity;
 import demo.zkttestdemo.effect.pullAndload.PtrAndloadActivity;
 import demo.zkttestdemo.effect.slidemenu.SlideMenuActivity;
+import demo.zkttestdemo.effect.tablayout.MyTablayoutActivity;
 import demo.zkttestdemo.effect.transition.TransitionActivity;
 import demo.zkttestdemo.effect.viewdraghelper.ViewDragHelperDemoActivity;
 import demo.zkttestdemo.effect.wxaudio.AudioActivity;
@@ -156,6 +157,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_bottomSheet) {
             Intent intent = new Intent(this, ZHBottomSheetActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_myIndicator) {
+            Intent intent = new Intent(this, MyTablayoutActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_circleProgress) {
             Intent intent = new Intent(this, CircleProgressActivity.class);

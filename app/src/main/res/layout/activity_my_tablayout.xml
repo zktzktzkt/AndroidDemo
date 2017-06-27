@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+    >
+
+    <demo.zkttestdemo.effect.tablayout.MyIndicator
+        android:id="@+id/my"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:array="@array/tabs"
+        app:indicatorColor="@color/btn_red"
+        app:line_hegith="4"
+        app:speed="200"
+        app:selected="0"
+        app:text_nomal_color="@color/text_hint"
+        app:text_nomal_size="12"
+        app:text_press_color="@color/text_title"
+        app:text_press_size="13"
+        >
+
+    </demo.zkttestdemo.effect.tablayout.MyIndicator>
+
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="添加"/>
+
+    <Button
+        android:id="@+id/btn_speed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_add"
+        android:layout_centerInParent="true"
+        android:text="速度"/>
+
+    <Button
+        android:id="@+id/btn_jinzhi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_speed"
+        android:layout_centerInParent="true"
+        android:text="禁止"/>
+
+    <Button
+        android:id="@+id/btn_length"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_jinzhi"
+        android:layout_centerInParent="true"
+        android:text="修改为tab铺满"/>
+
+</RelativeLayout>

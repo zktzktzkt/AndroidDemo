@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 
 import demo.zkttestdemo.R;
 
@@ -16,6 +17,7 @@ public class PopUpBottomSheetActivity extends AppCompatActivity implements View.
 
     private int height;
     private LinearLayout ll_bottom;
+    private RelativeLayout rl_root;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,7 @@ public class PopUpBottomSheetActivity extends AppCompatActivity implements View.
 
         findViewById(R.id.promptly_buy).setOnClickListener(this);
         ll_bottom = (LinearLayout) findViewById(R.id.ll_bottom);
+        rl_root = (RelativeLayout) findViewById(R.id.rl_root);
 
         height = ll_bottom.getLayoutParams().height;
 
@@ -42,6 +45,7 @@ public class PopUpBottomSheetActivity extends AppCompatActivity implements View.
                 pw.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 pw.setOutsideTouchable(false); // 设置是否允许在外点击使其消失，到底有用没？
                 //  pw.setAnimationStyle(R.style.PopupAnimation); // 设置动画
+                //  pw.showAtLocation(rl_root, Gravity.BOTTOM, 0, 200);//不好使，始终在最底部显示
                 pw.showAsDropDown(ll_bottom, 0, 3); // y<3不显示
                 pw.update();
                 break;

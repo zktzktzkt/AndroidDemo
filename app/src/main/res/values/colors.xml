@@ -14,4 +14,8 @@
 
     <color name="line_bg">#CDCDCD</color>
     <color name="popup_bg">#8f000000</color>
+
+    <color name="text_hint" >#999999</color>
+    <color name="btn_red">#FA5557</color>
+    <color name="text_title">#333333</color>
 </resources>
