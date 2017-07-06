@@ -85,6 +85,8 @@
         </activity>
         <activity android:name=".effect.tablayout.MyTablayoutActivity">
         </activity>
+        <activity android:name=".effect.multipage.MultiPageActivity">
+        </activity>
     </application>
 
 </manifest>

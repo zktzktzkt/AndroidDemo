@@ -112,6 +112,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="自定义弧形progress"/>
             <item
+                android:id="@+id/nav_multi_page"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="ViewPager一屏显示显示多页面"/>
+            <item
                 android:id="@+id/nav_alphaToolbar"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="渐变Toolbar"/>
