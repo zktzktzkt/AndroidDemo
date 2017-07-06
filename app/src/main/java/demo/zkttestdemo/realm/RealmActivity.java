@@ -7,7 +7,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import demo.zkttestdemo.R;
+import demo.zkttestdemo.utils.ACache;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
@@ -21,6 +24,7 @@ public class RealmActivity extends Activity implements View.OnClickListener {
     private Realm mRealm;
     private TextView tv_result;
     private RealmResults<User> userList;
+    private ACache aCache;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +39,18 @@ public class RealmActivity extends Activity implements View.OnClickListener {
                 .build();
         mRealm = Realm.getInstance(config);
 
+        aCache = ACache.get(getApplicationContext());
+
+
         Button btn_add = (Button) findViewById(R.id.btn_add);
         Button btn_delete = (Button) findViewById(R.id.btn_delete);
         Button btn_update = (Button) findViewById(R.id.btn_update);
         Button btn_qry = (Button) findViewById(R.id.btn_qry);
         Button btn_deleteAll = (Button) findViewById(R.id.btn_deleteAll);
+
+        Button btn_acache_put = (Button) findViewById(R.id.btn_acache_put);
+        Button btn_acache_qry = (Button) findViewById(R.id.btn_acache_qry);
+        Button btn_acache_update = (Button) findViewById(R.id.btn_acache_update);
         tv_result = (TextView) findViewById(R.id.tv_result);
 
         btn_add.setOnClickListener(this);
@@ -47,6 +58,9 @@ public class RealmActivity extends Activity implements View.OnClickListener {
         btn_update.setOnClickListener(this);
         btn_qry.setOnClickListener(this);
         btn_deleteAll.setOnClickListener(this);
+        btn_acache_put.setOnClickListener(this);
+        btn_acache_qry.setOnClickListener(this);
+        btn_acache_update.setOnClickListener(this);
     }
 
     /**
@@ -183,6 +197,29 @@ public class RealmActivity extends Activity implements View.OnClickListener {
                     return;
                 }
                 deleteAll();
+                break;
+            case R.id.btn_acache_put:
+                ArrayList<User1> arrayList = new ArrayList();
+                arrayList.add(new User1("qqq", 23));
+                arrayList.add(new User1("www", 24));
+                arrayList.add(new User1("eee", 25));
+                aCache.put("list", arrayList);
+                break;
+            case R.id.btn_acache_update:
+                ArrayList<User1> arrayList1 = new ArrayList();
+                arrayList1.add(new User1("qqq", 33));
+                arrayList1.add(new User1("www", 34));
+                arrayList1.add(new User1("eee", 35));
+                aCache.put("list", arrayList1);
+                break;
+            case R.id.btn_acache_qry:
+                ArrayList<User1> list = (ArrayList<User1>) aCache.getAsObject("list");
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < list.size(); i++) {
+                    sb.append("姓名：" + list.get(i).getName() + " 年龄：" + list.get(i).getAge() + "\n");
+                }
+
+                tv_result.setText(sb);
                 break;
 
         }

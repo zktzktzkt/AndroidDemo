@@ -45,5 +45,12 @@ public class MyTablayoutActivity extends AppCompatActivity {
                 Toast.makeText(MyTablayoutActivity.this, "修改下标线的长度铺满", Toast.LENGTH_SHORT).show();
             }
         });
+
+        myIndicator.setIndiacatorListener(new MyIndicator.OnIndiacatorClickListener() {
+            @Override
+            public void onClick(int position, View view) {
+                Toast.makeText(MyTablayoutActivity.this, "position:"+position, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

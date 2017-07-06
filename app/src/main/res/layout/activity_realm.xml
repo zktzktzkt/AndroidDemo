@@ -35,6 +35,27 @@
         android:layout_height="wrap_content"
         android:text="清空数据"/>
 
+    <Button
+        android:id="@+id/btn_acache_put"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ACache存储"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btn_acache_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ACache修改"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btn_acache_qry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ACache查询"
+        android:textAllCaps="false"/>
+
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
