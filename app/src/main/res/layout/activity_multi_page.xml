@@ -13,5 +13,4 @@
         android:layout_centerHorizontal="true"
         android:clipChildren="false"/>
 
-
 </RelativeLayout>

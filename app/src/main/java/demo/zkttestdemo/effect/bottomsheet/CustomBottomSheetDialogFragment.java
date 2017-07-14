@@ -18,4 +18,6 @@ public class CustomBottomSheetDialogFragment extends BottomSheetDialogFragment {
         View v = inflater.inflate(R.layout.include_bottom_sheet_layout, container, false);
         return v;
     }
+
+
 }
