@@ -3,16 +3,7 @@
                 android:id="@+id/rl_root"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-    >
-
-    <View
-        android:id="@+id/view_bg"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/grey"
-        android:onClick="onDarkBg"
-        android:visibility="gone"
-        />
+                android:background="@color/grey">
 
 
     <LinearLayout

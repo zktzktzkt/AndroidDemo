@@ -2,19 +2,21 @@ package demo.zkttestdemo.effect.bottomsheet;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import demo.zkttestdemo.R;
 import demo.zkttestdemo.utils.DisplayUtil;
 
 public class PopUpBottomSheetActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private int height;
     private LinearLayout ll_bottom;
+    private ShowUpPopupWindow showUpPopupWindow;
+    private View view_bg;
+    private ViewGroup popView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +25,18 @@ public class PopUpBottomSheetActivity extends AppCompatActivity implements View.
 
         findViewById(R.id.promptly_buy).setOnClickListener(this);
         ll_bottom = (LinearLayout) findViewById(R.id.ll_bottom);
+        view_bg = findViewById(R.id.view_bg);
 
-        height = ll_bottom.getLayoutParams().height;
+        //初始化ppoupwindow
+        initPopWindow();
+    }
 
+    private void initPopWindow() {
+        //因为view的高度是在view显示后才测量的，所以必须要手动测量一波，获取宽高
+        popView = (ViewGroup) LayoutInflater.from(this).inflate(R.layout.popup_slide_from_bottom, null);
+        int widSpec = View.MeasureSpec.makeMeasureSpec(DisplayUtil.getScreenWidth(getApplicationContext()), View.MeasureSpec.EXACTLY);
+        popView.measure(widSpec, View.MeasureSpec.UNSPECIFIED);
+        showUpPopupWindow = new ShowUpPopupWindow(popView, popView.getMeasuredWidth(), popView.getMeasuredHeight());
     }
 
     @Override
@@ -40,17 +51,24 @@ public class PopUpBottomSheetActivity extends AppCompatActivity implements View.
                 // pw.showAsDropDown(ll_bottom, 0, 3); // y<3不显示
                 pw.update();*/
 
-                //因为view的高度是在view显示后才测量的，所以必须要手动测量一波，获取宽高
-                ViewGroup popView = (ViewGroup) LayoutInflater.from(this).inflate(R.layout.popup_slide_from_bottom, null);
-                int widSpec = View.MeasureSpec.makeMeasureSpec(DisplayUtil.getScreenWidth(getApplicationContext()), View.MeasureSpec.EXACTLY);
-                popView.measure(widSpec, View.MeasureSpec.UNSPECIFIED);
-
-                Log.e("contentHeight", popView.getMeasuredHeight() + "");
-                ShowUpPopupWindow showUpPopupWindow = new ShowUpPopupWindow(popView, popView.getMeasuredWidth(), popView.getMeasuredHeight());
-                showUpPopupWindow.showAsPullUp(ll_bottom, popView.getMeasuredHeight(), 0, 0);
+                if (showUpPopupWindow.isShowing()) {
+                    showUpPopupWindow.dismiss();
+                    view_bg.setVisibility(View.GONE);
+                } else {
+                    showUpPopupWindow.showAsPullUp(ll_bottom, popView.getMeasuredHeight(), 0, 0);
+                    view_bg.setVisibility(View.VISIBLE);
+                }
 
                 break;
         }
     }
 
+    public void onDarkBg(View view) {
+        view_bg.setVisibility(View.GONE);
+        showUpPopupWindow.dismiss();
+    }
+
+    public void onTest1Click(View view) {
+        Toast.makeText(this, "test1点击", Toast.LENGTH_SHORT).show();
+    }
 }

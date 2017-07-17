@@ -6,6 +6,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.PopupWindow;
 
+import demo.zkttestdemo.R;
+
 /**
  * Created by zkt on 2017/7/14.
  */
@@ -16,7 +18,10 @@ public class ShowUpPopupWindow extends PopupWindow {
         super(contentView, width, height, true);
 
         setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        setOutsideTouchable(true);
+        setOutsideTouchable(false);
+        setFocusable(false);
+        setTouchable(true);
+        setAnimationStyle(R.style.dialog_anim_style);
     }
 
 

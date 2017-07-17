@@ -87,6 +87,8 @@
         </activity>
         <activity android:name=".effect.multipage.MultiPageActivity">
         </activity>
+        <activity android:name=".effect.bottomsheet.DialogOnTopActivity">
+        </activity>
     </application>
 
 </manifest>

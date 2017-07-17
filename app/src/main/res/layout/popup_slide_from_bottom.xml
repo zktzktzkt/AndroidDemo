@@ -24,6 +24,7 @@
                 android:id="@+id/tx_1"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:onClick="onTest1Click"
                 android:gravity="center"
                 android:text="test1"/>
 

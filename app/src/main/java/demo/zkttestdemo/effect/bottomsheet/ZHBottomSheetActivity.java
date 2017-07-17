@@ -126,6 +126,14 @@ public class ZHBottomSheetActivity extends AppCompatActivity {
             }
         });
 
+        /***********************************Dialog显示在某个布局上方*****************/
+        findViewById(R.id.btnDialogOnTop).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ZHBottomSheetActivity.this, DialogOnTopActivity.class));
+            }
+        });
+
     }
 
 }

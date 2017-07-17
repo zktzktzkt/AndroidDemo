@@ -39,6 +39,13 @@
             android:layout_height="wrap_content"
             android:text="底部弹出PopupWindow"
             android:textAllCaps="false"/>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btnDialogOnTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="底部弹出Dialog"
+            android:textAllCaps="false"/>
     </LinearLayout>
 
 
