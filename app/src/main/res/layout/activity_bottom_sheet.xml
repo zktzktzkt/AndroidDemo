@@ -46,6 +46,19 @@
             android:layout_height="wrap_content"
             android:text="底部弹出Dialog"
             android:textAllCaps="false"/>
+
+        <TextView
+            android:id="@+id/checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_stroke_blue"
+            android:gravity="center"
+            android:text="textview"
+            android:textColor="@color/selector_white_txt"
+            />
     </LinearLayout>
 
 

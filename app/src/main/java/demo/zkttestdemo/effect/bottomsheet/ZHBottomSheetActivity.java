@@ -8,6 +8,7 @@ import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import demo.zkttestdemo.R;
 import demo.zkttestdemo.utils.DisplayUtil;
@@ -16,11 +17,21 @@ public class ZHBottomSheetActivity extends AppCompatActivity {
     private static final String TAG = "ZHBottomSheetActivity";
 
     private BottomSheetBehavior<View> behavior;
+    private TextView checkbox;
+    boolean mChecked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_sheet);
+        checkbox = (TextView) findViewById(R.id.checkbox);
+        checkbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mChecked = !mChecked;
+                checkbox.setSelected(mChecked);
+            }
+        });
 
         /**
          * setPeekHeight	偷看的高度；哈，这么理解，就是默认显示后View露头的高度
@@ -135,5 +146,6 @@ public class ZHBottomSheetActivity extends AppCompatActivity {
         });
 
     }
+
 
 }

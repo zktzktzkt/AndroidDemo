@@ -84,6 +84,10 @@
     <item android:title="效果">
         <menu>
             <item
+                android:id="@+id/nav_MotionEventTest"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="事件分发测试"/>
+            <item
                 android:id="@+id/nav_eatBaoZi"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="仿大众点评加载动画"/>
@@ -91,6 +95,18 @@
                 android:id="@+id/nav_activityJump"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="三级Activity跳转"/>
+            <item
+                android:id="@+id/nav_behaviorDemo"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="仿知乎behavior"/>
+            <item
+                android:id="@+id/nav_mt2List"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="仿美团级联菜单列表"/>
+            <item
+                android:id="@+id/nav_wavRecord"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="wav格式录音"/>
             <item
                 android:id="@+id/nav_viewDragHelper"
                 android:icon="@drawable/ic_menu_gallery"
@@ -111,6 +127,11 @@
                 android:id="@+id/nav_progress_arc"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="自定义弧形progress"/>
+
+            <item
+                android:id="@+id/nav_alipayHomeAnim"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="仿alipay首页头部伸缩动画"/>
             <item
                 android:id="@+id/nav_multi_page"
                 android:icon="@drawable/ic_menu_gallery"

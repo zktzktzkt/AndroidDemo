@@ -89,6 +89,16 @@
         </activity>
         <activity android:name=".effect.bottomsheet.DialogOnTopActivity">
         </activity>
+        <activity android:name=".effect.alipayhome.AlipayHomeActivity">
+        </activity>
+        <activity android:name=".effect.motionevent.MotionEventTestActivity">
+        </activity>
+        <activity android:name=".effect.behavior.BehaviorActivity">
+        </activity>
+        <activity android:name=".effect.wavrecord.WAVActivity">
+        </activity>
+        <activity android:name=".effect.meituan2list.MeiTuanListActivity">
+        </activity>
     </application>
 
 </manifest>

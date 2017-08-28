@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_black"
+    android:gravity="center_horizontal"
+    tools:context="demo.zkttestdemo.effect.wavrecord.WAVActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-thin"
+            android:text="00:00:00"
+            android:textColor="@android:color/white"
+            android:textSize="60sp"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true">
+
+        <ImageButton
+            android:id="@+id/restart"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="50dp"
+            android:layout_toLeftOf="@+id/record"
+            android:layout_toStartOf="@+id/record"
+            android:onClick="restartRecording"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/aar_ic_restart"
+            android:visibility="invisible"
+            tools:visibility="visible"
+            />
+
+        <ImageButton
+            android:id="@+id/record"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:layout_margin="15dp"
+            android:layout_marginTop="50dp"
+            android:onClick="toggleRecording"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/aar_ic_rec"/>
+
+        <ImageButton
+            android:id="@+id/play"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="50dp"
+            android:layout_toEndOf="@+id/record"
+            android:layout_toRightOf="@+id/record"
+            android:onClick="togglePlaying"
+            android:padding="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/aar_ic_play"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

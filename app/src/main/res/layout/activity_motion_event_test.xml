@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<demo.zkttestdemo.effect.motionevent.MyViewGroup
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    tools:context="demo.zkttestdemo.effect.motionevent.MotionEventTestActivity">
+
+    <demo.zkttestdemo.effect.motionevent.MyView
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:clickable="true"
+        android:layout_margin="20dp"
+        android:background="@color/colorAccent"
+        android:textColor="@color/white"/>
+</demo.zkttestdemo.effect.motionevent.MyViewGroup>

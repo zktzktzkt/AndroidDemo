@@ -35,5 +35,6 @@
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@id/id_recorder_length"
         android:layout_marginRight="3dp"
+        android:hint="1'30''"
         android:textColor="#ff777777"/>
 </RelativeLayout>

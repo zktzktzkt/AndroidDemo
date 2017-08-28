@@ -95,7 +95,7 @@ public class ProgressArcView extends View {
         paint.setColor(ContextCompat.getColor(getContext(), R.color.yellow));
         //末端为圆角
         paint.setStrokeCap(Paint.Cap.ROUND);
-        //设置画笔的样式
+        //设置拐角的形状。
         paint.setStrokeJoin(Paint.Join.ROUND);
         //设置画笔的填充样式
         paint.setStyle(Paint.Style.STROKE);
@@ -126,7 +126,7 @@ public class ProgressArcView extends View {
         paint.setStyle(Paint.Style.STROKE);
         //设置画笔宽度
         paint.setStrokeWidth(borderWidth);
-        //设置画笔样式
+        //设置拐角的形状。
         paint.setStrokeJoin(Paint.Join.ROUND);
 
         canvas.drawArc(rectF, startAngle, currentAngleLength, false, paint);

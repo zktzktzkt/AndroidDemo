@@ -37,13 +37,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import demo.zkttestdemo.effect.activityjump.OneActivity;
+import demo.zkttestdemo.effect.alipayhome.AlipayHomeActivity;
 import demo.zkttestdemo.effect.alphatoolbar.AlphaToolbarActivity;
+import demo.zkttestdemo.effect.behavior.BehaviorActivity;
 import demo.zkttestdemo.effect.bottomsheet.ZHBottomSheetActivity;
 import demo.zkttestdemo.effect.circleprogress.CircleProgressActivity;
 import demo.zkttestdemo.effect.coordinator.CoordinatorActivity;
 import demo.zkttestdemo.effect.jssearchdemo.JSSearchActivity;
 import demo.zkttestdemo.effect.keyboardbug.KeyBoardBugActivity;
 import demo.zkttestdemo.effect.loadingdialog.EatBaoZiActivity;
+import demo.zkttestdemo.effect.meituan2list.MeiTuanListActivity;
+import demo.zkttestdemo.effect.motionevent.MotionEventTestActivity;
 import demo.zkttestdemo.effect.multipage.MultiPageActivity;
 import demo.zkttestdemo.effect.paykeyboard.PayKeyboardActivity;
 import demo.zkttestdemo.effect.progress.ProgressArcActivity;
@@ -52,6 +56,7 @@ import demo.zkttestdemo.effect.slidemenu.SlideMenuActivity;
 import demo.zkttestdemo.effect.tablayout.MyTablayoutActivity;
 import demo.zkttestdemo.effect.transition.TransitionActivity;
 import demo.zkttestdemo.effect.viewdraghelper.ViewDragHelperDemoActivity;
+import demo.zkttestdemo.effect.wavrecord.WAVActivity;
 import demo.zkttestdemo.effect.wxaudio.AudioActivity;
 import demo.zkttestdemo.kotlin.KotlinActivity;
 import demo.zkttestdemo.realm.RealmActivity;
@@ -153,11 +158,26 @@ public class MainActivity extends AppCompatActivity
         }else if (id == R.id.nav_activityJump) {
             Intent intent = new Intent(this, OneActivity.class);
             startActivity(intent);
+        }else if (id == R.id.nav_wavRecord) {
+            Intent intent = new Intent(this, WAVActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_mt2List) {
+            Intent intent = new Intent(this, MeiTuanListActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_behaviorDemo) {
+            Intent intent = new Intent(this, BehaviorActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_JSSearch) {
             Intent intent = new Intent(this, JSSearchActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_bottomSheet) {
             Intent intent = new Intent(this, ZHBottomSheetActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_alipayHomeAnim) {
+            Intent intent = new Intent(this, AlipayHomeActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_MotionEventTest) {
+            Intent intent = new Intent(this, MotionEventTestActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_multi_page) {
             Intent intent = new Intent(this, MultiPageActivity.class);
