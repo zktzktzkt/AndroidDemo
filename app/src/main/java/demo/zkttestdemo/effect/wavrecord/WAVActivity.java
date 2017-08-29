@@ -1,5 +1,6 @@
 package demo.zkttestdemo.effect.wavrecord;
 
+import android.Manifest;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
@@ -9,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.io.File;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -20,8 +22,10 @@ import omrecorder.AudioChunk;
 import omrecorder.OmRecorder;
 import omrecorder.PullTransport;
 import omrecorder.Recorder;
+import pub.devrel.easypermissions.EasyPermissions;
 
-public class WAVActivity extends AppCompatActivity implements PullTransport.OnAudioChunkPulledListener, MediaPlayer.OnCompletionListener {
+public class WAVActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks,
+        PullTransport.OnAudioChunkPulledListener, MediaPlayer.OnCompletionListener {
     private MediaPlayer player;
     private TextView timerView;
     private ImageButton restartView;
@@ -31,8 +35,8 @@ public class WAVActivity extends AppCompatActivity implements PullTransport.OnAu
 
     private String filePath = Environment.getExternalStorageDirectory() + "/recorded_audio.wav";
     private AudioSource source = AudioSource.MIC;
-    private AudioChannel channel = AudioChannel.STEREO;
-    private AudioSampleRate sampleRate = AudioSampleRate.HZ_44100;
+    private AudioChannel channel = AudioChannel.MONO;
+    private AudioSampleRate sampleRate = AudioSampleRate.HZ_8000;
 
 
     /**
@@ -57,6 +61,37 @@ public class WAVActivity extends AppCompatActivity implements PullTransport.OnAu
         restartView = (ImageButton) findViewById(R.id.restart);
         recordView = (ImageButton) findViewById(R.id.record);
         playView = (ImageButton) findViewById(R.id.play);
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> list) {
+        if(requestCode == 111){
+            stopPlaying(); //先停止播放
+
+            Util.wait(100, new Runnable() {
+                @Override
+                public void run() {
+                    if (isRecording) {  //暂停或继续录音
+                        pauseRecording();
+                    } else {
+                        resumeRecording();
+                    }
+                }
+            });
+        }
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> list) {
+        // Some permissions have been denied
+        // ...
     }
 
     /**
@@ -101,18 +136,25 @@ public class WAVActivity extends AppCompatActivity implements PullTransport.OnAu
      * @param v
      */
     public void toggleRecording(View v) {
-        stopPlaying(); //先停止播放
+        String[] perms = {Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
+        if(EasyPermissions.hasPermissions(getApplicationContext(), perms)){
+            stopPlaying(); //先停止播放
 
-        Util.wait(100, new Runnable() {
-            @Override
-            public void run() {
-                if (isRecording) {  //暂停或继续录音
-                    pauseRecording();
-                } else {
-                    resumeRecording();
+            Util.wait(100, new Runnable() {
+                @Override
+                public void run() {
+                    if (isRecording) {  //暂停或继续录音
+                        pauseRecording();
+                    } else {
+                        resumeRecording();
+                    }
                 }
-            }
-        });
+            });
+        }else {
+            EasyPermissions.requestPermissions(this, "需要录音权限", 111, perms);
+        }
+
+
     }
 
     /**

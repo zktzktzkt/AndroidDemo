@@ -42,5 +42,6 @@ dependencies {
     compile 'com.kailashdabhi:om-recorder:1.1.0'
     testCompile 'junit:junit:4.12'
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'
+    compile 'pub.devrel:easypermissions:0.4.3'
 }
 
