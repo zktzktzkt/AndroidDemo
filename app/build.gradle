@@ -4,7 +4,7 @@ apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "demo.zkttestdemo"
         minSdkVersion 15
@@ -40,8 +40,11 @@ dependencies {
     compile 'org.jetbrains.anko:anko-commons:0.10.0'
     compile 'com.github.razerdp:BasePopup:1.7.1'
     compile 'com.kailashdabhi:om-recorder:1.1.0'
-    testCompile 'junit:junit:4.12'
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'
     compile 'pub.devrel:easypermissions:0.4.3'
+    testCompile 'junit:junit:4.12'
+    compile 'com.youth.banner:banner:1.4.10'
+    compile 'com.github.bumptech.glide:glide:4.0.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
 }
 

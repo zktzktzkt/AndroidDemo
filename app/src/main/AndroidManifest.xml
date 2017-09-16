@@ -50,8 +50,7 @@
         <activity android:name=".realm.RealmActivity"/>
         <activity
             android:name=".effect.keyboardbug.KeyBoardBugActivity"
-            android:windowSoftInputMode="adjustPan"> <!-- adjustResize是收缩 adjustPan是向上挤 -->
-
+            android:windowSoftInputMode="adjustResize"> <!-- adjustResize是收缩 adjustPan是向上挤 -->
         </activity>
         <activity android:name=".effect.wxaudio.AudioActivity">
         </activity>
@@ -98,6 +97,8 @@
         <activity android:name=".effect.wavrecord.WAVActivity">
         </activity>
         <activity android:name=".effect.meituan2list.MeiTuanListActivity">
+        </activity>
+        <activity android:name=".recyclerview.header.BannerRecyclerActivity">
         </activity>
     </application>
 

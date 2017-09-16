@@ -3,46 +3,71 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/panel_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="demo.zkttestdemo.effect.keyboardbug.KeyBoardBugActivity">
 
-    <TextView
+    <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/colorPrimaryDark"
         android:gravity="center"
-        android:text="我是toolbar"
         android:textColor="@android:color/white"
         />
 
-    <ScrollView
-        android:fillViewport="true"
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scrollview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="1000dp"
                 android:background="@mipmap/ic_launcher"
                 />
-
             <EditText
-                android:id="@+id/et_edit"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_alignParentBottom="true"
-                android:background="@color/colorAccent"
+                android:background="@color/colorPrimary"
+                android:hint="Edittext"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1000dp"
+                android:background="@mipmap/ic_launcher"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/colorPrimary"
                 android:hint="Edittext"/>
         </LinearLayout>
-    </ScrollView>
 
+    </android.support.v4.widget.NestedScrollView>
+
+    <EditText
+        android:id="@+id/et_edit"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorAccent"
+        android:hint="Edittext"/>
+
+   <!-- <Button
+        android:id="@+id/btn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorAccent"
+        android:text="button"
+        />-->
 </LinearLayout>
 

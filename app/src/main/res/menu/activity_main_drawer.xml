@@ -78,6 +78,10 @@
                 android:id="@+id/nav_recycler_diff_util"
                 android:icon="@drawable/ic_menu_camera"
                 android:title="DiffUtil"/>
+            <item
+                android:id="@+id/nav_bannerHeaderRecycler"
+                android:icon="@drawable/ic_menu_camera"
+                android:title="RecyclerView添加头部轮播图"/>
         </menu>
     </item>
 

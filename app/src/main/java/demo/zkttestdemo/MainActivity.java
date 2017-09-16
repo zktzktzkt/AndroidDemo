@@ -61,6 +61,7 @@ import demo.zkttestdemo.effect.wxaudio.AudioActivity;
 import demo.zkttestdemo.kotlin.KotlinActivity;
 import demo.zkttestdemo.realm.RealmActivity;
 import demo.zkttestdemo.recyclerview.diffUtil.DiffUtilActivity;
+import demo.zkttestdemo.recyclerview.header.BannerRecyclerActivity;
 import demo.zkttestdemo.recyclerview.multichoice.MultiChoiceActivity;
 import demo.zkttestdemo.recyclerview.singlechoice.SingleChoiceActivity;
 import demo.zkttestdemo.recyclerview.suspendmulti.SuspendMultiActivity;
@@ -175,6 +176,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         }else if (id == R.id.nav_alipayHomeAnim) {
             Intent intent = new Intent(this, AlipayHomeActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_bannerHeaderRecycler) {
+            Intent intent = new Intent(this, BannerRecyclerActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_MotionEventTest) {
             Intent intent = new Intent(this, MotionEventTestActivity.class);

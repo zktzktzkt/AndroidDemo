@@ -61,7 +61,6 @@
 
         <!-- 指定消失的动画xml -->
         <item name="android:windowExitAnimation">@anim/dialog_hidden</item>
-
     </style>
 
 

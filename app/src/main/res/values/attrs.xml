@@ -57,4 +57,9 @@
         <attr name="multiply" format="float"/>
         <attr name="line_hegith" format="integer"/>
     </declare-styleable>
+
+    <!--*********************************** 键盘  *******************************************************-->
+    <declare-styleable name="KPSwitchPanelLayout">
+        <attr name="ignore_recommend_height" format="boolean" />
+    </declare-styleable>
 </resources>
