@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<demo.zkttestdemo.effect.keyboardbug.MyRelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,6 +10,7 @@
     tools:context="demo.zkttestdemo.effect.keyboardbug.KeyBoardBugActivity">
 
     <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/colorPrimaryDark"
@@ -17,11 +18,20 @@
         android:textColor="@android:color/white"
         />
 
+    <EditText
+        android:id="@+id/et_edit"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorAccent"
+        android:hint="EditText"/>
+
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/scrollview"
+        android:layout_below="@id/toolbar"
+        android:layout_above="@id/et_edit"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:fillViewport="true">
 
         <LinearLayout
@@ -53,13 +63,6 @@
 
     </android.support.v4.widget.NestedScrollView>
 
-    <EditText
-        android:id="@+id/et_edit"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorAccent"
-        android:hint="Edittext"/>
 
    <!-- <Button
         android:id="@+id/btn"
@@ -69,5 +72,5 @@
         android:background="@color/colorAccent"
         android:text="button"
         />-->
-</LinearLayout>
+</demo.zkttestdemo.effect.keyboardbug.MyRelativeLayout>
 

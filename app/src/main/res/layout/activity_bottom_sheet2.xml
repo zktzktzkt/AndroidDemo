@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/rl_root"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:splitMotionEvents="false"
     >
+
+    <include layout="@layout/view_carpop"/>
 
     <LinearLayout
         android:id="@+id/ll_bottom"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:background="#ffffff">
+        android:layout_gravity="bottom"
+        android:elevation="4dp"
+        android:background="#ffffff"
+       >
 
         <RelativeLayout
             android:layout_width="0dp"
@@ -60,4 +68,4 @@
         android:visibility="gone"
         />
 
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

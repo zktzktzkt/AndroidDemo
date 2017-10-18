@@ -1,6 +1,7 @@
 package demo.zkttestdemo.effect.bottomsheet;
 
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ public class PopUpBottomSheetActivity extends AppCompatActivity implements View.
     private ShowUpPopupWindow showUpPopupWindow;
     private View view_bg;
     private ViewGroup popView;
+    private BottomSheetBehavior behavior;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +29,10 @@ public class PopUpBottomSheetActivity extends AppCompatActivity implements View.
         ll_bottom = (LinearLayout) findViewById(R.id.ll_bottom);
         view_bg = findViewById(R.id.view_bg);
 
+        behavior = BottomSheetBehavior.from(findViewById(R.id.car_container));
+
         //初始化ppoupwindow
-        initPopWindow();
+     //   initPopWindow();
     }
 
     private void initPopWindow() {
@@ -50,13 +54,19 @@ public class PopUpBottomSheetActivity extends AppCompatActivity implements View.
                 //  pw.showAtLocation(rl_root, Gravity.BOTTOM, 0, 200);//不好使，始终在最底部显示
                 // pw.showAsDropDown(ll_bottom, 0, 3); // y<3不显示
                 pw.update();*/
-
-                if (showUpPopupWindow.isShowing()) {
+                // TODO: 2017-9-23 下面这个是好使的
+                /*if (showUpPopupWindow.isShowing()) {
                     showUpPopupWindow.dismiss();
                     view_bg.setVisibility(View.GONE);
                 } else {
                     showUpPopupWindow.showAsPullUp(ll_bottom, popView.getMeasuredHeight(), 0, 0);
                     view_bg.setVisibility(View.VISIBLE);
+                }
+*/
+                if (behavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                    behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                } else {
+                    behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                 }
 
                 break;

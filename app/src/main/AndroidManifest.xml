@@ -100,6 +100,25 @@
         </activity>
         <activity android:name=".recyclerview.header.BannerRecyclerActivity">
         </activity>
+        <activity android:name=".effect.baidusearch.BDSearchActivity">
+        </activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="demo.zkttestdemo.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths_public"/>
+        </provider>
+
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".effect.stikyhead.StikyHeadActivity">
+        </activity>
     </application>
 
 </manifest>

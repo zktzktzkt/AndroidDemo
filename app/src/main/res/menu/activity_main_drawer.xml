@@ -104,6 +104,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="仿知乎behavior"/>
             <item
+                android:id="@+id/nav_stikyHead"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="CoordinatorLayout实现悬浮头"/>
+            <item
                 android:id="@+id/nav_mt2List"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="仿美团级联菜单列表"/>
@@ -123,6 +127,10 @@
                 android:id="@+id/nav_JSSearch"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="仿简书searchview伸展动画"/>
+            <item
+                android:id="@+id/nav_BDSearch"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="仿百度searchview动画"/>
             <item
                 android:id="@+id/nav_bottomSheet"
                 android:icon="@drawable/ic_menu_gallery"

@@ -19,6 +19,7 @@ public class BannerRecyclerActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private List<String> list;
+    private HomeAdapter homeAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,25 +27,30 @@ public class BannerRecyclerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_banner_recycler);
 
         list = new ArrayList<>();
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
-        list.add("");
+        list.add("123123");
+        list.add("312312312");
+        list.add("3123");
+        list.add("1231");
+        list.add("123123123");
+        list.add("123123");
+        list.add("2wqe");
+        list.add("3123");
+        list.add("wqeqw");
+        list.add("32432");
+        list.add("dsfsdf");
+        list.add("6456");
+        list.add("gregerger");
+        list.add("rrtert123");
+        list.add("32434ghrth");
+        list.add("hdhdfh234234");
+        list.add("hdhdfh234234");
+        list.add("hdhdfh234234");
+        list.add("hdhdfh234234");
+        list.add("hdhdfh234234");
+        list.add("hdhdfh234234");
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        HomeAdapter homeAdapter = new HomeAdapter(list);
+        homeAdapter = new HomeAdapter(list);
         View header = LayoutInflater.from(this).inflate(R.layout.item_banner, null);
         Banner banner = (Banner) header.findViewById(R.id.banner);
         homeAdapter.addHeaderView(header);
@@ -67,14 +73,23 @@ public class BannerRecyclerActivity extends AppCompatActivity {
         banner.start();
     }
 
+    /**
+     * 删除最后一条
+     */
+    public void removeLastClick(View view) {
+        list.remove(list.size() - 1);
+        homeAdapter.notifyDataSetChanged();
+    }
+
 
     public class HomeAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
         public HomeAdapter(List<String> data) {
-            super(R.layout.item_life, data);
+            super(R.layout.item_banner_recycler, data);
         }
 
         @Override
         protected void convert(BaseViewHolder helper, String item) {
+            helper.setText(R.id.tv_title, item);
         }
     }
 }

@@ -1,7 +1,6 @@
 package demo.zkttestdemo.effect.wxaudio.views;
 
 import android.content.Context;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
@@ -136,9 +135,9 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
 
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                // TODO
                 changeState(STATE_RECORDING);
                 break;
+
             case MotionEvent.ACTION_MOVE:
                 // 根据x, y的坐标，判断是否想要取消
                 if (wantToCancel(x, y)) {
@@ -147,6 +146,7 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
                     changeState(STATE_RECORDING);
                 }
                 break;
+
             case MotionEvent.ACTION_UP:
                 /**
                  * 1. 未触发onLongClick

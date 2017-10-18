@@ -62,7 +62,7 @@ public class MyViewGroup extends LinearLayout {
         }
         Log.e("ViewGroup的onInterceptTouchEvent返回值", super.onInterceptTouchEvent(ev) + "");
 
-        return super.onInterceptTouchEvent(ev);
+        return true;
     }
 
 

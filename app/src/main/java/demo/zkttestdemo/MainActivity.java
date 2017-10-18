@@ -39,6 +39,7 @@ import java.io.IOException;
 import demo.zkttestdemo.effect.activityjump.OneActivity;
 import demo.zkttestdemo.effect.alipayhome.AlipayHomeActivity;
 import demo.zkttestdemo.effect.alphatoolbar.AlphaToolbarActivity;
+import demo.zkttestdemo.effect.baidusearch.BDSearchActivity;
 import demo.zkttestdemo.effect.behavior.BehaviorActivity;
 import demo.zkttestdemo.effect.bottomsheet.ZHBottomSheetActivity;
 import demo.zkttestdemo.effect.circleprogress.CircleProgressActivity;
@@ -53,6 +54,7 @@ import demo.zkttestdemo.effect.paykeyboard.PayKeyboardActivity;
 import demo.zkttestdemo.effect.progress.ProgressArcActivity;
 import demo.zkttestdemo.effect.pullAndload.PtrAndloadActivity;
 import demo.zkttestdemo.effect.slidemenu.SlideMenuActivity;
+import demo.zkttestdemo.effect.stikyhead.StikyHeadActivity;
 import demo.zkttestdemo.effect.tablayout.MyTablayoutActivity;
 import demo.zkttestdemo.effect.transition.TransitionActivity;
 import demo.zkttestdemo.effect.viewdraghelper.ViewDragHelperDemoActivity;
@@ -168,8 +170,14 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_behaviorDemo) {
             Intent intent = new Intent(this, BehaviorActivity.class);
             startActivity(intent);
+        } else if (id == R.id.nav_stikyHead) {
+            Intent intent = new Intent(this, StikyHeadActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_JSSearch) {
             Intent intent = new Intent(this, JSSearchActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_BDSearch) {
+            Intent intent = new Intent(this, BDSearchActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_bottomSheet) {
             Intent intent = new Intent(this, ZHBottomSheetActivity.class);
