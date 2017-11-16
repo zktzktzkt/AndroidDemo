@@ -18,6 +18,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -54,7 +55,7 @@
         </activity>
         <activity android:name=".effect.wxaudio.AudioActivity">
         </activity>
-        <activity android:name=".effect.coordinator.CoordinatorActivity">
+        <activity android:name=".effect.coordinator.StikyTabActivity">
         </activity>
         <activity android:name=".effect.paykeyboard.PayKeyboardActivity">
         </activity>
@@ -105,7 +106,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="demo.zkttestdemo.fileprovider"
+            android:authorities="demo.zkttestdemo.fileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -118,6 +119,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".effect.stikyhead.StikyHeadActivity">
+        </activity>
+        <activity android:name=".effect.doodle.DoodleActivity">
+        </activity>
+        <activity android:name=".effect.qqslidemenu.QQSlideMenuActivity">
+        </activity>
+        <activity android:name=".effect.coordinator.CoordinatorBehaviorActivity">
+        </activity>
+        <activity android:name=".effect.coordinator.CoordinatorActivity">
         </activity>
     </application>
 

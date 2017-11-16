@@ -27,6 +27,8 @@ public class BDSearchActivity extends AppCompatActivity {
 
     private ImageView iv_search;
     private int scrollLength;//顶部栏从透明变成不透明滑动的距离
+    private NestedScrollView sv_search;
+    private MyListview lv_searchview;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,14 +36,20 @@ public class BDSearchActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_bdsearch);
 
-        rv_bar = (RelativeLayout) findViewById(R.id.rv_bar);
-        rv_search = (RelativeLayout) findViewById(R.id.rv_search);
-        NestedScrollView sv_search = (NestedScrollView) findViewById(R.id.sv_search);
-        iv_search = (ImageView) findViewById(R.id.iv_search);
-        MyListview lv_searchview = (MyListview) findViewById(R.id.lv_searchview);
+        rv_bar = findViewById(R.id.rv_bar);
+        rv_search = findViewById(R.id.rv_search);
+        sv_search = findViewById(R.id.sv_search);
+        iv_search = findViewById(R.id.iv_search);
+        lv_searchview = findViewById(R.id.lv_searchview);
 
         lv_searchview.setAdapter(new searchAdapter(BDSearchActivity.this));
-        sv_search.smoothScrollTo(0, 0);
+
+        /***** 防止scrollview置顶 ***********/
+        sv_search.setFocusable(true);
+        sv_search.setFocusableInTouchMode(true);
+        sv_search.requestFocus();
+        /***********************************/
+
         sv_search.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             private int evaluatemargin;
             private int evaluatetop;
@@ -101,14 +109,16 @@ public class BDSearchActivity extends AppCompatActivity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            int height_rv = rv_bar.getHeight();
+            int height_iv = iv_search.getHeight();
 
-        int height_rv = rv_bar.getHeight();
-        int height_iv = iv_search.getHeight();
+            scrollLength = Math.abs(height_iv - height_rv);
 
-        scrollLength = Math.abs(height_iv - height_rv);
+            //把顶部bar设置为透明
+            rv_bar.getBackground().setAlpha(0);
 
-        //把顶部bar设置为透明
-        rv_bar.getBackground().setAlpha(0);
+        }
 
     }
 

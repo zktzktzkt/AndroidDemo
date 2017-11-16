@@ -14,8 +14,7 @@ public class MediaManager {
 
     private static boolean isPause;
 
-    public static void playSound(String filePath,
-         MediaPlayer.OnCompletionListener onCompletionListener) {
+    public static void playSound(String filePath, MediaPlayer.OnCompletionListener onCompletionListener) {
         if (null == mMediaPlayer) {
             mMediaPlayer = new MediaPlayer();
             mMediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {

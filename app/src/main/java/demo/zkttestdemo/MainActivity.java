@@ -44,6 +44,7 @@ import demo.zkttestdemo.effect.behavior.BehaviorActivity;
 import demo.zkttestdemo.effect.bottomsheet.ZHBottomSheetActivity;
 import demo.zkttestdemo.effect.circleprogress.CircleProgressActivity;
 import demo.zkttestdemo.effect.coordinator.CoordinatorActivity;
+import demo.zkttestdemo.effect.doodle.DoodleActivity;
 import demo.zkttestdemo.effect.jssearchdemo.JSSearchActivity;
 import demo.zkttestdemo.effect.keyboardbug.KeyBoardBugActivity;
 import demo.zkttestdemo.effect.loadingdialog.EatBaoZiActivity;
@@ -53,6 +54,7 @@ import demo.zkttestdemo.effect.multipage.MultiPageActivity;
 import demo.zkttestdemo.effect.paykeyboard.PayKeyboardActivity;
 import demo.zkttestdemo.effect.progress.ProgressArcActivity;
 import demo.zkttestdemo.effect.pullAndload.PtrAndloadActivity;
+import demo.zkttestdemo.effect.qqslidemenu.QQSlideMenuActivity;
 import demo.zkttestdemo.effect.slidemenu.SlideMenuActivity;
 import demo.zkttestdemo.effect.stikyhead.StikyHeadActivity;
 import demo.zkttestdemo.effect.tablayout.MyTablayoutActivity;
@@ -101,7 +103,7 @@ public class MainActivity extends AppCompatActivity
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
-        drawer.closeDrawer(GravityCompat.START);
+        drawer.openDrawer(GravityCompat.END); //从右往左打开菜单，布局中设置打开方向 android:layout_gravity="end"
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -156,36 +158,36 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_kotlin) {
             Intent intent = new Intent(this, KotlinActivity.class);
             startActivity(intent);
-        }else if (id == R.id.nav_Daggar2) {
+        } else if (id == R.id.nav_Daggar2) {
 
-        }else if (id == R.id.nav_activityJump) {
+        } else if (id == R.id.nav_activityJump) {
             Intent intent = new Intent(this, OneActivity.class);
             startActivity(intent);
-        }else if (id == R.id.nav_wavRecord) {
+        } else if (id == R.id.nav_wavRecord) {
             Intent intent = new Intent(this, WAVActivity.class);
             startActivity(intent);
-        }else if (id == R.id.nav_mt2List) {
+        } else if (id == R.id.nav_mt2List) {
             Intent intent = new Intent(this, MeiTuanListActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_behaviorDemo) {
             Intent intent = new Intent(this, BehaviorActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_stikyHead) {
-            Intent intent = new Intent(this, StikyHeadActivity.class);
-            startActivity(intent);
         } else if (id == R.id.nav_JSSearch) {
             Intent intent = new Intent(this, JSSearchActivity.class);
             startActivity(intent);
-        }else if (id == R.id.nav_BDSearch) {
+        } else if (id == R.id.nav_BDSearch) {
             Intent intent = new Intent(this, BDSearchActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_bottomSheet) {
             Intent intent = new Intent(this, ZHBottomSheetActivity.class);
             startActivity(intent);
-        }else if (id == R.id.nav_alipayHomeAnim) {
+        } else if (id == R.id.nav_doodle) {
+            Intent intent = new Intent(this, DoodleActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_alipayHomeAnim) {
             Intent intent = new Intent(this, AlipayHomeActivity.class);
             startActivity(intent);
-        }else if (id == R.id.nav_bannerHeaderRecycler) {
+        } else if (id == R.id.nav_bannerHeaderRecycler) {
             Intent intent = new Intent(this, BannerRecyclerActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_MotionEventTest) {
@@ -194,7 +196,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_multi_page) {
             Intent intent = new Intent(this, MultiPageActivity.class);
             startActivity(intent);
-        }else if (id == R.id.nav_myIndicator) {
+        } else if (id == R.id.nav_myIndicator) {
             Intent intent = new Intent(this, MyTablayoutActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_circleProgress) {
@@ -203,13 +205,16 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_slideMenu) {
             Intent intent = new Intent(this, SlideMenuActivity.class);
             startActivity(intent);
+        } else if (id == R.id.nav_qqSlideMenu) {
+            Intent intent = new Intent(this, QQSlideMenuActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_realm) {
             Intent intent = new Intent(this, RealmActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_RxJava) {
             Intent intent = new Intent(this, RxJavaActivity.class);
             startActivity(intent);
-        }else if (id == R.id.nav_viewDragHelper) {
+        } else if (id == R.id.nav_viewDragHelper) {
             Intent intent = new Intent(this, ViewDragHelperDemoActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_Volley) {
@@ -218,7 +223,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, KeyBoardBugActivity.class);
             startActivity(intent);
 
-        }else if (id == R.id.nav_progress_arc) {
+        } else if (id == R.id.nav_progress_arc) {
             Intent intent = new Intent(this, ProgressArcActivity.class);
             startActivity(intent);
 
@@ -227,6 +232,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_coordinator) {
             Intent intent = new Intent(this, CoordinatorActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_stikyHead) {
+            Intent intent = new Intent(this, StikyHeadActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_pay_keyboard) {
             Intent intent = new Intent(this, PayKeyboardActivity.class);

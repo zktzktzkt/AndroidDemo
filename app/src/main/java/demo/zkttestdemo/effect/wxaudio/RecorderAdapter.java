@@ -42,7 +42,6 @@ public class RecorderAdapter extends ArrayAdapter<Recorder> {
         mMaxItemWidth = (int) (outMetrics.widthPixels * 0.7f);
         mMinItemWidth = (int) (outMetrics.widthPixels * 0.15f);
 
-
     }
 
     @Override

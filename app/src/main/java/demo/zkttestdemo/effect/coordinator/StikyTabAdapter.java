@@ -11,14 +11,14 @@ import demo.zkttestdemo.R;
  * Created by zkt on 2017/5/28.
  */
 
-class CoordinatorRecyclerAdapter extends RecyclerView.Adapter<CoordinatorRecyclerAdapter.MyHolder> {
+class StikyTabAdapter extends RecyclerView.Adapter<StikyTabAdapter.MyHolder> {
     @Override
-    public CoordinatorRecyclerAdapter.MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public StikyTabAdapter.MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new MyHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(CoordinatorRecyclerAdapter.MyHolder holder, int position) {
+    public void onBindViewHolder(StikyTabAdapter.MyHolder holder, int position) {
 
     }
 

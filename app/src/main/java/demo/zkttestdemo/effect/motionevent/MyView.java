@@ -13,7 +13,7 @@ import android.view.View;
  * Created by zkt on 2017/7/24.
  */
 
-public class MyView extends View implements View.OnTouchListener {
+public class MyView extends View {
     public MyView(@NonNull Context context) {
         this(context, null);
     }
@@ -24,11 +24,8 @@ public class MyView extends View implements View.OnTouchListener {
 
     public MyView(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
-        setOnTouchListener(this);
+        setClickable(true);
     }
-
-    //1、子view的clickable为true，查看dispatch的情况
 
 
     @Override
@@ -50,31 +47,12 @@ public class MyView extends View implements View.OnTouchListener {
         return super.dispatchTouchEvent(ev);
     }
 
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        boolean result = false;
-        switch (event.getAction()){
-            case MotionEvent.ACTION_DOWN:
-                Log.e("MyView", "onTouch ACTION_DOWN");
-                break;
-
-            case MotionEvent.ACTION_MOVE:
-                Log.e("MyView", "onTouch ACTION_MOVE");
-                result = true;
-                break;
-
-            case MotionEvent.ACTION_UP:
-                Log.e("MyView", "onTouch ACTION_UP");
-                break;
-        }
-        return result;
-    }
-
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
+//                getParent().requestDisallowInterceptTouchEvent(true);
                 Log.e("MyView", "onTouchEvent ACTION_DOWN");
                 break;
 

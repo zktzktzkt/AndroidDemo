@@ -108,6 +108,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="CoordinatorLayout实现悬浮头"/>
             <item
+                android:id="@+id/nav_coordinator"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="CoordinatorLayout使用"/>
+            <item
                 android:id="@+id/nav_mt2List"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="仿美团级联菜单列表"/>
@@ -136,6 +140,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="BottomSheet示例"/>
             <item
+                android:id="@+id/nav_doodle"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="涂鸦板"/>
+            <item
                 android:id="@+id/nav_progress_arc"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="自定义弧形progress"/>
@@ -157,6 +165,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="侧滑菜单"/>
             <item
+                android:id="@+id/nav_qqSlideMenu"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="仿QQ6.0侧滑菜单"/>
+            <item
                 android:id="@+id/nav_myIndicator"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="自定义tablayout"/>
@@ -176,10 +188,6 @@
                 android:id="@+id/nav_audio_reord"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="仿微信语音录制"/>
-            <item
-                android:id="@+id/nav_coordinator"
-                android:icon="@drawable/ic_menu_gallery"
-                android:title="CoordinatorLayout使用"/>
             <item
                 android:id="@+id/nav_pay_keyboard"
                 android:icon="@drawable/ic_menu_gallery"

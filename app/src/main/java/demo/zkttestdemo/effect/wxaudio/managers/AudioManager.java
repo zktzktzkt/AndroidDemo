@@ -35,7 +35,7 @@ public class AudioManager {
         void wellPrepared();
     }
 
-    public AudioStateListener mListener;
+    private AudioStateListener mListener;
 
     public void setOnAudioStateListner(AudioStateListener listner) {
         mListener = listner;
@@ -77,8 +77,10 @@ public class AudioManager {
             mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.AMR_NB); Log.d("LONG", "3");
             // 设置音频的编码为AMR
             mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB); Log.d("LONG", "4");
+
             mMediaRecorder.prepare(); Log.d("LONG", "5");
             mMediaRecorder.start(); Log.d("LONG", "6");
+
             // 准备结束
             isPrepared = true; Log.d("LONG", "7");
 

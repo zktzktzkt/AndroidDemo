@@ -3,11 +3,11 @@ package demo.zkttestdemo.effect.wxaudio.views;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 
 import demo.zkttestdemo.R;
 import demo.zkttestdemo.effect.wxaudio.managers.AudioManager;
@@ -17,7 +17,7 @@ import demo.zkttestdemo.effect.wxaudio.managers.DialogManager;
 /**
  * Created by cooffee on 15/10/19.
  */
-public class AudioRecorderButton extends Button implements AudioManager.AudioStateListener {
+public class AudioRecorderButton extends AppCompatButton implements AudioManager.AudioStateListener {
 
     private static final int DISTANCE_CANCEL = 50;
     private static final int STATE_NORMAL = 1;
@@ -25,14 +25,21 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
     private static final int STATE_WANT_TO_CANCEL = 3;
 
     private int mCurState = STATE_NORMAL;
-    private boolean isRecording = false; // 已经开始录音
 
     private DialogManager mDialogManager;
 
     private AudioManager mAudioManager;
 
     private float mTime;
-    // 是否触发longclick
+
+    /**
+     * 已经开始录音
+     */
+    private boolean isRecording = false;
+
+    /**
+     * 是否触发longclick
+     */
     private boolean mReady;
 
     public AudioRecorderButton(Context context) {
@@ -44,7 +51,7 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
 
         mDialogManager = new DialogManager(getContext());
 
-       // String dir = Environment.getExternalStorageDirectory() + "/imooc_recorder_audios";
+        // String dir = Environment.getExternalStorageDirectory() + "/imooc_recorder_audios";
         String dir = getContext().getExternalCacheDir() + "/imooc_recorder_audios";
         mAudioManager = AudioManager.getInstance(dir);
         mAudioManager.setOnAudioStateListner(this);
@@ -110,9 +117,11 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
                     // 开启线程，监听音量变化
                     new Thread(mGetVoiceLevelRunnable).start();
                     break;
+
                 case MSG_VOICE_CHANGE:
                     mDialogManager.updateVoiceLevel(mAudioManager.getVoiceLevel(7));
                     break;
+
                 case MSG_DIALOG_DIMISS:
                     mDialogManager.dimissDialog();
                     break;
@@ -153,28 +162,37 @@ public class AudioRecorderButton extends Button implements AudioManager.AudioSta
                  * 2. prepared没有完毕已经up
                  * 3. 录音时间小于预定的值，这个值我们设置为在onLongClick之前
                  */
-                if (!mReady) { // 未触发onLongClick
+                // 未触发onLongClick
+                if (!mReady) {
                     changeState(STATE_NORMAL);
                     reset();
                     return super.onTouchEvent(event);
                 }
 
-                if (!isRecording || mTime < 0.6f) {  // prepared没有完毕 或 录音时间过短
+                // prepared没有完毕 或 录音时间过短
+                if (!isRecording || mTime < 0.6f) {
                     mDialogManager.tooShort();
                     isRecording = false;
                     mAudioManager.cancel();
                     // 延迟发送消息，让对话框停留1.3秒
                     mHandler.sendEmptyMessageDelayed(MSG_DIALOG_DIMISS, 1300);
-                } else if (STATE_RECORDING == mCurState) { // 正常录制结束
+                }
+
+                // 正常录制结束
+                else if (STATE_RECORDING == mCurState) {
                     mDialogManager.dimissDialog();
                     mAudioManager.release();
                     if (mListener != null) {
                         mListener.onFinish(mTime, mAudioManager.getCurrentFilePath());
                     }
-                } else if (STATE_WANT_TO_CANCEL == mCurState) {
+                }
+
+                //松开手指，取消发送
+                else if (STATE_WANT_TO_CANCEL == mCurState) {
                     mDialogManager.dimissDialog();
                     mAudioManager.cancel();
                 }
+
                 changeState(STATE_NORMAL);
                 reset();
                 break;

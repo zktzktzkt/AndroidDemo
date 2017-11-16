@@ -60,6 +60,11 @@
 
     <!--*********************************** 键盘  *******************************************************-->
     <declare-styleable name="KPSwitchPanelLayout">
-        <attr name="ignore_recommend_height" format="boolean" />
+        <attr name="ignore_recommend_height" format="boolean"/>
+    </declare-styleable>
+
+    <!--************* 仿QQ侧滑菜单 ******************-->
+    <declare-styleable name="QQSlideMenu">
+        <attr name="right_padding" format="dimension"/>
     </declare-styleable>
 </resources>

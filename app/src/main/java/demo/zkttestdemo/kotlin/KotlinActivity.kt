@@ -15,14 +15,14 @@ class KotlinActivity : AppCompatActivity() {
 
         var kotlinCoder = KotlinCoder("zkt", 1)
 
-        findViewById(R.id.btn_toast).setOnClickListener {
+        /*findViewById(R.id.btn_toast).setOnClickListener {
             var info = "name" + kotlinCoder.name + "id" + kotlinCoder.id
             toast(info)
         }
 
         findViewById(R.id.btn_async).setOnClickListener {
             asyn()
-        }
+        }*/
     }
 
 

@@ -12,7 +12,6 @@
     <demo.zkttestdemo.effect.motionevent.MyView
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:clickable="true"
         android:layout_margin="20dp"
         android:background="@color/colorAccent"
         android:textColor="@color/white"/>

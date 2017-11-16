@@ -42,7 +42,7 @@ public class ViewDragLayout extends LinearLayout {
     private int mViewDragRange;
 
     /**
-     * 左滑最大距离
+     * 左滑最大距离,菜单的宽度
      */
     private int mBehindLayoutWidth;
 
@@ -172,12 +172,12 @@ public class ViewDragLayout extends LinearLayout {
 
         /**
          * @param child
-         * @param left  代表你将要移动位置的坐标，返回值就是最终确定的移动的位置，
+         * @param left  代表左上角坐标，
          *              判断如果这个坐标在layout之内，那我们就返回这个坐标值，
          *              不能让他超出这个范围，除此之外就是如果你的layout设置了padding的话
          *              让子View的活动范围在padding之内的
          * @param dx
-         * @return
+         * @return 返回值就是最终确定的移动的位置，
          */
         @Override
         public int clampViewPositionHorizontal(View child, int left, int dx) {
