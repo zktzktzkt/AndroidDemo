@@ -120,6 +120,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="wav格式录音"/>
             <item
+                android:id="@+id/nav_bezier"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="贝塞尔曲线"/>
+            <item
                 android:id="@+id/nav_viewDragHelper"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="ViewDragHelper练习"/>

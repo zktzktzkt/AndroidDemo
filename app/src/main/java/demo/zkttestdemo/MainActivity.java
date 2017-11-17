@@ -41,6 +41,7 @@ import demo.zkttestdemo.effect.alipayhome.AlipayHomeActivity;
 import demo.zkttestdemo.effect.alphatoolbar.AlphaToolbarActivity;
 import demo.zkttestdemo.effect.baidusearch.BDSearchActivity;
 import demo.zkttestdemo.effect.behavior.BehaviorActivity;
+import demo.zkttestdemo.effect.bezier.BezierActivity;
 import demo.zkttestdemo.effect.bottomsheet.ZHBottomSheetActivity;
 import demo.zkttestdemo.effect.circleprogress.CircleProgressActivity;
 import demo.zkttestdemo.effect.coordinator.CoordinatorActivity;
@@ -165,6 +166,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_wavRecord) {
             Intent intent = new Intent(this, WAVActivity.class);
+            startActivity(intent);
+        }  else if (id == R.id.nav_bezier) {
+            Intent intent = new Intent(this, BezierActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_mt2List) {
             Intent intent = new Intent(this, MeiTuanListActivity.class);
