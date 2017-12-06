@@ -13,7 +13,7 @@ import android.view.View;
  * Created by zkt on 2017/7/24.
  */
 
-public class MyView extends View {
+public class MyView extends View implements View.OnTouchListener {
     public MyView(@NonNull Context context) {
         this(context, null);
     }
@@ -24,7 +24,9 @@ public class MyView extends View {
 
     public MyView(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        setClickable(true);
+       // setClickable(true);
+
+        setOnTouchListener(this);
     }
 
 
@@ -68,4 +70,22 @@ public class MyView extends View {
     }
 
 
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                //                getParent().requestDisallowInterceptTouchEvent(true);
+                Log.e("MyView", "onTouch ACTION_DOWN");
+                break;
+
+            case MotionEvent.ACTION_MOVE:
+                Log.e("MyView", "onTouch ACTION_MOVE");
+                break;
+
+            case MotionEvent.ACTION_UP:
+                Log.e("MyView", "onTouch ACTION_UP");
+                break;
+        }
+        return true;
+    }
 }
