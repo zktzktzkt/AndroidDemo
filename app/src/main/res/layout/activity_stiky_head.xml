@@ -5,49 +5,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="?android:actionBarSize"
-        android:background="@color/black"
-        app:title="我是Toolbar"
-        app:titleTextColor="@color/white"/>
+    <!--  <android.support.v7.widget.Toolbar
+          android:layout_width="match_parent"
+          android:layout_height="?android:actionBarSize"
+          android:background="@color/black"
+          app:title="我是Toolbar"
+          app:titleTextColor="@color/white"/>-->
 
-    <android.support.design.widget.CoordinatorLayout
+    <demo.zkttestdemo.effect.stikyhead.ScrollableCoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         tools:context="demo.zkttestdemo.effect.stikyhead.StikyHeadActivity">
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
             android:orientation="vertical">
 
             <android.support.design.widget.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
-                app:layout_scrollFlags="scroll"
+                app:contentScrim="@color/yellow"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 >
 
-                <TextView
+                <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="220dp"
-                    android:background="#987545"
-                    android:gravity="center"
-                    android:text="banner区域"
-                    android:textColor="#ffffff"
-                    app:layout_collapseMode="pin"/>
+                    android:background="@mipmap/ic_default"
+                    app:layout_collapseMode="pin"
+                    />
+
+                <android.support.v7.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    app:contentInsetEnd="0dp"
+                    app:contentInsetLeft="0dp"
+                    app:contentInsetRight="0dp"
+                    app:contentInsetStart="0dp"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="标题栏"
+                        android:textColor="#ffffff"
+                        />
+                </android.support.v7.widget.Toolbar>
             </android.support.design.widget.CollapsingToolbarLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:gravity="center"
-                android:text="悬浮的部分"/>
+                android:text="悬浮的部分"
+                />
+
         </android.support.design.widget.AppBarLayout>
 
         <android.support.v7.widget.RecyclerView
@@ -56,6 +80,6 @@
             android:layout_height="match_parent"
             app:layoutManager="LinearLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-    </android.support.design.widget.CoordinatorLayout>
+    </demo.zkttestdemo.effect.stikyhead.ScrollableCoordinatorLayout>
 </LinearLayout>
 
