@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +72,7 @@ public class AudioActivity extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+                Toast.makeText(getApplicationContext(), "点击" + position, Toast.LENGTH_SHORT).show();
                 //实现单条播放的动画效果，利用“同一个对象”的特性
                 //注意：adapter.notifyDataSetChanged() 这样不会显示动画
                 if (mAnimView != null) {
