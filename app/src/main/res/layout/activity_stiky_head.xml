@@ -37,12 +37,28 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 >
 
-                <ImageView
+                <RelativeLayout
+                    app:layout_collapseMode="parallax"
+                    app:layout_collapseParallaxMultiplier="1"
                     android:layout_width="match_parent"
-                    android:layout_height="220dp"
-                    android:background="@mipmap/ic_default"
-                    app:layout_collapseMode="pin"
-                    />
+                    android:layout_height="220dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="220dp"
+                        android:background="@mipmap/ic_default"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="哈哈哈哈哈"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        />
+
+                </RelativeLayout>
 
                 <android.support.v7.widget.Toolbar
                     android:layout_width="match_parent"
