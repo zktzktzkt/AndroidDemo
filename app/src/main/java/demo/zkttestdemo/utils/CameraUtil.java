@@ -12,7 +12,6 @@ import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.blankj.utilcode.util.SDCardUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.yalantis.ucrop.UCrop;
 
@@ -26,40 +25,41 @@ import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by zkt on 2017/9/15.
- *-------------------------------------------------------------------
+ * -------------------------------------------------------------------
  * 图片剪裁 compile 'com.github.yalantis:ucrop:2.2.1'
  * 运行权限  compile "pub.devrel:easypermissions:1.0.0"
- *----------------------------------------------------------------------
+ * ----------------------------------------------------------------------
  * 1、在manifest中配置
  * <provider
- *       android:name="android.support.v4.content.FileProvider"
- *       android:authorities="com.sdwfqin.sample.fileprovider"
- *       android:exported="false"
- *       android:grantUriPermissions="true">
- *   <meta-data
- *       android:name="android.support.FILE_PROVIDER_PATHS"
- *       android:resource="@xml/file_paths_public"/>
+ * android:name="android.support.v4.content.FileProvider"
+ * android:authorities="com.sdwfqin.sample.fileprovider"
+ * android:exported="false"
+ * android:grantUriPermissions="true">
+ * <meta-data
+ * android:name="android.support.FILE_PROVIDER_PATHS"
+ * android:resource="@xml/file_paths_public"/>
  * </provider>
- *--------------------------------------------------------------------------
+ * --------------------------------------------------------------------------
  * 2、在 res 目录下新建文件夹 xml 然后创建资源文件 file_paths_public(名字随意，但是要和manifest中的名字匹配)
- ** <?xml version="1.0" encoding="utf-8"?>
- *<paths>
+ * * <?xml version="1.0" encoding="utf-8"?>
+ * <paths>
  * <!--照片-->
- *  <external-path
- *      name="my_images"
- *      path="Pictures"/>
- *  <!--下载-->
- *  <paths>
- *      <external-path
- *          name="download"
- *          path=""/>
- *  </paths>
+ * <external-path
+ * name="my_images"
+ * path="Pictures"/>
+ * <!--下载-->
+ * <paths>
+ * <external-path
+ * name="download"
+ * path=""/>
+ * </paths>
  * </paths>
  * -----------------------------------------------------------------------------------
  */
 
 public class CameraUtil implements EasyPermissions.PermissionCallbacks {
 
+    private final String mFilepath;
     Activity activity;
 
     // 7.0 以上的uri
@@ -67,7 +67,7 @@ public class CameraUtil implements EasyPermissions.PermissionCallbacks {
     // 7.0 以下的uri
     private Uri mUri;
     // 图片路径
-    private String mFilepath = SDCardUtils.getSDCardPath() + "AndroidSamples";
+    //    private String mFilepath = SDCardUtils.getSDCardPaths() + "AndroidSamples";
     private static final String TAG = "CameraUtil";
     public static final int PERMISSIONS_CODE_1 = 101;
     public static final int RESULT_CODE_1 = 201;
@@ -78,6 +78,7 @@ public class CameraUtil implements EasyPermissions.PermissionCallbacks {
     public CameraUtil(Activity activity) {
         this.activity = activity;
 
+        mFilepath = activity.getExternalCacheDir().getAbsolutePath() + "/AndroidSamples";
         // 判断权限
         if (EasyPermissions.hasPermissions(activity, mPerms)) {
         } else {
