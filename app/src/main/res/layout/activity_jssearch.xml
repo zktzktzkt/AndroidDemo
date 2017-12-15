@@ -15,19 +15,14 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="1500dp">
 
-            <FrameLayout
+            <ImageView
+                android:id="@+id/iv_img"
                 android:layout_width="match_parent"
-                android:layout_height="1500dp">
-
-                <ImageView
-                    android:id="@+id/iv_img"
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/night1"/>
-            </FrameLayout>
+                android:layout_height="180dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/night1"/>
         </FrameLayout>
     </ScrollView>
 

@@ -57,5 +57,21 @@
         android:text="io线程切换"
         />
 
+    <EditText
+        android:id="@+id/et_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="search"
+        android:text="关键词搜索"
+        />
+
 
 </LinearLayout>

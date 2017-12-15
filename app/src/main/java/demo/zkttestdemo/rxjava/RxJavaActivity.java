@@ -2,7 +2,11 @@ package demo.zkttestdemo.rxjava;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+
+import com.jakewharton.rxbinding2.widget.RxTextView;
 
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscription;
@@ -10,11 +14,14 @@ import org.reactivestreams.Subscription;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import demo.zkttestdemo.R;
 import demo.zkttestdemo.utils.LogUtil;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableSubscriber;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
@@ -25,10 +32,42 @@ import io.reactivex.schedulers.Schedulers;
 
 public class RxJavaActivity extends AppCompatActivity {
 
+    private EditText etEdit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rx_java);
+
+        etEdit = findViewById(R.id.et_edit);
+        RxTextView.textChanges(etEdit)
+                .debounce(500, TimeUnit.MILLISECONDS)
+                .flatMap(new Function<CharSequence, ObservableSource<List<String>>>() {
+                    @Override
+                    public ObservableSource<List<String>> apply(CharSequence charSequence) throws Exception {
+                        List<String> list = new ArrayList<>();
+                        list.add("ab_c");
+                        return Observable.just(list);
+                    }
+                })
+                .flatMapIterable(new Function<List<String>, Iterable<String>>() {
+                    @Override
+                    public Iterable<String> apply(List<String> strings) throws Exception {
+                        return strings;
+                    }
+                })
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String string) throws Exception {
+                        Log.e("rxjava", string);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        Log.e("rxjava", "出错啦");
+                    }
+                });
+
     }
 
     public void justClick(View view) {
@@ -99,7 +138,7 @@ public class RxJavaActivity extends AppCompatActivity {
                 .subscribe(new Consumer<Integer>() {
                     @Override
                     public void accept(@NonNull Integer integer) throws Exception {
-                        LogUtil.e(integer+"");
+                        LogUtil.e(integer + "");
                     }
                 });
 
@@ -188,7 +227,7 @@ public class RxJavaActivity extends AppCompatActivity {
                 });
     }
 
-    public void io(View view){
+    public void io(View view) {
         Flowable.just("121212")
                 .map(new Function<String, Long>() {
                     @Override
@@ -201,8 +240,9 @@ public class RxJavaActivity extends AppCompatActivity {
                 .subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(@NonNull Long s) throws Exception {
-                        LogUtil.e(s+"");
+                        LogUtil.e(s + "");
                     }
                 });
     }
+
 }
