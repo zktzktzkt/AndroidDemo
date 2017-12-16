@@ -7,6 +7,8 @@ import android.os.Handler;
 import demo.zkttestdemo.effect.wavrecord.model.AudioChannel;
 import demo.zkttestdemo.effect.wavrecord.model.AudioSampleRate;
 import demo.zkttestdemo.effect.wavrecord.model.AudioSource;
+import omrecorder.AudioRecordConfig;
+import omrecorder.PullableSource;
 
 
 public class Util {
@@ -15,25 +17,26 @@ public class Util {
     private Util() {
     }
 
-    public static void wait(int millis, Runnable callback){
+    public static void wait(int millis, Runnable callback) {
         HANDLER.postDelayed(callback, millis);
     }
 
-    public static omrecorder.AudioSource getMic(AudioSource source,
+    public static PullableSource.Default getMic(AudioSource source,
                                                 AudioChannel channel,
                                                 AudioSampleRate sampleRate) {
-        return new omrecorder.AudioSource.Smart(
-                source.getSource(),
-                AudioFormat.ENCODING_PCM_16BIT,
-                channel.getChannel(),
-                sampleRate.getSampleRate());
+        return new PullableSource.Default(
+                new AudioRecordConfig.Default(source.getSource(),
+                        AudioFormat.ENCODING_PCM_16BIT,
+                        channel.getChannel(),
+                        sampleRate.getSampleRate())
+        );
     }
 
     public static boolean isBrightColor(int color) {
-        if(android.R.color.transparent == color) {
+        if (android.R.color.transparent == color) {
             return true;
         }
-        int [] rgb = {Color.red(color), Color.green(color), Color.blue(color)};
+        int[] rgb = {Color.red(color), Color.green(color), Color.blue(color)};
         int brightness = (int) Math.sqrt(
                 rgb[0] * rgb[0] * 0.241 +
                         rgb[1] * rgb[1] * 0.691 +

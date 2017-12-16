@@ -3,17 +3,18 @@ package demo.zkttestdemo.effect.wavrecord;
 import android.Manifest;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import demo.zkttestdemo.MyApplication;
 import demo.zkttestdemo.R;
 import demo.zkttestdemo.effect.wavrecord.model.AudioChannel;
 import demo.zkttestdemo.effect.wavrecord.model.AudioSampleRate;
@@ -33,11 +34,10 @@ public class WAVActivity extends AppCompatActivity implements EasyPermissions.Pe
     private ImageButton playView;
     private Timer timer;
 
-    private String filePath = Environment.getExternalStorageDirectory() + "/recorded_audio.wav";
+    private String filePath = MyApplication.getContext().getExternalCacheDir() + "/recorded_audio.wav";
     private AudioSource source = AudioSource.MIC;
     private AudioChannel channel = AudioChannel.MONO;
     private AudioSampleRate sampleRate = AudioSampleRate.HZ_8000;
-
 
     /**
      * 播放秒数计时
@@ -72,7 +72,7 @@ public class WAVActivity extends AppCompatActivity implements EasyPermissions.Pe
 
     @Override
     public void onPermissionsGranted(int requestCode, List<String> list) {
-        if(requestCode == 111){
+        if (requestCode == 111) {
             stopPlaying(); //先停止播放
 
             Util.wait(100, new Runnable() {
@@ -137,7 +137,7 @@ public class WAVActivity extends AppCompatActivity implements EasyPermissions.Pe
      */
     public void toggleRecording(View v) {
         String[] perms = {Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
-        if(EasyPermissions.hasPermissions(getApplicationContext(), perms)){
+        if (EasyPermissions.hasPermissions(getApplicationContext(), perms)) {
             stopPlaying(); //先停止播放
 
             Util.wait(100, new Runnable() {
@@ -150,7 +150,7 @@ public class WAVActivity extends AppCompatActivity implements EasyPermissions.Pe
                     }
                 }
             });
-        }else {
+        } else {
             EasyPermissions.requestPermissions(this, "需要录音权限", 111, perms);
         }
 
@@ -174,6 +174,7 @@ public class WAVActivity extends AppCompatActivity implements EasyPermissions.Pe
             recorder = OmRecorder.wav(
                     new PullTransport.Default(Util.getMic(source, channel, sampleRate), this),
                     new File(filePath));
+            recorder.startRecording();
         }
         recorder.resumeRecording();
 
@@ -218,7 +219,11 @@ public class WAVActivity extends AppCompatActivity implements EasyPermissions.Pe
     private void stopRecording() {
         recorderSecondsElapsed = 0;
         if (recorder != null) {
-            recorder.stopRecording();
+            try {
+                recorder.stopRecording();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             recorder = null;
         }
 

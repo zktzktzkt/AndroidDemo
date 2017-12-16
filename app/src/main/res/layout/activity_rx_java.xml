@@ -69,8 +69,8 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="search"
-        android:text="关键词搜索"
+        android:onClick="sendVerfi"
+        android:text="发送验证码倒计时"
         />
 
 
