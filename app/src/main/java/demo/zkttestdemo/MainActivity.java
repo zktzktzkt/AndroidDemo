@@ -60,6 +60,7 @@ import demo.zkttestdemo.effect.slidemenu.SlideMenuActivity;
 import demo.zkttestdemo.effect.stikyhead.StikyHeadActivity;
 import demo.zkttestdemo.effect.tablayout.MyTablayoutActivity;
 import demo.zkttestdemo.effect.transition.TransitionActivity;
+import demo.zkttestdemo.effect.verificationinput.VerificationInputActivity;
 import demo.zkttestdemo.effect.viewdraghelper.ViewDragHelperDemoActivity;
 import demo.zkttestdemo.effect.wavrecord.WAVActivity;
 import demo.zkttestdemo.effect.wxaudio.AudioActivity;
@@ -190,6 +191,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_alipayHomeAnim) {
             Intent intent = new Intent(this, AlipayHomeActivity.class);
+            startActivity(intent);
+        }  else if (id == R.id.nav_verificationInput) {
+            Intent intent = new Intent(this, VerificationInputActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_bannerHeaderRecycler) {
             Intent intent = new Intent(this, BannerRecyclerActivity.class);

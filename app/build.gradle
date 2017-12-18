@@ -5,7 +5,7 @@ apply plugin: 'realm-android'
 // JitPack Maven
 apply plugin: 'com.github.dcendents.android-maven'
 // Your Group
-group='com.github.zktzktzkt'
+group = 'com.github.zktzktzkt'
 
 android {
     compileSdkVersion 26

@@ -157,6 +157,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="仿alipay首页头部伸缩动画"/>
             <item
+                android:id="@+id/nav_verificationInput"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="仿滴滴出行验证码输入"/>
+            <item
                 android:id="@+id/nav_multi_page"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="ViewPager一屏显示显示多页面"/>
