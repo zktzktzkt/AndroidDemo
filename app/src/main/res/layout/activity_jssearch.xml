@@ -10,12 +10,12 @@
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:scrollbars="none">
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="1500dp">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/iv_img"
@@ -23,6 +23,10 @@
                 android:layout_height="180dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/night1"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1500dp"/>
         </FrameLayout>
     </ScrollView>
 
