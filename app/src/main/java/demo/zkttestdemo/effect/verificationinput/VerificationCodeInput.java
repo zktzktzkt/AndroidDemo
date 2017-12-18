@@ -22,6 +22,9 @@ import java.util.List;
 
 import demo.zkttestdemo.R;
 
+/**
+ * https://juejin.im/post/5a30dca9f265da431c704bd3
+ */
 public class VerificationCodeInput extends LinearLayout implements TextWatcher, View.OnKeyListener {
 
     private final static String TYPE_NUMBER = "number";
