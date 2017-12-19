@@ -97,7 +97,7 @@ public class VerificationCodeInput extends LinearLayout implements TextWatcher, 
                 editText.setInputType(InputType.TYPE_CLASS_PHONE);
             }
 
-            editText.setId(i);
+            editText.setId(generateViewId());
             editText.setEms(1);
             editText.addTextChangedListener(this);
 

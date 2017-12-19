@@ -19,7 +19,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -27,6 +30,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -88,6 +92,23 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        ((EditText) findViewById(R.id.et_edit)).addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Log.e("MainActivity", "CharSequence:" + s + "  start:" + start + "  before:" + before + "  count:" + count);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         /**创建调用系统照相机待存储的临时文件*/
         createCameraTempFile(savedInstanceState);
@@ -168,7 +189,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_wavRecord) {
             Intent intent = new Intent(this, WAVActivity.class);
             startActivity(intent);
-        }  else if (id == R.id.nav_bezier) {
+        } else if (id == R.id.nav_bezier) {
             Intent intent = new Intent(this, BezierActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_mt2List) {
@@ -192,7 +213,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_alipayHomeAnim) {
             Intent intent = new Intent(this, AlipayHomeActivity.class);
             startActivity(intent);
-        }  else if (id == R.id.nav_verificationInput) {
+        } else if (id == R.id.nav_verificationInput) {
             Intent intent = new Intent(this, VerificationInputActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_bannerHeaderRecycler) {
