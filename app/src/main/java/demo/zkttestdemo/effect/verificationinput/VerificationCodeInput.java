@@ -49,8 +49,8 @@ public class VerificationCodeInput extends LinearLayout implements TextWatcher, 
     public VerificationCodeInput(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.vericationCodeInput);
-        box = a.getInt(R.styleable.vericationCodeInput_box, 4);
 
+        box = a.getInt(R.styleable.vericationCodeInput_box, 4);
         childHPadding = (int) a.getDimension(R.styleable.vericationCodeInput_child_h_padding, 0);
         childVPadding = (int) a.getDimension(R.styleable.vericationCodeInput_child_v_padding, 0);
         boxBgFocus = a.getDrawable(R.styleable.vericationCodeInput_box_bg_focus);
@@ -58,41 +58,31 @@ public class VerificationCodeInput extends LinearLayout implements TextWatcher, 
         inputType = a.getString(R.styleable.vericationCodeInput_inputType);
         boxWidth = (int) a.getDimension(R.styleable.vericationCodeInput_child_width, boxWidth);
         boxHeight = (int) a.getDimension(R.styleable.vericationCodeInput_child_height, boxHeight);
+
+        a.recycle();
+
         initViews();
-
-    }
-
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-
     }
 
     private void initViews() {
         for (int i = 0; i < box; i++) {
             EditText editText = new EditText(getContext());
+
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(boxWidth, boxHeight);
             layoutParams.bottomMargin = childVPadding;
             layoutParams.topMargin = childVPadding;
             layoutParams.leftMargin = childHPadding;
             layoutParams.rightMargin = childHPadding;
             layoutParams.gravity = Gravity.CENTER;
+            editText.setLayoutParams(layoutParams);
 
             editText.setOnKeyListener(this);
-            if (i == 0)
+            if (i == 0) {
                 setBg(editText, true);
-            else
+            } else {
                 setBg(editText, false);
-
+            }
             editText.setTextColor(Color.BLACK);
-            editText.setLayoutParams(layoutParams);
             editText.setGravity(Gravity.CENTER);
             editText.setInputType(EditorInfo.TYPE_CLASS_PHONE);
             editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(1)});
@@ -105,42 +95,14 @@ public class VerificationCodeInput extends LinearLayout implements TextWatcher, 
                 editText.setInputType(InputType.TYPE_CLASS_TEXT);
             } else if (TYPE_PHONE.equals(inputType)) {
                 editText.setInputType(InputType.TYPE_CLASS_PHONE);
-
             }
+
             editText.setId(i);
             editText.setEms(1);
             editText.addTextChangedListener(this);
+
             addView(editText, i);
             mEditTextList.add(editText);
-
-        }
-
-    }
-
-    private void backFocus() {
-        int count = getChildCount();
-        EditText editText;
-        for (int i = count - 1; i >= 0; i--) {
-            editText = (EditText) getChildAt(i);
-            if (editText.getText().length() == 1) {
-                editText.requestFocus();
-                setBg(mEditTextList.get(i), true);
-                //setBg(mEditTextList.get(i-1),true);
-                editText.setSelection(1);
-                return;
-            }
-        }
-    }
-
-    private void focus() {
-        int count = getChildCount();
-        EditText editText;
-        for (int i = 0; i < count; i++) {
-            editText = (EditText) getChildAt(i);
-            if (editText.getText().length() < 1) {
-                editText.requestFocus();
-                return;
-            }
         }
     }
 
@@ -150,20 +112,6 @@ public class VerificationCodeInput extends LinearLayout implements TextWatcher, 
         } else if (boxBgFocus != null && focus) {
             editText.setBackground(boxBgFocus);
         }
-    }
-
-    private void setBg() {
-        int count = getChildCount();
-        EditText editText;
-        for (int i = 0; i < count; i++) {
-            editText = (EditText) getChildAt(i);
-            if (boxBgNormal != null && !focus) {
-                editText.setBackground(boxBgNormal);
-            } else if (boxBgFocus != null && focus) {
-                editText.setBackground(boxBgFocus);
-            }
-        }
-
     }
 
     private void checkAndCommit() {
@@ -178,18 +126,16 @@ public class VerificationCodeInput extends LinearLayout implements TextWatcher, 
             } else {
                 stringBuilder.append(content);
             }
-
         }
+
         if (full) {
             if (listener != null) {
                 listener.onComplete(stringBuilder.toString());
                 setEnabled(false);
             }
-
         }
     }
 
-    @Override
     public void setEnabled(boolean enabled) {
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
@@ -203,7 +149,6 @@ public class VerificationCodeInput extends LinearLayout implements TextWatcher, 
     }
 
     @Override
-
     public LayoutParams generateLayoutParams(AttributeSet attrs) {
         return new LinearLayout.LayoutParams(getContext(), attrs);
     }
@@ -211,22 +156,19 @@ public class VerificationCodeInput extends LinearLayout implements TextWatcher, 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int count = getChildCount();
 
-        for (int i = 0; i < count; i++) {
-            View child = getChildAt(i);
-            this.measureChild(child, widthMeasureSpec, heightMeasureSpec);
-        }
+        measureChildren(widthMeasureSpec, heightMeasureSpec);
+
+        int count = getChildCount();
         if (count > 0) {
             View child = getChildAt(0);
             int cHeight = child.getMeasuredHeight();
             int cWidth = child.getMeasuredWidth();
             int maxH = cHeight + 2 * childVPadding;
-            int maxW = (cWidth + childHPadding) * box + childHPadding;
-            setMeasuredDimension(resolveSize(maxW, widthMeasureSpec),
-                    resolveSize(maxH, heightMeasureSpec));
-        }
+            int maxW = (childHPadding + cWidth) * box + childHPadding;
 
+            setMeasuredDimension(resolveSize(maxW, widthMeasureSpec), resolveSize(maxH, heightMeasureSpec));
+        }
     }
 
     @Override
@@ -244,8 +186,6 @@ public class VerificationCodeInput extends LinearLayout implements TextWatcher, 
             int cb = ct + cHeight;
             child.layout(cl, ct, cr, cb);
         }
-
-
     }
 
     @Override
@@ -253,6 +193,12 @@ public class VerificationCodeInput extends LinearLayout implements TextWatcher, 
 
     }
 
+    /**
+     * @param s      为变化后的内容
+     * @param start  为开始变化位置的索引，从0开始计数；
+     * @param before 变化后删除了多少老字符的个数，由12变为1，before为1，比如s由1变为12，before为0；
+     * @param count  为将要发生变化的字符数
+     */
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         if (start == 0 && count >= 1 && currentPosition != mEditTextList.size() - 1) {
@@ -261,14 +207,11 @@ public class VerificationCodeInput extends LinearLayout implements TextWatcher, 
             setBg(mEditTextList.get(currentPosition), true);
             setBg(mEditTextList.get(currentPosition - 1), false);
         }
-
     }
 
     @Override
     public void afterTextChanged(Editable s) {
-        if (s.length() == 0) {
-        } else {
-            focus();
+        if (s.length() > 0) {
             checkAndCommit();
         }
     }
@@ -276,6 +219,7 @@ public class VerificationCodeInput extends LinearLayout implements TextWatcher, 
     @Override
     public boolean onKey(View view, int keyCode, KeyEvent event) {
         EditText editText = (EditText) view;
+
         if (keyCode == KeyEvent.KEYCODE_DEL && editText.getText().length() == 0) {
             int action = event.getAction();
             if (currentPosition != 0 && action == KeyEvent.ACTION_DOWN) {
