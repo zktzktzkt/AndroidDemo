@@ -13,6 +13,7 @@ public class CircleProgressActivity extends AppCompatActivity {
     int progress = 0;
     private CircleProgressBar progressBar;
     private CountdownProgress countdownProgress;
+    private Timer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,7 @@ public class CircleProgressActivity extends AppCompatActivity {
             }
         });
 
-        Timer timer = new Timer();
+        timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -39,5 +40,11 @@ public class CircleProgressActivity extends AppCompatActivity {
                 }
             }
         }, 500, 200);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        timer.cancel();
     }
 }
