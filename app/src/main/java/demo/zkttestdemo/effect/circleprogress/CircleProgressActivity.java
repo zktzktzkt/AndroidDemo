@@ -45,6 +45,8 @@ public class CircleProgressActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        timer.cancel();
+        if (null != timer) {
+            timer.cancel();
+        }
     }
 }
