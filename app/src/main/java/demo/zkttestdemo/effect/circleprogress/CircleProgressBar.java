@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import demo.zkttestdemo.R;
@@ -17,8 +18,6 @@ import demo.zkttestdemo.R;
  */
 
 public class CircleProgressBar extends View {
-    private int height;
-    private int width;
     private Paint mPaint;
     private int strokeWidth = 5;//线条宽度
     private RectF rectF;
@@ -52,8 +51,8 @@ public class CircleProgressBar extends View {
         progressColor = array.getColor(R.styleable.CircleProgressBar_progress_color, progressColor);
         progress = array.getInt(R.styleable.CircleProgressBar_progress, progress);
         progress_style = array.getInt(R.styleable.CircleProgressBar_progress_style, 0) == 0 ? Paint.Style.STROKE : Paint.Style.FILL;
-
         array.recycle();
+
         initPaint();
     }
 
@@ -73,19 +72,24 @@ public class CircleProgressBar extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        width = MeasureSpec.getSize(widthMeasureSpec);
-        height = MeasureSpec.getSize(heightMeasureSpec);
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        setMeasuredDimension(resolveSize(400, widthMeasureSpec), resolveSize(400, heightMeasureSpec));
+        Log.e("CircleProgressBar", "onMeasure");
+    }
 
-        if (height > width || width > height) {
-            int min = Math.min(width, height);
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        Log.e("CircleProgressBar", "onSizeChanged");
+        if (w > h || h > w) {
+            int min = Math.min(w, h);
             rectF = new RectF(strokeWidth, strokeWidth,
                     min - strokeWidth, min - strokeWidth);
 
         } else {
             rectF = new RectF(strokeWidth, strokeWidth,
-                    width - strokeWidth, height - strokeWidth);
+                    w - strokeWidth, h - strokeWidth);
         }
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     Paint.FontMetrics fontMetrics = null;
