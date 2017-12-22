@@ -24,8 +24,8 @@ public class DoodleView extends View {
     private Path path;
     private int preX, preY;
     private Paint paint;
-    private Bitmap bitmapBuffer;
-    private Canvas bitmapBufferCanvas;
+    private Bitmap bufferBitmap;
+    private Canvas bufferBitmapCanvas;
     private int width;
     private int height;
 
@@ -46,13 +46,13 @@ public class DoodleView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        if (bitmapBuffer == null) {
+        if (bufferBitmap == null) {
             width = getMeasuredWidth();
             height = getMeasuredHeight();
 
-            bitmapBuffer = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-            bitmapBufferCanvas = new Canvas(bitmapBuffer);
-            bitmapBufferCanvas.drawColor(Color.WHITE); //默认是透明的（看起来是黑色）
+            bufferBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+            bufferBitmapCanvas = new Canvas(bufferBitmap);
+            bufferBitmapCanvas.drawColor(Color.WHITE); //默认是透明的（看起来是黑色）
         }
     }
 
@@ -60,7 +60,7 @@ public class DoodleView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         //存储历史轨迹。ACTION_UP之后，在缓存的bitmap上画历史轨迹，然后再画在canvas上
-        canvas.drawBitmap(bitmapBuffer, 0, 0, null);
+        canvas.drawBitmap(bufferBitmap, 0, 0, null);
 
         //画当前的轨迹
         canvas.drawPath(path, paint);
@@ -91,7 +91,7 @@ public class DoodleView extends View {
                 break;
 
             case MotionEvent.ACTION_UP:
-                bitmapBufferCanvas.drawPath(path, paint);
+                bufferBitmapCanvas.drawPath(path, paint);
                 invalidate();
                 break;
         }
@@ -111,7 +111,7 @@ public class DoodleView extends View {
         }
         try {
             FileOutputStream outputStream = new FileOutputStream(file);
-            bitmapBuffer.compress(Bitmap.CompressFormat.PNG, 90, outputStream);
+            bufferBitmap.compress(Bitmap.CompressFormat.PNG, 90, outputStream);
             outputStream.flush();
             outputStream.close();
         } catch (Exception e) {
@@ -126,9 +126,9 @@ public class DoodleView extends View {
      */
     public void clearDraw() {
         path.reset();
-        bitmapBuffer = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        bitmapBufferCanvas.setBitmap(bitmapBuffer);
-        bitmapBufferCanvas.drawColor(Color.WHITE); //默认是透明的（看起来是黑色）
+        bufferBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        bufferBitmapCanvas.setBitmap(bufferBitmap);
+        bufferBitmapCanvas.drawColor(Color.WHITE); //默认是透明的（看起来是黑色）
         invalidate();
     }
 }

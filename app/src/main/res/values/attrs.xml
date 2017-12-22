@@ -82,4 +82,10 @@
         <attr name="inputType" format="string"/>
     </declare-styleable>
 
+    <!--**********************自定义倒计时*************************-->
+    <declare-styleable name="countdownProgress">
+        <attr name="circle_color" format="color"/>
+        <attr name="stroke_color" format="color"/>
+    </declare-styleable>
+
 </resources>

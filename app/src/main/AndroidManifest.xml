@@ -132,6 +132,8 @@
         </activity>
         <activity android:name=".effect.verificationinput.VerificationInputActivity">
         </activity>
+        <activity android:name=".effect.ruler.RulerActivity">
+        </activity>
     </application>
 
 </manifest>

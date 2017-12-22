@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="demo.zkttestdemo.effect.circleprogress.CircleProgressActivity">
 
     <demo.zkttestdemo.effect.circleprogress.CircleProgressBar
         android:id="@+id/circleProgressBar"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_centerInParent="true"
+        android:layout_gravity="center_horizontal"
+        android:visibility="visible"
         app:normal_color="#A5A5A5"
         app:progress="0"
         app:progress_color="#FA9025"
@@ -20,4 +23,14 @@
         app:text_color="#ff0000"
         app:text_size="30sp"
         />
-</RelativeLayout>
+
+    <demo.zkttestdemo.effect.circleprogress.CountdownProgress
+        android:id="@+id/countdownProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/yellow"
+        app:circle_color="@color/blue_light"
+        app:stroke_color="@color/black"
+        />
+</LinearLayout>
