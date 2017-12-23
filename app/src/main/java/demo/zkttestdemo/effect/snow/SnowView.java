@@ -14,6 +14,7 @@ import java.util.List;
 
 /**
  * Created by zkt on 2017-12-23.
+ * https://juejin.im/post/5a32b34c51882506146ef1a0
  */
 
 public class SnowView extends View {
