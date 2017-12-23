@@ -61,6 +61,7 @@ import demo.zkttestdemo.effect.progress.ProgressArcActivity;
 import demo.zkttestdemo.effect.pullAndload.PtrAndloadActivity;
 import demo.zkttestdemo.effect.qqslidemenu.QQSlideMenuActivity;
 import demo.zkttestdemo.effect.slidemenu.SlideMenuActivity;
+import demo.zkttestdemo.effect.snow.SnowActivity;
 import demo.zkttestdemo.effect.stikyhead.StikyHeadActivity;
 import demo.zkttestdemo.effect.tablayout.MyTablayoutActivity;
 import demo.zkttestdemo.effect.transition.TransitionActivity;
@@ -212,6 +213,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_alipayHomeAnim) {
             Intent intent = new Intent(this, AlipayHomeActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_snow) {
+            Intent intent = new Intent(this, SnowActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_verificationInput) {
             Intent intent = new Intent(this, VerificationInputActivity.class);

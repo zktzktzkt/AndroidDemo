@@ -134,6 +134,8 @@
         </activity>
         <activity android:name=".effect.ruler.RulerActivity">
         </activity>
+        <activity android:name=".effect.snow.SnowActivity">
+        </activity>
     </application>
 
 </manifest>
