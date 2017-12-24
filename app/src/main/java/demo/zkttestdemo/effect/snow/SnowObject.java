@@ -15,16 +15,16 @@ import java.util.Random;
 public class SnowObject {
 
     private Random random;
-    private int parentWidth;//父容器宽度
-    private int parentHeight;//父容器高度
+    private int viewWidth;//父容器宽度
+    private int viewHeight;//父容器高度
     private float objectWidth;//下落物体宽度
     private float objectHeight;//下落物体高度
 
     public int initSpeed;//初始下降速度
 
-    public float presentX;//当前位置X坐标
-    public float presentY;//当前位置Y坐标
-    public float presentSpeed;//当前下降速度
+    public float currX; //X坐标（当前落到哪了）
+    public float currY; //Y坐标（当前落到哪了）
+    public float currSpeed;//当前下降速度
 
     private Bitmap bitmap;
     public Builder builder;
@@ -34,13 +34,13 @@ public class SnowObject {
 
     private static final int defaultSpeed = 10;//默认下降速度
 
-    public SnowObject(SnowObject snowObject, int parentWidth, int parentHeight) {
-        this.parentWidth = parentWidth;
-        this.parentHeight = parentHeight;
+    public SnowObject(SnowObject snowObject, int viewWidth, int viewHeight) {
+        this.viewWidth = viewWidth;
+        this.viewHeight = viewHeight;
 
         random = new Random();
-        presentX = random.nextInt(parentWidth);//随机物体的X坐标
-        presentY = random.nextInt(parentHeight) - parentHeight;//随机物体的Y坐标，并让物体一开始从屏幕顶部下落
+        currX = random.nextInt(viewWidth);//随机物体的X坐标
+        currY = random.nextInt(viewHeight) - viewHeight;//随机物体的Y坐标，并让物体一开始从屏幕顶部下落
 
         bitmap = snowObject.bitmap;
         initSpeed = snowObject.initSpeed;
@@ -113,15 +113,15 @@ public class SnowObject {
      */
     void drawObject(Canvas canvas) {
         moveObject();
-        canvas.drawBitmap(bitmap, presentX, presentY, null);
+        canvas.drawBitmap(bitmap, currX, currY, null);
     }
 
     /**
      * 移动物体对象
      */
     private void moveObject() {
-        presentY += presentSpeed;
-        if (presentY > parentHeight) {
+        currY += currSpeed;
+        if (currY > viewHeight) {
             reset();
         }
     }
@@ -131,7 +131,7 @@ public class SnowObject {
      * 重置object位置
      */
     private void reset() {
-        presentY = -objectHeight;
+        currY = -objectHeight;
 
         randomSpeed();//记得重置时速度也一起重置，这样效果会好很多
     }
@@ -141,9 +141,9 @@ public class SnowObject {
      */
     private void randomSpeed() {
         if (isSpeedRandom) {
-            presentSpeed = (float) ((random.nextInt(3) + 1) * 0.1 + 1) * initSpeed;//这些随机数大家可以按自己的需要进行调整
+            currSpeed = (float) ((random.nextInt(3) + 1) * 0.1 + 1) * initSpeed;//这些随机数大家可以按自己的需要进行调整
         } else {
-            presentSpeed = initSpeed;
+            currSpeed = initSpeed;
         }
     }
 
