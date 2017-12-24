@@ -120,25 +120,18 @@ public class SnowObject {
      * 移动物体对象
      */
     private void moveObject() {
-        moveY();
+        presentY += presentSpeed;
         if (presentY > parentHeight) {
             reset();
         }
     }
 
-    /**
-     * Y轴上的移动逻辑
-     */
-    private void moveY() {
-        presentY += presentSpeed;
-    }
 
     /**
      * 重置object位置
      */
     private void reset() {
         presentY = -objectHeight;
-        presentSpeed = initSpeed;
 
         randomSpeed();//记得重置时速度也一起重置，这样效果会好很多
     }

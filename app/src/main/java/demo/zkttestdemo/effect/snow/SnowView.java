@@ -20,7 +20,6 @@ import java.util.List;
 public class SnowView extends View {
 
     private Paint testPaint;
-    private int snowY;
 
     private static final int defaultWidth = 600;//默认宽度
     private static final int defaultHeight = 1000;//默认高度
@@ -48,7 +47,6 @@ public class SnowView extends View {
         testPaint = new Paint();
         testPaint.setColor(Color.WHITE);
         testPaint.setStyle(Paint.Style.FILL);
-        snowY = 0;
 
         snowObjects = new ArrayList<>();
     }
@@ -74,7 +72,7 @@ public class SnowView extends View {
                 //然后进行绘制
                 snowObjects.get(i).drawObject(canvas);
             }
-            // 隔一段时间重绘一次, 动画效果
+
             getHandler().postDelayed(runnable, intervalTime);
         }
     }
@@ -82,10 +80,6 @@ public class SnowView extends View {
     Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            snowY += 15;
-            if (snowY > viewHeight) {
-                snowY = 0;
-            }
             invalidate();
         }
     };
