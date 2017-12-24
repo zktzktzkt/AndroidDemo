@@ -17,8 +17,8 @@ public class SnowObject {
     private Random random;
     private int viewWidth;//父容器宽度
     private int viewHeight;//父容器高度
-    private float objectWidth;//下落物体宽度
-    private float objectHeight;//下落物体高度
+    private float bitmapWidth;//下落物体宽度
+    private float bitmapHeight;//下落物体高度
 
     public int initSpeed;//初始下降速度
 
@@ -131,7 +131,7 @@ public class SnowObject {
      * 重置object位置
      */
     private void reset() {
-        currY = -objectHeight;
+        currY = -bitmapHeight;
 
         randomSpeed();//记得重置时速度也一起重置，这样效果会好很多
     }
@@ -157,8 +157,8 @@ public class SnowObject {
             float rH = r * bitmap.getHeight();
             bitmap = changeBitmapSize(bitmap, (int) rW, (int) rH);
         }
-        objectWidth = bitmap.getWidth();
-        objectHeight = bitmap.getHeight();
+        bitmapWidth = bitmap.getWidth();
+        bitmapHeight = bitmap.getHeight();
     }
 
     /**
