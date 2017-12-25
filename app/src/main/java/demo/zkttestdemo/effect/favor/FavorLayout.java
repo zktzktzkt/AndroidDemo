@@ -58,7 +58,6 @@ public class FavorLayout extends RelativeLayout {
         init();
     }
 
-
     private void init() {
         //初始化显示的图片
         drawables = new Drawable[3];
@@ -112,7 +111,6 @@ public class FavorLayout extends RelativeLayout {
         ValueAnimator bezierValueAnimator = getBezierValueAnimator(target);
 
         AnimatorSet finalSet = new AnimatorSet();
-        finalSet.playSequentially(set);
         finalSet.playSequentially(set, bezierValueAnimator);
         finalSet.setInterpolator(interpolators[random.nextInt(4)]);
         finalSet.setTarget(target);
