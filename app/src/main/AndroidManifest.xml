@@ -136,6 +136,8 @@
         </activity>
         <activity android:name=".effect.snow.SnowActivity">
         </activity>
+        <activity android:name=".effect.favor.FavorActivity">
+        </activity>
     </application>
 
 </manifest>

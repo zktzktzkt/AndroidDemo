@@ -15,7 +15,6 @@ import java.util.Random;
 public class SnowObject {
 
     private Random random;
-    private int viewWidth;//父容器宽度
     private int viewHeight;//父容器高度
     private float bitmapWidth;//下落物体宽度
     private float bitmapHeight;//下落物体高度
@@ -35,20 +34,19 @@ public class SnowObject {
     private static final int defaultSpeed = 10;//默认下降速度
 
     public SnowObject(SnowObject snowObject, int viewWidth, int viewHeight) {
-        this.viewWidth = viewWidth;
         this.viewHeight = viewHeight;
-
-        random = new Random();
-        currX = random.nextInt(viewWidth);//随机物体的X坐标
-        currY = random.nextInt(viewHeight) - viewHeight;//随机物体的Y坐标，并让物体一开始从屏幕顶部下落
 
         bitmap = snowObject.bitmap;
         initSpeed = snowObject.initSpeed;
         isSpeedRandom = snowObject.isSpeedRandom;
         isSizeRandom = snowObject.isSizeRandom;
 
-        randomSpeed();
-        randomSize();
+        random = new Random();
+        currX = random.nextInt(viewWidth);//随机物体的X坐标
+        currY = random.nextInt(viewHeight) - viewHeight;//随机物体的Y坐标，并让物体一开始从屏幕顶部下落
+
+        randomSpeed(initSpeed);
+        randomSize(bitmap);
     }
 
     private SnowObject(Builder builder) {
@@ -126,20 +124,21 @@ public class SnowObject {
         }
     }
 
-
     /**
      * 重置object位置
      */
     private void reset() {
         currY = -bitmapHeight;
 
-        randomSpeed();//记得重置时速度也一起重置，这样效果会好很多
+        randomSpeed(initSpeed);//记得重置时速度也一起重置，这样效果会好很多
     }
 
     /**
      * 随机物体初始下落速度
+     *
+     * @param initSpeed
      */
-    private void randomSpeed() {
+    private void randomSpeed(int initSpeed) {
         if (isSpeedRandom) {
             currSpeed = (float) ((random.nextInt(3) + 1) * 0.1 + 1) * initSpeed;//这些随机数大家可以按自己的需要进行调整
         } else {
@@ -149,16 +148,18 @@ public class SnowObject {
 
     /**
      * 随机物体初始大小比例
+     *
+     * @param bitmap
      */
-    private void randomSize() {
+    private void randomSize(Bitmap bitmap) {
         if (isSizeRandom) {
             float r = (random.nextInt(10) + 1) * 0.1f;
             float rW = r * bitmap.getWidth();
             float rH = r * bitmap.getHeight();
-            bitmap = changeBitmapSize(bitmap, (int) rW, (int) rH);
+            this.bitmap = changeBitmapSize(bitmap, (int) rW, (int) rH);
         }
-        bitmapWidth = bitmap.getWidth();
-        bitmapHeight = bitmap.getHeight();
+        bitmapWidth = this.bitmap.getWidth();
+        bitmapHeight = this.bitmap.getHeight();
     }
 
     /**
