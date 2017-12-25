@@ -50,6 +50,7 @@ import demo.zkttestdemo.effect.bottomsheet.ZHBottomSheetActivity;
 import demo.zkttestdemo.effect.circleprogress.CircleProgressActivity;
 import demo.zkttestdemo.effect.coordinator.CoordinatorActivity;
 import demo.zkttestdemo.effect.doodle.DoodleActivity;
+import demo.zkttestdemo.effect.draglayout.DragActivity;
 import demo.zkttestdemo.effect.favor.FavorActivity;
 import demo.zkttestdemo.effect.jssearchdemo.JSSearchActivity;
 import demo.zkttestdemo.effect.keyboardbug.KeyBoardBugActivity;
@@ -220,6 +221,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_favor) {
             Intent intent = new Intent(this, FavorActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_drag) {
+            Intent intent = new Intent(this, DragActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_verificationInput) {
             Intent intent = new Intent(this, VerificationInputActivity.class);

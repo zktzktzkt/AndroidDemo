@@ -164,6 +164,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="点赞飘心效果"/>
             <item
+                android:id="@+id/nav_drag"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="拖拽布局效果"/>
+            <item
                 android:id="@+id/nav_verificationInput"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="仿滴滴出行验证码输入"/>

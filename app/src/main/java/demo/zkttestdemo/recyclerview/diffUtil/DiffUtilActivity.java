@@ -33,7 +33,6 @@ public class DiffUtilActivity extends AppCompatActivity {
         setContentView(R.layout.diff_activity);
         initView();
 
-
         initData();
 
         mRv = ((RecyclerView) findViewById(R.id.diff_rv));
@@ -87,11 +86,9 @@ public class DiffUtilActivity extends AppCompatActivity {
     private void notifyData(List<TestBean> newDatas) {
         //文艺青年新宠
         //利用DiffUtil.calculateDiff()方法，传入一个规则DiffUtil.Callback对象，和是否检测移动item的 boolean变量，得到DiffUtil.DiffResult 的对象
-
         DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallBack(mDatas, newDatas), true);
 
         //利用DiffUtil.DiffResult对象的dispatchUpdatesTo（）方法，传入RecyclerView的Adapter，轻松成为文艺青年
-
         diffResult.dispatchUpdatesTo(mAdapter);
 
         //别忘了将新数据给Adapter

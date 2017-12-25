@@ -11,7 +11,6 @@ import demo.zkttestdemo.R;
  */
 public class FavorActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
