@@ -29,13 +29,13 @@
 
     <!-- the dragging and related views ========================== -->
     <ImageView
-        android:id="@+id/imgDarkOverlay"
+        android:id="@+id/iv_darkOverlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#e0000000"/>
 
     <LinearLayout
-        android:id="@+id/linDraggable"
+        android:id="@+id/ll_drag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#E91E63"
@@ -60,10 +60,6 @@
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/viewTouchListener"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
     <!-- ========================== the dragging and related views -->
 
 </FrameLayout>

@@ -15,12 +15,11 @@ import demo.zkttestdemo.R;
 
 public class DragActivity extends AppCompatActivity {
 
-    LinearLayout linDraggable;
-    View viewTouchListener;
-    ImageView imgDarkOverlay;
+    LinearLayout ll_drag;
+    ImageView ivDarkOverlay;
     Button btnShowLayout;
 
-    int linHeight;
+    int ll_drag_height;
     int startX, startY;
     int deltaX, deltaY;
     int animationDuration = 400;
@@ -36,26 +35,25 @@ public class DragActivity extends AppCompatActivity {
     }
 
     private void initializer() {
-        linDraggable = findViewById(R.id.linDraggable);
-        viewTouchListener = findViewById(R.id.viewTouchListener);
-        imgDarkOverlay = findViewById(R.id.imgDarkOverlay);
+        ll_drag = findViewById(R.id.ll_drag);
+        ivDarkOverlay = findViewById(R.id.iv_darkOverlay);
         btnShowLayout = findViewById(R.id.btnShowLayout);
     }
 
     private void getHeight() {
-        linDraggable.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+        ll_drag.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                linDraggable.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                ll_drag.getViewTreeObserver().removeOnGlobalLayoutListener(this);
 
-                linHeight = linDraggable.getHeight();
+                ll_drag_height = ll_drag.getHeight();
                 listenForDrag();
             }
         });
     }
 
     private void listenForDrag() {
-        viewTouchListener.setOnTouchListener(new View.OnTouchListener() {
+        ll_drag.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 switch (event.getAction()) {
@@ -72,43 +70,42 @@ public class DragActivity extends AppCompatActivity {
                         checkWhatShouldHappen();
                         break;
                 }
-                return true;
+                return false;
             }
         });
     }
 
     private void performCalculations(MotionEvent event) {
+        /*偏移量，在ViewDragHelper中对应 onViewPositionChanged*/
         deltaX = (int) (startX - event.getX());
         deltaY = (int) (startY - event.getY());
 
-        float factorFromOne = (float) (linHeight - deltaY) / linHeight;
+        float dragPercent = (float) (ll_drag_height - deltaY) / ll_drag_height;
 
         if (deltaY >= 0) {
-            linDraggable.setTranslationY(-(int) (deltaY * ((float) 4 / 5)));
-            imgDarkOverlay.setAlpha(factorFromOne);
+            ll_drag.setTranslationY(-(int) (deltaY * ((float) 4 / 5))); //这里加了一个阻力的效果
+            ivDarkOverlay.setAlpha(dragPercent);
         }
     }
 
     private void checkWhatShouldHappen() {
-        if (deltaY > linHeight / 3) {
-            linDraggable.animate().translationY(-linHeight).setDuration(animationDuration).start();
-
-            imgDarkOverlay.animate().alpha(0).setDuration(animationDuration).withEndAction(new Runnable() {
+        if (deltaY > ll_drag_height / 3) {
+            ll_drag.animate().translationY(-ll_drag_height).setDuration(animationDuration).start();
+            ivDarkOverlay.animate().alpha(0).setDuration(animationDuration).withEndAction(new Runnable() {
                 @Override
                 public void run() {
                     runFinishingCode();
                 }
             });
         } else {
-            linDraggable.animate().translationY(0).setDuration(animationDuration).start();
-            imgDarkOverlay.animate().alpha(1).setDuration(animationDuration).start();
+            ll_drag.animate().translationY(0).setDuration(animationDuration).start();
+            ivDarkOverlay.animate().alpha(1).setDuration(animationDuration).start();
         }
     }
 
     private void runFinishingCode() {
-        viewTouchListener.setVisibility(View.GONE);
-        linDraggable.setVisibility(View.GONE);
-        imgDarkOverlay.setVisibility(View.GONE);
+        ll_drag.setVisibility(View.GONE);
+        ivDarkOverlay.setVisibility(View.GONE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(Color.parseColor("#000000"));
         }
@@ -118,16 +115,15 @@ public class DragActivity extends AppCompatActivity {
         btnShowLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ll_drag.setVisibility(View.VISIBLE);
+                ivDarkOverlay.setVisibility(View.VISIBLE);
 
-                viewTouchListener.setVisibility(View.VISIBLE);
-                linDraggable.setVisibility(View.VISIBLE);
-                imgDarkOverlay.setVisibility(View.VISIBLE);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     getWindow().setStatusBarColor(Color.parseColor("#E91E63"));
                 }
 
-                linDraggable.animate().translationY(0).setDuration(animationDuration).withLayer();
-                imgDarkOverlay.animate().alpha(1).setDuration(animationDuration).withLayer();
+                ll_drag.animate().translationY(0).setDuration(animationDuration).withLayer();
+                ivDarkOverlay.animate().alpha(1).setDuration(animationDuration).withLayer();
             }
         });
     }

@@ -89,9 +89,8 @@ public class ViewDragLayout extends LinearLayout {
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
         mContentLayoutWidth = mContentLayout.getMeasuredWidth();
         mBehindLayoutWidth = mBehindLayout.getMeasuredWidth();
     }
@@ -192,7 +191,7 @@ public class ViewDragLayout extends LinearLayout {
         }
 
         /**
-         * 位置改变时回调，常用于滑动是更改scale进行缩放等效果
+         * 位置改变时回调，常用于滑动时更改scale进行缩放等效果
          *
          * @param changedView
          * @param left
@@ -204,14 +203,17 @@ public class ViewDragLayout extends LinearLayout {
         public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
             mViewDragRange = left;
             float percent = Math.abs((float) left / (float) mContentLayoutWidth);
-            if (null != mViewDragListener) {
-                mViewDragListener.onDrag(percent);
-            }
+
             if (changedView == mContentLayout) {
                 mBehindLayout.offsetLeftAndRight(dx);
             } else {
                 mContentLayout.offsetLeftAndRight(dx);
             }
+
+            if (null != mViewDragListener) {
+                mViewDragListener.onDrag(percent);
+            }
+
             invalidate();
         }
 
@@ -226,8 +228,7 @@ public class ViewDragLayout extends LinearLayout {
         public void onViewReleased(View releasedChild, float xvel, float yvel) {
             if (releasedChild == mContentLayout) {
                 if (xvel <= 0) { //向左滑动
-                    if (-mViewDragRange >= mBehindLayoutWidth / 2
-                            && -mViewDragRange <= mBehindLayoutWidth) {
+                    if (-mViewDragRange >= mBehindLayoutWidth / 2 && -mViewDragRange <= mBehindLayoutWidth) {
                         open();
                     } else {
                         close();
