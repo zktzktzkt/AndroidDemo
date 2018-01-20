@@ -116,7 +116,7 @@ public class CameraCropUtil implements EasyPermissions.PermissionCallbacks {
         try {
             activity.startActivityForResult(intent, REQUEST_CODE_1);
         } catch (ActivityNotFoundException anf) {
-            Toast.makeText(MyApplication.getContext(), "摄像头未准备好！", Toast.LENGTH_SHORT);
+            Toast.makeText(MyApplication.getContext(), "摄像头未准备好！", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -160,6 +160,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="下雪效果"/>
             <item
+                android:id="@+id/nav_loadingView"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="仿雅虎的splash页"/>
+            <item
                 android:id="@+id/nav_favor"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="点赞飘心效果"/>

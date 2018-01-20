@@ -3,7 +3,6 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="yellow">#fd9c06</color>
 
     <color name="red">#EE2C2C</color>
     <color name="grey">#BDBDBD</color>
@@ -26,4 +25,21 @@
     <color name="blue_black">#1673b8</color>
 
     <color name="gray_9">#999999</color>
+
+    <color name="orange">#ff9600</color>
+    <color name="aqua">#02d1ac</color>
+    <color name="yellow">#ffd200</color>
+    <color name="blue">#00c6ff</color>
+    <color name="green">#00e099</color>
+    <color name="pink">#ff3891</color>
+
+    <array name="splash_circle_colors">
+        <item>@color/blue</item>
+        <item>@color/pink</item>
+        <item>@color/green</item>
+        <item>@color/aqua</item>
+        <item>@color/yellow</item>
+        <item>@color/orange</item>
+    </array>
+
 </resources>

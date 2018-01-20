@@ -55,6 +55,7 @@ import demo.zkttestdemo.effect.favor.FavorActivity;
 import demo.zkttestdemo.effect.jssearchdemo.JSSearchActivity;
 import demo.zkttestdemo.effect.keyboardbug.KeyBoardBugActivity;
 import demo.zkttestdemo.effect.loadingdialog.EatBaoZiActivity;
+import demo.zkttestdemo.effect.loadingview.LoadingActivity;
 import demo.zkttestdemo.effect.meituan2list.MeiTuanListActivity;
 import demo.zkttestdemo.effect.motionevent.MotionEventTestActivity;
 import demo.zkttestdemo.effect.multipage.MultiPageActivity;
@@ -218,6 +219,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_snow) {
             Intent intent = new Intent(this, SnowActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_loadingView) {
+            Intent intent = new Intent(this, LoadingActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_favor) {
             Intent intent = new Intent(this, FavorActivity.class);

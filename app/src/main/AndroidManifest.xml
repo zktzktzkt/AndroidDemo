@@ -140,6 +140,8 @@
         </activity>
         <activity android:name=".effect.draglayout.DragActivity">
         </activity>
+        <activity android:name=".effect.loadingview.LoadingActivity">
+        </activity>
     </application>
 
 </manifest>
