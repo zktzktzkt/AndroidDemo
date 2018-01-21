@@ -9,6 +9,7 @@
     tools:context="demo.zkttestdemo.effect.loadingview.LoadingActivity">
 
     <demo.zkttestdemo.effect.loadingview.LoadingView
+        android:id="@+id/loadingView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </LinearLayout>

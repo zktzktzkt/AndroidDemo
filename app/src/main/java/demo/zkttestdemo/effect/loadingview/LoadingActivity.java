@@ -16,11 +16,12 @@ public class LoadingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
 
+        final LoadingView view = findViewById(R.id.loadingView);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                
+                view.disappear();
             }
-        }, 5000);
+        }, 3000);
     }
 }

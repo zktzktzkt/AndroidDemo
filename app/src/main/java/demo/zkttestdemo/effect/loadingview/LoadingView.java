@@ -1,5 +1,6 @@
 package demo.zkttestdemo.effect.loadingview;
 
+import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -32,12 +33,15 @@ public class LoadingView extends View {
     private float mCurrentRotationAngle = 0;
     //大圆的半径 = 整体宽度的1/4
     private float mRotationRadius;
+    //当前的大圆半径
+    private float mCurrRotationRadius;
 
     private Paint mPaint;
 
     //中心点
     private int mCenterX, mCenterY;
-    private ValueAnimator animator;
+    //代表当前状态所画动画
+    private LoadingState mLoadingState;
 
     public LoadingView(Context context) {
         this(context, null);
@@ -67,14 +71,40 @@ public class LoadingView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        //怎样让圆旋转起来
-        drawRotationAnimator(canvas);
+        if (mLoadingState == null) {
+            mLoadingState = new RotationState();
+        }
+
+        mLoadingState.draw(canvas);
     }
 
-    private void drawRotationAnimator(Canvas canvas) {
-        //思路：既然是转，那就搞一个变量，不断去改变这个变量值
-        //打算采用属性动画，旋转 0~360
-        if (null == animator) {
+
+    /**
+     * 消失
+     */
+    public void disappear() {
+        //开始聚合动画
+        //关闭旋转动画
+        if (mLoadingState instanceof RotationState) {
+            RotationState rotationState = (RotationState) mLoadingState;
+            rotationState.cancel();
+        }
+
+        //开始聚合动画
+        mLoadingState = new MergeState();
+    }
+
+    public abstract class LoadingState {
+        public abstract void draw(Canvas canvas);
+    }
+
+    /**
+     * 旋转动画
+     */
+    public class RotationState extends LoadingState {
+        private ValueAnimator animator;
+
+        public RotationState() {
             animator = ValueAnimator.ofFloat(0, 2 * (float) Math.PI);
             animator.setDuration(ROTATION_ANIMATION_TIME);
             animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -90,27 +120,79 @@ public class LoadingView extends View {
             animator.start();
         }
 
-        canvas.drawColor(mSplashColor);
+        @Override
+        public void draw(Canvas canvas) {
+            canvas.drawColor(mSplashColor);
 
-        //画六个圆 每份角度
-        double percentAngle = Math.PI * 2 / mCircleColors.length;
-        for (int i = 0; i < mCircleColors.length; i++) {
-            mPaint.setColor(mCircleColors[i]);
-            //当前的角度 = 初始角度 + 旋转角度
-            double currentAngle = percentAngle * i + mCurrentRotationAngle;
+            //画六个圆 每份角度
+            double percentAngle = Math.PI * 2 / mCircleColors.length;
+            for (int i = 0; i < mCircleColors.length; i++) {
+                mPaint.setColor(mCircleColors[i]);
+                //当前的角度 = 初始角度 + 旋转角度
+                double currentAngle = percentAngle * i + mCurrentRotationAngle;
 
-            int cx = (int) (mCenterX + mRotationRadius * Math.cos(currentAngle));
-            int cy = (int) (mCenterY + mRotationRadius * Math.sin(currentAngle));
+                int cx = (int) (mCenterX + mRotationRadius * Math.cos(currentAngle));
+                int cy = (int) (mCenterY + mRotationRadius * Math.sin(currentAngle));
 
-            canvas.drawCircle(cx, cy, mCircleRadius, mPaint);
+                canvas.drawCircle(cx, cy, mCircleRadius, mPaint);
+            }
+        }
+
+        /**
+         * 取消动画
+         */
+        private void cancel() {
+            animator.cancel();
         }
     }
 
     /**
-     * 消失
+     * 聚合动画
      */
-    public void disappear(){
-        //开始聚合动画
+    public class MergeState extends LoadingState {
+        private ValueAnimator animator;
 
+        public MergeState() {
+            animator = ObjectAnimator.ofFloat(mRotationRadius, 0);
+            animator.setDuration(ROTATION_ANIMATION_TIME / 2);
+            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    mCurrRotationRadius = (float) animation.getAnimatedValue(); //最大半径 -> 0
+                    invalidate();
+                }
+            });
+
+            animator.start();
+        }
+
+        @Override
+        public void draw(Canvas canvas) {
+            canvas.drawColor(mSplashColor);
+
+            //画六个圆 每份角度
+            double percentAngle = Math.PI * 2 / mCircleColors.length;
+            for (int i = 0; i < mCircleColors.length; i++) {
+                mPaint.setColor(mCircleColors[i]);
+                //当前的角度 = 初始角度 + 旋转角度
+                double currentAngle = percentAngle * i + mCurrentRotationAngle;
+
+                int cx = (int) (mCenterX + mCurrRotationRadius * Math.cos(currentAngle));
+                int cy = (int) (mCenterY + mCurrRotationRadius * Math.sin(currentAngle));
+
+                canvas.drawCircle(cx, cy, mCircleRadius, mPaint);
+            }
+        }
+    }
+
+    /**
+     * 展开动画
+     */
+    public class ExpandState extends LoadingState {
+
+        @Override
+        public void draw(Canvas canvas) {
+
+        }
     }
 }
