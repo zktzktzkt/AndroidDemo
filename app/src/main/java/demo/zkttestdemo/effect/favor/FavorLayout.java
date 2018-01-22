@@ -162,7 +162,6 @@ public class FavorLayout extends RelativeLayout {
     }
 
     private class BezierListener implements ValueAnimator.AnimatorUpdateListener {
-
         private View target;
 
         private BezierListener(View target) {

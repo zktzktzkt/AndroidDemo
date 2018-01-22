@@ -23,13 +23,26 @@
         app:text_size="30sp"
         />
 
-    <demo.zkttestdemo.effect.circleprogress.CountdownProgress
-        android:id="@+id/countdownProgress"
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@color/yellow"
-        app:circle_color="@color/blue_light"
-        app:stroke_color="@color/black"
-        />
+        android:layout_gravity="center_horizontal">
+
+        <demo.zkttestdemo.effect.circleprogress.CountdownProgress
+            android:id="@+id/countdownProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/yellow"
+            app:circle_color="#eeeeee"
+            app:stroke_color="@color/black"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="点击\n跳过"
+            android:textSize="20sp"
+            />
+    </FrameLayout>
 </LinearLayout>

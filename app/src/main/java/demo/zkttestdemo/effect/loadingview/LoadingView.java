@@ -29,7 +29,7 @@ public class LoadingView extends View {
     //旋转动画执行的时间
     private final long ROTATION_ANIMATION_TIME = 2000;
     //第二部分动画执行的总时间（包括三个动画的时间）
-    private final long SPLASH_ANIMATION_TIME = 8000;
+    private final long SPLASH_ANIMATION_TIME = 2000;
     //整体的颜色背景
     private int mSplashColor = Color.WHITE;
     //当前大圆旋转的角度（弧度）
@@ -89,18 +89,15 @@ public class LoadingView extends View {
         mLoadingState.draw(canvas);
     }
 
-
     /**
      * 消失
      */
     public void disappear() {
-        //开始聚合动画
         //关闭旋转动画
         if (mLoadingState instanceof RotationState) {
             RotationState rotationState = (RotationState) mLoadingState;
             rotationState.cancel();
         }
-
         //开始聚合动画
         mLoadingState = new MergeState();
     }
@@ -149,9 +146,7 @@ public class LoadingView extends View {
             }
         }
 
-        /**
-         * 取消动画
-         */
+         // 取消动画
         private void cancel() {
             animator.cancel();
         }

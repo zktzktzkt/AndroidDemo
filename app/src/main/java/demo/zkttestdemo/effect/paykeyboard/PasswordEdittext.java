@@ -167,7 +167,6 @@ public class PasswordEdittext extends EditText {
 
             canvas.drawLine(startX, startY, endX, endY, mPaint);
         }
-
     }
 
     /**
