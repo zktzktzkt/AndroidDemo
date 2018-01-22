@@ -142,6 +142,8 @@
         </activity>
         <activity android:name=".effect.loadingview.LoadingActivity">
         </activity>
+        <activity android:name=".effect.city_58.Loading58Activity">
+        </activity>
     </application>
 
 </manifest>

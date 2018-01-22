@@ -48,6 +48,7 @@ import demo.zkttestdemo.effect.behavior.BehaviorActivity;
 import demo.zkttestdemo.effect.bezier.BezierActivity;
 import demo.zkttestdemo.effect.bottomsheet.ZHBottomSheetActivity;
 import demo.zkttestdemo.effect.circleprogress.CircleProgressActivity;
+import demo.zkttestdemo.effect.city_58.Loading58Activity;
 import demo.zkttestdemo.effect.coordinator.CoordinatorActivity;
 import demo.zkttestdemo.effect.doodle.DoodleActivity;
 import demo.zkttestdemo.effect.draglayout.DragActivity;
@@ -207,6 +208,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_BDSearch) {
             Intent intent = new Intent(this, BDSearchActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_58Loading) {
+            Intent intent = new Intent(this, Loading58Activity.class);
             startActivity(intent);
         } else if (id == R.id.nav_bottomSheet) {
             Intent intent = new Intent(this, ZHBottomSheetActivity.class);
