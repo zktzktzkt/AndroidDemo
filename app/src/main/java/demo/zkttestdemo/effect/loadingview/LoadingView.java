@@ -1,5 +1,7 @@
 package demo.zkttestdemo.effect.loadingview;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -9,6 +11,7 @@ import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.AnticipateInterpolator;
 import android.view.animation.LinearInterpolator;
 
 import demo.zkttestdemo.R;
@@ -24,9 +27,9 @@ public class LoadingView extends View {
     //小圆的颜色列表
     private int[] mCircleColors;
     //旋转动画执行的时间
-    private final long ROTATION_ANIMATION_TIME = 3000;
+    private final long ROTATION_ANIMATION_TIME = 2000;
     //第二部分动画执行的总时间（包括三个动画的时间）
-    private final long SPLASH_ANIMATION_TIME = 10000;
+    private final long SPLASH_ANIMATION_TIME = 8000;
     //整体的颜色背景
     private int mSplashColor = Color.WHITE;
     //当前大圆旋转的角度（弧度）
@@ -42,6 +45,12 @@ public class LoadingView extends View {
     private int mCenterX, mCenterY;
     //代表当前状态所画动画
     private LoadingState mLoadingState;
+
+    //空心圆的半径
+    private float mHoleRadius = 0F;
+    //屏幕对角线的一半
+    private float mDiagonalDist;
+
 
     public LoadingView(Context context) {
         this(context, null);
@@ -66,6 +75,8 @@ public class LoadingView extends View {
         mCenterY = h / 2;
         mRotationRadius = getMeasuredWidth() / 4;
         mCircleRadius = mRotationRadius / 8;
+
+        mDiagonalDist = (float) Math.sqrt(mCenterX * mCenterX + mCenterY * mCenterY);
     }
 
     @Override
@@ -162,7 +173,16 @@ public class LoadingView extends View {
                     invalidate();
                 }
             });
+            //插值器，先向后甩，再向前甩
+            animator.setInterpolator(new AnticipateInterpolator(3f));
 
+            //等聚合完毕后展开
+            animator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    mLoadingState = new ExpandState();
+                }
+            });
             animator.start();
         }
 
@@ -189,10 +209,31 @@ public class LoadingView extends View {
      * 展开动画
      */
     public class ExpandState extends LoadingState {
+        ValueAnimator animator;
+
+        public ExpandState() {
+            animator = ObjectAnimator.ofFloat(0, mDiagonalDist);
+            animator.setDuration(SPLASH_ANIMATION_TIME);
+            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    mHoleRadius = (float) animator.getAnimatedValue(); // 0 -》 对角线的一半
+                    invalidate();
+                }
+            });
+            animator.start();
+        }
 
         @Override
         public void draw(Canvas canvas) {
+            float strokeWidth = mDiagonalDist - mHoleRadius;
+            mPaint.setStrokeWidth(strokeWidth);
+            mPaint.setColor(mSplashColor);
+            mPaint.setStyle(Paint.Style.STROKE);
 
+            float radius = strokeWidth / 2 + mHoleRadius;
+            //绘制一个圆
+            canvas.drawCircle(mCenterX, mCenterY, radius, mPaint);
         }
     }
 }
