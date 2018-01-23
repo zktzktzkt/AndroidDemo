@@ -1,5 +1,6 @@
 package demo.zkttestdemo.effect.progress;
 
+import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -10,7 +11,6 @@ import android.graphics.Typeface;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import demo.zkttestdemo.R;
@@ -169,51 +169,48 @@ public class ProgressArcView extends View {
             currentCount = totalStepNum;
         }
 
-        //上次所走的步数占用总共步数的百分比
-        float scalePrevious = Integer.valueOf(stepNumber) / totalStepNum;
-        //换算成弧长
-        float previousAngleLength = scalePrevious * angleLength;
-
-        //所走步数占用总共步数的百分比
-        float scale = (float)currentCount / totalStepNum;
-        //换算成弧长
-        float currentAngleLength = scale * angleLength;
+        //上次的步数
+        float preLength = Float.parseFloat(stepNumber) / totalStepNum * angleLength;
+        //这次的步数
+        float currLength = (float) currentCount / totalStepNum * angleLength;
 
         //开始执行动画
-        setAnimation(previousAngleLength, currentAngleLength, animationLength);
+        ValueAnimator arcAnimator = setAnimation(preLength, currLength, animationLength);
+        //中间数字执行动画
+        ValueAnimator numberAnimator = setNumberAnimation(0, currentCount, animationLength);
 
-        stepNumber = String.valueOf(currentCount);
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.playTogether(arcAnimator, numberAnimator);
+        animatorSet.setDuration(animationLength);
+        animatorSet.start();
+
         setTextSize(currentCount);
-
     }
 
-
-    /**
-     * 为进度设置动画
-     * ValueAnimator是整个属性动画机制当中最核心的一个类，属性动画的运行机制是通过不断地对值进行操作来实现的，
-     * 而初始值和结束值之间的动画过渡就是由ValueAnimator这个类来负责计算的。
-     * 它的内部使用一种时间循环的机制来计算值与值之间的动画过渡，
-     * 我们只需要将初始值和结束值提供给ValueAnimator，并且告诉它动画所需运行的时长，
-     * 那么ValueAnimator就会自动帮我们完成从初始值平滑地过渡到结束值这样的效果。
-     *
-     * @param start   初始值
-     * @param end 结束值
-     * @param length  动画时长
-     */
-    private void setAnimation(float start, float end, int length) {
-        ValueAnimator valueAnimator = ValueAnimator.ofFloat(start, end);
-        valueAnimator.setDuration(length);
-
+    private ValueAnimator setNumberAnimation(int start, int end, int animationLength) {
+        ValueAnimator valueAnimator = ValueAnimator.ofInt(start, end);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                Log.e("getAnimatedValue() : ", (float) animation.getAnimatedValue() + "");
+                stepNumber = String.valueOf((int) animation.getAnimatedValue());
+                invalidate();
+            }
+        });
+
+        return valueAnimator;
+    }
+
+    private ValueAnimator setAnimation(float start, float end, int length) {
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(start, end);
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
                 currentAngleLength = (float) animation.getAnimatedValue();
                 invalidate();
             }
         });
 
-        valueAnimator.start();
+        return valueAnimator;
     }
 
     /**
