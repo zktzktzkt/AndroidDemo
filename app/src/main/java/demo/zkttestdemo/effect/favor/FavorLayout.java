@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.PointF;
@@ -94,7 +95,6 @@ public class FavorLayout extends RelativeLayout {
 
     public void addHeart() {
         ImageView imageView = new ImageView(getContext());
-        //随机选一个
         imageView.setImageDrawable(drawables[random.nextInt(3)]);
         imageView.setLayoutParams(lp);
 
@@ -106,30 +106,37 @@ public class FavorLayout extends RelativeLayout {
     }
 
     private Animator getAnimator(View target) {
-
-        AnimatorSet set = getEnterAnimtor(target);
+        ObjectAnimator enterAnimtor = getEnterAnimtor(target);
         ValueAnimator bezierValueAnimator = getBezierValueAnimator(target);
 
         AnimatorSet finalSet = new AnimatorSet();
-        finalSet.playSequentially(set, bezierValueAnimator);
+        finalSet.playSequentially(enterAnimtor, bezierValueAnimator);
         finalSet.setInterpolator(interpolators[random.nextInt(4)]);
-        finalSet.setTarget(target);
+        finalSet.start();
 
         return finalSet;
     }
 
-    private AnimatorSet getEnterAnimtor(View target) {
-        ObjectAnimator alpha = ObjectAnimator.ofFloat(target, View.ALPHA, 0.2f, 1f);
-        ObjectAnimator scaleX = ObjectAnimator.ofFloat(target, View.SCALE_X, 0.2f, 1f);
-        ObjectAnimator scaleY = ObjectAnimator.ofFloat(target, View.SCALE_Y, 0.2f, 1f);
-        AnimatorSet enter = new AnimatorSet();
+    /**
+     * 1. 先执行图片出现的动画
+     * @param target
+     * @return
+     */
+    private ObjectAnimator getEnterAnimtor(View target) {
+        PropertyValuesHolder alpha = PropertyValuesHolder.ofFloat(View.ALPHA, 0.2f, 1f);
+        PropertyValuesHolder scaleX = PropertyValuesHolder.ofFloat(View.SCALE_X, 0.2f, 1f);
+        PropertyValuesHolder scaleY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 0.2f, 1f);
+        ObjectAnimator enter = ObjectAnimator.ofPropertyValuesHolder(target, alpha, scaleX, scaleY);
         enter.setDuration(500);
         enter.setInterpolator(new LinearInterpolator());
-        enter.playTogether(alpha, scaleX, scaleY);
-        enter.setTarget(target);
         return enter;
     }
 
+    /**
+     * 2. 再执行图片位移的动画
+     * @param target
+     * @return
+     */
     private ValueAnimator getBezierValueAnimator(View target) {
         //初始化一个贝塞尔计算器- - 传入
         BezierEvaluator evaluator = new BezierEvaluator(getPointF(2), getPointF(1));
@@ -141,7 +148,6 @@ public class FavorLayout extends RelativeLayout {
                 new PointF(random.nextInt(getWidth()), 0)
         );
         animator.addUpdateListener(new BezierListener(target));
-        animator.setTarget(target);
         animator.setDuration(3000);
         return animator;
     }

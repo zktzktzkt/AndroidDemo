@@ -74,18 +74,17 @@ public class SecondBezierView extends View {
         mPath.reset();
         mPath.moveTo(mStartPointX, mStartPointY);
         mPath.quadTo(mFlagPointX, mFlagPointY, mEndPointX, mEndPointY);
-
+        canvas.drawPath(mPath, mPaintBezier);
+        //
         canvas.drawPoint(mStartPointX, mStartPointY, mPaintFlag);
         canvas.drawText("起点", mStartPointX, mStartPointY, mPaintFlagTxt);
         canvas.drawPoint(mEndPointX, mEndPointY, mPaintFlag);
         canvas.drawText("终点", mEndPointX, mEndPointY, mPaintFlagTxt);
         canvas.drawPoint(mFlagPointX, mFlagPointY, mPaintFlag);
         canvas.drawText("控制点", mFlagPointX, mFlagPointY, mPaintFlagTxt);
-
+        //
         canvas.drawLine(mStartPointX, mStartPointY, mFlagPointX, mFlagPointY, mPaintFlag);
         canvas.drawLine(mFlagPointX, mFlagPointY, mEndPointX, mEndPointY, mPaintFlag);
-
-        canvas.drawPath(mPath, mPaintBezier);
     }
 
     @Override
