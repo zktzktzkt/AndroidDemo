@@ -1,16 +1,19 @@
 package demo.zkttestdemo.effect.draglayout;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.widget.ViewDragHelper;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import demo.zkttestdemo.R;
 
-public class DragActivity extends AppCompatActivity {
+public class DragActivity1 extends AppCompatActivity {
 
     LinearLayout ll_drag;
     ImageView ivDarkOverlay;
@@ -20,17 +23,36 @@ public class DragActivity extends AppCompatActivity {
     int startX, startY;
     int deltaX, deltaY;
     int animationDuration = 400;
-    private ViewDragHelper mViewDragHelper;
-    private FrameLayout fl_main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drag);
+
+        initializer();
+        getHeight();
+        onClicks();
     }
 
+    private void initializer() {
+//        ll_drag = findViewById(R.id.ll_drag);
+//        ivDarkOverlay = findViewById(R.id.iv_darkOverlay);
+//        btnShowLayout = findViewById(R.id.btnShowLayout);
+    }
 
-    /*private void listenForDrag() {
+    private void getHeight() {
+        ll_drag.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                ll_drag.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+
+                ll_drag_height = ll_drag.getHeight();
+                listenForDrag();
+            }
+        });
+    }
+
+    private void listenForDrag() {
         ll_drag.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -54,7 +76,7 @@ public class DragActivity extends AppCompatActivity {
     }
 
     private void performCalculations(MotionEvent event) {
-        *//*偏移量，在ViewDragHelper中对应 onViewPositionChanged*//*
+        /*偏移量，在ViewDragHelper中对应 onViewPositionChanged*/
         deltaX = (int) (startX - event.getX());
         deltaY = (int) (startY - event.getY());
 
@@ -104,6 +126,5 @@ public class DragActivity extends AppCompatActivity {
                 ivDarkOverlay.animate().alpha(1).setDuration(animationDuration).withLayer();
             }
         });
-    }*/
-
+    }
 }

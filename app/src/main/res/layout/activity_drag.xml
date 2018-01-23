@@ -9,58 +9,63 @@
     tools:context="demo.zkttestdemo.effect.draglayout.DragActivity">
 
     <!-- The views behind the draggable layout =================== -->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#f5f5f5">
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="#f5f5f5">-->
 
-        <Button
-            android:id="@+id/btnShowLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:text="show draggable layout"/>
+        <!--<Button-->
+            <!--android:id="@+id/btnShowLayout"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:text="show draggable layout"/>-->
 
-        <pl.droidsonroids.gif.GifImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/droid_dance"/>
-    </RelativeLayout>
-    <!-- =================== The views behind the draggable layout -->
+        <!--<pl.droidsonroids.gif.GifImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:src="@drawable/droid_dance"/>-->
+    <!--</RelativeLayout>-->
+    <!--&lt;!&ndash; =================== The views behind the draggable layout &ndash;&gt;-->
 
-    <!-- the dragging and related views ========================== -->
-    <ImageView
-        android:id="@+id/iv_darkOverlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#e0000000"/>
+    <!--&lt;!&ndash; the dragging and related views ========================== &ndash;&gt;-->
+    <!--<ImageView-->
+        <!--android:id="@+id/iv_darkOverlay"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="#e0000000"/>-->
 
-    <LinearLayout
-        android:id="@+id/ll_drag"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#E91E63"
-        android:clickable="true"
-        android:gravity="center"
-        android:orientation="vertical">
+    <!--<LinearLayout-->
+        <!--android:id="@+id/ll_drag"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="#E91E63"-->
+        <!--android:clickable="true"-->
+        <!--android:gravity="center"-->
+        <!--android:orientation="vertical">-->
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginBottom="30dp"
-            android:src="@drawable/android_apps"
-            android:tint="#fff"/>
+        <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="200dp"-->
+            <!--android:layout_marginBottom="30dp"-->
+            <!--android:src="@drawable/android_apps"-->
+            <!--android:tint="#fff"/>-->
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="This is a draggable Linear Layout"
-            android:textColor="#fff"
-            android:textSize="20sp"/>
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center"-->
+            <!--android:text="This is a draggable Linear Layout"-->
+            <!--android:textColor="#fff"-->
+            <!--android:textSize="20sp"/>-->
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
     <!-- ========================== the dragging and related views -->
+
+
+    <demo.zkttestdemo.effect.draglayout.DragLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </FrameLayout>
