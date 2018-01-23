@@ -5,13 +5,17 @@ import android.graphics.PointF;
 
 /**
  * Created by zkt on 2017-12-25.
+ * 三阶贝塞尔曲线（四个点）
  */
 public class BezierEvaluator implements TypeEvaluator<PointF> {
 
     private PointF pointF1;
     private PointF pointF2;
 
-    public BezierEvaluator(PointF pointF1,PointF pointF2){
+    /**
+     * 传入两个控制点
+     */
+    public BezierEvaluator(PointF pointF1, PointF pointF2) {
         this.pointF1 = pointF1;
         this.pointF2 = pointF2;
     }

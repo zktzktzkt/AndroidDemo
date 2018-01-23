@@ -41,8 +41,8 @@ public class FavorLayout extends RelativeLayout {
     private Drawable[] drawables;
     Random random = new Random();
 
-    private int dWidth;
-    private int dHeight;
+    private int drawableWidth;
+    private int drawableHeight;
 
     public FavorLayout(Context context) {
         super(context);
@@ -70,11 +70,11 @@ public class FavorLayout extends RelativeLayout {
         drawables[1] = yellow;
         drawables[2] = blue;
 
-        dWidth = red.getIntrinsicWidth();
-        dHeight = red.getIntrinsicHeight();
+        drawableWidth = red.getIntrinsicWidth();
+        drawableHeight = red.getIntrinsicHeight();
 
         //底部 并且 水平居中
-        lp = new LayoutParams(dWidth, dHeight);
+        lp = new LayoutParams(drawableWidth, drawableHeight);
         lp.addRule(CENTER_HORIZONTAL, TRUE);
         lp.addRule(ALIGN_PARENT_BOTTOM, TRUE);
 
@@ -112,13 +112,13 @@ public class FavorLayout extends RelativeLayout {
         AnimatorSet finalSet = new AnimatorSet();
         finalSet.playSequentially(enterAnimtor, bezierValueAnimator);
         finalSet.setInterpolator(interpolators[random.nextInt(4)]);
-        finalSet.start();
 
         return finalSet;
     }
 
     /**
      * 1. 先执行图片出现的动画
+     *
      * @param target
      * @return
      */
@@ -134,17 +134,18 @@ public class FavorLayout extends RelativeLayout {
 
     /**
      * 2. 再执行图片位移的动画
+     *
      * @param target
      * @return
      */
     private ValueAnimator getBezierValueAnimator(View target) {
         //初始化一个贝塞尔计算器- - 传入
-        BezierEvaluator evaluator = new BezierEvaluator(getPointF(2), getPointF(1));
+        BezierEvaluator evaluator = new BezierEvaluator(getPointF(1), getPointF(2));
 
         //这里最好画个图 理解一下 传入了起点 和 终点
         ValueAnimator animator = ValueAnimator.ofObject(
                 evaluator,
-                new PointF((mWidth - dWidth) / 2, mHeight - dHeight),
+                new PointF((mWidth - drawableWidth) / 2, mHeight - drawableHeight),
                 new PointF(random.nextInt(getWidth()), 0)
         );
         animator.addUpdateListener(new BezierListener(target));
@@ -158,11 +159,9 @@ public class FavorLayout extends RelativeLayout {
      * @param scale
      */
     private PointF getPointF(int scale) {
-
         PointF pointF = new PointF();
-        pointF.x = random.nextInt((mWidth - 100));//减去100 是为了控制 x轴活动范围,看效果 随意~~
-        //再Y轴上 为了确保第二个点 在第一个点之上,我把Y分成了上下两半 这样动画效果好一些  也可以用其他方法
-        pointF.y = random.nextInt((mHeight - 100)) / scale;
+        pointF.x = random.nextInt(mWidth - 100);
+        pointF.y = random.nextInt(mHeight - 100) / scale;
 
         return pointF;
     }
@@ -185,6 +184,9 @@ public class FavorLayout extends RelativeLayout {
         }
     }
 
+    /**
+     * 动画结束后remove掉View
+     */
     private class AnimEndListener extends AnimatorListenerAdapter {
         private View target;
 
@@ -194,9 +196,6 @@ public class FavorLayout extends RelativeLayout {
 
         @Override
         public void onAnimationEnd(Animator animation) {
-            super.onAnimationEnd(animation);
-
-            //因为不停的add 导致子view数量只增不减,所以在view动画结束后remove掉
             removeView(target);
         }
     }
