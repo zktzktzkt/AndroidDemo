@@ -1,31 +1,30 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="160dp"
-    android:background="@color/blue_dark"
-    android:paddingBottom="20dp"
-    android:paddingTop="20dp" >
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@color/blue_dark"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" >
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/big_scan" />
+                    android:src="@drawable/big_scan"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -34,26 +33,26 @@
                     android:layout_marginTop="5dp"
                     android:text="扫一扫"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"/>
             </LinearLayout>
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" >
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/big_pay" />
+                    android:src="@drawable/big_pay"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -62,26 +61,26 @@
                     android:layout_marginTop="5dp"
                     android:text="付一付"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"/>
             </LinearLayout>
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" >
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/big_chat" />
+                    android:src="@drawable/big_chat"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -90,26 +89,26 @@
                     android:layout_marginTop="5dp"
                     android:text="聊一聊"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"/>
             </LinearLayout>
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1" >
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/big_qrcode" />
+                    android:src="@drawable/big_qrcode"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -118,7 +117,7 @@
                     android:layout_marginTop="5dp"
                     android:text="咻一咻"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"/>
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
@@ -127,6 +126,6 @@
         android:id="@+id/v_pay_mask"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="@color/transparent" />
+        />
 
 </FrameLayout>

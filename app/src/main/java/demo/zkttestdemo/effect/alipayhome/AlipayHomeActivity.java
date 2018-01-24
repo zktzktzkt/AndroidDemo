@@ -22,11 +22,11 @@ public class AlipayHomeActivity extends AppCompatActivity implements AppBarLayou
      */
     private View v_expand_mask;
     /**
-     * 缩略后的背景，那一细条
+     * 收缩后显示的toolbar布局的 “蒙层”
      */
     private View v_collapse_mask;
     /**
-     * 展开后的背景
+     * 展开后的toolbar布局的 “蒙层”
      */
     private View v_pay_mask;
 
@@ -48,31 +48,32 @@ public class AlipayHomeActivity extends AppCompatActivity implements AppBarLayou
         v_expand_mask = (View) findViewById(R.id.v_expand_mask);
         v_collapse_mask = (View) findViewById(R.id.v_collapse_mask);
         v_pay_mask = (View) findViewById(R.id.v_pay_mask);
-        // abl_bar.addOnOffsetChangedListener(this);
+        abl_bar.addOnOffsetChangedListener(this);
     }
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-        Log.d(TAG, "verticalOffset=" + verticalOffset);
+        Log.e(TAG, "verticalOffset=" + verticalOffset + "  appBarLayout.getTotalScrollRange():" + appBarLayout.getTotalScrollRange());
         int offset = Math.abs(verticalOffset);
         int total = appBarLayout.getTotalScrollRange();
 
-        int alphaIn = offset;
-        int alphaOut = (200 - offset) < 0 ? 0 : 200 - offset;
+        int alpha = 255 * (offset / 2) / (total / 2);
+        int expandMask = Color.argb(alpha, Color.red(mMaskColor), Color.green(mMaskColor), Color.blue(mMaskColor));
+        int collapseMask = Color.argb(255 - alpha, Color.red(mMaskColor), Color.green(mMaskColor), Color.blue(mMaskColor));
 
-        int maskColorIn = Color.argb(alphaIn, Color.red(mMaskColor), Color.green(mMaskColor), Color.blue(mMaskColor));
-        int maskColorInDouble = Color.argb(alphaIn * 2, Color.red(mMaskColor), Color.green(mMaskColor), Color.blue(mMaskColor));
-        int maskColorOut = Color.argb(alphaOut * 2, Color.red(mMaskColor), Color.green(mMaskColor), Color.blue(mMaskColor));
+        v_pay_mask.setBackgroundColor(expandMask);
 
-        if (offset <= total / 2) {
+        if (offset >= total / 2) {
+            //显示隐藏的布局
+            v_collapse_mask.setBackgroundColor(collapseMask);
+            tl_collapse.setVisibility(View.VISIBLE);
+            tl_expand.setVisibility(View.GONE);
+        } else {
+            //显示展开的布局
+            v_expand_mask.setBackgroundColor(expandMask);
             tl_expand.setVisibility(View.VISIBLE);
             tl_collapse.setVisibility(View.GONE);
-            v_expand_mask.setBackgroundColor(maskColorInDouble);
-        } else {
-            tl_expand.setVisibility(View.GONE);
-            tl_collapse.setVisibility(View.VISIBLE);
-            v_collapse_mask.setBackgroundColor(maskColorOut);
         }
-        v_pay_mask.setBackgroundColor(maskColorIn);
+
     }
 }
