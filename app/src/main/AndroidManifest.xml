@@ -144,6 +144,8 @@
         </activity>
         <activity android:name=".effect.city_58.Loading58Activity">
         </activity>
+        <activity android:name=".effect.verticaldrag.VerticalDragActivity">
+        </activity>
     </application>
 
 </manifest>
