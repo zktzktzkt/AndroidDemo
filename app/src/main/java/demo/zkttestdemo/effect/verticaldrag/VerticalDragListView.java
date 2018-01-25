@@ -82,7 +82,7 @@ public class VerticalDragListView extends FrameLayout {
                     mDragHelper.settleCapturedViewAt(0, 0);
                     mMemuIsOpen = false;
                 }
-                invalidate();
+                postInvalidate();
             }
         }
     };
@@ -93,7 +93,6 @@ public class VerticalDragListView extends FrameLayout {
             ViewCompat.postInvalidateOnAnimation(this);
         }
     }
-
 
     private float mDownY;
 
@@ -128,8 +127,7 @@ public class VerticalDragListView extends FrameLayout {
     }
 
     /**
-     * 判断View是否滚动到了最顶部
-     * @return
+     * 判断View是否滚动到了最顶部。SwipeRefreshLayout里的方法
      */
     public boolean canChildScrollUp() {
         if (mDragListView instanceof ListView) {
