@@ -4,11 +4,13 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
+import android.support.v4.widget.ListViewCompat;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ListView;
 
 /**
  * Created by zkt on 2018-1-24.
@@ -19,6 +21,8 @@ public class VerticalDragListView extends FrameLayout {
     private View mDragListView;
     //后面菜单的高度
     private int mMenuHeight;
+    //菜单是否打开
+    private boolean mMemuIsOpen = false;
 
     public VerticalDragListView(@NonNull Context context) {
         this(context, null);
@@ -72,10 +76,13 @@ public class VerticalDragListView extends FrameLayout {
         public void onViewReleased(View releasedChild, float xvel, float yvel) {
             if (releasedChild == mDragListView) {
                 if (releasedChild.getTop() > mMenuHeight / 2) {
-                    open();
+                    mDragHelper.settleCapturedViewAt(0, mMenuHeight);
+                    mMemuIsOpen = true;
                 } else {
-                    close();
+                    mDragHelper.settleCapturedViewAt(0, 0);
+                    mMemuIsOpen = false;
                 }
+                invalidate();
             }
         }
     };
@@ -87,23 +94,48 @@ public class VerticalDragListView extends FrameLayout {
         }
     }
 
-    /**
-     * 打开
-     */
-    public void open() {
-        // mDragHelper.smoothSlideViewTo() //也可以用这个，但settleCapturedViewAt有个特点：你松手时的速度是多少，它平移的速度就是多少
-        if (mDragHelper.settleCapturedViewAt(0, mMenuHeight)) {
-            ViewCompat.postInvalidateOnAnimation(this);
+
+    private float mDownY;
+
+    // because ACTION_DOWN was not received for this pointer before ACTION_MOVE //在move之前应该先执行down，因为down没执行
+    // VDLV.onInterceptTouchEvent().DOWN -> LV.onTouchEvent ->
+    // VDLV.onInterceptTouchEvent().MOVE -> onTouchEvent().MOVE
+    //
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        //菜单打开的话，全部拦截，交给自己处理
+        if (mMemuIsOpen) {
+            return true;
         }
+        //主要考虑什么时候拦截，什么时候不拦截
+        //向下滑动拦截,不要给ListView处理
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                mDownY = ev.getY();
+                //让 DragHelper拿一个完整的事件
+                mDragHelper.processTouchEvent(ev);
+                break;
+            case MotionEvent.ACTION_MOVE:
+                float moveY = ev.getY();
+                if (moveY - mDownY > 0 && !canChildScrollUp()) {
+                    //向下滑动 && 滚动到了顶部，拦截不让ListView做处理
+                    return true;
+                }
+                break;
+        }
+        return super.onInterceptTouchEvent(ev);
     }
 
     /**
-     * 关闭
+     * 判断View是否滚动到了最顶部
+     * @return
      */
-    public void close() {
-        if (mDragHelper.settleCapturedViewAt(0, 0)) {
-            ViewCompat.postInvalidateOnAnimation(this);
+    public boolean canChildScrollUp() {
+        if (mDragListView instanceof ListView) {
+            return ListViewCompat.canScrollList((ListView) mDragListView, -1);
         }
+        return mDragListView.canScrollVertically(-1);
     }
 
     @Override
