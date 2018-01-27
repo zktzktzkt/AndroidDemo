@@ -17,10 +17,12 @@ import android.view.View;
 public class LetterSideBar extends View {
     private static final String TAG = "LetterSideBar";
     private Paint mPaint;
+    private Paint mTouchPaint;
     //定义26个字母
     public static String[] letters = {"A", "B", "C", "D", "E", "F", "G", "H", "I",
             "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V",
             "W", "X", "Y", "Z", "#"};
+    private String mCurrTouchLetter;
 
     public LetterSideBar(Context context) {
         this(context, null);
@@ -34,10 +36,14 @@ public class LetterSideBar extends View {
         super(context, attrs, defStyleAttr);
 
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        //自定义属性：颜色、字体大小
         mPaint.setTextSize(sp2px(12));
         mPaint.setColor(Color.BLUE);
         mPaint.setTextAlign(Paint.Align.CENTER);
+
+        mTouchPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mTouchPaint.setTextSize(sp2px(12));
+        mTouchPaint.setColor(Color.RED);
+        mTouchPaint.setTextAlign(Paint.Align.CENTER);
     }
 
     private float sp2px(int sp) {
@@ -71,23 +77,56 @@ public class LetterSideBar extends View {
             // 如果不减掉bottom，则文字是对齐于bottom，而不是对齐于baseline
             int dy = (fontMetricsInt.bottom - fontMetricsInt.top) / 2 - fontMetricsInt.bottom;
             int baseLine = letterCenterY + dy;
-            canvas.drawText(letters[i], x, baseLine, mPaint);
+
+            //当前字母高亮，用两个画笔(最好)，改变字母颜色
+            if (letters[i].equals(mCurrTouchLetter)) {
+                canvas.drawText(letters[i], x, baseLine, mTouchPaint);
+            } else {
+                canvas.drawText(letters[i], x, baseLine, mPaint);
+            }
         }
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-
-                break;
             case MotionEvent.ACTION_MOVE:
+                //计算当前触摸的字母 获取当前的位置
+                float currMoveY = event.getY();
+                // currentMoveY / 单格的高度 = 位置
+                int itemHeight = (getHeight() - getPaddingTop() - getPaddingBottom()) / letters.length;
+                int currPosition = (int) (currMoveY / itemHeight);
+                if (currPosition < 0) {
+                    currPosition = 0;
+                }
+                if (currPosition > letters.length - 1) {
+                    currPosition = letters.length - 1;
+                }
 
+                mCurrTouchLetter = letters[currPosition];
+
+                if (null != onTouchLetterListener) {
+                    onTouchLetterListener.onTouch(mCurrTouchLetter, true);
+                }
+                invalidate();
                 break;
-            case MotionEvent.ACTION_UP:
 
+            case MotionEvent.ACTION_UP:
+                if (null != onTouchLetterListener) {
+                    onTouchLetterListener.onTouch(mCurrTouchLetter, false);
+                }
                 break;
         }
-        return super.onTouchEvent(event);
+        return true;
+    }
+
+    private OnTouchLetterListener onTouchLetterListener;
+
+    public void setOnTouchLetterListener(OnTouchLetterListener onTouchLetterListener) {
+        this.onTouchLetterListener = onTouchLetterListener;
+    }
+
+    interface OnTouchLetterListener {
+        void onTouch(String letter, boolean isTouch);
     }
 }

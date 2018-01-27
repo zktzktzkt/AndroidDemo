@@ -28,11 +28,6 @@ import demo.zkttestdemo.R;
  */
 
 public class FavorLayout extends RelativeLayout {
-
-    private Interpolator line = new LinearInterpolator();//线性
-    private Interpolator acc = new AccelerateInterpolator();//加速
-    private Interpolator dce = new DecelerateInterpolator();//减速
-    private Interpolator accdec = new AccelerateDecelerateInterpolator();//先加速后减速
     private Interpolator[] interpolators;
 
     private int mWidth;
@@ -60,30 +55,36 @@ public class FavorLayout extends RelativeLayout {
     }
 
     private void init() {
-        //初始化显示的图片
-        drawables = new Drawable[3];
+        /*
+        * 初始化显示的图片
+        */
         Drawable red = getResources().getDrawable(R.mipmap.ic_heart_red);
         Drawable yellow = getResources().getDrawable(R.mipmap.ic_heart_yellow);
         Drawable blue = getResources().getDrawable(R.mipmap.ic_heart_blue);
-        //赋值给drawables
+        drawables = new Drawable[3];
         drawables[0] = red;
         drawables[1] = yellow;
         drawables[2] = blue;
 
-        drawableWidth = red.getIntrinsicWidth();
-        drawableHeight = red.getIntrinsicHeight();
-
-        //底部 并且 水平居中
-        lp = new LayoutParams(drawableWidth, drawableHeight);
-        lp.addRule(CENTER_HORIZONTAL, TRUE);
-        lp.addRule(ALIGN_PARENT_BOTTOM, TRUE);
-
-        // 初始化插补器
+        /*
+        * 初始化插值器
+        */
+        Interpolator line = new LinearInterpolator();//线性
+        Interpolator acc = new AccelerateInterpolator();//加速
+        Interpolator dce = new DecelerateInterpolator();//减速
+        Interpolator accdec = new AccelerateDecelerateInterpolator();//先加速后减速
         interpolators = new Interpolator[4];
         interpolators[0] = line;
         interpolators[1] = acc;
         interpolators[2] = dce;
         interpolators[3] = accdec;
+
+        drawableWidth = red.getIntrinsicWidth();
+        drawableHeight = red.getIntrinsicHeight();
+        //底部 并且 水平居中
+        lp = new LayoutParams(drawableWidth, drawableHeight);
+        lp.addRule(CENTER_HORIZONTAL, TRUE);
+        lp.addRule(ALIGN_PARENT_BOTTOM, TRUE);
     }
 
     @Override
