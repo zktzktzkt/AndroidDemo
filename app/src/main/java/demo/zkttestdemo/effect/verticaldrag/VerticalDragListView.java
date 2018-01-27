@@ -13,7 +13,7 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 
 /**
- * Created by zkt on 2018-1-24.
+ * 仿汽车之家拖拽列表
  */
 
 public class VerticalDragListView extends FrameLayout {

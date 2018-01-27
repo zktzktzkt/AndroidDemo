@@ -55,6 +55,7 @@ import demo.zkttestdemo.effect.draglayout.DragActivity;
 import demo.zkttestdemo.effect.favor.FavorActivity;
 import demo.zkttestdemo.effect.jssearchdemo.JSSearchActivity;
 import demo.zkttestdemo.effect.keyboardbug.KeyBoardBugActivity;
+import demo.zkttestdemo.effect.lettersidebar.LetterSideBarActivity;
 import demo.zkttestdemo.effect.loadingdialog.EatBaoZiActivity;
 import demo.zkttestdemo.effect.loadingview.LoadingActivity;
 import demo.zkttestdemo.effect.meituan2list.MeiTuanListActivity;
@@ -212,6 +213,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_58Loading) {
             Intent intent = new Intent(this, Loading58Activity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_lettesSideBar) {
+            Intent intent = new Intent(this, LetterSideBarActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_bottomSheet) {
             Intent intent = new Intent(this, ZHBottomSheetActivity.class);

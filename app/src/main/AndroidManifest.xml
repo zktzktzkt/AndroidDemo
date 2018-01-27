@@ -146,6 +146,8 @@
         </activity>
         <activity android:name=".effect.verticaldrag.VerticalDragActivity">
         </activity>
+        <activity android:name=".effect.lettersidebar.LetterSideBarActivity">
+        </activity>
     </application>
 
 </manifest>
