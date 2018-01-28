@@ -21,7 +21,7 @@
         tools:visibility="visible"
         />
 
-    <demo.zkttestdemo.effect.lettersidebar.LetterSideBar
+    <demo.zkttestdemo.effect.lettersidebar.LetterSideBar_Copy
         android:id="@+id/letter_side_bar"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

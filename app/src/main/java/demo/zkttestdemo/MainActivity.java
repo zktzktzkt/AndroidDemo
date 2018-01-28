@@ -53,6 +53,7 @@ import demo.zkttestdemo.effect.coordinator.CoordinatorActivity;
 import demo.zkttestdemo.effect.doodle.DoodleActivity;
 import demo.zkttestdemo.effect.draglayout.DragActivity;
 import demo.zkttestdemo.effect.favor.FavorActivity;
+import demo.zkttestdemo.effect.filtermenu.FilterMenuActivity;
 import demo.zkttestdemo.effect.jssearchdemo.JSSearchActivity;
 import demo.zkttestdemo.effect.keyboardbug.KeyBoardBugActivity;
 import demo.zkttestdemo.effect.lettersidebar.LetterSideBarActivity;
@@ -216,6 +217,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_lettesSideBar) {
             Intent intent = new Intent(this, LetterSideBarActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_filterMenu) {
+            Intent intent = new Intent(this, FilterMenuActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_bottomSheet) {
             Intent intent = new Intent(this, ZHBottomSheetActivity.class);

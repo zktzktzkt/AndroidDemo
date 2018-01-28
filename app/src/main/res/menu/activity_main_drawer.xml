@@ -96,6 +96,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="仿大众点评加载动画"/>
             <item
+                android:id="@+id/nav_filterMenu"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="多条目筛选菜单"/>
+            <item
                 android:id="@+id/nav_activityJump"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="三级Activity跳转"/>
