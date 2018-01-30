@@ -106,8 +106,7 @@ public class FilterMenuView extends LinearLayout implements View.OnClickListener
         this.mAdapter = menuAdapter;
 
         //获取有多少条
-        int count = mAdapter.getCount();
-        for (int i = 0; i < count; i++) {
+        for (int i = 0, count = mAdapter.getCount(); i < count; i++) {
             //获取tab
             View tabView = mAdapter.getTabView(i, mMenuTabView);
             LinearLayout.LayoutParams params = (LayoutParams) tabView.getLayoutParams();
