@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 /**
+ * 仿美团下拉筛选菜单
  * Created by zkt on 2018-1-28.
  */
 
@@ -81,12 +82,11 @@ public class FilterMenuView extends LinearLayout implements View.OnClickListener
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        Log.e("onSizeChanged", "高度：" + h);
 
-        int height = MeasureSpec.getSize(heightMeasureSpec);
-        Log.e("onMeasure", "高度：" + height);
-        mMenuContainerHeight = height * 75 / 100;
+        mMenuContainerHeight = (int) (h * 0.75);
 
         ViewGroup.LayoutParams layoutParams = mMenuContainerView.getLayoutParams();
         layoutParams.height = mMenuContainerHeight;
@@ -94,20 +94,6 @@ public class FilterMenuView extends LinearLayout implements View.OnClickListener
 
         mMenuContainerView.setTranslationY(-mMenuContainerHeight);
     }
-
-    //    @Override
-    //    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-    //        super.onSizeChanged(w, h, oldw, oldh);
-    //        Log.e("onSizeChanged", "高度：" + h);
-    //
-    //        mMenuContainerHeight = (int) (h * 0.75);
-    //
-    //        ViewGroup.LayoutParams layoutParams = mMenuContainerView.getLayoutParams();
-    //        layoutParams.height = mMenuContainerHeight;
-    //        mMenuContainerView.setLayoutParams(layoutParams);
-    //
-    ////        mMenuContainerView.setTranslationY(-mMenuContainerHeight);
-    //    }
 
 
     /**
@@ -152,7 +138,16 @@ public class FilterMenuView extends LinearLayout implements View.OnClickListener
                     openMenu(tabView, position);
                 } else {
                     //打开了
-                    closeMenu();
+                    if (mCurrentPosition == position) {
+                        closeMenu();
+                    } else {
+                        //切换一下
+                        mMenuContainerView.getChildAt(mCurrentPosition).setVisibility(GONE);
+                        mAdapter.menuClose(mMenuTabView.getChildAt(mCurrentPosition));
+                        mCurrentPosition = position;
+                        mMenuContainerView.getChildAt(mCurrentPosition).setVisibility(VISIBLE);
+                        mAdapter.menuOpen(mMenuTabView.getChildAt(mCurrentPosition));
+                    }
                 }
             }
         });
@@ -175,6 +170,8 @@ public class FilterMenuView extends LinearLayout implements View.OnClickListener
             @Override
             public void onAnimationStart(Animator animation) {
                 mAnimatorExecute = true;
+
+                mAdapter.menuClose(mMenuTabView.getChildAt(mCurrentPosition));
             }
 
             @Override
@@ -196,7 +193,7 @@ public class FilterMenuView extends LinearLayout implements View.OnClickListener
      * @param tabView
      * @param position
      */
-    private void openMenu(View tabView, final int position) {
+    private void openMenu(final View tabView, final int position) {
         if (mAnimatorExecute) {
             return;
         }
@@ -216,6 +213,8 @@ public class FilterMenuView extends LinearLayout implements View.OnClickListener
             @Override
             public void onAnimationStart(Animator animation) {
                 mAnimatorExecute = true;
+
+                mAdapter.menuOpen(tabView);
             }
 
             @Override

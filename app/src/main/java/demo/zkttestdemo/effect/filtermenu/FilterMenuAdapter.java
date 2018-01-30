@@ -1,6 +1,7 @@
 package demo.zkttestdemo.effect.filtermenu;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ public class FilterMenuAdapter extends BaseMenuAdapter {
     public View getTabView(int position, ViewGroup parent) {
         TextView textView = (TextView) LayoutInflater.from(context).inflate(R.layout.filter_tab, parent, false);
         textView.setText(mItems[position]);
+        textView.setTextColor(Color.BLACK);
         return textView;
     }
 
@@ -37,5 +39,17 @@ public class FilterMenuAdapter extends BaseMenuAdapter {
         TextView menuView = (TextView) LayoutInflater.from(context).inflate(R.layout.filter_menu, parent, false);
         menuView.setText(mItems[position]);
         return menuView;
+    }
+
+    @Override
+    public void menuOpen(View tabView) {
+        TextView tabTv = (TextView) tabView;
+        tabTv.setTextColor(Color.RED);
+    }
+
+    @Override
+    public void menuClose(View tabView) {
+        TextView tabTv = (TextView) tabView;
+        tabTv.setTextColor(Color.BLACK);
     }
 }

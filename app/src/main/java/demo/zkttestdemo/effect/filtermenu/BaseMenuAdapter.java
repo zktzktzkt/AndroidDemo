@@ -17,4 +17,19 @@ public abstract class BaseMenuAdapter {
     //获取菜单内容
     public abstract View getMenuView(int position, ViewGroup parent);
 
+    /**
+     * 菜单打开
+     * @param tabView
+     */
+    public void menuOpen(View tabView) {
+
+    }
+
+    /**
+     * 菜单关闭
+     * @param tabView
+     */
+    public void menuClose(View tabView) {
+
+    }
 }
