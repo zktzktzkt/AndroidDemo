@@ -2,6 +2,7 @@ package demo.zkttestdemo.effect.filtermenu;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Color;
@@ -161,16 +162,15 @@ public class FilterMenuView extends LinearLayout implements View.OnClickListener
             return;
         }
         ObjectAnimator translationY = ObjectAnimator.ofFloat(mMenuContainerView, "translationY", 0, -mMenuContainerHeight);
-        translationY.setDuration(DURATION_TIME);
-        translationY.start();
+        ObjectAnimator alpha = ObjectAnimator.ofFloat(mShadowView, "alpha", 1f, 0);
 
-        ObjectAnimator aplpha = ObjectAnimator.ofFloat(mShadowView, "alpha", 1f, 0);
-        aplpha.setDuration(DURATION_TIME);
-        aplpha.addListener(new AnimatorListenerAdapter() {
+        AnimatorSet set = new AnimatorSet();
+        set.setDuration(DURATION_TIME);
+        set.playTogether(translationY, alpha);
+        set.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {
                 mAnimatorExecute = true;
-
                 mAdapter.menuClose(mMenuTabView.getChildAt(mCurrentPosition));
             }
 
@@ -183,8 +183,7 @@ public class FilterMenuView extends LinearLayout implements View.OnClickListener
                 mCurrentPosition = -1;
             }
         });
-        aplpha.start();
-
+        set.start();
     }
 
     /**
@@ -202,18 +201,16 @@ public class FilterMenuView extends LinearLayout implements View.OnClickListener
         menuView.setVisibility(VISIBLE);
         mShadowView.setVisibility(VISIBLE);
 
-        //打开开启动画 位移动画
         ObjectAnimator translationY = ObjectAnimator.ofFloat(mMenuContainerView, "translationY", -mMenuContainerHeight, 0);
-        translationY.setDuration(DURATION_TIME);
-        translationY.start();
-        //打开开启动画 透明度动画
-        ObjectAnimator aplpha = ObjectAnimator.ofFloat(mShadowView, "alpha", 0, 1f);
-        aplpha.setDuration(DURATION_TIME);
-        aplpha.addListener(new AnimatorListenerAdapter() {
+        ObjectAnimator alpha = ObjectAnimator.ofFloat(mShadowView, "alpha", 0, 1f);
+
+        AnimatorSet set = new AnimatorSet();
+        set.setDuration(DURATION_TIME);
+        set.playTogether(translationY, alpha);
+        set.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {
                 mAnimatorExecute = true;
-
                 mAdapter.menuOpen(tabView);
             }
 
@@ -223,7 +220,7 @@ public class FilterMenuView extends LinearLayout implements View.OnClickListener
                 mCurrentPosition = position;
             }
         });
-        aplpha.start();
+        set.start();
 
     }
 
