@@ -1,5 +1,8 @@
 package demo.zkttestdemo.effect.filtermenu;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
@@ -14,15 +17,20 @@ import android.widget.LinearLayout;
  * Created by zkt on 2018-1-28.
  */
 
-public class FilterMenuView extends LinearLayout {
+public class FilterMenuView extends LinearLayout implements View.OnClickListener {
     private LinearLayout mMenuTabView;
     private FrameLayout mMenuMiddleView;
     private FrameLayout mMenuContainerView;
     private View mShadowView;
     private Context mContext;
     private BaseMenuAdapter mAdapter;
-    private int mShadowColor = Color.parseColor("#999999");
-    private int menuContainerHeight;
+    private int mShadowColor = 0x88888888;
+    private int mMenuContainerHeight;
+    //当前打开的位置
+    private int mCurrentPosition = -1;
+    private long DURATION_TIME = 350;
+    //动画是否在执行
+    private boolean mAnimatorExecute;
 
 
     public FilterMenuView(Context context) {
@@ -59,8 +67,9 @@ public class FilterMenuView extends LinearLayout {
         //阴影
         mShadowView = new View(mContext);
         mShadowView.setBackgroundColor(mShadowColor);
-        //        mShadowView.setAlpha(0);
-        //        mShadowView.setVisibility(GONE);
+        mShadowView.setAlpha(0);
+        mShadowView.setVisibility(GONE);
+        mShadowView.setOnClickListener(this);
         mMenuMiddleView.addView(mShadowView);
         //创建菜单 存放菜单内容
         mMenuContainerView = new FrameLayout(mContext);
@@ -77,26 +86,29 @@ public class FilterMenuView extends LinearLayout {
 
         int height = MeasureSpec.getSize(heightMeasureSpec);
         Log.e("onMeasure", "高度：" + height);
-        menuContainerHeight = height * 75 / 100;
+        mMenuContainerHeight = height * 75 / 100;
 
         ViewGroup.LayoutParams layoutParams = mMenuContainerView.getLayoutParams();
-        layoutParams.height = menuContainerHeight;
+        layoutParams.height = mMenuContainerHeight;
         mMenuContainerView.setLayoutParams(layoutParams);
 
-        //            mMenuContainerView.setTranslationY(-menuContainerHeight);
+        mMenuContainerView.setTranslationY(-mMenuContainerHeight);
     }
 
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        Log.e("onSizeChanged", "高度：" + h);
+    //    @Override
+    //    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    //        super.onSizeChanged(w, h, oldw, oldh);
+    //        Log.e("onSizeChanged", "高度：" + h);
+    //
+    //        mMenuContainerHeight = (int) (h * 0.75);
+    //
+    //        ViewGroup.LayoutParams layoutParams = mMenuContainerView.getLayoutParams();
+    //        layoutParams.height = mMenuContainerHeight;
+    //        mMenuContainerView.setLayoutParams(layoutParams);
+    //
+    ////        mMenuContainerView.setTranslationY(-mMenuContainerHeight);
+    //    }
 
-        //        menuContainerHeight = h * 75 / 100;
-        //
-        //        ViewGroup.LayoutParams layoutParams = mMenuContainerView.getLayoutParams();
-        //        layoutParams.height = menuContainerHeight;
-        //        mMenuContainerView.setLayoutParams(layoutParams);
-    }
 
     /**
      * 设置adapter
@@ -116,11 +128,108 @@ public class FilterMenuView extends LinearLayout {
             tabView.setLayoutParams(params);
             mMenuTabView.addView(tabView);
 
+            setTabClick(tabView, i);
+
             //获取菜单的内容
             View menuView = mAdapter.getMenuView(i, mMenuContainerView);
-            //            menuView.setVisibility(GONE);
+            menuView.setVisibility(GONE);
             mMenuContainerView.addView(menuView);
         }
     }
 
+    /**
+     * 设置tab点击
+     *
+     * @param tabView
+     * @param position
+     */
+    private void setTabClick(final View tabView, final int position) {
+        tabView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mCurrentPosition == -1) {
+                    //没打开
+                    openMenu(tabView, position);
+                } else {
+                    //打开了
+                    closeMenu();
+                }
+            }
+        });
+    }
+
+    /**
+     * 关闭菜单
+     */
+    private void closeMenu() {
+        if (mAnimatorExecute) {
+            return;
+        }
+        ObjectAnimator translationY = ObjectAnimator.ofFloat(mMenuContainerView, "translationY", 0, -mMenuContainerHeight);
+        translationY.setDuration(DURATION_TIME);
+        translationY.start();
+
+        ObjectAnimator aplpha = ObjectAnimator.ofFloat(mShadowView, "alpha", 1f, 0);
+        aplpha.setDuration(DURATION_TIME);
+        aplpha.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                mAnimatorExecute = true;
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mAnimatorExecute = false;
+                View menuView = mMenuContainerView.getChildAt(mCurrentPosition);
+                menuView.setVisibility(GONE);
+                mShadowView.setVisibility(GONE);
+                mCurrentPosition = -1;
+            }
+        });
+        aplpha.start();
+
+    }
+
+    /**
+     * 打开菜单
+     *
+     * @param tabView
+     * @param position
+     */
+    private void openMenu(View tabView, final int position) {
+        if (mAnimatorExecute) {
+            return;
+        }
+        //根据当前位置显示对应的菜单内容
+        View menuView = mMenuContainerView.getChildAt(position);
+        menuView.setVisibility(VISIBLE);
+        mShadowView.setVisibility(VISIBLE);
+
+        //打开开启动画 位移动画
+        ObjectAnimator translationY = ObjectAnimator.ofFloat(mMenuContainerView, "translationY", -mMenuContainerHeight, 0);
+        translationY.setDuration(DURATION_TIME);
+        translationY.start();
+        //打开开启动画 透明度动画
+        ObjectAnimator aplpha = ObjectAnimator.ofFloat(mShadowView, "alpha", 0, 1f);
+        aplpha.setDuration(DURATION_TIME);
+        aplpha.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                mAnimatorExecute = true;
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mAnimatorExecute = false;
+                mCurrentPosition = position;
+            }
+        });
+        aplpha.start();
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        closeMenu();
+    }
 }
