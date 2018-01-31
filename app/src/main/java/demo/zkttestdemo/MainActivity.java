@@ -62,6 +62,7 @@ import demo.zkttestdemo.effect.loadingview.LoadingActivity;
 import demo.zkttestdemo.effect.meituan2list.MeiTuanListActivity;
 import demo.zkttestdemo.effect.motionevent.MotionEventTestActivity;
 import demo.zkttestdemo.effect.multipage.MultiPageActivity;
+import demo.zkttestdemo.effect.overflyview.OverFlyActivity;
 import demo.zkttestdemo.effect.paykeyboard.PayKeyboardActivity;
 import demo.zkttestdemo.effect.progress.ProgressArcActivity;
 import demo.zkttestdemo.effect.pullAndload.PtrAndloadActivity;
@@ -214,6 +215,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_58Loading) {
             Intent intent = new Intent(this, Loading58Activity.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_overFlying) {
+            Intent intent = new Intent(this, OverFlyActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_lettesSideBar) {
             Intent intent = new Intent(this, LetterSideBarActivity.class);

@@ -150,6 +150,8 @@
         </activity>
         <activity android:name=".effect.filtermenu.FilterMenuActivity">
         </activity>
+        <activity android:name=".effect.overflyview.OverFlyActivity">
+        </activity>
     </application>
 
 </manifest>

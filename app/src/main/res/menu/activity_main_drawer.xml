@@ -100,6 +100,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="多条目筛选菜单"/>
             <item
+                android:id="@+id/nav_overFlying"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="仿夸克浏览器底部拖拽"/>
+            <item
                 android:id="@+id/nav_activityJump"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="三级Activity跳转"/>
