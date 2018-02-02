@@ -152,6 +152,8 @@
         </activity>
         <activity android:name=".effect.overflyview.OverFlyActivity">
         </activity>
+        <activity android:name=".effect.statusbar.StatusBarActivity">
+        </activity>
     </application>
 
 </manifest>

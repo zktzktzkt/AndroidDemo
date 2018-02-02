@@ -92,6 +92,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="事件分发测试"/>
             <item
+                android:id="@+id/nav_statusBar"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="沉浸式状态栏"/>
+            <item
                 android:id="@+id/nav_eatBaoZi"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="仿大众点评加载动画"/>

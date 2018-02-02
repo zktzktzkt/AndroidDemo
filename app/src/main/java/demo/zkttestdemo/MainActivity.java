@@ -69,6 +69,7 @@ import demo.zkttestdemo.effect.pullAndload.PtrAndloadActivity;
 import demo.zkttestdemo.effect.qqslidemenu.QQSlideMenuActivity;
 import demo.zkttestdemo.effect.slidemenu.SlideMenuActivity;
 import demo.zkttestdemo.effect.snow.SnowActivity;
+import demo.zkttestdemo.effect.statusbar.StatusBarActivity;
 import demo.zkttestdemo.effect.stikyhead.StikyHeadActivity;
 import demo.zkttestdemo.effect.tablayout.MyTablayoutActivity;
 import demo.zkttestdemo.effect.transition.TransitionActivity;
@@ -209,6 +210,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_JSSearch) {
             Intent intent = new Intent(this, JSSearchActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_statusBar) {
+            Intent intent = new Intent(this, StatusBarActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_BDSearch) {
             Intent intent = new Intent(this, BDSearchActivity.class);

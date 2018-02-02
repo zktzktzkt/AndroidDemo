@@ -15,4 +15,9 @@
         android:background="#d2d2c9"
         android:visibility="visible"/>
 
+
+    <demo.zkttestdemo.effect.favor.CustomViewTest
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </LinearLayout>
