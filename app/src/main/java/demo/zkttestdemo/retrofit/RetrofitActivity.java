@@ -9,17 +9,26 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
+import demo.zkttestdemo.R;
+import demo.zkttestdemo.retrofit.api.ApiURL;
+import demo.zkttestdemo.retrofit.api.GitHubApi;
+import demo.zkttestdemo.retrofit.intercepter.AppendHeaderParamIntercepter;
+import demo.zkttestdemo.retrofit.intercepter.AppendUrlParamIntercepter;
+import demo.zkttestdemo.retrofit.bean.ApiBean;
+import demo.zkttestdemo.retrofit.bean.Contributor;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import demo.zkttestdemo.R;
-import demo.zkttestdemo.retrofit.api.ApiURL;
-import demo.zkttestdemo.retrofit.api.GitHubApi;
-import demo.zkttestdemo.retrofit.bean.ApiBean;
-import demo.zkttestdemo.retrofit.bean.Contributor;
 
 /**
  * Created by Administrator on 2016/12/26 0026.
@@ -71,7 +80,7 @@ public class RetrofitActivity extends Activity implements View.OnClickListener {
                 getUseConverter();
                 break;
             case R.id.btn_get_1:
-                getDataUseQuery();
+                getDataByRx();
                 break;
         }
     }
@@ -131,25 +140,34 @@ public class RetrofitActivity extends Activity implements View.OnClickListener {
         });
     }
 
-    private void getDataUseQuery() {
+    private void getDataByRx() {
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        //添加拦截器，自动追加参数
+        builder.addInterceptor(new AppendUrlParamIntercepter());
+        builder.addInterceptor(new AppendHeaderParamIntercepter());
+        //添加拦截器，打印网络请求
+        if (NetworkConfig.DEBUG) {
+            HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+            httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            builder.addInterceptor(httpLoggingInterceptor);
+        }
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://gc.ditu.aliyun.com/")
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .client(builder.build())
                 .build();
         ApiURL apiURL = retrofit.create(ApiURL.class);
-        Call<ApiBean> apiBean = apiURL.getApiBean("北京市");
+        Observable<ApiBean> api = apiURL.getApiBean("北京市");
 
-        apiBean.enqueue(new Callback<ApiBean>() {
-            @Override
-            public void onResponse(Call<ApiBean> call, Response<ApiBean> response) {
-                tv_content.setText(response.body().toString());
-            }
+        api.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<ApiBean>() {
+                    @Override
+                    public void accept(ApiBean apiBean) throws Exception {
 
-            @Override
-            public void onFailure(Call<ApiBean> call, Throwable t) {
-
-            }
-        });
+                    }
+                });
     }
 
 }

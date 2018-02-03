@@ -22,7 +22,7 @@
         android:id="@+id/btn_get_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="GET @query"/>
+        android:text="GET @query by Rx"/>
 
     <Button
         android:id="@+id/btn_commitFile"

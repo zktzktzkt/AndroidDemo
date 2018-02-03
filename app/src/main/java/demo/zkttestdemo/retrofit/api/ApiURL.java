@@ -1,9 +1,9 @@
 package demo.zkttestdemo.retrofit.api;
 
-import retrofit2.Call;
+import demo.zkttestdemo.retrofit.bean.ApiBean;
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import demo.zkttestdemo.retrofit.bean.ApiBean;
 
 /**
  * Created by Administrator on 2016/12/26 0026.
@@ -11,7 +11,7 @@ import demo.zkttestdemo.retrofit.bean.ApiBean;
 
 public interface ApiURL {
     @GET("geocoding")
-    Call<ApiBean> getApiBean(@Query("a") String city); //@Query把它看成一个键值对，相当于 ?a=city ,如果更多的参数：?a=city&b=haha&c=qwer
+    Observable<ApiBean> getApiBean(@Query("a") String city); //@Query是向后追加的效果 等同于 geocoding?a=city
 }
 
 //    @GET("group/users")
