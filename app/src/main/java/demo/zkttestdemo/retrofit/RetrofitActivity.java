@@ -6,19 +6,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
 import demo.zkttestdemo.R;
 import demo.zkttestdemo.retrofit.api.ApiURL;
 import demo.zkttestdemo.retrofit.api.GitHubApi;
-import demo.zkttestdemo.retrofit.intercepter.AppendHeaderParamIntercepter;
-import demo.zkttestdemo.retrofit.intercepter.AppendUrlParamIntercepter;
 import demo.zkttestdemo.retrofit.bean.ApiBean;
 import demo.zkttestdemo.retrofit.bean.Contributor;
+import demo.zkttestdemo.retrofit.gson.CstGsonConverterFactory;
+import demo.zkttestdemo.retrofit.intercepter.AppendHeaderParamIntercepter;
+import demo.zkttestdemo.retrofit.intercepter.AppendUrlParamIntercepter;
 import io.reactivex.Observable;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
@@ -140,9 +143,13 @@ public class RetrofitActivity extends Activity implements View.OnClickListener {
         });
     }
 
+    /**
+     * RxJava + Retrofit
+     */
     private void getDataByRx() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        //添加拦截器，自动追加参数
+        // “按照顺序” 添加拦截器，自动追加参数
+        builder.addInterceptor(new PreHandleNoNetIntercepter());
         builder.addInterceptor(new AppendUrlParamIntercepter());
         builder.addInterceptor(new AppendHeaderParamIntercepter());
         //添加拦截器，打印网络请求
@@ -153,7 +160,9 @@ public class RetrofitActivity extends Activity implements View.OnClickListener {
         }
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://gc.ditu.aliyun.com/")
-                .addConverterFactory(GsonConverterFactory.create())
+                // .addConverterFactory(GsonConverterFactory.create())
+                // 加入我们自定义的Gson解析库，就可以更友好的处理错误
+                .addConverterFactory(CstGsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(builder.build())
                 .build();
@@ -162,12 +171,28 @@ public class RetrofitActivity extends Activity implements View.OnClickListener {
 
         api.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<ApiBean>() {
-                    @Override
-                    public void accept(ApiBean apiBean) throws Exception {
+                .subscribe(new Observer<ApiBean>() {
+                               @Override
+                               public void onSubscribe(Disposable d) {
 
-                    }
-                });
+                               }
+
+                               @Override
+                               public void onNext(ApiBean apiBean) {
+                                   Toast.makeText(RetrofitActivity.this, "成功了", Toast.LENGTH_SHORT).show();
+                               }
+
+                               @Override
+                               public void onError(Throwable e) {
+                                   Toast.makeText(RetrofitActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                               }
+
+                               @Override
+                               public void onComplete() {
+
+                               }
+                           }
+                );
     }
 
 }
