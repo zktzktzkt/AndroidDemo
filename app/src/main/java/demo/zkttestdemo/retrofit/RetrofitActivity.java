@@ -19,9 +19,8 @@ import demo.zkttestdemo.retrofit.gson.CstGsonConverterFactory;
 import demo.zkttestdemo.retrofit.intercepter.AppendHeaderParamIntercepter;
 import demo.zkttestdemo.retrofit.intercepter.AppendUrlParamIntercepter;
 import io.reactivex.Observable;
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
@@ -149,9 +148,9 @@ public class RetrofitActivity extends Activity implements View.OnClickListener {
     private void getDataByRx() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         // “按照顺序” 添加拦截器，自动追加参数
-        builder.addInterceptor(new PreHandleNoNetIntercepter());
-        builder.addInterceptor(new AppendUrlParamIntercepter());
-        builder.addInterceptor(new AppendHeaderParamIntercepter());
+        builder.addInterceptor(new PreHandleNoNetIntercepter()); // 异常
+        builder.addInterceptor(new AppendUrlParamIntercepter()); // 追加Url
+        builder.addInterceptor(new AppendHeaderParamIntercepter()); // 追加Header
         //添加拦截器，打印网络请求
         if (NetworkConfig.DEBUG) {
             HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
@@ -171,27 +170,18 @@ public class RetrofitActivity extends Activity implements View.OnClickListener {
 
         api.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<ApiBean>() {
+                .subscribe(new Consumer<ApiBean>() {
                                @Override
-                               public void onSubscribe(Disposable d) {
-
-                               }
-
-                               @Override
-                               public void onNext(ApiBean apiBean) {
+                               public void accept(ApiBean apiBean) throws Exception {
                                    Toast.makeText(RetrofitActivity.this, "成功了", Toast.LENGTH_SHORT).show();
                                }
-
-                               @Override
-                               public void onError(Throwable e) {
-                                   Toast.makeText(RetrofitActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                               }
-
-                               @Override
-                               public void onComplete() {
-
-                               }
-                           }
+                           },
+                        new Consumer<Throwable>() {
+                            @Override
+                            public void accept(Throwable e) throws Exception {
+                                Toast.makeText(RetrofitActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
                 );
     }
 
