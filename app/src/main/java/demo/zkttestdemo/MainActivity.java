@@ -59,6 +59,7 @@ import demo.zkttestdemo.effect.keyboardbug.KeyBoardBugActivity;
 import demo.zkttestdemo.effect.lettersidebar.LetterSideBarActivity;
 import demo.zkttestdemo.effect.loadingdialog.EatBaoZiActivity;
 import demo.zkttestdemo.effect.loadingview.LoadingActivity;
+import demo.zkttestdemo.effect.lockpattern.LockPatternActivity;
 import demo.zkttestdemo.effect.meituan2list.MeiTuanListActivity;
 import demo.zkttestdemo.effect.motionevent.MotionEventTestActivity;
 import demo.zkttestdemo.effect.multipage.MultiPageActivity;
@@ -198,6 +199,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_wavRecord) {
             Intent intent = new Intent(this, WAVActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_lockPattern) {
+            Intent intent = new Intent(this, LockPatternActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_bezier) {
             Intent intent = new Intent(this, BezierActivity.class);

@@ -16,7 +16,7 @@
     <!-- 录音的权限 -->
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 
-    <!--判断是否有网络权限-->
+    <!-- 判断是否有网络权限 -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
@@ -157,6 +157,8 @@
         <activity android:name=".effect.overflyview.OverFlyActivity">
         </activity>
         <activity android:name=".effect.statusbar.StatusBarActivity">
+        </activity>
+        <activity android:name=".effect.lockpattern.LockPatternActivity">
         </activity>
     </application>
 

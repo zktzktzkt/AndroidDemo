@@ -39,7 +39,7 @@ class LockPatternView : View {
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         // 初始化九宫格
         if (!mIsInit) {
             initPaint()
@@ -47,6 +47,26 @@ class LockPatternView : View {
             mIsInit = true
         }
         // 绘制九宫格
+        drawShow(canvas)
+    }
+
+    /**
+     * 初始化绘制
+     */
+    private fun drawShow(canvas: Canvas) {
+        //绘制九宫格显示
+        for (i in 0..2) {
+            for (point in mPoints[i]) {
+                //先绘制外圆
+                mNormalPaint.color = mOuterNormalColor
+                canvas.drawCircle(point!!.centerX.toFloat(), point.centerY.toFloat(),
+                        mDotRadius.toFloat(), mNormalPaint)
+                //后绘制内圆
+                mNormalPaint.color = mInnerNormalColor
+                canvas.drawCircle(point!!.centerX.toFloat(), point.centerY.toFloat(),
+                        mDotRadius / 6.toFloat(), mNormalPaint)
+            }
+        }
     }
 
     /**
@@ -95,20 +115,29 @@ class LockPatternView : View {
 
         //兼容横竖屏
         var offsetX = 0
+        var offsetY = 0
+        if (height > width) {
+            offsetY = (height - width) / 2
+            height = width
+        } else {
+            offsetX = (width - height) / 2
+            width = height
+        }
 
         var squareWidth = width / 3
-        //九宫格的宽高等于View的Width
-        var offsetY = (height - width) / 2
 
-        mPoints[0][0] = Point(squareWidth / 2, offsetY + squareWidth / 2, 0)
-        mPoints[0][1] = Point(squareWidth * 3 / 2, offsetY + squareWidth / 2, 1)
-        mPoints[0][2] = Point(squareWidth * 5 / 2, offsetY + squareWidth / 2, 2)
-        mPoints[1][0] = Point(squareWidth / 2, offsetY + squareWidth * 3 / 2, 3)
-        mPoints[1][1] = Point(squareWidth * 3 / 2, offsetY + squareWidth * 3 / 2, 4)
-        mPoints[1][2] = Point(squareWidth * 5 / 2, offsetY + squareWidth * 3 / 2, 5)
-        mPoints[2][0] = Point(squareWidth / 2, offsetY + squareWidth * 5 / 2, 6)
-        mPoints[2][1] = Point(squareWidth * 3 / 2, offsetY + squareWidth * 5 / 2, 7)
-        mPoints[2][2] = Point(squareWidth * 5 / 2, offsetY + squareWidth * 5 / 2, 8)
+        //外圆的大小
+        mDotRadius = width / 12
+
+        mPoints[0][0] = Point(offsetX + squareWidth / 2, offsetY + squareWidth / 2, 0)
+        mPoints[0][1] = Point(offsetX + squareWidth * 3 / 2, offsetY + squareWidth / 2, 1)
+        mPoints[0][2] = Point(offsetX + squareWidth * 5 / 2, offsetY + squareWidth / 2, 2)
+        mPoints[1][0] = Point(offsetX + squareWidth / 2, offsetY + squareWidth * 3 / 2, 3)
+        mPoints[1][1] = Point(offsetX + squareWidth * 3 / 2, offsetY + squareWidth * 3 / 2, 4)
+        mPoints[1][2] = Point(offsetX + squareWidth * 5 / 2, offsetY + squareWidth * 3 / 2, 5)
+        mPoints[2][0] = Point(offsetX + squareWidth / 2, offsetY + squareWidth * 5 / 2, 6)
+        mPoints[2][1] = Point(offsetX + squareWidth * 3 / 2, offsetY + squareWidth * 5 / 2, 7)
+        mPoints[2][2] = Point(offsetX + squareWidth * 5 / 2, offsetY + squareWidth * 5 / 2, 8)
     }
 
     /**
