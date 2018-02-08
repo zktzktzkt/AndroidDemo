@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.util.AttributeSet
+import android.view.MotionEvent
 import android.view.View
 
 /**
@@ -25,12 +26,17 @@ class LockPatternView : View {
     private lateinit var mNormalPaint: Paint
     private lateinit var mArrowPaint: Paint
     // 颜色
-    private val mOuterPressedColor = 0xff8cbad8.toInt()
-    private val mInnerPressedColor = 0xff0596f6.toInt()
     private val mOuterNormalColor = 0xffd9d9d9.toInt()
-    private val mInnerNormalColor = 0xff929292.toInt()
+    private val mOuterPressedColor = 0xff8cbad8.toInt()
     private val mOuterErrorColor = 0xff901032.toInt()
+    private val mInnerNormalColor = 0xff929292.toInt()
+    private val mInnerPressedColor = 0xff0596f6.toInt()
     private val mInnerErrorColor = 0xffea0945.toInt()
+
+    // 按下的时候是否按在一个点上
+    private var mIsTouchPoint = false
+    // 选中的所有点
+    private var mSelectPoint = ArrayList<Point>()
 
     // 构造函数
     constructor(context: Context) : super(context)
@@ -42,8 +48,8 @@ class LockPatternView : View {
     override fun onDraw(canvas: Canvas) {
         // 初始化九宫格
         if (!mIsInit) {
-            initPaint()
             initDot()
+            initPaint()
             mIsInit = true
         }
         // 绘制九宫格
@@ -57,14 +63,37 @@ class LockPatternView : View {
         //绘制九宫格显示
         for (i in 0..2) {
             for (point in mPoints[i]) {
-                //先绘制外圆
-                mNormalPaint.color = mOuterNormalColor
-                canvas.drawCircle(point!!.centerX.toFloat(), point.centerY.toFloat(),
-                        mDotRadius.toFloat(), mNormalPaint)
-                //后绘制内圆
-                mNormalPaint.color = mInnerNormalColor
-                canvas.drawCircle(point!!.centerX.toFloat(), point.centerY.toFloat(),
-                        mDotRadius / 6.toFloat(), mNormalPaint)
+                if (point!!.statusIsNormal()) {
+                    //先绘制外圆
+                    mNormalPaint.color = mOuterNormalColor
+                    canvas.drawCircle(point.centerX.toFloat(), point.centerY.toFloat(),
+                            mDotRadius.toFloat(), mNormalPaint)
+                    //后绘制内圆
+                    mNormalPaint.color = mInnerNormalColor
+                    canvas.drawCircle(point.centerX.toFloat(), point.centerY.toFloat(),
+                            mDotRadius / 6.toFloat(), mNormalPaint)
+                }
+                if (point.statusIsPressed()) {
+                    //先绘制外圆
+                    mNormalPaint.color = mOuterNormalColor
+                    canvas.drawCircle(point.centerX.toFloat(), point.centerY.toFloat(),
+                            mDotRadius.toFloat(), mPressedPaint)
+                    //后绘制内圆
+                    mNormalPaint.color = mInnerNormalColor
+                    canvas.drawCircle(point.centerX.toFloat(), point.centerY.toFloat(),
+                            mDotRadius / 6.toFloat(), mPressedPaint)
+                }
+                if (point.statusIsError()) {
+                    //先绘制外圆
+                    mNormalPaint.color = mOuterNormalColor
+                    canvas.drawCircle(point.centerX.toFloat(), point.centerY.toFloat(),
+                            mDotRadius.toFloat(), mErrorPaint)
+                    //后绘制内圆
+                    mNormalPaint.color = mInnerNormalColor
+                    canvas.drawCircle(point.centerX.toFloat(), point.centerY.toFloat(),
+                            mDotRadius / 6.toFloat(), mErrorPaint)
+                }
+
             }
         }
     }
@@ -74,27 +103,30 @@ class LockPatternView : View {
      * 3个点状态的画笔（默认+按下+错误）、线的画笔、箭头的画笔
      */
     private fun initPaint() {
+        // 默认的画笔
+        mNormalPaint = Paint()
+        mNormalPaint.color = mInnerNormalColor
+        mNormalPaint.style = Paint.Style.STROKE
+        mNormalPaint.isAntiAlias = true
+        mNormalPaint.strokeWidth = (mDotRadius / 9).toFloat()
+        // 按下的画笔
+        mPressedPaint = Paint()
+        mPressedPaint.color = mInnerPressedColor
+        mPressedPaint.style = Paint.Style.STROKE
+        mPressedPaint.isAntiAlias = true
+        mPressedPaint.strokeWidth = (mDotRadius / 6).toFloat()
+        // 错误的画笔
+        mErrorPaint = Paint()
+        mErrorPaint.color = mInnerErrorColor
+        mErrorPaint.style = Paint.Style.STROKE
+        mErrorPaint.isAntiAlias = true
+        mErrorPaint.strokeWidth = (mDotRadius / 6).toFloat()
         // 线的画笔
         mLinePaint = Paint()
         mLinePaint.color = mInnerPressedColor
         mLinePaint.style = Paint.Style.STROKE
         mLinePaint.isAntiAlias = true
         mLinePaint.strokeWidth = (mDotRadius / 9).toFloat()
-        // 按下的画笔
-        mPressedPaint = Paint()
-        mPressedPaint.style = Paint.Style.STROKE
-        mPressedPaint.isAntiAlias = true
-        mPressedPaint.strokeWidth = (mDotRadius / 6).toFloat()
-        // 错误的画笔
-        mErrorPaint = Paint()
-        mErrorPaint.style = Paint.Style.STROKE
-        mErrorPaint.isAntiAlias = true
-        mErrorPaint.strokeWidth = (mDotRadius / 6).toFloat()
-        // 默认的画笔
-        mNormalPaint = Paint()
-        mNormalPaint.style = Paint.Style.STROKE
-        mNormalPaint.isAntiAlias = true
-        mNormalPaint.strokeWidth = (mDotRadius / 9).toFloat()
         // 箭头的画笔
         mArrowPaint = Paint()
         mArrowPaint.color = mInnerPressedColor
@@ -149,6 +181,90 @@ class LockPatternView : View {
         private val STATUS_ERROR = 3
         //当前点的状态 默认情况下
         private var status = STATUS_NORMAL
+
+        fun setStatusPressed() {
+            status = STATUS_PRESSED
+        }
+
+        fun setStatusNormal() {
+            status = STATUS_NORMAL
+        }
+
+        fun setStatusError() {
+            status = STATUS_ERROR
+        }
+
+        fun statusIsPressed(): Boolean {
+            return status == STATUS_PRESSED
+        }
+
+        fun statusIsError(): Boolean {
+            return status == STATUS_ERROR
+        }
+
+        fun statusIsNormal(): Boolean {
+            return status == STATUS_NORMAL
+        }
     }
+
+    var mMovingX = 0f
+    var mMovingY = 0f
+
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        mMovingX = event.x
+        mMovingY = event.y
+
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+                // 判断一个点是否在圆里面 （点到圆心的距离 < 半径）
+                var point = point
+                if (point != null) {
+                    mIsTouchPoint = true
+                    mSelectPoint.add(point)
+                    //改变当前点的状态
+                    point.setStatusPressed()
+                }
+            }
+            MotionEvent.ACTION_MOVE -> {
+                if (mIsTouchPoint) {
+                    //按下的时候一定要在一个点上，不断触摸的时候不断判断新的点
+                    var point = point
+                    if (point != null) {
+                        if (!mSelectPoint.contains(point)) {
+                            mSelectPoint.add(point)
+                        }
+                        point.setStatusPressed()
+                    }
+                }
+            }
+            MotionEvent.ACTION_UP -> {
+
+            }
+        }
+
+        invalidate()
+        return true
+    }
+
+    /**
+     * 获取按下的点
+     * @return 当前按下的点
+     */
+    private val point: Point?
+        get() {
+            for (i in mPoints.indices) {
+                for (j in 0..mPoints[i].size - 1) {
+                    val point = mPoints[i][j]
+                    if (point != null) {
+                        if (MathUtil.checkInRound(point.centerX.toFloat(), point.centerY.toFloat(),
+                                mDotRadius.toFloat(), mMovingX, mMovingY)) {
+                            return point
+                        }
+                    }
+                }
+            }
+            return null
+        }
+
 }
 
