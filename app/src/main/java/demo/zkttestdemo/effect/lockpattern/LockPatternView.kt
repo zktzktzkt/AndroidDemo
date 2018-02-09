@@ -3,6 +3,7 @@ package demo.zkttestdemo.effect.lockpattern
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.graphics.Path
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
@@ -36,7 +37,7 @@ class LockPatternView : View {
     // 按下的时候是否按在一个点上
     private var mIsTouchPoint = false
     // 选中的所有点
-    private var mSelectPoint = ArrayList<Point>()
+    private var mSelectPoints = ArrayList<Point>()
 
     // 构造函数
     constructor(context: Context) : super(context)
@@ -93,10 +94,83 @@ class LockPatternView : View {
                     canvas.drawCircle(point.centerX.toFloat(), point.centerY.toFloat(),
                             mDotRadius / 6.toFloat(), mErrorPaint)
                 }
-
             }
         }
+
+        drawLine(canvas)
     }
+
+    /**
+     * 绘制两个点的连线及箭头
+     */
+    private fun drawLine(canvas: Canvas) {
+        if (mSelectPoints.size >= 1) {
+            // 两个点之间需要绘制一条线和箭头
+            var lastPoint = mSelectPoints[0]
+            for (index in 1..mSelectPoints.size - 1) {
+                //两个点之间绘制一条线
+                drawLine(lastPoint, mSelectPoints[index], canvas, mLinePaint)
+                // 两个点之间绘制箭头
+                drawArrow(canvas, mArrowPaint!!, lastPoint, mSelectPoints[index], (mDotRadius / 5).toFloat(), 38)
+
+                lastPoint = mSelectPoints[index]
+            }
+
+            //如果手指在内圆里面就不要绘制
+            var isInnerPoint = MathUtil.checkInRound(lastPoint.centerX.toFloat(), lastPoint.centerY.toFloat(),
+                    mDotRadius.toFloat() / 4, mMovingX, mMovingY)
+
+            if (!isInnerPoint && mIsTouchPoint) {
+                // 绘制最后一个点到手指当前位置的连线
+                drawLine(lastPoint, Point(mMovingX.toInt(), mMovingY.toInt(), -1), canvas, mLinePaint)
+            }
+        }
+
+    }
+
+    /**
+     * 画线
+     */
+    private fun drawLine(start: Point, end: Point, canvas: Canvas, paint: Paint) {
+        val pointDistance = MathUtil.distance(start.centerX.toDouble(), start.centerY.toDouble(),
+                end.centerX.toDouble(), end.centerY.toDouble())
+
+        var dx = end.centerX - start.centerX
+        var dy = end.centerY - start.centerY
+
+        val rx = (dx / pointDistance * (mDotRadius / 6.0)).toFloat()
+        val ry = (dy / pointDistance * (mDotRadius / 6.0)).toFloat()
+        canvas.drawLine(start.centerX + rx, start.centerY + ry, end.centerX - rx, end.centerY - ry, paint)
+    }
+
+    /**
+     * 画箭头
+     */
+    private fun drawArrow(canvas: Canvas, paint: Paint, start: Point, end: Point, arrowHeight: Float, angle: Int) {
+        val d = MathUtil.distance(start.centerX.toDouble(), start.centerY.toDouble(), end.centerX.toDouble(), end.centerY.toDouble())
+        val sin_B = ((end.centerX - start.centerX) / d).toFloat()
+        val cos_B = ((end.centerY - start.centerY) / d).toFloat()
+        val tan_A = Math.tan(Math.toRadians(angle.toDouble())).toFloat()
+        val h = (d - arrowHeight.toDouble() - mDotRadius * 1.1).toFloat()
+        val l = arrowHeight * tan_A
+        val a = l * sin_B
+        val b = l * cos_B
+        val x0 = h * sin_B
+        val y0 = h * cos_B
+        val x1 = start.centerX + (h + arrowHeight) * sin_B
+        val y1 = start.centerY + (h + arrowHeight) * cos_B
+        val x2 = start.centerX + x0 - b
+        val y2 = start.centerY.toFloat() + y0 + a
+        val x3 = start.centerX.toFloat() + x0 + b
+        val y3 = start.centerY + y0 - a
+        val path = Path()
+        path.moveTo(x1, y1)
+        path.lineTo(x2, y2)
+        path.lineTo(x3, y3)
+        path.close()
+        canvas.drawPath(path, paint)
+    }
+
 
     /**
      * 初始化画笔
@@ -220,7 +294,7 @@ class LockPatternView : View {
                 var point = point
                 if (point != null) {
                     mIsTouchPoint = true
-                    mSelectPoint.add(point)
+                    mSelectPoints.add(point)
                     //改变当前点的状态
                     point.setStatusPressed()
                 }
@@ -230,14 +304,16 @@ class LockPatternView : View {
                     //按下的时候一定要在一个点上，不断触摸的时候不断判断新的点
                     var point = point
                     if (point != null) {
-                        if (!mSelectPoint.contains(point)) {
-                            mSelectPoint.add(point)
+                        if (!mSelectPoints.contains(point)) {
+                            mSelectPoints.add(point)
                         }
                         point.setStatusPressed()
                     }
                 }
             }
             MotionEvent.ACTION_UP -> {
+                mIsTouchPoint = false
+                // 回调密码获取监听
 
             }
         }
