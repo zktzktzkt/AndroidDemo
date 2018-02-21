@@ -24,6 +24,14 @@ public class LetterSideBarActivity extends AppCompatActivity {
                 tv_letter.setText(letter);
             }
         });
+//
+//        letter_side_bar.setOnTouchLetterListener(new LetterSideBar.OnTouchLetterListener() {
+//            @Override
+//            public void onTouch(String letter, boolean isTouch) {
+//                tv_letter.setVisibility(isTouch ? View.VISIBLE : View.GONE);
+//                tv_letter.setText(letter);
+//            }
+//        });
 
     }
 }

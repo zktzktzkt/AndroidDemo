@@ -70,12 +70,10 @@ public class LetterSideBar extends View {
         int itemHeight = (getHeight() - getPaddingTop() - getPaddingBottom()) / letters.length;
 
         for (int i = 0, len = letters.length; i < len; i++) {
+            //基线往上为负，往下为正；由于文字是基于“基线”来画的，所以要把基线下面的“bottom”减掉
+            Paint.FontMetricsInt fontMetricsInt = mPaint.getFontMetricsInt();
             // 单格高度的一半 + 前面格子的高度
             int letterCenterY = i * itemHeight + itemHeight / 2 + getPaddingTop();
-
-            //基线往上为负，往下为正；由于文字是基于“基线”来画的，所以要把基线下面的“bottom”减掉
-            // 如果不减掉bottom，则文字是对齐于bottom，而不是对齐于baseline
-            Paint.FontMetricsInt fontMetricsInt = mPaint.getFontMetricsInt();
             int dy = (fontMetricsInt.bottom - fontMetricsInt.top) / 2 - fontMetricsInt.bottom;
             int baseLine = letterCenterY + dy;
 

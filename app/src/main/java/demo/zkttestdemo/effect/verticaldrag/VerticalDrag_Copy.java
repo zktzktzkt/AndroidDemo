@@ -20,7 +20,7 @@ public class VerticalDrag_Copy extends FrameLayout {
     private int mBackViewHeight;
     private ViewDragHelper mViewDragHelper;
     private boolean isOpen = false;
-    private int downY;
+    private float downY;
 
     public VerticalDrag_Copy(Context context) {
         this(context, null);
@@ -101,14 +101,21 @@ public class VerticalDrag_Copy extends FrameLayout {
         //2. 菜单关闭时
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                downY = (int) ev.getY();
+                downY = ev.getY();
                 mViewDragHelper.processTouchEvent(ev);
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (ev.getY() - downY > 0 && !canChildScrollUp()) {
                     return true;
                 }
+                break;
         }
+        /*
+        * mViewDragHelper.shouldInterceptTouchEvent(ev)
+        * 当被拖拽的是captureView的时候，
+        * mDragState会被set成STATE_DRAGGING，导致shouldInterceptTouchEvent返回的是true，事件无法传递给子View
+        * 所以就得用super.onInterceptTouchEvent(ev)
+        * */
         return super.onInterceptTouchEvent(ev);
     }
 

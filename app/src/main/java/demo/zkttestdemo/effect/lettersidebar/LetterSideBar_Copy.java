@@ -67,8 +67,8 @@ public class LetterSideBar_Copy extends View {
 
         Paint.FontMetricsInt fontMetricsInt = mPaint.getFontMetricsInt();
         int fontCenterY = (fontMetricsInt.bottom - fontMetricsInt.top) / 2 - fontMetricsInt.bottom;
-        for (int i = 0, len = letters.length; i < len; i++) {
 
+        for (int i = 0, len = letters.length; i < len; i++) {
             int y = getPaddingTop() + i * itemHeight + itemHeight / 2 + fontCenterY;
 
             if (letters[i].equals(mTouchletter)) {
@@ -77,28 +77,32 @@ public class LetterSideBar_Copy extends View {
                 canvas.drawText(letters[i], x, y, mPaint);
             }
         }
+
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_MOVE:
-                int itemHeight = mHeight / letters.length + getPaddingTop();
+                int itemHeight = (mHeight - getPaddingTop() - getPaddingBottom()) / letters.length;
                 int index = (int) (event.getY() / itemHeight);
                 if (index < 0) {
                     index = 0;
                 }
-                if (index > letters.length) {
+                if (index > letters.length - 1) {
                     index = letters.length - 1;
                 }
                 mTouchletter = letters[index];
-                onTouchLetterListener.onTouchLetter(mTouchletter, true);
+                if (null != onTouchLetterListener) {
+                    onTouchLetterListener.onTouchLetter(mTouchletter, true);
+                }
                 invalidate();
                 break;
 
             case MotionEvent.ACTION_UP:
-                onTouchLetterListener.onTouchLetter(mTouchletter, false);
+                if (null != onTouchLetterListener) {
+                    onTouchLetterListener.onTouchLetter(mTouchletter, false);
+                }
                 break;
         }
         return true;
