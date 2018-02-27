@@ -116,6 +116,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="三级Activity跳转"/>
             <item
+                android:id="@+id/nav_temp_control"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="温度旋转按钮"/>
+            <item
                 android:id="@+id/nav_behaviorDemo"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="仿知乎behavior"/>

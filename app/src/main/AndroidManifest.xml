@@ -160,6 +160,9 @@
         </activity>
         <activity android:name=".effect.lockpattern.LockPatternActivity">
         </activity>
+        <activity android:name=".effect.tempcontrol.TemControlActivity"/>
+        <activity android:name=".effect.kugou.KuGouParallaxActivity">
+        </activity>
     </application>
 
 </manifest>

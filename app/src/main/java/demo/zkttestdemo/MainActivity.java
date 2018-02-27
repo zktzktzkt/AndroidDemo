@@ -73,6 +73,7 @@ import demo.zkttestdemo.effect.snow.SnowActivity;
 import demo.zkttestdemo.effect.statusbar.StatusBarActivity;
 import demo.zkttestdemo.effect.stikyhead.StikyHeadActivity;
 import demo.zkttestdemo.effect.tablayout.MyTablayoutActivity;
+import demo.zkttestdemo.effect.tempcontrol.TemControlActivity;
 import demo.zkttestdemo.effect.transition.TransitionActivity;
 import demo.zkttestdemo.effect.verificationinput.VerificationInputActivity;
 import demo.zkttestdemo.effect.verticaldrag.VerticalDragActivity;
@@ -211,6 +212,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_behaviorDemo) {
             Intent intent = new Intent(this, BehaviorActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_temp_control) {
+            Intent intent = new Intent(this, TemControlActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_JSSearch) {
             Intent intent = new Intent(this, JSSearchActivity.class);
