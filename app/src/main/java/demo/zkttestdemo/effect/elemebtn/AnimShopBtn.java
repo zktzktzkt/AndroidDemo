@@ -1,5 +1,8 @@
 package demo.zkttestdemo.effect.elemebtn;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -19,6 +22,13 @@ import android.widget.Toast;
  */
 
 public class AnimShopBtn extends View {
+
+    //提示语 收缩动画(0-1) 展开(1-0)
+    //普通模式时(count > 0)，应该是1
+    protected float mAnimExpandHintPraction;
+    private ValueAnimator mAnimReduce; //收缩动画
+    private ValueAnimator mAnimExpand; //展开动画
+
     //View的宽高
     private int mWidth, mHeight;
     //View的左上基准点
@@ -68,6 +78,47 @@ public class AnimShopBtn extends View {
     public AnimShopBtn(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs, defStyleAttr);
+        initAnim();
+    }
+
+    /**
+     * 初始化动画
+     */
+    private void initAnim() {
+        //hint收缩
+        mAnimReduce = ValueAnimator.ofFloat(0, 1);
+        mAnimReduce.setDuration(500);
+        mAnimReduce.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                mAnimExpandHintPraction = (float) animation.getAnimatedValue();
+                invalidate();
+            }
+        });
+        mAnimReduce.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                isHintMode = false;
+                invalidate();
+            }
+        });
+
+        //hint扩展
+        mAnimExpand = ValueAnimator.ofFloat(1, 0);
+        mAnimExpand.setDuration(500);
+        mAnimExpand.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                mAnimExpandHintPraction = (float) animation.getAnimatedValue();
+                invalidate();
+            }
+        });
+        mAnimExpand.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                isHintMode = true;
+            }
+        });
     }
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -92,7 +143,7 @@ public class AnimShopBtn extends View {
         mCircleWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, getContext().getResources().getDisplayMetrics());
         mGapBetweenCircle = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, getContext().getResources().getDisplayMetrics());
 
-        mCount = 5;
+        mCount = 1;
         isHintMode = false;
         mMaxCount = 6;
 
@@ -104,6 +155,28 @@ public class AnimShopBtn extends View {
         mHintText = "该睡了";
     }
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int wMode = MeasureSpec.getMode(widthMeasureSpec);
+        int wSize = MeasureSpec.getSize(widthMeasureSpec);
+
+        int hMode = MeasureSpec.getMode(heightMeasureSpec);
+        int hSize = MeasureSpec.getSize(heightMeasureSpec);
+
+        switch (wMode) {
+            case MeasureSpec.AT_MOST:
+                wSize = (int) (getPaddingLeft() + mRadius * 2 + mGapBetweenCircle + mRadius * 2 + getPaddingRight() + mCircleWidth);
+                break;
+        }
+
+        switch (hMode) {
+            case MeasureSpec.AT_MOST:
+                hSize = (int) (getPaddingTop() + mRadius * 2 + getPaddingBottom() + mCircleWidth * 2);
+                break;
+        }
+
+        setMeasuredDimension(wSize, hSize);
+    }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -120,8 +193,10 @@ public class AnimShopBtn extends View {
             //hint展开
             //背景
             mHintPaint.setColor(mHintBgColor);
-            RectF rectF = new RectF(mLeft, mTop, mWidth - mCircleWidth, mHeight - mCircleWidth);
+            RectF rectF = new RectF(mLeft + (mWidth - mRadius * 2) * mAnimExpandHintPraction, mTop,
+                    mWidth - mCircleWidth, mHeight - mCircleWidth);
             canvas.drawRoundRect(rectF, mHintRoundValue, mHintRoundValue, mHintPaint);
+
             //绘制前景文字
             mHintPaint.setColor(mHintTextColor);
             mHintPaint.setTextSize(mHintTextSize);
@@ -243,14 +318,14 @@ public class AnimShopBtn extends View {
 
     //当 + 触发成功了
     public void onAddSuccessListener() {
-        if (mCount > 0) {
-            isHintMode = false;
+        if (mCount == 1) {
+            mAnimReduce.start();
         }
     }
 
     public void onDelSuccessListener() {
         if (mCount == 0) {
-            isHintMode = true;
+            mAnimExpand.start();
         }
     }
 }

@@ -1,6 +1,6 @@
 package demo.zkttestdemo.effect.loadingdialog;
 
-import android.app.ProgressDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -14,11 +14,11 @@ import demo.zkttestdemo.R;
  * Created by Administrator on 2016/12/30 0030.
  */
 
-public class CustomProgressDialog extends ProgressDialog {
+public class CustomProgressDialog extends Dialog {
     private ImageView loading_iv;
     private TextView loading_tv;
     AnimationDrawable animationDrawable;
-    private int  resId;  //资源id
+    private int resId;  //资源id
     private String tips;  //需要显示的文本信息
 
 
@@ -35,13 +35,12 @@ public class CustomProgressDialog extends ProgressDialog {
         setContentView(R.layout.progress_dialog);
         //设置透明背景
         getWindow().setBackgroundDrawable(new ColorDrawable());
+        setCanceledOnTouchOutside(true);
 
         loading_iv = (ImageView) findViewById(R.id.loading_iv);
         loading_tv = (TextView) findViewById(R.id.loading_tv);
 
         initData();
-
-        setCanceledOnTouchOutside(true);
     }
 
     private void initData() {
@@ -55,5 +54,12 @@ public class CustomProgressDialog extends ProgressDialog {
                 animationDrawable.start();
             }
         });
+    }
+
+    @Override
+    public void dismiss() {
+        animationDrawable.stop();
+        animationDrawable = null;
+        super.dismiss();
     }
 }
