@@ -16,6 +16,6 @@ public class StatusBarActivity extends AppCompatActivity {
 
         // QQ效果 1. 监听scrollview 判断滚动的位置跟头部的Imageview比较计算背景透明度
         // 2. 自定义Behavior
-
+        
     }
 }

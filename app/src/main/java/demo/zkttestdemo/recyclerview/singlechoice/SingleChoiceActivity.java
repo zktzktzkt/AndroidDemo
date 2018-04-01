@@ -28,12 +28,12 @@ public class SingleChoiceActivity extends Activity {
         //取消item的动画，防止item刷新产生闪烁
         ((DefaultItemAnimator)recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
 
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-        });
+//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+//                super.onScrollStateChanged(recyclerView, newState);
+//            }
+//        });
     }
 
 }

@@ -96,6 +96,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="沉浸式状态栏"/>
             <item
+                android:id="@+id/nav_elemeShopBtn"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="仿饿了么购物车按钮"/>
+            <item
                 android:id="@+id/nav_eatBaoZi"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="仿大众点评加载动画"/>
@@ -115,6 +119,10 @@
                 android:id="@+id/nav_activityJump"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="三级Activity跳转"/>
+            <item
+                android:id="@+id/nav_kugou_parallax"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="仿酷狗视差引导页"/>
             <item
                 android:id="@+id/nav_temp_control"
                 android:icon="@drawable/ic_menu_gallery"

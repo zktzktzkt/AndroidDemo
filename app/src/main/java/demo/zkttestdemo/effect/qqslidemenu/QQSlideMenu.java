@@ -74,7 +74,7 @@ public class QQSlideMenu extends HorizontalScrollView {
     }
 
     /**
-     * 整个布局加载完毕
+     * 整个xml布局加载完毕
      */
     @Override
     protected void onFinishInflate() {

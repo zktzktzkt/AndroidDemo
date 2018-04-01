@@ -163,6 +163,8 @@
         <activity android:name=".effect.tempcontrol.TemControlActivity"/>
         <activity android:name=".effect.kugou.KuGouParallaxActivity">
         </activity>
+        <activity android:name=".effect.elemebtn.ElemeShopBtnActivity">
+        </activity>
     </application>
 
 </manifest>

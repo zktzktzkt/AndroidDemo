@@ -88,4 +88,12 @@
         <attr name="stroke_color" format="color"/>
     </declare-styleable>
 
+    <!--*********************** ViewPager视差动画 ***********************-->
+    <!-- X方向上的位移 -->
+    <attr name="translationXIn" format="float"/>
+    <attr name="translationXOut" format="float"/>
+    <!-- Y方向上的位移 -->
+    <attr name="translationYIn" format="float"/>
+    <attr name="translationYOut" format="float"/>
+
 </resources>

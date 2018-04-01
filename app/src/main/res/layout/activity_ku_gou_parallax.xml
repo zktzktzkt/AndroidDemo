@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<demo.zkttestdemo.effect.kugou.parallax.ParallaxViewPager
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parallax_vp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="demo.zkttestdemo.effect.kugou.KuGouParallaxActivity">
+    android:background="@android:color/holo_orange_dark"
+    tools:context="demo.zkttestdemo.effect.kugou.KuGouParallaxActivity"/>
 
-</android.support.constraint.ConstraintLayout>
+
+

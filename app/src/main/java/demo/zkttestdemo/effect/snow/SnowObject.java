@@ -33,6 +33,14 @@ public class SnowObject {
 
     private static final int defaultSpeed = 10;//默认下降速度
 
+    private SnowObject(Builder builder) {
+        this.builder = builder;
+        initSpeed = builder.initSpeed;
+        bitmap = builder.bitmap;
+        isSpeedRandom = builder.isSpeedRandom;
+        isSizeRandom = builder.isSizeRandom;
+    }
+
     public SnowObject(SnowObject snowObject, int viewWidth, int viewHeight) {
         this.viewHeight = viewHeight;
 
@@ -49,12 +57,93 @@ public class SnowObject {
         randomSize(bitmap);
     }
 
-    private SnowObject(Builder builder) {
-        this.builder = builder;
-        initSpeed = builder.initSpeed;
-        bitmap = builder.bitmap;
-        isSpeedRandom = builder.isSpeedRandom;
-        isSizeRandom = builder.isSizeRandom;
+    /**
+     * 随机物体初始下落速度
+     */
+    private void randomSpeed(int initSpeed) {
+        if (isSpeedRandom) {
+            currSpeed = (float) ((random.nextInt(3) + 1) * 0.1 + 1) * initSpeed;//这些随机数大家可以按自己的需要进行调整
+        } else {
+            currSpeed = initSpeed;
+        }
+    }
+
+    /**
+     * 随机物体初始大小比例
+     */
+    private void randomSize(Bitmap bitmap) {
+        if (isSizeRandom) {
+            float r = (random.nextInt(10) + 1) * 0.1f;
+            float rW = r * bitmap.getWidth();
+            float rH = r * bitmap.getHeight();
+            this.bitmap = changeBitmapSize(bitmap, (int) rW, (int) rH);
+        }
+        bitmapWidth = this.bitmap.getWidth();
+        bitmapHeight = this.bitmap.getHeight();
+    }
+
+    /**
+     * 绘制物体对象
+     */
+    void drawObject(Canvas canvas) {
+        moveObject();
+        canvas.drawBitmap(bitmap, currX, currY, null);
+    }
+
+    /**
+     * 移动物体对象
+     */
+    private void moveObject() {
+        currY += currSpeed;
+        if (currY > viewHeight) {
+            reset();
+        }
+    }
+
+    /**
+     * 重置object位置
+     */
+    private void reset() {
+        currY = -bitmapHeight;
+
+        randomSpeed(initSpeed);//记得重置时速度也一起重置，这样效果会好很多
+    }
+
+    /**
+     * drawable图片资源转bitmap
+     */
+    public static Bitmap drawableToBitmap(Drawable drawable) {
+        Bitmap bitmap = Bitmap.createBitmap(
+                drawable.getIntrinsicWidth(),
+                drawable.getIntrinsicHeight(),
+                drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
+                        : Bitmap.Config.RGB_565);
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+        drawable.draw(canvas);
+        return bitmap;
+    }
+
+    /**
+     * 改变bitmap的大小
+     *
+     * @param bitmap 目标bitmap
+     * @param newW   目标宽度
+     * @param newH   目标高度
+     * @return
+     */
+    public static Bitmap changeBitmapSize(Bitmap bitmap, int newW, int newH) {
+        int oldW = bitmap.getWidth();
+        int oldH = bitmap.getHeight();
+        // 计算缩放比例
+        float scaleWidth = ((float) newW) / oldW;
+        float scaleHeight = ((float) newH) / oldH;
+        // 取得想要缩放的matrix参数
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaleWidth, scaleHeight);
+        // 得到新的图片
+        bitmap = Bitmap.createBitmap(bitmap, 0, 0, oldW, oldH, matrix, true);
+        return bitmap;
     }
 
     static class Builder {
@@ -102,104 +191,6 @@ public class SnowObject {
             return new SnowObject(this);
         }
 
-    }
-
-    /**
-     * 绘制物体对象
-     *
-     * @param canvas
-     */
-    void drawObject(Canvas canvas) {
-        moveObject();
-        canvas.drawBitmap(bitmap, currX, currY, null);
-    }
-
-    /**
-     * 移动物体对象
-     */
-    private void moveObject() {
-        currY += currSpeed;
-        if (currY > viewHeight) {
-            reset();
-        }
-    }
-
-    /**
-     * 重置object位置
-     */
-    private void reset() {
-        currY = -bitmapHeight;
-
-        randomSpeed(initSpeed);//记得重置时速度也一起重置，这样效果会好很多
-    }
-
-    /**
-     * 随机物体初始下落速度
-     *
-     * @param initSpeed
-     */
-    private void randomSpeed(int initSpeed) {
-        if (isSpeedRandom) {
-            currSpeed = (float) ((random.nextInt(3) + 1) * 0.1 + 1) * initSpeed;//这些随机数大家可以按自己的需要进行调整
-        } else {
-            currSpeed = initSpeed;
-        }
-    }
-
-    /**
-     * 随机物体初始大小比例
-     *
-     * @param bitmap
-     */
-    private void randomSize(Bitmap bitmap) {
-        if (isSizeRandom) {
-            float r = (random.nextInt(10) + 1) * 0.1f;
-            float rW = r * bitmap.getWidth();
-            float rH = r * bitmap.getHeight();
-            this.bitmap = changeBitmapSize(bitmap, (int) rW, (int) rH);
-        }
-        bitmapWidth = this.bitmap.getWidth();
-        bitmapHeight = this.bitmap.getHeight();
-    }
-
-    /**
-     * drawable图片资源转bitmap
-     *
-     * @param drawable
-     * @return
-     */
-    public static Bitmap drawableToBitmap(Drawable drawable) {
-        Bitmap bitmap = Bitmap.createBitmap(
-                drawable.getIntrinsicWidth(),
-                drawable.getIntrinsicHeight(),
-                drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
-                        : Bitmap.Config.RGB_565);
-        Canvas canvas = new Canvas(bitmap);
-        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-        drawable.draw(canvas);
-        return bitmap;
-    }
-
-    /**
-     * 改变bitmap的大小
-     *
-     * @param bitmap 目标bitmap
-     * @param newW   目标宽度
-     * @param newH   目标高度
-     * @return
-     */
-    public static Bitmap changeBitmapSize(Bitmap bitmap, int newW, int newH) {
-        int oldW = bitmap.getWidth();
-        int oldH = bitmap.getHeight();
-        // 计算缩放比例
-        float scaleWidth = ((float) newW) / oldW;
-        float scaleHeight = ((float) newH) / oldH;
-        // 取得想要缩放的matrix参数
-        Matrix matrix = new Matrix();
-        matrix.postScale(scaleWidth, scaleHeight);
-        // 得到新的图片
-        bitmap = Bitmap.createBitmap(bitmap, 0, 0, oldW, oldH, matrix, true);
-        return bitmap;
     }
 
 }

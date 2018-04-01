@@ -43,7 +43,7 @@ public class SingleChoiceAdapter extends RecyclerView.Adapter<SingleChoiceAdapte
 
     @Override
     public int getItemCount() {
-        return 20;
+        return 50;
     }
 
     public class MyHolder extends RecyclerView.ViewHolder {

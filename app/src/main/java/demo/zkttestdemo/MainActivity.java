@@ -52,10 +52,12 @@ import demo.zkttestdemo.effect.city_58.Loading58Activity;
 import demo.zkttestdemo.effect.coordinator.CoordinatorActivity;
 import demo.zkttestdemo.effect.doodle.DoodleActivity;
 import demo.zkttestdemo.effect.draglayout.DragActivity;
+import demo.zkttestdemo.effect.elemebtn.ElemeShopBtnActivity;
 import demo.zkttestdemo.effect.favor.FavorActivity;
 import demo.zkttestdemo.effect.filtermenu.FilterMenuActivity;
 import demo.zkttestdemo.effect.jssearchdemo.JSSearchActivity;
 import demo.zkttestdemo.effect.keyboardbug.KeyBoardBugActivity;
+import demo.zkttestdemo.effect.kugou.KuGouParallaxActivity;
 import demo.zkttestdemo.effect.lettersidebar.LetterSideBarActivity;
 import demo.zkttestdemo.effect.loadingdialog.EatBaoZiActivity;
 import demo.zkttestdemo.effect.loadingview.LoadingActivity;
@@ -198,6 +200,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_activityJump) {
             Intent intent = new Intent(this, OneActivity.class);
             startActivity(intent);
+        }else if (id == R.id.nav_kugou_parallax) {
+            Intent intent = new Intent(this, KuGouParallaxActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_wavRecord) {
             Intent intent = new Intent(this, WAVActivity.class);
             startActivity(intent);
@@ -221,6 +226,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_statusBar) {
             Intent intent = new Intent(this, StatusBarActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_elemeShopBtn) {
+            Intent intent = new Intent(this, ElemeShopBtnActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_BDSearch) {
             Intent intent = new Intent(this, BDSearchActivity.class);
