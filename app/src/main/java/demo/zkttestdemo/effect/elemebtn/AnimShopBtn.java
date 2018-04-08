@@ -23,11 +23,15 @@ import android.widget.Toast;
 
 public class AnimShopBtn extends View {
 
-    //提示语 收缩动画(0-1) 展开(1-0)
+    //提示语 收缩动画(0-1) 展开(1-0) 注：0-1和1-0是收缩的比例
     //普通模式时(count > 0)，应该是1
-    protected float mAnimExpandHintPraction;
+    protected float mAnimExpandHintFraction;
     private ValueAnimator mAnimReduce; //收缩动画
     private ValueAnimator mAnimExpand; //展开动画
+
+    protected float mAnimFraction;
+    private ValueAnimator mAnimDel; //减动画
+    private ValueAnimator mAnimAdd; //加动画
 
     //View的宽高
     private int mWidth, mHeight;
@@ -44,8 +48,8 @@ public class AnimShopBtn extends View {
     private float mHintRoundValue;
     private String mHintText;
 
-    private int mCount;
-    private int mMaxCount;
+    protected int mCount;
+    protected int mMaxCount;
     private float mCircleWidth;
     private float mCircleLineWidth;
 
@@ -81,6 +85,56 @@ public class AnimShopBtn extends View {
         initAnim();
     }
 
+    public int getCount() {
+        return mCount;
+    }
+
+    public AnimShopBtn setCount(int mCount) {
+        this.mCount = mCount;
+        cancelAllAnim();
+        initSettings();
+        return this;
+    }
+
+    /**
+     * 根据当前的count设置合适的属性值
+     */
+    private void initSettings() {
+        if (mCount == 0) {
+            //不显示数字和-号
+            mAnimFraction = 1;
+            isHintMode = true;
+            mAnimExpandHintFraction = 0;
+        } else {
+            mAnimFraction = 0;
+            isHintMode = false;
+            mAnimExpandHintFraction = 1;
+        }
+    }
+
+    private void cancelAllAnim() {
+        if (null != mAnimReduce && mAnimReduce.isRunning()) {
+            mAnimReduce.cancel();
+        }
+        if (null != mAnimExpand && mAnimExpand.isRunning()) {
+            mAnimExpand.cancel();
+        }
+        if (null != mAnimDel && mAnimDel.isRunning()) {
+            mAnimDel.cancel();
+        }
+        if (null != mAnimAdd && mAnimAdd.isRunning()) {
+            mAnimAdd.cancel();
+        }
+    }
+
+    public int getMaxCount() {
+        return mMaxCount;
+    }
+
+    public void setMaxCount(int mMaxCount) {
+        this.mMaxCount = mMaxCount;
+    }
+
     /**
      * 初始化动画
      */
@@ -91,7 +145,7 @@ public class AnimShopBtn extends View {
         mAnimReduce.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                mAnimExpandHintPraction = (float) animation.getAnimatedValue();
+                mAnimExpandHintFraction = (float) animation.getAnimatedValue();
                 invalidate();
             }
         });
@@ -99,6 +153,7 @@ public class AnimShopBtn extends View {
             @Override
             public void onAnimationEnd(Animator animation) {
                 isHintMode = false;
+                mAnimAdd.start();
                 invalidate();
             }
         });
@@ -109,7 +164,7 @@ public class AnimShopBtn extends View {
         mAnimExpand.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                mAnimExpandHintPraction = (float) animation.getAnimatedValue();
+                mAnimExpandHintFraction = (float) animation.getAnimatedValue();
                 invalidate();
             }
         });
@@ -118,7 +173,41 @@ public class AnimShopBtn extends View {
             public void onAnimationStart(Animator animation) {
                 isHintMode = true;
             }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mAnimAdd.start();
+            }
         });
+
+        //减按钮的动画
+        mAnimDel = ValueAnimator.ofFloat(0, 1);
+        mAnimDel.setDuration(500);
+        mAnimDel.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                mAnimFraction = (float) animation.getAnimatedValue();
+                invalidate();
+            }
+        });
+        mAnimDel.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mAnimExpand.start();
+            }
+        });
+
+        //加按钮的动画
+        mAnimAdd = ValueAnimator.ofFloat(1, 0);
+        mAnimAdd.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                mAnimFraction = (float) animation.getAnimatedValue();
+                invalidate();
+            }
+        });
+
+
     }
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -141,7 +230,7 @@ public class AnimShopBtn extends View {
 
         mRadius = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getContext().getResources().getDisplayMetrics());
         mCircleWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, getContext().getResources().getDisplayMetrics());
-        mGapBetweenCircle = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, getContext().getResources().getDisplayMetrics());
+        mGapBetweenCircle = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getContext().getResources().getDisplayMetrics());
 
         mCount = 1;
         isHintMode = false;
@@ -151,7 +240,7 @@ public class AnimShopBtn extends View {
         mHintBgColor = Color.BLUE;
         mHintTextColor = Color.WHITE;
         mHintTextSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 18, getContext().getResources().getDisplayMetrics());
-        mHintRoundValue = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15, getContext().getResources().getDisplayMetrics());
+        mHintRoundValue = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 25, getContext().getResources().getDisplayMetrics());
         mHintText = "该睡了";
     }
 
@@ -193,7 +282,7 @@ public class AnimShopBtn extends View {
             //hint展开
             //背景
             mHintPaint.setColor(mHintBgColor);
-            RectF rectF = new RectF(mLeft + (mWidth - mRadius * 2) * mAnimExpandHintPraction, mTop,
+            RectF rectF = new RectF(mLeft + (mWidth - mRadius * 2) * mAnimExpandHintFraction, mTop,
                     mWidth - mCircleWidth, mHeight - mCircleWidth);
             canvas.drawRoundRect(rectF, mHintRoundValue, mHintRoundValue, mHintPaint);
 
@@ -211,12 +300,21 @@ public class AnimShopBtn extends View {
             if (mCount > 0) {
                 mDelPaint.setColor(Color.GREEN);
             } else {
-                mDelPaint.setColor(Color.BLACK);
+                mDelPaint.setColor(Color.GREEN);
             }
+            //动画的基准值 动画：减 0~1, 加 1~0
+            //动画位移的Max
+            float animOffsetMax = mRadius * 2 + mGapBetweenCircle;
+            //透明度动画的基准值
+            int animAlphaMax = 255;
+            //旋转
+            int animRotateMax = 360;
+            mDelPaint.setAlpha((int) (animAlphaMax * (1 - mAnimFraction)));
+
             mDelPaint.setStrokeWidth(mCircleWidth);
             //考虑动画 硬件加速(API 19)
             mDelPath.reset();
-            mDelPath.addCircle(mLeft + mRadius, mTop + mRadius, mRadius, Path.Direction.CW);
+            mDelPath.addCircle(animOffsetMax * mAnimFraction + mLeft + mRadius, mTop + mRadius, mRadius, Path.Direction.CW);
             mDelRegion.setPath(mDelPath, new Region(mLeft, mTop,
                     getWidth() - getPaddingRight(), getHeight() - getPaddingBottom()));
             canvas.drawPath(mDelPath, mDelPaint);
@@ -225,17 +323,26 @@ public class AnimShopBtn extends View {
             if (mCount > 0) {
                 mDelPaint.setColor(Color.GREEN);
             } else {
-                mDelPaint.setColor(Color.BLACK);
+                mDelPaint.setColor(Color.GREEN);
             }
+
+            canvas.save(); //保存之前的canvas状态（坐标系），以便于接下来的操作不影响之前的canvas内容
+            canvas.translate(animOffsetMax * mAnimFraction + mLeft + mRadius, mTop + mRadius);
+            canvas.rotate(animRotateMax * (1 - mAnimFraction));
             mCircleLineWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getContext().getResources().getDisplayMetrics());
             mDelPaint.setStrokeWidth(mCircleLineWidth);
-            canvas.drawLine(mLeft + mRadius - mRadius / 2, mTop + mRadius,
-                    mLeft + mRadius + mRadius / 2, mTop + mRadius,
-                    mDelPaint);
+            canvas.drawLine(-mRadius / 2, 0, mRadius / 2, 0, mDelPaint);
+            canvas.restore(); //恢复上一次保存的canvas的状态（坐标系）
 
             //数量
+            canvas.save();
+            canvas.translate(mAnimFraction * (mGapBetweenCircle / 2 - mTextPaint.measureText(mCount + "") / 2 + mRadius), 0);
+            canvas.rotate(animRotateMax * mAnimFraction, mLeft + mRadius * 2 + mGapBetweenCircle / 2, mTop + mRadius);
+            mTextPaint.setAlpha((int) (animAlphaMax * (1 - mAnimFraction)));
             canvas.drawText(mCount + "", mLeft + mRadius * 2 + mGapBetweenCircle / 2 - mTextPaint.measureText(mCount + "") / 2
                     , mTop + mRadius - (mTextPaint.descent() + mTextPaint.ascent()) / 2, mTextPaint);
+            canvas.restore();
+
 
             //右边的圆
             //背景圆圈
@@ -266,6 +373,7 @@ public class AnimShopBtn extends View {
                     left + mRadius, mTop + mRadius + mRadius / 2, mAddPaint);
 
         }
+
     }
 
     @Override
@@ -283,8 +391,6 @@ public class AnimShopBtn extends View {
                     }
                 }
                 break;
-            default:
-                break;
         }
 
         return super.onTouchEvent(event);
@@ -293,7 +399,7 @@ public class AnimShopBtn extends View {
     /**
      * 当 - 事件触发 回调
      */
-    public void onDelClick() {
+    protected void onDelClick() {
         if (mCount > 0) {
             mCount--;
             onDelSuccessListener();
@@ -306,7 +412,7 @@ public class AnimShopBtn extends View {
     /**
      * 当 + 事件触发 回调
      */
-    public void onAddClick() {
+    protected void onAddClick() {
         if (mCount < mMaxCount) {
             mCount++;
             onAddSuccessListener();
@@ -317,15 +423,17 @@ public class AnimShopBtn extends View {
     }
 
     //当 + 触发成功了
-    public void onAddSuccessListener() {
+    protected void onAddSuccessListener() {
         if (mCount == 1) {
+            cancelAllAnim();
             mAnimReduce.start();
         }
     }
 
-    public void onDelSuccessListener() {
+    protected void onDelSuccessListener() {
         if (mCount == 0) {
-            mAnimExpand.start();
+            cancelAllAnim();
+            mAnimDel.start();
         }
     }
 }
