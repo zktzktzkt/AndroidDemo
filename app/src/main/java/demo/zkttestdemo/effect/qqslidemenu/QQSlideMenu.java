@@ -145,13 +145,12 @@ public class QQSlideMenu extends HorizontalScrollView {
     public boolean onTouchEvent(MotionEvent ev) {
         //处理手指快速滑动 手势处理类使用 拦截
         if (mGestrueDetector.onTouchEvent(ev)) {
-            return false;
+            return true;
         }
 
         switch (ev.getAction()) {
             case MotionEvent.ACTION_UP:
                 Log.e("QQSlideMenu", "抬起");
-
                 int currentScrollX = getScrollX();
                 //向左滚动的距离超过了菜单的一半，就关闭
                 if (currentScrollX > mMenuWidth / 2) {
@@ -200,8 +199,8 @@ public class QQSlideMenu extends HorizontalScrollView {
             } else {
                 if (velocityX > 0) {
                     toggleMenu();
-                    return true;
                 }
+                return true;
             }
 
             return super.onFling(e1, e2, velocityX, velocityY);

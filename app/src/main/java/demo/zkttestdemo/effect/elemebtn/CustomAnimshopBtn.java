@@ -62,7 +62,7 @@ public class CustomAnimshopBtn extends AnimShopBtn {
         this.onNumChangeListener = onNumChangeListener;
     }
 
-    interface OnNumChangeListener {
+    public interface OnNumChangeListener {
         void onNumChanged(int count);
     }
 
