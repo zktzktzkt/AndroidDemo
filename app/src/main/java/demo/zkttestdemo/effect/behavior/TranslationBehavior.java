@@ -1,6 +1,7 @@
 package demo.zkttestdemo.effect.behavior;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewCompat;
@@ -19,19 +20,20 @@ public class TranslationBehavior extends FloatingActionButton.Behavior {
     //关注垂直滚动，而且向上的时候是出来，向下是隐藏
 
     @Override
-    public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, FloatingActionButton child, View directTargetChild, View target, int nestedScrollAxes) {
-        return nestedScrollAxes == ViewCompat.SCROLL_AXIS_VERTICAL; //判断是否是垂直
+    public boolean onStartNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull FloatingActionButton child, @NonNull View directTargetChild, @NonNull View target, int axes, int type) {
+        return axes == ViewCompat.SCROLL_AXIS_VERTICAL;
     }
 
     private boolean isOut = false;
 
     @Override
-    public void onNestedScroll(CoordinatorLayout coordinatorLayout, FloatingActionButton child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
-        super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed);
+    public void onNestedScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull FloatingActionButton child, @NonNull View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int type) {
+        super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, type);
         Log.e("TAG", "dyConsumed -> " + dyConsumed);
         if (dyConsumed > 0) {
+            //手指向上滑动，,加一个标志位，否则会出现延迟
             if (!isOut) {
-                //手指往上滑动,加一个标志位，已经往下走了.不加标志位的话会出现延迟往下走
+                //手指往上滑动
                 int translationY = ((CoordinatorLayout.LayoutParams) child.getLayoutParams()).bottomMargin + child.getMeasuredHeight();
                 child.animate().translationY(translationY).setDuration(500).start();
                 isOut = true;
@@ -44,7 +46,6 @@ public class TranslationBehavior extends FloatingActionButton.Behavior {
             }
         }
     }
-
 
     @Override
     public boolean onNestedPreFling(CoordinatorLayout coordinatorLayout, FloatingActionButton child, View target, float velocityX, float velocityY) {
