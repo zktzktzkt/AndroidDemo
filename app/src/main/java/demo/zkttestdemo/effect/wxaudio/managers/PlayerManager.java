@@ -8,7 +8,7 @@ import java.io.IOException;
 /**
  * Created by cooffee on 15/10/20.
  */
-public class MediaManager {
+public class PlayerManager {
 
     private static MediaPlayer mMediaPlayer;
 

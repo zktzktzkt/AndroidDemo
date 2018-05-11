@@ -59,10 +59,10 @@ public class DoodleView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        //存储历史轨迹。ACTION_UP之后，在缓存的bitmap上画历史轨迹，然后再画在canvas上
+        //1. 先画已经保存的路径
         canvas.drawBitmap(bufferBitmap, 0, 0, null);
 
-        //画当前的轨迹
+        //2. 再画当前的轨迹
         canvas.drawPath(path, paint);
     }
 
@@ -91,6 +91,7 @@ public class DoodleView extends View {
                 break;
 
             case MotionEvent.ACTION_UP:
+                //up的时候把路径存起来
                 bufferBitmapCanvas.drawPath(path, paint);
                 invalidate();
                 break;

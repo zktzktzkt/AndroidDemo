@@ -34,12 +34,13 @@ public class StatusBarUtil {
             view.setBackgroundColor(color);
             view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight(activity)));
 
+            //DecorView是FrameLayout
             ViewGroup decorView = (ViewGroup) activity.getWindow().getDecorView();
             decorView.addView(view);
-
             // 方式一
             ViewGroup contentView = activity.findViewById(android.R.id.content);
             contentView.setPadding(0, getStatusBarHeight(activity), 0, 0);
+
             // 方式二
             // View activityView = contentView.getChildAt(0);
             // activityView.setFitsSystemWindows(true);
@@ -59,7 +60,7 @@ public class StatusBarUtil {
             decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
             activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
-        // 4.4 ~ 5.0之间,采用一个技巧，首先弄成全屏，在状态栏的部分加一个布局
+        // 4.4 ~ 5.0之间
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }

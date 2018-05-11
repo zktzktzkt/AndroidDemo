@@ -18,7 +18,7 @@ import java.util.List;
 
 import demo.zkttestdemo.R;
 import demo.zkttestdemo.effect.wxaudio.bean.Recorder;
-import demo.zkttestdemo.effect.wxaudio.managers.MediaManager;
+import demo.zkttestdemo.effect.wxaudio.managers.PlayerManager;
 import demo.zkttestdemo.effect.wxaudio.views.AudioRecorderButton;
 
 
@@ -85,7 +85,7 @@ public class AudioActivity extends AppCompatActivity {
                 AnimationDrawable anim = (AnimationDrawable) mAnimView.getBackground();
                 anim.start();
                 // 播放音频
-                MediaManager.playSound(mDatas.get(position).getFilePath(), new MediaPlayer.OnCompletionListener() {
+                PlayerManager.playSound(mDatas.get(position).getFilePath(), new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mp) {
                         mAnimView.setBackgroundResource(R.drawable.adj);

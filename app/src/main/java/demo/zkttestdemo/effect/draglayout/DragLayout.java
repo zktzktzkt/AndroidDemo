@@ -69,9 +69,6 @@ public class DragLayout extends FrameLayout {
 
         @Override
         public boolean tryCaptureView(View child, int pointerId) {
-            Log.e("DragLayout", "ll_drag == child:" + (child == ll_drag) + "  ll_drag:" + ll_drag.toString()
-                    + "  child:" + child.toString()
-            );
             return child == ll_drag;
         }
 

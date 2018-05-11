@@ -82,6 +82,7 @@ public class QQSlideMenu_copy extends HorizontalScrollView {
         super.onScrollChanged(l, t, oldl, oldt);
         Log.e("l", l + " getScrollX : " + getScrollX());
         mMenuView.setTranslationX(l * 0.8f);
+        
         float scale = l * 1f / mMenuWidth;
         mShadowView.setAlpha(1 - scale);
     }

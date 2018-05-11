@@ -1,5 +1,6 @@
 package demo.zkttestdemo.effect.wxaudio.views;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
@@ -10,14 +11,14 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import demo.zkttestdemo.R;
-import demo.zkttestdemo.effect.wxaudio.managers.AudioManager;
+import demo.zkttestdemo.effect.wxaudio.managers.RecorderManager;
 import demo.zkttestdemo.effect.wxaudio.managers.DialogManager;
 
 
 /**
  * Created by cooffee on 15/10/19.
  */
-public class AudioRecorderButton extends AppCompatButton implements AudioManager.AudioStateListener {
+public class AudioRecorderButton extends AppCompatButton implements RecorderManager.AudioStateListener {
 
     private static final int DISTANCE_CANCEL = 50;
     private static final int STATE_NORMAL = 1;
@@ -28,7 +29,7 @@ public class AudioRecorderButton extends AppCompatButton implements AudioManager
 
     private DialogManager mDialogManager;
 
-    private AudioManager mAudioManager;
+    private RecorderManager mRecorderManager;
 
     private float mTime;
 
@@ -40,7 +41,7 @@ public class AudioRecorderButton extends AppCompatButton implements AudioManager
     /**
      * 是否触发longclick
      */
-    private boolean mReady;
+    private boolean mLongClickReady;
 
     public AudioRecorderButton(Context context) {
         this(context, null);
@@ -53,15 +54,15 @@ public class AudioRecorderButton extends AppCompatButton implements AudioManager
 
         // String dir = Environment.getExternalStorageDirectory() + "/imooc_recorder_audios";
         String dir = getContext().getExternalCacheDir() + "/imooc_recorder_audios";
-        mAudioManager = AudioManager.getInstance(dir);
-        mAudioManager.setOnAudioStateListner(this);
+        mRecorderManager = RecorderManager.getInstance(dir);
+        mRecorderManager.setOnAudioStateListner(this);
 
         setOnLongClickListener(new OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 Log.d("LONG", "onLongClick");
-                mReady = true;
-                mAudioManager.prepareAudio();
+                mLongClickReady = true;
+                mRecorderManager.prepareAudio();
                 return false;
             }
         });
@@ -104,7 +105,9 @@ public class AudioRecorderButton extends AppCompatButton implements AudioManager
     private static final int MSG_AUDIO_PREPARED = 0x110;
     private static final int MSG_VOICE_CHANGE = 0x111;
     private static final int MSG_DIALOG_DIMISS = 0x112;
-    private Handler mHandler = new Handler() {
+
+    @SuppressLint("HandlerLeak")
+    private  Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -119,7 +122,7 @@ public class AudioRecorderButton extends AppCompatButton implements AudioManager
                     break;
 
                 case MSG_VOICE_CHANGE:
-                    mDialogManager.updateVoiceLevel(mAudioManager.getVoiceLevel(7));
+                    mDialogManager.updateVoiceLevel(mRecorderManager.getVoiceLevel(7));
                     break;
 
                 case MSG_DIALOG_DIMISS:
@@ -130,6 +133,10 @@ public class AudioRecorderButton extends AppCompatButton implements AudioManager
         }
     };
 
+    /**
+     * 录音初始化完成
+     * {@link RecorderManager.AudioStateListener}
+     */
     @Override
     public void wellPrepared() {
         Log.d("LONG", "wellPrepared");
@@ -163,7 +170,7 @@ public class AudioRecorderButton extends AppCompatButton implements AudioManager
                  * 3. 录音时间小于预定的值，这个值我们设置为在onLongClick之前
                  */
                 // 未触发onLongClick
-                if (!mReady) {
+                if (!mLongClickReady) {
                     changeState(STATE_NORMAL);
                     reset();
                     return super.onTouchEvent(event);
@@ -173,7 +180,7 @@ public class AudioRecorderButton extends AppCompatButton implements AudioManager
                 if (!isRecording || mTime < 0.6f) {
                     mDialogManager.tooShort();
                     isRecording = false;
-                    mAudioManager.cancel();
+                    mRecorderManager.cancel();
                     // 延迟发送消息，让对话框停留1.3秒
                     mHandler.sendEmptyMessageDelayed(MSG_DIALOG_DIMISS, 1300);
                 }
@@ -181,16 +188,16 @@ public class AudioRecorderButton extends AppCompatButton implements AudioManager
                 // 正常录制结束
                 else if (STATE_RECORDING == mCurState) {
                     mDialogManager.dimissDialog();
-                    mAudioManager.release();
+                    mRecorderManager.release();
                     if (mListener != null) {
-                        mListener.onFinish(mTime, mAudioManager.getCurrentFilePath());
+                        mListener.onFinish(mTime, mRecorderManager.getCurrentFilePath());
                     }
                 }
 
                 //松开手指，取消发送
                 else if (STATE_WANT_TO_CANCEL == mCurState) {
                     mDialogManager.dimissDialog();
-                    mAudioManager.cancel();
+                    mRecorderManager.cancel();
                 }
 
                 changeState(STATE_NORMAL);
@@ -206,7 +213,7 @@ public class AudioRecorderButton extends AppCompatButton implements AudioManager
      */
     private void reset() {
         isRecording = false;
-        mReady = false;
+        mLongClickReady = false;
         mTime = 0;
         mCurState = STATE_NORMAL;
     }

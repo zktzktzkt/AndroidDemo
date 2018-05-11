@@ -16,6 +16,6 @@ public class ProgressArcActivity extends AppCompatActivity {
         setContentView(R.layout.activity_progress_arc);
 
         progress_arc = (ProgressArcView) findViewById(R.id.progress_arc);
-        progress_arc.setCurrentCount(200, 180);
+        progress_arc.setCurrentCount(200, 200);
     }
 }

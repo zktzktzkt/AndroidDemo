@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -15,6 +14,9 @@ import java.util.List;
 import demo.zkttestdemo.R;
 import demo.zkttestdemo.utils.DisplayUtil;
 
+/**
+ * viewpager一屏显示多页
+ */
 public class MultiPageActivity extends FragmentActivity {
 
     private ViewPager viewpager;
@@ -49,12 +51,12 @@ public class MultiPageActivity extends FragmentActivity {
         viewpager.setLayoutParams(layoutParams);
         viewpager.setPageMargin(DisplayUtil.dip2px(10, this));
 
-        ((ViewGroup) viewpager.getParent()).setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return viewpager.dispatchTouchEvent(event);
-            }
-        });
+//        ((ViewGroup) viewpager.getParent()).setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                return viewpager.dispatchTouchEvent(event);
+//            }
+//        });
 
         viewpager.setAdapter(new PagerAdapter() {
             @Override

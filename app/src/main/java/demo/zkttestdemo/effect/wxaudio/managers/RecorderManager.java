@@ -10,17 +10,17 @@ import java.util.UUID;
 /**
  * Created by cooffee on 15/10/19.
  */
-public class AudioManager {
+public class RecorderManager {
 
     private MediaRecorder mMediaRecorder;
     private String mDir;
     private String mCurrentFilePath;
 
-    private static AudioManager mInstance;
+    private static RecorderManager mInstance;
 
     private boolean isPrepared = false;
 
-    private AudioManager(String dir) {
+    private RecorderManager(String dir) {
         mDir = dir;
     }
 
@@ -41,11 +41,11 @@ public class AudioManager {
         mListener = listner;
     }
 
-    public static AudioManager getInstance(String dir) {
+    public static RecorderManager getInstance(String dir) {
         if (null == mInstance) {
-            synchronized (AudioManager.class) {
+            synchronized (RecorderManager.class) {
                 if (null == mInstance) {
-                    mInstance = new AudioManager(dir);
+                    mInstance = new RecorderManager(dir);
                 }
             }
         }
@@ -54,7 +54,7 @@ public class AudioManager {
 
     public void prepareAudio() {
 
-        Log.d("LONG", "preparedAudio");
+        Log.e("LONG", "preparedAudio");
         try {
             isPrepared = false;
             File dir = new File(mDir);
@@ -65,30 +65,31 @@ public class AudioManager {
             String fileName = generateFileName();
             File file = new File(dir, fileName);
 
-            Log.d("LONG", "the file name is " + fileName);
+            Log.e("LONG", "the file name is " + fileName);
 
             mCurrentFilePath = file.getAbsolutePath();
             mMediaRecorder = new MediaRecorder();
             // 设置输出文件
-            mMediaRecorder.setOutputFile(file.getAbsolutePath()); Log.d("LONG", "1");
+            mMediaRecorder.setOutputFile(file.getAbsolutePath()); Log.e("LONG", "1");
             // 设置MediaRecorder的音频源为麦克风
-            mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC); Log.d("LONG", "2");
+            mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC); Log.e("LONG", "2");
             // 设置音频格式 AMR_NB
-            mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.AMR_NB); Log.d("LONG", "3");
+            mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.AMR_NB); Log.e("LONG", "3");
             // 设置音频的编码为AMR
-            mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB); Log.d("LONG", "4");
+            mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB); Log.e("LONG", "4");
 
-            mMediaRecorder.prepare(); Log.d("LONG", "5");
-            mMediaRecorder.start(); Log.d("LONG", "6");
+            //开始录音
+            mMediaRecorder.prepare(); Log.e("LONG", "5");
+            mMediaRecorder.start(); Log.e("LONG", "6");
 
             // 准备结束
-            isPrepared = true; Log.d("LONG", "7");
+            isPrepared = true; Log.e("LONG", "7");
 
             if (mListener != null) {
-                Log.d("LONG", "AudioStateListener is not null");
+                Log.e("LONG", "AudioStateListener is not null");
                 mListener.wellPrepared();
             } else {
-                Log.d("LONG", "lisetner null");
+                Log.e("LONG", "lisetner null");
             }
         } catch (IOException e) {
             e.printStackTrace();
