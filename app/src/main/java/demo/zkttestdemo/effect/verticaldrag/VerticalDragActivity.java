@@ -13,6 +13,9 @@ import java.util.ArrayList;
 
 import demo.zkttestdemo.R;
 
+/**
+ * 仿汽车之家
+ */
 public class VerticalDragActivity extends AppCompatActivity {
 
     private ListView mListView;

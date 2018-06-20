@@ -43,33 +43,30 @@ public class RxJavaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rx_java);
 
         etEdit = findViewById(R.id.et_edit);
+
+        // RxJava每次发射尽量秉承着每次只发射单个元素，而不是元素的集合
+        // 比如每次return的是单个元素，而不是List，这就需要 flatMap 和 fromIterable 相结合
         RxTextView.textChanges(etEdit)
                 .debounce(500, TimeUnit.MILLISECONDS)
-                .flatMap(new Function<CharSequence, ObservableSource<List<String>>>() {
+                .flatMap(new Function<CharSequence, ObservableSource<String>>() {
                     @Override
-                    public ObservableSource<List<String>> apply(CharSequence charSequence) throws Exception {
+                    public ObservableSource<String> apply(CharSequence charSequence) throws Exception {
                         List<String> list = new ArrayList<>();
+                        list.add(String.valueOf(charSequence));
                         list.add("ab_c");
-                        return Observable.just(list);
+                        return Observable.fromIterable(list);
                     }
-                })
-                .flatMapIterable(new Function<List<String>, Iterable<String>>() {
-                    @Override
-                    public Iterable<String> apply(List<String> strings) throws Exception {
-                        return strings;
-                    }
-                })
-                .subscribe(new Consumer<String>() {
-                    @Override
-                    public void accept(String string) throws Exception {
-                        Log.e("rxjava", string);
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        Log.e("rxjava", "出错啦");
-                    }
-                });
+                }).subscribe(new Consumer<String>() {
+            @Override
+            public void accept(String string) throws Exception {
+                Log.e("rxjava", string);
+            }
+        }, new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+                Log.e("rxjava", "出错啦");
+            }
+        });
 
     }
 
@@ -185,13 +182,7 @@ public class RxJavaActivity extends AppCompatActivity {
         list.add(3);
         list.add(7);
         list.add(4);
-        Flowable.fromArray(list)
-                .flatMap(new Function<List<Integer>, Publisher<Integer>>() {
-                    @Override
-                    public Publisher<Integer> apply(@NonNull List<Integer> integers) throws Exception {
-                        return Flowable.fromIterable(integers);
-                    }
-                })
+        Flowable.fromIterable(list)
                 .take(2) //只取前两个
                 .subscribe(new Consumer<Integer>() {
                     @Override

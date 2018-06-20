@@ -62,7 +62,7 @@ public class FilterMenuView extends LinearLayout implements View.OnClickListener
         mMenuTabView.setOrientation(HORIZONTAL);
         addView(mMenuTabView);
 
-        // 1.2 创建FrameLayout存放 阴影（View） + 菜单内容布局（FrameLayout）
+        // 1.2 创建FrameLayout存放 阴影（View）+ 菜单内容布局（FrameLayout）
         mMenuMiddleView = new FrameLayout(mContext);
         mMenuMiddleView.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -77,7 +77,6 @@ public class FilterMenuView extends LinearLayout implements View.OnClickListener
         mMenuContainerView = new FrameLayout(mContext);
         mMenuContainerView.setBackgroundColor(Color.WHITE);
         mMenuMiddleView.addView(mMenuContainerView);
-
         //内容加进去
         addView(mMenuMiddleView);
     }
@@ -93,7 +92,7 @@ public class FilterMenuView extends LinearLayout implements View.OnClickListener
         layoutParams.height = mMenuContainerHeight;
         mMenuContainerView.setLayoutParams(layoutParams);
 
-        mMenuContainerView.setTranslationY(-mMenuContainerHeight);
+        mMenuContainerView.animate().translationY(-mMenuContainerHeight).setDuration(2000);
     }
 
 

@@ -1,4 +1,4 @@
-package demo.zkttestdemo.effect.kugou.parallax;
+package demo.zkttestdemo.effect.kugouguide.parallax;
 
 import android.content.Context;
 import android.os.Bundle;

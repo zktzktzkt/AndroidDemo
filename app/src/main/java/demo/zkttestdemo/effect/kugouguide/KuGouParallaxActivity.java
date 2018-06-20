@@ -1,4 +1,4 @@
-package demo.zkttestdemo.effect.kugou;
+package demo.zkttestdemo.effect.kugouguide;
 
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import demo.zkttestdemo.R;
-import demo.zkttestdemo.effect.kugou.parallax.ParallaxViewPager;
+import demo.zkttestdemo.effect.kugouguide.parallax.ParallaxViewPager;
 
+/**
+ * 酷狗新手引导页
+ */
 public class KuGouParallaxActivity extends AppCompatActivity {
     private ParallaxViewPager mParallaxVp;
 

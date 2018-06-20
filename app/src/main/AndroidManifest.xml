@@ -161,9 +161,11 @@
         <activity android:name=".effect.lockpattern.LockPatternActivity">
         </activity>
         <activity android:name=".effect.tempcontrol.TemControlActivity"/>
-        <activity android:name=".effect.kugou.KuGouParallaxActivity">
+        <activity android:name=".effect.kugouguide.KuGouParallaxActivity">
         </activity>
         <activity android:name=".effect.elemebtn.ElemeShopBtnActivity">
+        </activity>
+        <activity android:name=".effect.kugoumenu.KuGouMenuActivity">
         </activity>
     </application>
 

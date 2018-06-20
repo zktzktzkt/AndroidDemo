@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 
 /**
+ * 仿汽车之家垂直拖拽布局
  * Created by zkt on 2018-1-28.
  */
 
@@ -87,35 +88,33 @@ public class VerticalDrag_Copy extends FrameLayout {
         mBackViewHeight = getChildAt(0).getMeasuredHeight();
     }
 
+
     /**
-     * 因为一进来显示的是listview，所以默认先交给listview处理事件
-     * 技巧：根据现有固定界面做假设条件
+     * “拦截是一锤子买卖”，
+     * return true拦截了，接下来所有的事件由ViewGroup自己的onTouchEvent处理
+     * 默认是return false不拦截的
      */
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        // 1.菜单打开时
+        // 1.菜单打开时，拦截事件，由自己处理
         if (isOpen) {
             return true;
         }
 
-        //2. 菜单关闭时
+        //2. 菜单关闭时，不拦截，交由子View处理
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 downY = ev.getY();
                 mViewDragHelper.processTouchEvent(ev);
                 break;
             case MotionEvent.ACTION_MOVE:
+                //滑动到头的时候，拦截事件
                 if (ev.getY() - downY > 0 && !canChildScrollUp()) {
                     return true;
                 }
                 break;
         }
-        /*
-        * mViewDragHelper.shouldInterceptTouchEvent(ev)
-        * 当被拖拽的是captureView的时候，
-        * mDragState会被set成STATE_DRAGGING，导致shouldInterceptTouchEvent返回的是true，事件无法传递给子View
-        * 所以就得用super.onInterceptTouchEvent(ev)
-        * */
+
         return super.onInterceptTouchEvent(ev);
     }
 

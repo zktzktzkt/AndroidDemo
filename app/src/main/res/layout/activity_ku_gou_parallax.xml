@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<demo.zkttestdemo.effect.kugou.parallax.ParallaxViewPager
+<demo.zkttestdemo.effect.kugouguide.parallax.ParallaxViewPager
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/holo_orange_dark"
-    tools:context="demo.zkttestdemo.effect.kugou.KuGouParallaxActivity"/>
+    tools:context="demo.zkttestdemo.effect.kugouguide.KuGouParallaxActivity"/>
 
 
 

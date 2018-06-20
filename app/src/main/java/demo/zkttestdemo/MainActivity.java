@@ -57,7 +57,8 @@ import demo.zkttestdemo.effect.favor.FavorActivity;
 import demo.zkttestdemo.effect.filtermenu.FilterMenuActivity;
 import demo.zkttestdemo.effect.jssearchdemo.JSSearchActivity;
 import demo.zkttestdemo.effect.keyboardbug.KeyBoardBugActivity;
-import demo.zkttestdemo.effect.kugou.KuGouParallaxActivity;
+import demo.zkttestdemo.effect.kugouguide.KuGouParallaxActivity;
+import demo.zkttestdemo.effect.kugoumenu.KuGouMenuActivity;
 import demo.zkttestdemo.effect.lettersidebar.LetterSideBarActivity;
 import demo.zkttestdemo.effect.loadingdialog.EatBaoZiActivity;
 import demo.zkttestdemo.effect.loadingview.LoadingActivity;
@@ -200,10 +201,19 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_activityJump) {
             Intent intent = new Intent(this, OneActivity.class);
             startActivity(intent);
-        }else if (id == R.id.nav_kugou_parallax) {
+        }
+        //仿酷狗视差引导页
+        else if (id == R.id.nav_kugou_parallax) {
             Intent intent = new Intent(this, KuGouParallaxActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_wavRecord) {
+        }
+        //仿酷狗侧滑菜单
+        else if (id == R.id.nav_kugou_menu) {
+            Intent intent = new Intent(this, KuGouMenuActivity.class);
+            startActivity(intent);
+        }
+        // WAV格式录音
+        else if (id == R.id.nav_wavRecord) {
             Intent intent = new Intent(this, WAVActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_lockPattern) {
@@ -218,7 +228,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_behaviorDemo) {
             Intent intent = new Intent(this, BehaviorActivity.class);
             startActivity(intent);
-        }else if (id == R.id.nav_temp_control) {
+        } else if (id == R.id.nav_temp_control) {
             Intent intent = new Intent(this, TemControlActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_JSSearch) {
@@ -227,7 +237,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_statusBar) {
             Intent intent = new Intent(this, StatusBarActivity.class);
             startActivity(intent);
-        }else if (id == R.id.nav_elemeShopBtn) {
+        } else if (id == R.id.nav_elemeShopBtn) {
             Intent intent = new Intent(this, ElemeShopBtnActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_BDSearch) {
@@ -236,13 +246,13 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_58Loading) {
             Intent intent = new Intent(this, Loading58Activity.class);
             startActivity(intent);
-        }else if (id == R.id.nav_overFlying) {
+        } else if (id == R.id.nav_overFlying) {
             Intent intent = new Intent(this, OverFlyActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_lettesSideBar) {
             Intent intent = new Intent(this, LetterSideBarActivity.class);
             startActivity(intent);
-        }else if (id == R.id.nav_filterMenu) {
+        } else if (id == R.id.nav_filterMenu) {
             Intent intent = new Intent(this, FilterMenuActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_bottomSheet) {
@@ -260,7 +270,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_loadingView) {
             Intent intent = new Intent(this, LoadingActivity.class);
             startActivity(intent);
-        }  else if (id == R.id.nav_verticalDrag) {
+        }
+        //仿汽车之家
+        else if (id == R.id.nav_verticalDrag) {
             Intent intent = new Intent(this, VerticalDragActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_favor) {

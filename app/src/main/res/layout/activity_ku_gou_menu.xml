@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<demo.zkttestdemo.effect.kugoumenu.KuGouSlidingMenu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_sliding_menu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/home_menu_bg"
+    tools:context="demo.zkttestdemo.effect.kugoumenu.KuGouMenuActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <include layout="@layout/layout_home_menu"/>
+
+        <include layout="@layout/layout_home_content"/>
+    </LinearLayout>
+
+</demo.zkttestdemo.effect.kugoumenu.KuGouSlidingMenu>

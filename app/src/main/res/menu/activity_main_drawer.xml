@@ -124,6 +124,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="仿酷狗视差引导页"/>
             <item
+                android:id="@+id/nav_kugou_menu"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="仿酷狗侧滑菜单"/>
+            <item
                 android:id="@+id/nav_temp_control"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="温度旋转按钮"/>

@@ -96,4 +96,9 @@
     <attr name="translationYIn" format="float"/>
     <attr name="translationYOut" format="float"/>
 
+    <!--****************** 酷狗侧滑菜单 ***********************-->
+    <declare-styleable name="KGSlidingMenu">
+        <attr name="menuRightMargin" format="float"/>
+    </declare-styleable>
+
 </resources>

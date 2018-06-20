@@ -6,11 +6,11 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.support.v7.widget.AppCompatEditText;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
 
 import demo.zkttestdemo.R;
 
@@ -18,7 +18,7 @@ import demo.zkttestdemo.R;
  * Created by zkt on 2017/5/28.
  * 自定义输入框
  */
-public class PasswordEdittext extends EditText {
+public class PasswordEdittext extends AppCompatEditText {
     /**
      * 画笔
      */
@@ -110,7 +110,7 @@ public class PasswordEdittext extends EditText {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        //super.onDraw(canvas); 原来的editext效果不需要，所以不需要调super
+        //        super.onDraw(canvas); 原来的editext效果不需要，所以不需要调super
 
         //一个密码的宽度 = （总长度 - 两边边缘的线宽 - 中间分割线的宽度）/ 密码的数量
         mPasswordItemWidth = (getWidth() - 2 * mBgSize - (mPasswordNumber - 1) * mDivisionLineSize) / mPasswordNumber;
@@ -144,7 +144,10 @@ public class PasswordEdittext extends EditText {
         int passwordLength = text.length();
         //不断绘制密码
         for (int i = 0; i < passwordLength; i++) {
-            int cx = mBgSize + i * mPasswordItemWidth + i * mDivisionLineSize + mPasswordItemWidth / 2;
+            int cx = mBgSize
+                    + mPasswordItemWidth / 2
+                    + i * mPasswordItemWidth
+                    + i * mDivisionLineSize;
             int cy = getHeight() / 2;
             canvas.drawCircle(cx, cy, mPasswordRadius, mPaint);
         }

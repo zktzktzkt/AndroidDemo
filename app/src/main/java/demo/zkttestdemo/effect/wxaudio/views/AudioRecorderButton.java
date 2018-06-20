@@ -178,8 +178,8 @@ public class AudioRecorderButton extends AppCompatButton implements RecorderMana
 
                 // prepared没有完毕 或 录音时间过短
                 if (!isRecording || mTime < 0.6f) {
-                    mDialogManager.tooShort();
                     isRecording = false;
+                    mDialogManager.tooShort();
                     mRecorderManager.cancel();
                     // 延迟发送消息，让对话框停留1.3秒
                     mHandler.sendEmptyMessageDelayed(MSG_DIALOG_DIMISS, 1300);
