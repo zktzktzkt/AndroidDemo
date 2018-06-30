@@ -39,6 +39,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import demo.zkttestdemo.effect.activityjump.OneActivity;
 import demo.zkttestdemo.effect.alipayhome.AlipayHomeActivity;
@@ -105,6 +106,14 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ArrayList<String> singInfo_MD5 = KeystoreStr.getSingInfo(this, getPackageName(), KeystoreStr.MD5);
+        ArrayList<String> singInfo_SHA1 = KeystoreStr.getSingInfo(this, getPackageName(), KeystoreStr.SHA1);
+        ArrayList<String> singInfo_SHA256 = KeystoreStr.getSingInfo(this, getPackageName(), KeystoreStr.SHA256);
+        Log.e("singInfo_MD5", singInfo_MD5.get(0));
+        Log.e("singInfo_SHA1", singInfo_SHA1.get(0));
+        Log.e("singInfo_SHA256", singInfo_SHA256.get(0));
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -234,7 +243,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_JSSearch) {
             Intent intent = new Intent(this, JSSearchActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_statusBar) {
+        }
+        //沉浸式状态栏
+        else if (id == R.id.nav_statusBar) {
             Intent intent = new Intent(this, StatusBarActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_elemeShopBtn) {

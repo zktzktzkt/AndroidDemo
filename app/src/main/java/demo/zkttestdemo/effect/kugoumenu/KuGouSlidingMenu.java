@@ -25,7 +25,10 @@ public class KuGouSlidingMenu extends HorizontalScrollView {
     private View mMenuView;
     private int mMenuWidth;
     private View mContentView;
-    private boolean mMenuIsOpen;
+    private boolean mMenuIsOpen = false;
+    //是否拦截
+    private boolean mIsIntercept = false;
+    private GestureDetector mGestureDetector;
 
     public KuGouSlidingMenu(Context context) {
         this(context, null);
@@ -37,6 +40,7 @@ public class KuGouSlidingMenu extends HorizontalScrollView {
 
     public KuGouSlidingMenu(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        mGestureDetector = new GestureDetector(context, new GestureDetectorListener());
 
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.KGSlidingMenu);
         float rightMargin = array.getDimension(R.styleable.KGSlidingMenu_menuRightMargin, DensityUtil.dip2px(context, 50));
@@ -48,10 +52,28 @@ public class KuGouSlidingMenu extends HorizontalScrollView {
     private class GestureDetectorListener extends GestureDetector.SimpleOnGestureListener {
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            Log.e("TAG", "velocityX -> " + velocityX);// 向右快速滑动会是正的  +   向左快速滑动 是  -
             if (mMenuIsOpen) {
-
+                if (velocityX < 0) {
+                    toggleMenu();
+                    return true;
+                }
+            } else {
+                if (velocityX > 0) {
+                    toggleMenu();
+                    return true;
+                }
             }
-            return super.onFling(e1, e2, velocityX, velocityY);
+            return false;
+        }
+    }
+
+    // 切换菜单
+    private void toggleMenu() {
+        if (mMenuIsOpen) {
+            closeMenu();
+        } else {
+            openMenu();
         }
     }
 
@@ -81,7 +103,7 @@ public class KuGouSlidingMenu extends HorizontalScrollView {
         contentParams.width = ScreenUtils.getScreenWidth();
         mContentView.setLayoutParams(contentParams);
 
-        // 不能在这调用，因为这是在onLayout之前执行的，就算滚动到指定位置，程序执行onLayout的时候又会重新摆放
+        // 不能在这调用，因为这是在onLayout之前执行的，就算滚动到指定位置，程序执行onLayout的时候又会重新摆放成默认布局
         // scrollTo(mMenuWidth, 0);
     }
 
@@ -93,9 +115,32 @@ public class KuGouSlidingMenu extends HorizontalScrollView {
         scrollTo(mMenuWidth, 0);
     }
 
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        mIsIntercept = false;
+        // 菜单打开 + 手指点击了内容布局，拦截
+        if (mMenuIsOpen) {
+            if (ev.getX() > mMenuWidth) {
+                toggleMenu();
+                mIsIntercept = true;
+                return true;
+            }
+        }
+        return super.onInterceptTouchEvent(ev);
+    }
+
     //3. 手指抬起来二选一，要么关闭 要么打开
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
+        if (mIsIntercept) {
+            return true;
+        }
+
+        //处理快速滑动
+        if (mGestureDetector.onTouchEvent(ev)) {
+            return mGestureDetector.onTouchEvent(ev);
+        }
+
         if (ev.getAction() == MotionEvent.ACTION_UP) {
             //只需要管手指抬起，根据我们滚动的距离来判断
             int currentScrollX = getScrollX();
@@ -146,6 +191,7 @@ public class KuGouSlidingMenu extends HorizontalScrollView {
      */
     private void openMenu() {
         smoothScrollTo(0, 0);
+        mMenuIsOpen = true;
     }
 
     /**
@@ -153,5 +199,6 @@ public class KuGouSlidingMenu extends HorizontalScrollView {
      */
     private void closeMenu() {
         smoothScrollTo(mMenuWidth, 0);
+        mMenuIsOpen = false;
     }
 }
