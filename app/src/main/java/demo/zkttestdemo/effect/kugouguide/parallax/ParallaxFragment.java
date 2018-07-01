@@ -39,15 +39,20 @@ public class ParallaxFragment extends Fragment implements LayoutInflater.Factory
         // 1. AppCompatActivity 中实现了LayoutInflater.Factory2 接口
         // 2. 所以inflater.inflate()的时候，会回调的是AppCompatActivity的onCreateView
         // 3. 我想在Fragment中单独处理创建View的逻辑，所以AppCompatActivity中那一套创建View的逻辑，可以直接复制粘贴过来
-        // 4. 由于参数1的inflater是AppCompatActivity的，而创建View的逻辑又是自己实现的，所以需要clone一个LayoutInflater，不需要Activity的inflater
+        // 4. 为什么需要自己实现创建View的逻辑？因为我要自己解析View的属性。
+        // 5. 那能不能不用自己创建View，直接拿到这些属性呢？可以。
+        // 5.1 可以归可以，但最终的目的是为了把View创建出来，拿到了属性，不创建View，不能显示，有什么用呢。
 
         inflater = inflater.cloneInContext(getActivity());
-        // view创建的时候 解析属性
         LayoutInflaterCompat.setFactory2(inflater, this);
 
+        // 先判断Factory2是否为null；如果不为null，就会调用其中的onCreateView；如果onCreateView的return为null，就会调用自己的一套逻辑
         return inflater.inflate(layoutId, container, false);
     }
 
+    /**
+     * 自己创建View，自己解析属性
+     */
     @Override
     public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
         //1. 创建View
