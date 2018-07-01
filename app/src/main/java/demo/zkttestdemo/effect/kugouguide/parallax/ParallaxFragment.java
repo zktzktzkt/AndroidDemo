@@ -27,16 +27,21 @@ public class ParallaxFragment extends Fragment implements LayoutInflater.Factory
     private CompatViewInflater mCompatViewInflater;
     private static final boolean IS_PRE_LOLLIPOP = Build.VERSION.SDK_INT < 21;
 
+    /**
+     * @param inflater 这个是Activity的inflater，inflater.inflate的时候，调用的onCreateView是Activity中的onCreateView方法
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // 获取布局的Id
         int layoutId = getArguments().getInt(LAYOUT_ID_KEY);
 
+        // 0. “多态”的概念
         // 1. AppCompatActivity 中实现了LayoutInflater.Factory2 接口
-        // 2. 所以View被创建的时候，会回调的是AppCompatActivity的onCreateView
-        // 3. 我想在Fragment中单独处理创建View，所以需要AppCompatActivity中那一套创建View的逻辑，直接复制粘贴过来
+        // 2. 所以inflater.inflate()的时候，会回调的是AppCompatActivity的onCreateView
+        // 3. 我想在Fragment中单独处理创建View的逻辑，所以AppCompatActivity中那一套创建View的逻辑，可以直接复制粘贴过来
+        // 4. 由于参数1的inflater是AppCompatActivity的，而创建View的逻辑又是自己实现的，所以需要clone一个LayoutInflater，不需要Activity的inflater
 
-        inflater = inflater.cloneInContext(getActivity());//克隆一个出来
+        inflater = inflater.cloneInContext(getActivity());
         // view创建的时候 解析属性
         LayoutInflaterCompat.setFactory2(inflater, this);
 
@@ -50,6 +55,8 @@ public class ParallaxFragment extends Fragment implements LayoutInflater.Factory
 
         if (view != null) {
             Log.e("TAG", "我来创建View");
+            //解析所有的我们自己关注的属性
+
         }
         return view;
     }
