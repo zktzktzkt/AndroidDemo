@@ -1,7 +1,5 @@
 package demo.zkttestdemo.effect.kugouguide;
 
-import android.annotation.SuppressLint;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -25,11 +23,11 @@ public class KuGouParallaxActivity extends AppCompatActivity {
         mParallaxVp.setLayout(getSupportFragmentManager(),
                 new int[]{R.layout.fragment_page_first, R.layout.fragment_page_second, R.layout.fragment_page_third});
 
-        asyncTask.execute();
+//        asyncTask.execute();
 
     }
 
-    @SuppressLint("StaticFieldLeak")
+  /*  @SuppressLint("StaticFieldLeak")
     AsyncTask asyncTask = new AsyncTask<Void, Void, Void>() {
         @Override
         protected Void doInBackground(Void... voids) {
@@ -45,7 +43,7 @@ public class KuGouParallaxActivity extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
         }
-    };
+    };*/
 
 
 
