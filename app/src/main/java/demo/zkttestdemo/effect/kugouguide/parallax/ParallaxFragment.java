@@ -3,6 +3,7 @@ package demo.zkttestdemo.effect.kugouguide.parallax;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,13 +20,24 @@ import android.view.ViewParent;
 
 import org.xmlpull.v1.XmlPullParser;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import demo.zkttestdemo.R;
+
 /**
- * A simple {@link Fragment} subclass.
+ * 关键点：获取xml中的自定义属性，并设置给View
  */
 public class ParallaxFragment extends Fragment implements LayoutInflater.Factory2 {
     public static final String LAYOUT_ID_KEY = "LAYOUT_ID_KEY";
     private CompatViewInflater mCompatViewInflater;
     private static final boolean IS_PRE_LOLLIPOP = Build.VERSION.SDK_INT < 21;
+
+    //存放所有需要位移的View
+    private List<View> mParallaxViews = new ArrayList<>();
+
+    private int[] mParallaxAttrs = new int[]{R.attr.translationXIn,
+            R.attr.translationXOut, R.attr.translationYIn, R.attr.translationYOut};
 
     /**
      * @param inflater 这个是Activity的inflater，inflater.inflate的时候，调用的onCreateView是Activity中的onCreateView方法
@@ -40,8 +52,6 @@ public class ParallaxFragment extends Fragment implements LayoutInflater.Factory
         // 2. 所以inflater.inflate()的时候，会回调的是AppCompatActivity的onCreateView
         // 3. 我想在Fragment中单独处理创建View的逻辑，所以AppCompatActivity中那一套创建View的逻辑，可以直接复制粘贴过来
         // 4. 为什么需要自己实现创建View的逻辑？因为我要自己解析View的属性。
-        // 5. 那能不能不用自己创建View，直接拿到这些属性呢？可以。
-        // 5.1 可以归可以，但最终的目的是为了把View创建出来，拿到了属性，不创建View，不能显示，有什么用呢。
 
         inflater = inflater.cloneInContext(getActivity());
         LayoutInflaterCompat.setFactory2(inflater, this);
@@ -59,11 +69,29 @@ public class ParallaxFragment extends Fragment implements LayoutInflater.Factory
         View view = createView(parent, name, context, attrs);
 
         if (view != null) {
-            Log.e("TAG", "我来创建View");
+            Log.e("TAG", view.toString());
             //解析所有的我们自己关注的属性
-
+            analysisAttr(view, context, attrs);
         }
         return view;
+    }
+
+    private void analysisAttr(View view, Context context, AttributeSet attrs) {
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, mParallaxAttrs);
+
+        if (typedArray != null && typedArray.getIndexCount() != 0) {
+            ParallaxTag tag = new ParallaxTag();
+            tag.translationXIn = typedArray.getFloat(0, 0f);
+            tag.translationXOut = typedArray.getFloat(1, 0f);
+            tag.translationYIn = typedArray.getFloat(2, 0f);
+            tag.translationYOut = typedArray.getFloat(3, 0f);
+            view.setTag(R.id.parallax_tag, tag);
+
+            Log.e("TAG", tag.toString());
+            mParallaxViews.add(view);
+        }
+
+        typedArray.recycle();
     }
 
     @Override
@@ -116,5 +144,9 @@ public class ParallaxFragment extends Fragment implements LayoutInflater.Factory
             }
             parent = parent.getParent();
         }
+    }
+
+    public List<View> getParallaxViews() {
+        return mParallaxViews;
     }
 }

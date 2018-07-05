@@ -95,7 +95,7 @@ public class CameraCropUtil implements EasyPermissions.PermissionCallbacks {
     /**
      * 拍照
      */
-    public void camera(String authority) {
+    private void camera(String authority) {
         File file = new File(mFilepath, System.currentTimeMillis() + ".jpg");
         if (!file.getParentFile().exists()) {
             file.getParentFile().mkdirs();

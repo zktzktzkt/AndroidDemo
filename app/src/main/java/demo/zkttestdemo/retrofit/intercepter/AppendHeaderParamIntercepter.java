@@ -22,19 +22,18 @@ public class AppendHeaderParamIntercepter implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
 
-        Headers.Builder builder = request
-                .headers()
-                .newBuilder();
-
-        //统一追加Header参数
-        Headers newBuilder = builder.add("header1", "i am header 1")
+        // 获取“请求头”的Builder，统一追加Header参数，设置值
+        Headers.Builder builder = request.headers().newBuilder();
+        Headers newBuilder = builder
+                .add("header1", "i am header 1")
                 .add("token", "i am token")
                 .build();
 
+        // 获取“请求”的Builder，设置新的Header
         Request newRequest = request.newBuilder()
                 .headers(newBuilder)
                 .build();
 
-        return chain.proceed(newRequest);
+        return chain.proceed(newRequest); //执行请求
     }
 }

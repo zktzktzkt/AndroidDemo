@@ -141,7 +141,7 @@ public class CameraHelper {
      * @param fileName
      * @return 文件位置
      */
-    public static File getTmpSaveFilePath(Context context, String fileName) {
+    private static File getTmpSaveFilePath(Context context, String fileName) {
         //        File f = new File(context.getExternalCacheDir(), "/camera/tmp.jpg");
         File f = new File(context.getExternalCacheDir(), fileName + ".jpg");
         if (!f.getParentFile().exists()) {
@@ -157,7 +157,7 @@ public class CameraHelper {
      * @param authority fileProvider 名字
      * @return
      */
-    public static Uri getOutputPictureUri(Context context, String authority, String fileName) {
+    private static Uri getOutputPictureUri(Context context, String authority, String fileName) {
         //        String authority = context.getString(R.string.provider_authority);
         File saveFile = getTmpSaveFilePath(context, fileName);
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
@@ -179,7 +179,7 @@ public class CameraHelper {
      * @param authority fileProvider name
      * @return
      */
-    public static Uri getOutputPictureUri(Context context, File file, String authority) {
+    private static Uri getOutputPictureUri(Context context, File file, String authority) {
         //        String authority = context.getString(R.string.provider_authority);
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
             try {
@@ -199,7 +199,7 @@ public class CameraHelper {
      * @param data 相册返回结果
      * @return 相册的图片位置
      */
-    public static String readBitmapFromAlbumResult(Context context, Intent data) {
+    private static String readBitmapFromAlbumResult(Context context, Intent data) {
         Uri imageUri = data.getData();
         if (imageUri == null) {
             return null;
@@ -232,7 +232,7 @@ public class CameraHelper {
      *
      * @param data 相机返回结果
      */
-    public static String readBitmapFromCameraResult(Context context, Intent data, String fileName) {
+    private static String readBitmapFromCameraResult(Context context, Intent data, String fileName) {
         return String.valueOf(getTmpSaveFilePath(context, fileName).getPath());
     }
 
@@ -246,7 +246,7 @@ public class CameraHelper {
      * @param saveName          保存文件名（不带后缀） 缩略图最大宽高
      * @return 压缩裁剪后的图片位置
      */
-    public static String saveAccountImg(String originalImagePath, File destDir, String saveName) {
+    private static String saveAccountImg(String originalImagePath, File destDir, String saveName) {
         Bitmap.CompressFormat format = IMG_TEMP_FORMAT;
         int maxSize = MAX_IMAGE_SIZE;
         int thumbnailMaxSize = MAX_THUMB_IMAGE_SIZE;

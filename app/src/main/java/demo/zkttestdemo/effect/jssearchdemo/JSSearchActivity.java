@@ -7,6 +7,7 @@ import android.support.transition.AutoTransition;
 import android.support.transition.TransitionManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -41,6 +42,18 @@ public class JSSearchActivity extends AppCompatActivity {
         llSearch = (LinearLayout) findViewById(R.id.ll_search);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
+        llSearch.post(new Runnable() {
+            @Override
+            public void run() {
+                int[] screenInt = new int[2];
+                int[] windowInt = new int[2];
+                llSearch.getLocationOnScreen(screenInt);
+                llSearch.getLocationInWindow(windowInt);
+                Log.e("TAG", "screenInt y->" + screenInt[1] + " windowInt y->" + windowInt[1]);
+            }
+        });
+
+
         //设置全屏透明状态栏
         /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -57,6 +70,7 @@ public class JSSearchActivity extends AppCompatActivity {
 
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }*/
+
         // 大于5.0
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);

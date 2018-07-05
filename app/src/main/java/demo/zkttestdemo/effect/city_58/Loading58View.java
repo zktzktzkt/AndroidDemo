@@ -48,7 +48,6 @@ public class Loading58View extends LinearLayout {
         inflate(context, R.layout.ui_loading58, this);
         mShapeView = findViewById(R.id.shape_view);
         mShadowView = findViewById(R.id.shadow_view);
-
         startfallAnimator();
     }
 

@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:ignore="ContentDescription"
-    tools:background="@android:color/holo_blue_dark">
+    android:background="@android:color/holo_blue_dark">
 
     <ImageView
         android:id="@+id/ivThirdImage"
