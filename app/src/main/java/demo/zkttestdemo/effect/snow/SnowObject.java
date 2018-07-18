@@ -41,17 +41,15 @@ public class SnowObject {
         isSizeRandom = builder.isSizeRandom;
     }
 
-    public SnowObject(SnowObject snowObject, int viewWidth, int viewHeight) {
-        this.viewHeight = viewHeight;
-
+    public SnowObject(SnowObject snowObject, int width, int height) {
         bitmap = snowObject.bitmap;
         initSpeed = snowObject.initSpeed;
         isSpeedRandom = snowObject.isSpeedRandom;
         isSizeRandom = snowObject.isSizeRandom;
 
         random = new Random();
-        currX = random.nextInt(viewWidth);//随机物体的X坐标
-        currY = random.nextInt(viewHeight) - viewHeight;//随机物体的Y坐标，并让物体一开始从屏幕顶部下落
+        currX = random.nextInt(width);//随机物体的X坐标
+        currY = random.nextInt(height) - height;//随机物体的Y坐标，并让物体一开始从屏幕顶部下落
 
         randomSpeed(initSpeed);
         randomSize(bitmap);

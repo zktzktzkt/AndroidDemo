@@ -25,8 +25,8 @@ public class SnowView extends View {
     private static final int defaultHeight = 1000;//默认高度
     private static final int intervalTime = 5;//重绘间隔时间
 
-    private int viewWidth;
-    private int viewHeight;
+    private int mWidth;
+    private int mHeight;
     private List<SnowObject> snowObjects;
 
     public SnowView(Context context) {
@@ -60,8 +60,8 @@ public class SnowView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        viewWidth = w;
-        viewHeight = h;
+        mWidth = w;
+        mHeight = h;
     }
 
     @Override
@@ -87,6 +87,7 @@ public class SnowView extends View {
     /**
      * 向View添加下落物体对象
      *
+     * @param snowObject 存放“雪花”的宽高、下落速度
      * @param num
      */
     public void addFallObject(final SnowObject snowObject, final int num) {
@@ -95,7 +96,7 @@ public class SnowView extends View {
             public boolean onPreDraw() {
                 getViewTreeObserver().removeOnPreDrawListener(this);
                 for (int i = 0; i < num; i++) {
-                    SnowObject newFallObject = new SnowObject(snowObject, viewWidth, viewHeight);
+                    SnowObject newFallObject = new SnowObject(snowObject, mWidth, mHeight);
                     snowObjects.add(newFallObject);
                 }
                 invalidate();

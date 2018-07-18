@@ -92,8 +92,9 @@ public class LetterSideBar extends View {
             case MotionEvent.ACTION_MOVE:
                 //计算当前触摸的字母 获取当前的位置
                 float currMoveY = event.getY();
-                // currentMoveY / 单格的高度 = 位置
+                // 1. 求出单个item的高度 总高度/份数
                 int itemHeight = (getHeight() - getPaddingTop() - getPaddingBottom()) / letters.length;
+                // 2. 求出当前高度能被分成几份
                 int currPosition = (int) (currMoveY / itemHeight);
                 if (currPosition < 0) {
                     currPosition = 0;

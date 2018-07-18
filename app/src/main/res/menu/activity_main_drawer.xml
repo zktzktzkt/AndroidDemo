@@ -120,6 +120,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="三级Activity跳转"/>
             <item
+                android:id="@+id/nav_flow"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="流式布局"/>
+            <item
                 android:id="@+id/nav_kugou_parallax"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="仿酷狗视差引导页"/>

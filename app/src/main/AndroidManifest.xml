@@ -167,6 +167,8 @@
         </activity>
         <activity android:name=".effect.kugoumenu.KuGouMenuActivity">
         </activity>
+        <activity android:name=".effect.flowlayout.FlowActivity">
+        </activity>
     </application>
 
 </manifest>

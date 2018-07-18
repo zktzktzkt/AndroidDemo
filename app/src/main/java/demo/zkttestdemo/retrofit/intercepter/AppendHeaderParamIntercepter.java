@@ -23,8 +23,7 @@ public class AppendHeaderParamIntercepter implements Interceptor {
         Request request = chain.request();
 
         // 获取“请求头”的Builder，统一追加Header参数，设置值
-        Headers.Builder builder = request.headers().newBuilder();
-        Headers newBuilder = builder
+        Headers newBuilder = request.headers().newBuilder()
                 .add("header1", "i am header 1")
                 .add("token", "i am token")
                 .build();

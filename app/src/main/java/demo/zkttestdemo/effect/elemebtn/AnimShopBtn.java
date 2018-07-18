@@ -50,7 +50,7 @@ public class AnimShopBtn extends View {
 
     protected int mCount;
     protected int mMaxCount;
-    private float mCircleWidth;
+    private float mStrokeWidth;
     private float mCircleLineWidth;
 
     //减区域
@@ -229,7 +229,7 @@ public class AnimShopBtn extends View {
         mAddPaint.setStyle(Paint.Style.FILL);
 
         mRadius = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getContext().getResources().getDisplayMetrics());
-        mCircleWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, getContext().getResources().getDisplayMetrics());
+        mStrokeWidth = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 1, getContext().getResources().getDisplayMetrics());
         mGapBetweenCircle = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getContext().getResources().getDisplayMetrics());
 
         mCount = 1;
@@ -254,13 +254,13 @@ public class AnimShopBtn extends View {
 
         switch (wMode) {
             case MeasureSpec.AT_MOST:
-                wSize = (int) (getPaddingLeft() + mRadius * 2 + mGapBetweenCircle + mRadius * 2 + getPaddingRight() + mCircleWidth);
+                wSize = (int) (getPaddingLeft() + mRadius * 2 + mGapBetweenCircle + mRadius * 2 + getPaddingRight() + mStrokeWidth);
                 break;
         }
 
         switch (hMode) {
             case MeasureSpec.AT_MOST:
-                hSize = (int) (getPaddingTop() + mRadius * 2 + getPaddingBottom() + mCircleWidth * 2);
+                hSize = (int) (getPaddingTop() + mRadius * 2 + getPaddingBottom() + mStrokeWidth * 2);
                 break;
         }
 
@@ -272,8 +272,8 @@ public class AnimShopBtn extends View {
         super.onSizeChanged(w, h, oldw, oldh);
         mWidth = getWidth();
         mHeight = getHeight();
-        mLeft = (int) (getPaddingLeft() + mCircleWidth);
-        mTop = (int) (getPaddingTop() + mCircleWidth);
+        mLeft = (int) (getPaddingLeft() + mStrokeWidth);
+        mTop = (int) (getPaddingTop() + mStrokeWidth);
     }
 
     @Override
@@ -283,7 +283,7 @@ public class AnimShopBtn extends View {
             //背景
             mHintPaint.setColor(mHintBgColor);
             RectF rectF = new RectF(mLeft + (mWidth - mRadius * 2) * mAnimExpandHintFraction, mTop,
-                    mWidth - mCircleWidth, mHeight - mCircleWidth);
+                    mWidth - mStrokeWidth, mHeight - mStrokeWidth);
             canvas.drawRoundRect(rectF, mHintRoundValue, mHintRoundValue, mHintPaint);
 
             //绘制前景文字
@@ -311,7 +311,7 @@ public class AnimShopBtn extends View {
             int animRotateMax = 360;
             mDelPaint.setAlpha((int) (animAlphaMax * (1 - mAnimFraction)));
 
-            mDelPaint.setStrokeWidth(mCircleWidth);
+            mDelPaint.setStrokeWidth(mStrokeWidth);
             //考虑动画 硬件加速(API 19)
             mDelPath.reset();
             mDelPath.addCircle(animOffsetMax * mAnimFraction + mLeft + mRadius, mTop + mRadius, mRadius, Path.Direction.CW);
@@ -351,7 +351,7 @@ public class AnimShopBtn extends View {
             } else {
                 mAddPaint.setColor(Color.BLACK);
             }
-            mAddPaint.setStrokeWidth(mCircleWidth);
+            mAddPaint.setStrokeWidth(mStrokeWidth);
             //右边圆的左边界
             float left = mLeft + mRadius * 2 + mGapBetweenCircle;
             mAddPath.reset();

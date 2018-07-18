@@ -56,6 +56,7 @@ import demo.zkttestdemo.effect.draglayout.DragActivity;
 import demo.zkttestdemo.effect.elemebtn.ElemeShopBtnActivity;
 import demo.zkttestdemo.effect.favor.FavorActivity;
 import demo.zkttestdemo.effect.filtermenu.FilterMenuActivity;
+import demo.zkttestdemo.effect.flowlayout.FlowActivity;
 import demo.zkttestdemo.effect.jssearchdemo.JSSearchActivity;
 import demo.zkttestdemo.effect.keyboardbug.KeyBoardBugActivity;
 import demo.zkttestdemo.effect.kugouguide.KuGouParallaxActivity;
@@ -102,10 +103,71 @@ public class MainActivity extends AppCompatActivity
 
     private ImageView image_head;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /*new Thread(new Runnable() {
+
+            public String getRandomString(int length) {
+                //        String str = "0123456789";
+                String str = "abcdefghijklmnopqrstuvwxyz0123456789";
+                Random random = new Random();
+                StringBuffer sb = new StringBuffer();
+                for (int i = 0; i < length; i++) {
+                    //            int number = random.nextInt(36);
+                    int number = random.nextInt(str.length());
+                    sb.append(str.charAt(number));
+                }
+                return sb.toString();
+            }
+
+            @Override
+            public void run() {
+                try {
+                    // TODO: 2018-7-7
+                    List<String> list = new ArrayList<>();
+                    File file = new File(getExternalCacheDir(), "F码文件.txt");
+                    if (file.exists()) {
+                        boolean delete = file.delete();
+                        Log.e("测试F", "删除->" + delete);
+                    }
+                    File dir = new File(file.getParent());
+                    dir.mkdirs();
+                    file.createNewFile();
+
+                    // 001 手环 //002 体脂称
+                    StringBuilder sb = new StringBuilder();
+                    for (int i = 0; i < 10000; i++) {
+                        String randomString = getRandomString(16);
+                        if (!list.contains(randomString)) {
+                            list.add("001" + randomString);
+                        } else {
+                            i--;
+                        }
+                    }
+                    Log.e("测试F", "List长度->" + list.size());
+
+                    for (int i = 0; i < list.size(); i++) {
+                        sb.append(list.get(i));
+                        sb.append("\n");
+                    }
+                    Log.e("测试F", "添加完成");
+
+                    FileWriter writer = new FileWriter(file);
+                    writer.write(sb.toString());
+                    writer.flush();
+                    writer.close();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }).start();*/
+
 
         ArrayList<String> singInfo_MD5 = KeystoreStr.getSingInfo(this, getPackageName(), KeystoreStr.MD5);
         ArrayList<String> singInfo_SHA1 = KeystoreStr.getSingInfo(this, getPackageName(), KeystoreStr.SHA1);
@@ -209,6 +271,11 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_activityJump) {
             Intent intent = new Intent(this, OneActivity.class);
+            startActivity(intent);
+        }
+        // 流式布局
+        else if (id == R.id.nav_flow) {
+            Intent intent = new Intent(this, FlowActivity.class);
             startActivity(intent);
         }
         //仿酷狗视差引导页

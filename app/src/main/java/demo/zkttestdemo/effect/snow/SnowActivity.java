@@ -42,5 +42,5 @@ public class SnowActivity extends AppCompatActivity {
                 .build();
 
         snowView.addFallObject(snowObject, 50);//添加50个雪球对象
-    }
+    }   
 }
