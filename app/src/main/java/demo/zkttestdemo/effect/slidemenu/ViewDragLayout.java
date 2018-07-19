@@ -1,8 +1,6 @@
 package demo.zkttestdemo.effect.slidemenu;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.view.ViewCompat;
@@ -56,23 +54,15 @@ public class ViewDragLayout extends LinearLayout {
     private boolean isOpen = false;
 
     public ViewDragLayout(Context context) {
-        super(context);
-        init();
+        this(context, null);
     }
 
     public ViewDragLayout(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        init();
+        this(context, attrs, 0);
     }
 
     public ViewDragLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public ViewDragLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
         init();
     }
 
@@ -192,12 +182,6 @@ public class ViewDragLayout extends LinearLayout {
 
         /**
          * 位置改变时回调，常用于滑动时更改scale进行缩放等效果
-         *
-         * @param changedView
-         * @param left
-         * @param top
-         * @param dx          横向滑动的加速度
-         * @param dy
          */
         @Override
         public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {

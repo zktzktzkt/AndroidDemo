@@ -39,7 +39,6 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import demo.zkttestdemo.effect.activityjump.OneActivity;
 import demo.zkttestdemo.effect.alipayhome.AlipayHomeActivity;
@@ -169,12 +168,12 @@ public class MainActivity extends AppCompatActivity
         }).start();*/
 
 
-        ArrayList<String> singInfo_MD5 = KeystoreStr.getSingInfo(this, getPackageName(), KeystoreStr.MD5);
+        /*ArrayList<String> singInfo_MD5 = KeystoreStr.getSingInfo(this, getPackageName(), KeystoreStr.MD5);
         ArrayList<String> singInfo_SHA1 = KeystoreStr.getSingInfo(this, getPackageName(), KeystoreStr.SHA1);
         ArrayList<String> singInfo_SHA256 = KeystoreStr.getSingInfo(this, getPackageName(), KeystoreStr.SHA256);
         Log.e("singInfo_MD5", singInfo_MD5.get(0));
         Log.e("singInfo_SHA1", singInfo_SHA1.get(0));
-        Log.e("singInfo_SHA256", singInfo_SHA256.get(0));
+        Log.e("singInfo_SHA256", singInfo_SHA256.get(0));*/
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -353,7 +352,9 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_verticalDrag) {
             Intent intent = new Intent(this, VerticalDragActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_favor) {
+        }
+        //点赞飘心效果
+        else if (id == R.id.nav_favor) {
             Intent intent = new Intent(this, FavorActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_drag) {

@@ -142,7 +142,6 @@ public class FavorLayout extends RelativeLayout {
     private ValueAnimator getBezierValueAnimator(View target) {
         //初始化一个贝塞尔计算器- - 传入
         BezierEvaluator evaluator = new BezierEvaluator(getPointF(1), getPointF(2));
-
         //这里最好画个图 理解一下 传入了起点 和 终点
         ValueAnimator animator = ValueAnimator.ofObject(
                 evaluator,
