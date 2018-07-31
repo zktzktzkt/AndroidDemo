@@ -133,10 +133,10 @@ public class FilterMenuView extends LinearLayout implements View.OnClickListener
             @Override
             public void onClick(View v) {
                 if (mCurrentPosition == -1) {
-                    //没打开
+                    //如果没打开，那就打开
                     openMenu(tabView, position);
                 } else {
-                    //打开了
+                    //如果打开了，那就关闭
                     if (mCurrentPosition == position) {
                         closeMenu();
                     } else {

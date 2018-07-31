@@ -83,6 +83,7 @@ import demo.zkttestdemo.effect.verificationinput.VerificationInputActivity;
 import demo.zkttestdemo.effect.verticaldrag.VerticalDragActivity;
 import demo.zkttestdemo.effect.viewdraghelper.ViewDragHelperDemoActivity;
 import demo.zkttestdemo.effect.wavrecord.WAVActivity;
+import demo.zkttestdemo.effect.window.FloatWindowActivity;
 import demo.zkttestdemo.effect.wxaudio.AudioActivity;
 import demo.zkttestdemo.kotlin.KotlinActivity;
 import demo.zkttestdemo.realm.RealmActivity;
@@ -277,6 +278,11 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, FlowActivity.class);
             startActivity(intent);
         }
+        //Window悬浮窗
+        else if (id == R.id.nav_floatWindow) {
+            Intent intent = new Intent(this, FloatWindowActivity.class);
+            startActivity(intent);
+        }
         //仿酷狗视差引导页
         else if (id == R.id.nav_kugou_parallax) {
             Intent intent = new Intent(this, KuGouParallaxActivity.class);
@@ -314,10 +320,14 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_statusBar) {
             Intent intent = new Intent(this, StatusBarActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_elemeShopBtn) {
+        }
+        //仿饿了么购物车加减按钮
+        else if (id == R.id.nav_elemeShopBtn) {
             Intent intent = new Intent(this, ElemeShopBtnActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_BDSearch) {
+        }
+        //仿百度的搜索栏效果
+        else if (id == R.id.nav_BDSearch) {
             Intent intent = new Intent(this, BDSearchActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_58Loading) {
@@ -409,7 +419,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_coordinator) {
             Intent intent = new Intent(this, CoordinatorActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_stikyHead) {
+        }
+        // CoordinatorLayout实现悬浮头
+        else if (id == R.id.nav_stikyHead) {
             Intent intent = new Intent(this, StikyHeadActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_pay_keyboard) {

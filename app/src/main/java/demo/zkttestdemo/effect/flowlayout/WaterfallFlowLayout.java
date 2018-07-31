@@ -79,22 +79,21 @@ public class WaterfallFlowLayout extends ViewGroup {
     List<List<View>> lstLineView = new ArrayList<>();
 
 
+    boolean isFirstLoad = true;
+
     /**
-     * 根据子View的摆放规则来确定自己的宽高
+     * 1. 测量每个子View
+     * 2. 根据子View的摆放规则，不断累加宽高，最终得出ViewGroup自己的宽高
      */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+
         // 7.0之后会进行两次onMeasure一次onLayout
         lstLineView.clear();
         lstLineHegiht.clear();
 
-        //1.先完成自己的宽高测量
-        //需要得到mode进行判断我的显示模式是怎样的
-        //得到宽高模式
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-
-        //父容器宽高
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
 
@@ -106,18 +105,18 @@ public class WaterfallFlowLayout extends ViewGroup {
             measureWidth = widthSize;
             measureHeight = heightSize;
         } else {
-
             //当前行高宽
-            int iChildHegiht = 0;
+            int iChildHeight = 0;
             int iChildWidth = 0;
 
-            int iCurWidth = 0;
+            int iCurRowWidth = 0;
             int iCurHeight = 0;
 
             //数量
             int childCount = getChildCount();
 
             List<View> viewList = new ArrayList<>();
+
             for (int i = 0; i < childCount; i++) {
                 //确定两个事情，当前行高，当前行宽
                 View child = getChildAt(i);
@@ -129,27 +128,27 @@ public class WaterfallFlowLayout extends ViewGroup {
 
                 //获取实际宽高
                 iChildWidth = child.getMeasuredWidth() + layoutParams.rightMargin + layoutParams.leftMargin;
-                iChildHegiht = child.getMeasuredHeight() + layoutParams.topMargin + layoutParams.bottomMargin;
+                iChildHeight = child.getMeasuredHeight() + layoutParams.topMargin + layoutParams.bottomMargin;
 
                 //是否需要开始换行
-                if (iChildWidth + iCurWidth > widthSize) {
+                if (iChildWidth + iCurRowWidth > widthSize) {
                     //1.保存当前行信息
-                    measureWidth = Math.max(measureWidth, iCurWidth);
+                    measureWidth = Math.max(measureWidth, iCurRowWidth);
                     measureHeight += iCurHeight;
                     lstLineHegiht.add(iCurHeight);
                     lstLineView.add(viewList);
 
                     //更新的行信息
-                    iCurWidth = iChildWidth;
-                    iCurHeight = iChildHegiht;
+                    iCurRowWidth = iChildWidth;
+                    iCurHeight = iChildHeight;
 
                     viewList = new ArrayList<>();
                     viewList.add(child);
 
                     //2.记录新行信息
                 } else {
-                    iCurWidth += iChildWidth;
-                    iCurHeight = Math.max(iCurHeight, iChildHegiht);
+                    iCurRowWidth += iChildWidth;
+                    iCurHeight = Math.max(iCurHeight, iChildHeight);
 
                     viewList.add(child);
 
@@ -158,7 +157,7 @@ public class WaterfallFlowLayout extends ViewGroup {
                 //6.如果正好是最后一行需要换行
                 if (i == childCount - 1) {
                     //6.1.记录当前行的最大宽度，高度累加
-                    measureWidth = Math.max(measureWidth, iCurWidth);
+                    measureWidth = Math.max(measureWidth, iCurRowWidth);
                     measureHeight += iCurHeight;
 
                     //6.2.将当前行的viewList添加至总的mViewsList，将行高添加至总的行高List

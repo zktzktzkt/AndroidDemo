@@ -8,13 +8,6 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <!--  <android.support.v7.widget.Toolbar
-          android:layout_width="match_parent"
-          android:layout_height="?android:actionBarSize"
-          android:background="@color/black"
-          app:title="我是Toolbar"
-          app:titleTextColor="@color/white"/>-->
-
     <demo.zkttestdemo.effect.stikyhead.ScrollableCoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"

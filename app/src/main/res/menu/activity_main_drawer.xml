@@ -96,6 +96,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="沉浸式状态栏"/>
             <item
+                android:id="@+id/nav_floatWindow"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="Window悬浮窗"/>
+            <item
                 android:id="@+id/nav_elemeShopBtn"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="仿饿了么购物车按钮"/>

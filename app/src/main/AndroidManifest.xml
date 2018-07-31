@@ -5,21 +5,20 @@
     <!-- 相机权限 -->
     <uses-feature android:name="android.hardware.camera"/>
     <uses-feature android:name="android.hardware.camera.autofocus"/>
-
     <uses-permission android:name="android.permission.CAMERA"/>
     <!-- 存储卡权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <!-- 写文件的权限 -->
     <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-
     <!-- 录音的权限 -->
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-
     <!-- 判断是否有网络权限 -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!--悬浮窗权限-->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
         android:name=".MyApplication"
@@ -84,8 +83,6 @@
         <activity android:name=".effect.bottomsheet.ZHBottomSheetActivity">
         </activity>
         <activity android:name=".effect.bottomsheet.PopUpBottomSheetActivity">
-        </activity>
-        <activity android:name=".effect.ninegridview.NineGridViewActivity">
         </activity>
         <activity android:name=".effect.tablayout.MyTablayoutActivity">
         </activity>
@@ -169,6 +166,10 @@
         </activity>
         <activity android:name=".effect.flowlayout.FlowActivity">
         </activity>
+        <activity android:name=".effect.shader.ShaderActivity">
+        </activity>
+        <activity android:name=".effect.window.FloatWindowActivity">
+        </activity>
     </application>
 
-</manifest>
+ </manifest>

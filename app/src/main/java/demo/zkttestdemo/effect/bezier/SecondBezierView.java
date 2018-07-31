@@ -43,6 +43,7 @@ public class SecondBezierView extends View {
 
         mPaintFlag = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaintFlag.setStrokeWidth(3);
+        mPaintFlag.setStrokeCap(Paint.Cap.ROUND);
         mPaintFlag.setStyle(Paint.Style.STROKE);
 
         mPaintFlagTxt = new Paint(Paint.ANTI_ALIAS_FLAG);
