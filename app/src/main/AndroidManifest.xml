@@ -166,7 +166,7 @@
         </activity>
         <activity android:name=".effect.flowlayout.FlowActivity">
         </activity>
-        <activity android:name=".effect.shader.ShaderActivity">
+        <activity android:name=".effect.paint.PaintActivity">
         </activity>
         <activity android:name=".effect.window.FloatWindowActivity">
         </activity>

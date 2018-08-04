@@ -72,6 +72,7 @@ import demo.zkttestdemo.effect.paykeyboard.PayKeyboardActivity;
 import demo.zkttestdemo.effect.progress.ProgressArcActivity;
 import demo.zkttestdemo.effect.pullAndload.PtrAndloadActivity;
 import demo.zkttestdemo.effect.qqslidemenu.QQSlideMenuActivity;
+import demo.zkttestdemo.effect.paint.PaintActivity;
 import demo.zkttestdemo.effect.slidemenu.SlideMenuActivity;
 import demo.zkttestdemo.effect.snow.SnowActivity;
 import demo.zkttestdemo.effect.statusbar.StatusBarActivity;
@@ -356,6 +357,11 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_loadingView) {
             Intent intent = new Intent(this, LoadingActivity.class);
+            startActivity(intent);
+        }
+        //paint 实验
+        else if (id == R.id.nav_paint) {
+            Intent intent = new Intent(this, PaintActivity.class);
             startActivity(intent);
         }
         //仿汽车之家

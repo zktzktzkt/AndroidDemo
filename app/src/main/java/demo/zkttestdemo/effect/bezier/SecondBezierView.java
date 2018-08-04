@@ -57,14 +57,15 @@ public class SecondBezierView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+        //起点
         mStartPointX = w / 4;
-        mStartPointY = h / 2 - 200;
-
+        mStartPointY = h / 2;
+        //终点
         mEndPointX = w * 3 / 4;
-        mEndPointY = h / 2 - 200;
-
+        mEndPointY = h / 2;
+        //控制点
         mFlagPointX = w / 2;
-        mFlagPointY = h / 2 - 300;
+        mFlagPointY = h / 2 - 200;
 
         mPath = new Path();
     }

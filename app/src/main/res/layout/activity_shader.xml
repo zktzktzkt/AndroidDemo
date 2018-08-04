@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="demo.zkttestdemo.effect.shader.ShaderActivity">
+    android:background="@color/black"
+    tools:context="demo.zkttestdemo.effect.paint.PaintActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <demo.zkttestdemo.effect.paint.LinearGradientTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="欢迎欢迎 热烈欢迎"
+        android:textColor="#333"
+        android:textSize="18sp"/>
+</LinearLayout>

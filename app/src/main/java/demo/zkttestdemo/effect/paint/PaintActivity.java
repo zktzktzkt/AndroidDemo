@@ -1,11 +1,11 @@
-package demo.zkttestdemo.effect.shader;
+package demo.zkttestdemo.effect.paint;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import demo.zkttestdemo.R;
 
-public class ShaderActivity extends AppCompatActivity {
+public class PaintActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

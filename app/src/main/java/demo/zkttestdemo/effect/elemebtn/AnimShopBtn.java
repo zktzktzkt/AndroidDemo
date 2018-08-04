@@ -302,6 +302,7 @@ public class AnimShopBtn extends View {
             } else {
                 mDelPaint.setColor(Color.GREEN);
             }
+
             //动画的基准值 动画：减 0~1, 加 1~0
             //动画位移的Max
             float animOffsetMax = mRadius * 2 + mGapBetweenCircle;
@@ -310,7 +311,6 @@ public class AnimShopBtn extends View {
             //旋转
             int animRotateMax = 360;
             mDelPaint.setAlpha((int) (animAlphaMax * (1 - mAnimFraction)));
-
             mDelPaint.setStrokeWidth(mStrokeWidth);
             //考虑动画 硬件加速(API 19)
             mDelPath.reset();
