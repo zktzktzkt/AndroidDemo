@@ -66,7 +66,7 @@ public class StatusBarUtil {
         }
     }
 
-    private static int getStatusBarHeight(Activity activity) {
+    public static int getStatusBarHeight(Activity activity) {
         //插件式换肤，怎么获取资源的，先获取资源id，根据id获取资源
         Resources resources = activity.getResources();
         int statusBarHeightId = resources.getIdentifier("status_bar_height", "dimen", "android");

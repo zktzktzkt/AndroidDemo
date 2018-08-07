@@ -8,6 +8,7 @@ import android.util.DisplayMetrics;
 import android.widget.ImageView;
 
 import demo.zkttestdemo.R;
+import demo.zkttestdemo.effect.statusbar.StatusBarUtil;
 import demo.zkttestdemo.utils.BitmapCompressor;
 import demo.zkttestdemo.utils.DensityUtil;
 
@@ -20,9 +21,12 @@ public class AlphaToolbarActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alpha_toolbar);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        ImageView image_sky = (ImageView) findViewById(R.id.image_sky);
-        AlphaToolbarScrollView alphaScroll = (AlphaToolbarScrollView) findViewById(R.id.alphaScroll);
+
+        StatusBarUtil.setActivityTranslucent(this);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        ImageView image_sky = findViewById(R.id.image_sky);
+        AlphaToolbarScrollView alphaScroll = findViewById(R.id.alphaScroll);
 
         DisplayMetrics dm = getResources().getDisplayMetrics();
         int w_screen = dm.widthPixels;
@@ -30,6 +34,6 @@ public class AlphaToolbarActivity extends Activity {
         image_sky.setImageBitmap(bitmap);
         toolbar.getBackground().setAlpha(0);
 
-        alphaScroll.setTitleAndHead(toolbar, image_sky);
+        alphaScroll.setTitleAndHead(toolbar, image_sky, true);
     }
 }

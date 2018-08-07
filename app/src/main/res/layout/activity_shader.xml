@@ -5,13 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
     tools:context="demo.zkttestdemo.effect.paint.PaintActivity">
 
-    <demo.zkttestdemo.effect.paint.LinearGradientTextView
+    <demo.zkttestdemo.effect.paint.RadarGradientView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="欢迎欢迎 热烈欢迎"
-        android:textColor="#333"
-        android:textSize="18sp"/>
+        android:layout_height="match_parent"
+        />
 </LinearLayout>

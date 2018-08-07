@@ -452,7 +452,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_pullAndLoad) {
             Intent intent = new Intent(this, PtrAndloadActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_alphaToolbar) {
+        }
+        // 渐变Toolbar
+        else if (id == R.id.nav_alphaToolbar) {
             Intent intent = new Intent(this, AlphaToolbarActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_transition) {

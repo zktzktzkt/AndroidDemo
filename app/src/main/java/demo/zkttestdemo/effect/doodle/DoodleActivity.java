@@ -7,6 +7,9 @@ import android.widget.TextView;
 
 import demo.zkttestdemo.R;
 
+/**
+ * 涂鸦板、签名板
+ */
 public class DoodleActivity extends AppCompatActivity {
 
     private TextView tv_path;

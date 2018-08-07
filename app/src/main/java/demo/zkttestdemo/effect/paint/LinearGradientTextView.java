@@ -24,6 +24,8 @@ public class LinearGradientTextView extends AppCompatTextView {
     private int mTranslate;
     private LinearGradient mLinearGradient;
     private Matrix mMatrix;
+    int curRow = 0;
+    private int row;
 
     public LinearGradientTextView(Context context) {
         super(context);
@@ -52,6 +54,12 @@ public class LinearGradientTextView extends AppCompatTextView {
         mPaint = getPaint();
         String text = getText().toString();
         float textWidth = mPaint.measureText(text);
+        Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
+        float height = fontMetrics.ascent + fontMetrics.descent;
+        float textSize = getTextSize();
+        //行数
+        row = (int) (height / textSize);
+
         //三个文字的宽度
         int gradientLenth = (int) (textWidth / text.length() * 3);
 
@@ -74,7 +82,7 @@ public class LinearGradientTextView extends AppCompatTextView {
         }
 
         mMatrix = new Matrix();
-        mMatrix.setTranslate(mTranslate, 0);
+        mMatrix.postTranslate(mTranslate, 0);
         mLinearGradient.setLocalMatrix(mMatrix);
 
         postInvalidateDelayed(50);
