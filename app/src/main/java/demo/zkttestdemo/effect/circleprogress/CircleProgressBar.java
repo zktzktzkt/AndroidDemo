@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.annotation.Nullable;
@@ -29,6 +30,10 @@ public class CircleProgressBar extends View {
     private String centerText = "0%";//中心填充文字
     private Paint fontPaint = null;
     private Paint.Style progress_style = Paint.Style.STROKE;//填充式还是环形式
+    private Matrix matrix;
+    private Paint mPointPaint;
+    private int mHeight;
+    private int mWidth;
 
 
     public CircleProgressBar(Context context) {
@@ -68,6 +73,11 @@ public class CircleProgressBar extends View {
         fontPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         fontPaint.setTextSize(textSize);
         fontPaint.setColor(textColor);
+
+        mPointPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mPointPaint.setStrokeWidth(10);
+        mPointPaint.setColor(Color.BLACK);
+        mPointPaint.setStrokeCap(Paint.Cap.ROUND);
     }
 
     @Override
@@ -81,6 +91,8 @@ public class CircleProgressBar extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         Log.e("CircleProgressBar", "onSizeChanged");
+        mWidth = w;
+        mHeight = h;
         if (w > h || h > w) {
             int min = Math.min(w, h);
             rectF = new RectF(strokeWidth, strokeWidth,
@@ -90,6 +102,9 @@ public class CircleProgressBar extends View {
             rectF = new RectF(strokeWidth, strokeWidth,
                     w - strokeWidth, h - strokeWidth);
         }
+
+        matrix = new Matrix();
+        matrix.postRotate(6, mWidth / 2, mHeight / 2);
     }
 
     Paint.FontMetrics fontMetrics = null;
@@ -97,9 +112,11 @@ public class CircleProgressBar extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
         mPaint.setColor(normalColor);
         if (progress < 360) {
-            canvas.drawArc(rectF, 270 + progress, 360 - progress, progress_style == Paint.Style.FILL, mPaint);
+            canvas.drawArc(rectF, 270 + progress, 360 - progress,
+                    progress_style == Paint.Style.FILL, mPaint);
         }
 
         mPaint.setColor(progressColor);
@@ -115,6 +132,14 @@ public class CircleProgressBar extends View {
         } else {
             canvas.drawText(centerText, getMeasuredWidth() / 2 - textWidth / 2, getMeasuredHeight() / 2 - textHeight / 2, fontPaint);
         }
+
+        // TODO: 2018-8-9 画点
+        canvas.save();
+        for (int i = 0; i < 60; i++) {
+            canvas.concat(matrix);
+            canvas.drawPoint(mWidth / 2, 10, mPointPaint);
+        }
+        canvas.restore();
     }
 
     /**

@@ -101,4 +101,13 @@
         <attr name="menuRightMargin" format="float"/>
     </declare-styleable>
 
+    <!--******************** 运动进度条 ********************************-->
+    <declare-styleable name="SportProgressView">
+        <attr name="circleColor" format="color"/>
+        <attr name="progressColor" format="color"/>
+        <attr name="unSelectPointColor" format="color"/>
+        <attr name="selectPointColor" format="color"/>
+        <attr name="percentTextSize" format="dimension"/>
+    </declare-styleable>
+
 </resources>

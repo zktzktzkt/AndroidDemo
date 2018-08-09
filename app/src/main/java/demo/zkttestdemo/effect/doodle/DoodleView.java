@@ -132,4 +132,6 @@ public class DoodleView extends View {
         bufferBitmapCanvas.drawColor(Color.WHITE); //默认是透明的（看起来是黑色）
         invalidate();
     }
+
+
 }

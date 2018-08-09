@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_light"
+    android:orientation="vertical"
+    tools:context="demo.zkttestdemo.effect.sportprogress.SportProgressActivity">
+
+    <demo.zkttestdemo.effect.sportprogress.SportProgressView
+        android:id="@+id/sport_view"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:circleColor="@android:color/darker_gray"
+        app:percentTextSize="35dp"
+        app:progressColor="@android:color/white"
+        app:selectPointColor="@android:color/white"
+        app:unSelectPointColor="@android:color/darker_gray"/>
+
+    <EditText
+        android:id="@+id/et_step"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="目标步数"
+        android:inputType="number"
+        android:text="0"
+        android:textColor="@android:color/white"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        />
+
+    <EditText
+        android:id="@+id/et_currentStep"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="当前步数"
+        android:inputType="number"
+        android:text="0"
+        android:textColor="@android:color/white"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="setData"
+        android:text="设置"
+        />
+
+</LinearLayout>

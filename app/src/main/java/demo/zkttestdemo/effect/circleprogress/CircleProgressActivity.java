@@ -9,6 +9,9 @@ import java.util.TimerTask;
 
 import demo.zkttestdemo.R;
 
+/**
+ * 圆形进度progress按钮
+ */
 public class CircleProgressActivity extends AppCompatActivity {
     int progress = 0;
     private CircleProgressBar progressBar;

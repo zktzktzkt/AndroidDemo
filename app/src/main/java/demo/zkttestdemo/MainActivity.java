@@ -391,7 +391,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_myIndicator) {
             Intent intent = new Intent(this, MyTablayoutActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_circleProgress) {
+        }
+        //圆形进度progress按钮
+        else if (id == R.id.nav_circleProgress) {
             Intent intent = new Intent(this, CircleProgressActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_slideMenu) {
