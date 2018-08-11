@@ -13,6 +13,7 @@ import android.util.TypedValue;
 import android.view.View;
 
 import demo.zkttestdemo.R;
+import io.reactivex.annotations.NonNull;
 
 /**
  * Created by zkt on 2018-8-9.
@@ -26,7 +27,6 @@ public class SportProgressView extends View {
     private Paint mCirclePaint;
     private Paint mArcPaint;
 
-    private int mCircleWidth = dp2px(3);
     private Paint mTxtPaint;
     private Bitmap icon_sport;
     private Paint mBitmapPaint;
@@ -165,7 +165,7 @@ public class SportProgressView extends View {
      * @param currentStep 当前步数
      * @param targetStep  目标步数
      */
-    public void setCurrentAndTarget(int currentStep, int targetStep) {
+    public void setCurrentAndTarget(@NonNull int currentStep, @NonNull int targetStep) {
         this.mCurrentStep = currentStep;
         this.mTargetStep = targetStep;
         invalidate();

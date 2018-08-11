@@ -7,6 +7,9 @@ import android.widget.EditText;
 
 import demo.zkttestdemo.R;
 
+/**
+ * 运动步数progress
+ */
 public class SportProgressActivity extends AppCompatActivity {
 
     private SportProgressView sportView;
@@ -19,7 +22,6 @@ public class SportProgressActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sport_progress);
 
         sportView = findViewById(R.id.sport_view);
-
         etStep = findViewById(R.id.et_step);
         et_currentStep = findViewById(R.id.et_currentStep);
     }

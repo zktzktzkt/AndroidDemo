@@ -253,6 +253,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="自定义tablayout"/>
             <item
+                android:id="@+id/nav_sportProgress"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="运动步数progress"/>
+            <item
                 android:id="@+id/nav_circleProgress"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="圆形进度progress按钮"/>

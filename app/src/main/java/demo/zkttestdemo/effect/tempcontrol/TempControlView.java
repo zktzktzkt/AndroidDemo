@@ -152,8 +152,10 @@ public class TempControlView extends View {
      */
     private void drawScale(Canvas canvas) {
         canvas.save();
+        //坐标系移到View的中间
         canvas.translate(getWidth() / 2, getHeight() / 2);
-        // 逆时针旋转135-2度
+
+        //画蓝色未选中的背景刻度，分为angleRate * (maxTemp - minTemp)个竖线
         canvas.rotate(-133);
         dialPaint.setColor(Color.parseColor("#3CB7EA"));
         for (int i = 0; i < angleRate * (maxTemp - minTemp); i++) {
@@ -161,12 +163,14 @@ public class TempControlView extends View {
             canvas.rotate(angleOne);
         }
 
+        //画黄色选中的刻度
         canvas.rotate(90);
         dialPaint.setColor(Color.parseColor("#E37364"));
-        for (int i = 0; i < (temperature - minTemp) * angleRate; i++) {
+        for (int i = 0; i < angleRate * (temperature - minTemp); i++) {
             canvas.drawLine(0, -dialRadius, 0, -dialRadius + scaleHeight, dialPaint);
             canvas.rotate(angleOne);
         }
+
         canvas.restore();
     }
 
@@ -192,7 +196,7 @@ public class TempControlView extends View {
     private void drawText(Canvas canvas) {
         canvas.save();
 
-        // 绘制标题
+        // 绘制标题“最高温度设置”
         float titleWidth = titlePaint.measureText(title);
         canvas.drawText(title, (width - titleWidth) / 2, dialRadius * 2 + dp2px(15), titlePaint);
 
@@ -324,23 +328,35 @@ public class TempControlView extends View {
 
         if (x != 0) {
             float tan = Math.abs(y / x);
+            //在右半区域
             if (x > 0) {
+                //右下
                 if (y >= 0) {
                     radian = Math.atan(tan);
-                } else {
+                }
+                //右上
+                else {
                     radian = 2 * Math.PI - Math.atan(tan);
                 }
-            } else {
+            }
+            //在左半区域
+            else {
+                //左下
                 if (y >= 0) {
                     radian = Math.PI - Math.atan(tan);
-                } else {
+                }
+                //左上
+                else {
                     radian = Math.PI + Math.atan(tan);
                 }
             }
         } else {
+            //正下
             if (y > 0) {
                 radian = Math.PI / 2;
-            } else {
+            }
+            //正上
+            else {
                 radian = -Math.PI / 2;
             }
         }

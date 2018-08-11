@@ -13,11 +13,11 @@
         android:id="@+id/sport_view"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        app:circleColor="@android:color/darker_gray"
+        app:circleColor="#3fffffff"
         app:percentTextSize="35dp"
         app:progressColor="@android:color/white"
         app:selectPointColor="@android:color/white"
-        app:unSelectPointColor="@android:color/darker_gray"/>
+        app:unSelectPointColor="#3fffffff"/>
 
     <EditText
         android:id="@+id/et_step"
@@ -26,7 +26,6 @@
         android:layout_marginTop="20dp"
         android:hint="目标步数"
         android:inputType="number"
-        android:text="0"
         android:textColor="@android:color/white"
         android:textSize="18dp"
         android:textStyle="bold"
@@ -39,7 +38,6 @@
         android:layout_marginTop="20dp"
         android:hint="当前步数"
         android:inputType="number"
-        android:text="0"
         android:textColor="@android:color/white"
         android:textSize="18dp"
         android:textStyle="bold"

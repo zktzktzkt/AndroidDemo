@@ -7,9 +7,7 @@ import android.widget.Toast;
 import demo.zkttestdemo.R;
 
 /**
- * 主页
- * Created by yangle on 2016/11/19.
- * <p>
+ * 温度旋转刻度
  * Website：http://www.yangle.tech
  * GitHub：https://github.com/alidili
  * CSDN：http://blog.csdn.net/kong_gu_you_lan
@@ -25,10 +23,10 @@ public class TemControlActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_temp_control);
 
-        tempControl = (TempControlView) findViewById(R.id.temp_control);
+        tempControl = findViewById(R.id.temp_control);
         // 设置三格代表温度1度
         tempControl.setAngleRate(3);
-        tempControl.setTemp(16, 37, 16);
+        tempControl.setTemp(10, 20, 0);
 
         tempControl.setOnTempChangeListener(new TempControlView.OnTempChangeListener() {
             @Override

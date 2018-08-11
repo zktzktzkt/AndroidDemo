@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -28,6 +29,7 @@ public class CountdownProgress extends View {
     private int width = 500;
     private int progress = 0;
     private ValueAnimator animator;
+    private Paint paint;
 
     public CountdownProgress(Context context) {
         this(context, null);
@@ -56,6 +58,10 @@ public class CountdownProgress extends View {
         strokePaint.setColor(strokeColor);
         strokePaint.setStyle(Paint.Style.STROKE);
         strokePaint.setStrokeWidth(strokeSize);
+
+        paint = new Paint();
+        paint.setStyle(Paint.Style.FILL);
+        paint.setColor(Color.BLUE);
     }
 
     @Override
@@ -64,6 +70,8 @@ public class CountdownProgress extends View {
         setMeasuredDimension(resolveSize(width, widthMeasureSpec), resolveSize(width, widthMeasureSpec));
     }
 
+    Rect rect = new Rect(0, 0, 200, 200);
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -71,6 +79,10 @@ public class CountdownProgress extends View {
         canvas.drawCircle(width / 2, width / 2, width / 2 - strokeSize * 1.5f, circlePaint);
         canvas.drawArc(strokeSize, strokeSize, width - strokeSize, width - strokeSize,
                 -90, progress, false, strokePaint);
+
+        canvas.translate(width / 2, width / 2);
+        canvas.rotate(45);
+        canvas.drawRect(rect, paint);
     }
 
     public void startCountdown(long duration) {
