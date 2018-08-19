@@ -3,13 +3,11 @@ package demo.zkttestdemo.effect.jssearchdemo;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.transition.AutoTransition;
 import android.support.transition.TransitionManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -126,7 +124,7 @@ public class JSSearchActivity extends AppCompatActivity {
         LayoutParams.setMargins(dip2px(10), dip2px(10), dip2px(10), dip2px(10));
         llSearch.setLayoutParams(LayoutParams);
         //开始动画
-        beginDelayedTransition(llSearch);
+        TransitionManager.beginDelayedTransition(llSearch);
     }
 
 
@@ -138,17 +136,9 @@ public class JSSearchActivity extends AppCompatActivity {
         layoutParams.setMargins(dip2px(10), dip2px(10), dip2px(10), dip2px(10));
         llSearch.setLayoutParams(layoutParams);
         //开始动画
-        beginDelayedTransition(llSearch);
+        TransitionManager.beginDelayedTransition(llSearch);
     }
 
-    /**
-     * 开始动画
-     */
-    private void beginDelayedTransition(ViewGroup view) {
-        AutoTransition autoTransition = new AutoTransition();
-        autoTransition.setDuration(300);
-        TransitionManager.beginDelayedTransition(view, autoTransition);
-    }
 
     private int dip2px(float dpVale) {
         final float scale = getResources().getDisplayMetrics().density;

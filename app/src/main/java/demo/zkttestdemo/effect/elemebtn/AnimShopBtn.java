@@ -291,6 +291,9 @@ public class AnimShopBtn extends View {
             mHintPaint.setTextSize(mHintTextSize);
             //计算BaseLine绘制起点的 X坐标，Y坐标  (文字绘制到中心的套路代码)
             int baseX = (int) (mWidth / 2 - mHintPaint.measureText(mHintText) / 2);
+            //mHintPaint.ascent() ≈ -50
+            //mHintPaint.descent() ≈ 13
+            //            int baseY = (int) (mHeight / 2 + (mHintPaint.descent() - mHintPaint.ascent()) / 2);
             int baseY = (int) (mHeight / 2 - (mHintPaint.descent() + mHintPaint.ascent()) / 2);
             canvas.drawText(mHintText, baseX, baseY, mHintPaint);
 

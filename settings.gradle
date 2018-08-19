@@ -1,1 +1,1 @@
-include ':app', ':springview', ':addsubview'
+include ':app', ':springview', ':addsubview', ':revealview'

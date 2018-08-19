@@ -98,23 +98,23 @@ public class FavorLayout extends RelativeLayout {
         ImageView imageView = new ImageView(getContext());
         imageView.setImageDrawable(drawables[random.nextInt(3)]);
         imageView.setLayoutParams(lp);
-
+        //1.先添加进layout中
         addView(imageView);
-
-        Animator set = getAnimator(imageView);
-        set.addListener(new AnimEndListener(imageView));
-        set.start();
+        //2.执行动画
+        startAnimator(imageView);
     }
 
-    private Animator getAnimator(View target) {
+    private void startAnimator(View target) {
+        //1.透明度+缩放
         ObjectAnimator enterAnimtor = getEnterAnimtor(target);
+        //2.贝塞尔曲线路径
         ValueAnimator bezierValueAnimator = getBezierValueAnimator(target);
-
+        //3.依次执行上面两个动画，结束后销毁View
         AnimatorSet finalSet = new AnimatorSet();
         finalSet.playSequentially(enterAnimtor, bezierValueAnimator);
         finalSet.setInterpolator(interpolators[random.nextInt(4)]);
-
-        return finalSet;
+        finalSet.addListener(new AnimEndListener(target));
+        finalSet.start();
     }
 
     /**
