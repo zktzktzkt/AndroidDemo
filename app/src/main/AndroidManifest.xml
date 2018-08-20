@@ -139,6 +139,11 @@
         <activity android:name=".effect.snow.SnowActivity">
         </activity>
         <activity android:name=".effect.favor.FavorActivity">
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN"/>
+
+            <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name=".effect.draglayout.DragActivity">
         </activity>
@@ -176,10 +181,10 @@
         <activity android:name=".effect.sportprogress.SportProgressActivity">
         </activity>
         <activity android:name=".effect.reveal.RevealActivity">
-             <intent-filter>
-                 <action android:name="android.intent.action.MAIN"/>
-                 <category android:name="android.intent.category.LAUNCHER"/>
-             </intent-filter>
+             <!--<intent-filter>-->
+                 <!--<action android:name="android.intent.action.MAIN"/>-->
+                 <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+             <!--</intent-filter>-->
         </activity>
     </application>
 

@@ -62,12 +62,13 @@ public class CustomViewTest extends View {
         mDstCanvas.drawCircle(0, 0, mRadius / 4, mRedPaint);
         //        mDstBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.night1);
 
-        mSrcBitmap = Bitmap.createBitmap(mRadius / 2, mRadius / 2, Bitmap.Config.ARGB_8888);
+        mSrcBitmap = Bitmap.createBitmap(mRadius, mRadius, Bitmap.Config.ARGB_8888);
         Canvas mSrcCanvas = new Canvas(mSrcBitmap);
-        mSrcCanvas.drawRect(0, 0, mRadius / 2, mRadius / 2, mBluePaint);
+        mSrcCanvas.translate(mRadius / 4, mRadius / 4);
+        mSrcCanvas.drawRect(0, 0, mRadius - 600, mRadius - 600, mBluePaint);
         //        mSrcBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.night1);
 
-        porterDuffXfermode = new PorterDuffXfermode(PorterDuff.Mode.DST_ATOP);
+        porterDuffXfermode = new PorterDuffXfermode(PorterDuff.Mode.XOR);
 
     }
 
