@@ -49,15 +49,10 @@ public class RevealDrawable extends Drawable {
 
         //2. 从已有的bound矩形边界范围当中抠出一个我们想要的矩形
         Gravity.apply(
-                //参1：从左边抠
                 Gravity.RIGHT,
-                //参2：目标矩形宽
                 r.width() / 2,
-                //参3：目标矩形高
                 r.height(),
-                //参4：被抠的地方
                 r,
-                //参5：抠出来后，放到哪
                 temp
         );
         canvas.save();
