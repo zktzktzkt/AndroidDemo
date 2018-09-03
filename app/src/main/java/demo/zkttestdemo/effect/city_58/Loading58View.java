@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
@@ -25,6 +26,8 @@ public class Loading58View extends LinearLayout {
     private View mShadowView; //中间的阴影
     private int mTranslationYDistance = 0;
     private final long ANIMATOR_DURATION = 500;
+    // 是否停止动画
+    private boolean mIsStopAnimator = false;
 
     public Loading58View(Context context) {
         this(context, null);
@@ -55,6 +58,9 @@ public class Loading58View extends LinearLayout {
      * 开始下落动画
      */
     private void startfallAnimator() {
+        if(mIsStopAnimator){
+            return;
+        }
         ObjectAnimator translationAnimator = ObjectAnimator.ofFloat(mShapeView, "translationY", 0, mTranslationYDistance);
         //配合中间阴影缩小
         ObjectAnimator scaleAnimator = ObjectAnimator.ofFloat(mShadowView, "scaleX", 1f, 0.3f);
@@ -78,6 +84,9 @@ public class Loading58View extends LinearLayout {
      * 上抛动画
      */
     private void startUpAnimator() {
+        if(mIsStopAnimator){
+            return;
+        }
         ObjectAnimator translationAnimator = ObjectAnimator.ofFloat(mShapeView, "translationY", mTranslationYDistance, 0);
         //配合中间阴影缩小
         ObjectAnimator scaleAnimator = ObjectAnimator.ofFloat(mShadowView, "scaleX", 0.3f, 1f);
@@ -125,4 +134,18 @@ public class Loading58View extends LinearLayout {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, getResources().getDisplayMetrics());
     }
 
+    @Override
+    public void setVisibility(int visibility) {
+        super.setVisibility(View.INVISIBLE);// 不要再去排放和计算，少走一些系统的源码（View的绘制流程）
+        // 清理动画
+        mShapeView.clearAnimation();
+        mShadowView.clearAnimation();
+        // 把LoadingView从父布局移除
+        ViewGroup parent = (ViewGroup) getParent();
+        if(parent != null){
+            parent.removeView(this);// 从父布局移除
+            removeAllViews();// 移除自己所有的View
+        }
+        mIsStopAnimator = true;
+    }
 }

@@ -10,7 +10,7 @@ import android.view.Gravity;
 
 public class RevealDrawable extends Drawable {
 
-    private static final String TAG = "zkt";
+    private static final String TAG = "barry";
     private final Rect mTmpRect = new Rect();
     private Drawable mUnselectedDrawable;
     private Drawable mSelectedDrawable;
@@ -18,47 +18,92 @@ public class RevealDrawable extends Drawable {
     public static final int HORIZONTAL = 1;
     public static final int VERTICAL = 2;
 
-    public RevealDrawable(Drawable unselected, Drawable selected) {
+    public RevealDrawable(Drawable unselected, Drawable selected, int orientation) {
         mUnselectedDrawable = unselected;
         mSelectedDrawable = selected;
+        mOrientation = orientation;
     }
 
     @Override
     public void draw(Canvas canvas) {
-        // 获取drawable的边界
-        Rect r = getBounds();
+        // 绘制
+        int level = getLevel();//from 0 (minimum) to 10000
+        //三个区间
+        //右边区间和左边区间--设置成灰色
+        if (level == 10000 || level == 0) {
+            mUnselectedDrawable.draw(canvas);
+        } else if (level == 5000) {//全部选中--设置成彩色
+            mSelectedDrawable.draw(canvas);
+        } else {
+            //混合效果的Drawable
+            /**
+             * 将画板切割成两块-左边和右边
+             */
+            final Rect r = mTmpRect;
+            //得到当前自身Drawable的矩形区域
+            Rect bounds = getBounds();
+            {
+                //level 0~5000~10000
 
-        Rect temp = new Rect();
-        //1. 从已有的bound矩形边界范围当中抠出一个我们想要的矩形
-        Gravity.apply(
-                //参1：从左边抠
-                Gravity.LEFT,
-                //参2：目标矩形宽
-                r.width() / 2,
-                //参3：目标矩形高
-                r.height(),
-                //参4：被抠的地方
-                r,
-                //参5：抠出来后，放到哪
-                temp
-        );
-        canvas.save();
-        canvas.clipRect(temp);
-        mUnselectedDrawable.draw(canvas);
-        canvas.restore();
+                //5000是中间，小于5000左边，大于5000右边
+                // level/5000f = 0~1~2
+                float ratio = (level / 5000f) - 1f; // -1~0~1
+                int gravity = ratio < 0 ? Gravity.LEFT : Gravity.RIGHT;
+                // 我们要扣的宽度
+                int w = bounds.width();
+                if (mOrientation == HORIZONTAL) {
+                    w = (int) (w * Math.abs(ratio));
+                }
+                // 我们要扣的高度
+                int h = bounds.height();
+                if (mOrientation == VERTICAL) {
+                    h = (int) (h * Math.abs(ratio));
+                }
 
-        //2. 从已有的bound矩形边界范围当中抠出一个我们想要的矩形
-        Gravity.apply(
-                Gravity.RIGHT,
-                r.width() / 2,
-                r.height(),
-                r,
-                temp
-        );
-        canvas.save();
-        canvas.clipRect(temp);
-        mSelectedDrawable.draw(canvas);
-        canvas.restore();
+                //从一个已有的bounds矩形边界范围中抠出一个矩形r
+                Gravity.apply(
+                        gravity,//从左边还是右边开始抠
+                        w,//目标矩形的宽
+                        h, //目标矩形的高
+                        bounds, //被抠出来的rect
+                        r);//目标rect
+
+                canvas.save();//保存画布
+                canvas.clipRect(r);//切割
+                mUnselectedDrawable.draw(canvas);//画
+                canvas.restore();//恢复之前保存的画布
+            }
+            {
+                //2.再绘制彩色部分
+                //level 0~5000~10000
+                //比例
+                float ratio = (level / 5000f) - 1f;
+                int w = bounds.width();
+                if (mOrientation == HORIZONTAL) {
+                    w -= (int) (w * Math.abs(ratio));
+                }
+                int h = bounds.height();
+                if (mOrientation == VERTICAL) {
+                    h -= (int) (h * Math.abs(ratio));
+                }
+
+                int gravity = ratio < 0 ? Gravity.RIGHT : Gravity.LEFT;
+                //从一个已有的bounds矩形边界范围中抠出一个矩形r
+                Gravity.apply(
+                        gravity,//从左边还是右边开始抠
+                        w,//目标矩形的宽
+                        h, //目标矩形的高
+                        bounds, //被抠出来的rect
+                        r);//目标rect
+
+                canvas.save();//保存画布
+                canvas.clipRect(r);//切割
+                mSelectedDrawable.draw(canvas);//画
+                canvas.restore();//恢复之前保存的画布
+            }
+
+        }
+
     }
 
     @Override

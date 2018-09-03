@@ -1,5 +1,6 @@
 package demo.zkttestdemo.effect.sportprogress;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -40,6 +41,8 @@ public class SportProgressView extends View {
     private int mUnSelectPointColor;
     private Paint mPercentTxtPaint;
     private float mPercentTextSize;
+    private int mArcAngle;
+    private int mSweepAngle;
 
     public SportProgressView(Context context) {
         this(context, null);
@@ -116,15 +119,14 @@ public class SportProgressView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        int arcAngle = (int) ((float) mCurrentStep / mTargetStep * 360);
-        if (arcAngle > 360) {
-            arcAngle = 360;
+        if (mArcAngle > 360) {
+            mArcAngle = 360;
         }
         //画点
         canvas.save();
         int pointAngle = 0;
         for (int i = 0; i < 30; i++) {
-            if (arcAngle >= pointAngle) {
+            if (mSweepAngle >= pointAngle) {
                 canvas.drawPoint(mWidth / 2, dp2px(10), mPointWhitePaint);
             } else {
                 canvas.drawPoint(mWidth / 2, dp2px(10), mPointGrayPaint);
@@ -139,7 +141,7 @@ public class SportProgressView extends View {
         canvas.drawCircle(mWidth / 2, mHeight / 2, radius, mCirclePaint);
         //画进度弧形
         canvas.drawArc(dp2px(22), dp2px(22), mWidth - dp2px(22), mWidth - dp2px(22),
-                270, arcAngle, false, mArcPaint);
+                270, mSweepAngle, false, mArcPaint);
         //百分比
         int percent = (int) ((float) mCurrentStep / mTargetStep * 100);
         if (percent > 100) {
@@ -165,10 +167,28 @@ public class SportProgressView extends View {
      * @param currentStep 当前步数
      * @param targetStep  目标步数
      */
-    public void setCurrentAndTarget(@NonNull int currentStep, @NonNull int targetStep) {
+    public void setCurrentAndTarget(@NonNull int currentStep, @NonNull int targetStep, boolean animate) {
         this.mCurrentStep = currentStep;
         this.mTargetStep = targetStep;
+
+        mArcAngle = (int) ((float) mCurrentStep / mTargetStep * 360);
+
         invalidate();
+
+        if (animate) {
+            ValueAnimator animator = ValueAnimator.ofInt(0, mArcAngle).setDuration(2000);
+            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    int animatedValue = (int) animation.getAnimatedValue();
+                    mSweepAngle = animatedValue;
+                    invalidate();
+                }
+            });
+            animator.start();
+        }else {
+            mSweepAngle = mArcAngle;
+        }
     }
 
 }

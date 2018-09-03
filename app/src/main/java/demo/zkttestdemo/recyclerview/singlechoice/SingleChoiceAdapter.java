@@ -10,6 +10,7 @@ import android.widget.RadioButton;
 import demo.zkttestdemo.R;
 
 /**
+ * 单选 - 操作的是position
  * Created by Administrator on 2016/12/28 0028.
  */
 public class SingleChoiceAdapter extends RecyclerView.Adapter<SingleChoiceAdapter.MyHolder> {

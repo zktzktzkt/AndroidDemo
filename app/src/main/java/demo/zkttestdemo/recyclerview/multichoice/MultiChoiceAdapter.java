@@ -12,6 +12,7 @@ import java.util.List;
 import demo.zkttestdemo.R;
 
 /**
+ * 多选 - 操作的是数据
  * Created by Administrator on 2016/12/28 0028.
  */
 public class MultiChoiceAdapter extends RecyclerView.Adapter<MultiChoiceAdapter.MyHolder> {
@@ -39,11 +40,13 @@ public class MultiChoiceAdapter extends RecyclerView.Adapter<MultiChoiceAdapter.
         holder.radioBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if( beanArrayList.get(position).getIsSelect()){
+                boolean isSelect = beanArrayList.get(position).getIsSelect();
+                beanArrayList.get(position).setIsSelect(!isSelect);
+               /* if( beanArrayList.get(position).getIsSelect()){
                     beanArrayList.get(position).setIsSelect(false);
                 }else {
                     beanArrayList.get(position).setIsSelect(true);
-                }
+                }*/
                notifyItemRangeChanged(position,1);
             }
         });

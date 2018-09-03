@@ -29,7 +29,7 @@ public class SportProgressActivity extends AppCompatActivity {
     public void setData(View view) {
         String targetStep = etStep.getText().toString();
         String currentStep = et_currentStep.getText().toString();
-        sportView.setCurrentAndTarget(Integer.parseInt(currentStep), Integer.parseInt(targetStep));
+        sportView.setCurrentAndTarget(Integer.parseInt(currentStep), Integer.parseInt(targetStep), true);
 
     }
 }

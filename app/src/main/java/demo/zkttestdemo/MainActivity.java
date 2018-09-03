@@ -51,6 +51,7 @@ import demo.zkttestdemo.effect.circleprogress.CircleProgressActivity;
 import demo.zkttestdemo.effect.city_58.Loading58Activity;
 import demo.zkttestdemo.effect.coordinator.CoordinatorActivity;
 import demo.zkttestdemo.effect.doodle.DoodleActivity;
+import demo.zkttestdemo.effect.dragbubble.DragBubbleActivity;
 import demo.zkttestdemo.effect.draglayout.DragActivity;
 import demo.zkttestdemo.effect.elemebtn.ElemeShopBtnActivity;
 import demo.zkttestdemo.effect.favor.FavorActivity;
@@ -61,8 +62,7 @@ import demo.zkttestdemo.effect.keyboardbug.KeyBoardBugActivity;
 import demo.zkttestdemo.effect.kugouguide.KuGouParallaxActivity;
 import demo.zkttestdemo.effect.kugoumenu.KuGouMenuActivity;
 import demo.zkttestdemo.effect.lettersidebar.LetterSideBarActivity;
-import demo.zkttestdemo.effect.loadingdialog.EatBaoZiActivity;
-import demo.zkttestdemo.effect.loadingview.LoadingActivity;
+import demo.zkttestdemo.effect.loadingdialog.LoadingActivity;
 import demo.zkttestdemo.effect.lockpattern.LockPatternActivity;
 import demo.zkttestdemo.effect.meituan2list.MeiTuanListActivity;
 import demo.zkttestdemo.effect.motionevent.MotionEventTestActivity;
@@ -299,6 +299,11 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_wavRecord) {
             Intent intent = new Intent(this, WAVActivity.class);
             startActivity(intent);
+        }
+        //仿QQ拖拽气泡
+        else if (id == R.id.nav_dragBubble) {
+            Intent intent = new Intent(this, DragBubbleActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_lockPattern) {
             Intent intent = new Intent(this, LockPatternActivity.class);
             startActivity(intent);
@@ -357,7 +362,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, SnowActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_loadingView) {
-            Intent intent = new Intent(this, LoadingActivity.class);
+            Intent intent = new Intent(this, demo.zkttestdemo.effect.loadingview.LoadingActivity.class);
             startActivity(intent);
         }
         //paint 实验
@@ -454,7 +459,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, MultiChoiceActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_eatBaoZi) {
-            Intent intent = new Intent(this, EatBaoZiActivity.class);
+            Intent intent = new Intent(this, LoadingActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_pullAndLoad) {
             Intent intent = new Intent(this, PtrAndloadActivity.class);

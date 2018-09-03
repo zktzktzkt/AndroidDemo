@@ -160,6 +160,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="仿美团级联菜单列表"/>
             <item
+                android:id="@+id/nav_dragBubble"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="仿QQ拖拽气泡"/>
+            <item
                 android:id="@+id/nav_wavRecord"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="wav格式录音"/>

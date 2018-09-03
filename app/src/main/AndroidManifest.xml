@@ -32,18 +32,22 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN"/>-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
-            <!--</intent-filter>-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name=".recyclerview.suspendsingle.SuspendSingleActivity"/>
         <activity android:name=".recyclerview.suspendmulti.SuspendMultiActivity"/>
         <activity android:name=".retrofit.RetrofitActivity"/>
         <activity android:name=".recyclerview.singlechoice.SingleChoiceActivity"/>
         <activity android:name=".recyclerview.multichoice.MultiChoiceActivity"/>
-        <activity android:name=".effect.loadingdialog.EatBaoZiActivity"/>
+        <activity android:name=".effect.loadingdialog.LoadingActivity">
+          <!--  <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>-->
+        </activity>
         <activity android:name=".effect.pullAndload.MTPtrActivity"/>
         <activity android:name=".effect.pullAndload.AliPtrActivity"/>
         <activity android:name=".effect.pullAndload.PtrAndloadActivity"/>
@@ -139,11 +143,6 @@
         <activity android:name=".effect.snow.SnowActivity">
         </activity>
         <activity android:name=".effect.favor.FavorActivity">
-            <intent-filter>
-            <action android:name="android.intent.action.MAIN"/>
-
-            <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity android:name=".effect.draglayout.DragActivity">
         </activity>
@@ -152,6 +151,10 @@
         <activity android:name=".effect.city_58.Loading58Activity">
         </activity>
         <activity android:name=".effect.verticaldrag.VerticalDragActivity">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN"/>-->
+            <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".effect.lettersidebar.LetterSideBarActivity">
         </activity>
@@ -164,7 +167,6 @@
         <activity android:name=".effect.lockpattern.LockPatternActivity">
         </activity>
         <activity android:name=".effect.tempcontrol.TemControlActivity">
-
         </activity>
         <activity android:name=".effect.kugouguide.KuGouParallaxActivity">
         </activity>
@@ -181,10 +183,13 @@
         <activity android:name=".effect.sportprogress.SportProgressActivity">
         </activity>
         <activity android:name=".effect.reveal.RevealActivity">
-             <!--<intent-filter>-->
-                 <!--<action android:name="android.intent.action.MAIN"/>-->
-                 <!--<category android:name="android.intent.category.LAUNCHER"/>-->
-             <!--</intent-filter>-->
+
+        </activity>
+        <activity android:name=".effect.dragbubble.DragBubbleActivity">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>-->
         </activity>
     </application>
 

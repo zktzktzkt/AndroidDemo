@@ -74,7 +74,6 @@ public class DiffUtilActivity extends AppCompatActivity {
             newDatas.add(testBean);
             //别忘了将新数据给Adapter
 //            mDatas = newDatas;
-
 //            mAdapter.setDatas(mDatas);
 //            mAdapter.notifyDataSetChanged();//以前我们大多数情况下只能这样
             notifyData(newDatas);

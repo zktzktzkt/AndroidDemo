@@ -27,6 +27,7 @@ public class RadarGradientView extends View {
     private Paint mPaintCircle; // 画圆用到的paint
     private Paint mPaintRadar; // 扫描用到的paint
     private Matrix matrix;
+    private int degree = 5;
 
     public RadarGradientView(Context context) {
         super(context);
@@ -64,7 +65,8 @@ public class RadarGradientView extends View {
     private Runnable run = new Runnable() {
         @Override
         public void run() {
-            matrix.postRotate(scanSpeed, mWidth / 2, mHeight / 2); // 旋转矩阵
+            degree += 5;
+           // matrix.postRotate(scanSpeed, mWidth / 2, mHeight / 2); // 旋转矩阵
             invalidate(); // 通知view重绘
 
             postDelayed(run, 50); // 调用自身 重复绘制
@@ -95,7 +97,8 @@ public class RadarGradientView extends View {
 
         // 画布的旋转变换 需要调用save() 和 restore()
         canvas.save();
-        canvas.concat(matrix);
+        //canvas.concat(matrix);
+        canvas.rotate(degree);
         canvas.drawCircle(mWidth / 2, mHeight / 2, mWidth * pots[4], mPaintRadar);
         canvas.restore();
     }
