@@ -34,23 +34,23 @@ public class LotteryView extends FrameLayout {
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            if (viewsIndex == 0) {
-                views[viewsIndex % views.length].setSelected(true);
-            }
             views[viewsIndex % views.length].setSelected(false);
-            views[++viewsIndex % views.length].setSelected(true);
+            viewsIndex++;
+            views[viewsIndex % views.length].setSelected(true);
 
-            if (timeIndex <= mAllTimesList.size() - 1) {
+            //取时间，依次执行
+            if (timeIndex < mAllTimesList.size()) {
                 sendEmptyMessageDelayed(0, mAllTimesList.get(timeIndex));
                 timeIndex++;
-            } else {
+            }
+            //时间都跑完了，重置数据
+            else {
                 tvLottery.setClickable(true);
                 timeIndex = 0;
                 viewsIndex = 0;
             }
         }
     };
-
 
     public LotteryView(@NonNull Context context) {
         this(context, null);
@@ -104,7 +104,7 @@ public class LotteryView extends FrameLayout {
 
         List<Integer> middleList = new ArrayList<>();
         for (int i = 0; i < getRandomTimeCount(); i++) {
-            middleList.add(50);
+            middleList.add(80);
         }
 
         List<Integer> endList = new ArrayList<>();
@@ -133,9 +133,20 @@ public class LotteryView extends FrameLayout {
                     views[i].setSelected(false);
                 }
                 if (tvLottery.isClickable()) {
+                    //让第一个选中
+                    views[0].setSelected(true);
+                    //初始化转圈的速度时间
                     initTimes();
-                    startLottery();
+                    //不可点击
                     tvLottery.setClickable(false);
+
+                    views[0].postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            //开始抽奖
+                            startLottery();
+                        }
+                    }, 500);
                 }
             }
         });
