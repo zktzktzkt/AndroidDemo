@@ -7,8 +7,99 @@
     android:layout_height="match_parent"
     tools:context="com.zkt.lottery.LotteryActivity">
 
-    <com.zkt.lottery.LotteryView
-        android:id="@+id/lotteryView"
+    <!--  <com.zkt.lottery.LotteryView
+          android:id="@+id/lotteryView"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"/>-->
+
+    <com.zkt.lottery.LotteryViewGroup
+        android:id="@+id/lvg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@color/gray_9">
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/lottery_select"/>
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:background="@drawable/lottery_select"/>
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:background="@drawable/lottery_select"/>
+
+        <View
+            android:id="@+id/view8"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/lottery_select"/>
+
+        <ImageView
+            android:id="@+id/iv_lottery"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@mipmap/ic_launcher"/>
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/lottery_select"/>
+
+        <View
+            android:id="@+id/view7"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/lottery_select"/>
+
+        <View
+            android:id="@+id/view6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/lottery_select"/>
+
+        <View
+            android:id="@+id/view5"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/lottery_select"/>
+
+    </com.zkt.lottery.LotteryViewGroup>
+
+    <EditText
+        android:id="@+id/et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="让第几个选中？？"
+        android:inputType="number"
+        android:text="0"
+        />
+
+    <Button
+        android:id="@+id/btn_where"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et"
+        android:text="点我设置固定位置"
+        />
+
+    <Button
+        android:id="@+id/btn_fix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/et"
+        android:text="随机设置一个数"
+        />
+
 </RelativeLayout>
