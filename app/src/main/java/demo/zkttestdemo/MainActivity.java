@@ -35,6 +35,8 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.zkt.lottery.LotteryActivity;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -68,11 +70,12 @@ import demo.zkttestdemo.effect.meituan2list.MeiTuanListActivity;
 import demo.zkttestdemo.effect.motionevent.MotionEventTestActivity;
 import demo.zkttestdemo.effect.multipage.MultiPageActivity;
 import demo.zkttestdemo.effect.overflyview.OverFlyActivity;
+import demo.zkttestdemo.effect.paint.PaintActivity;
 import demo.zkttestdemo.effect.paykeyboard.PayKeyboardActivity;
 import demo.zkttestdemo.effect.progress.ProgressArcActivity;
 import demo.zkttestdemo.effect.pullAndload.PtrAndloadActivity;
 import demo.zkttestdemo.effect.qqslidemenu.QQSlideMenuActivity;
-import demo.zkttestdemo.effect.paint.PaintActivity;
+import demo.zkttestdemo.effect.screenmatch.ScreenMatchActivity;
 import demo.zkttestdemo.effect.slidemenu.SlideMenuActivity;
 import demo.zkttestdemo.effect.snow.SnowActivity;
 import demo.zkttestdemo.effect.sportprogress.SportProgressActivity;
@@ -328,7 +331,11 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, StatusBarActivity.class);
             startActivity(intent);
         }
-        //仿饿了么购物车加减按钮
+        //屏幕适配
+        else if (id == R.id.nav_screenMatch) {
+            Intent intent = new Intent(this, ScreenMatchActivity.class);
+            startActivity(intent);
+        }//仿饿了么购物车加减按钮
         else if (id == R.id.nav_elemeShopBtn) {
             Intent intent = new Intent(this, ElemeShopBtnActivity.class);
             startActivity(intent);
@@ -336,6 +343,10 @@ public class MainActivity extends AppCompatActivity
         //仿百度的搜索栏效果
         else if (id == R.id.nav_BDSearch) {
             Intent intent = new Intent(this, BDSearchActivity.class);
+            startActivity(intent);
+        }//转盘效果
+        else if (id == R.id.nav_lottery) {
+            Intent intent = new Intent(this, LotteryActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_58Loading) {
             Intent intent = new Intent(this, Loading58Activity.class);

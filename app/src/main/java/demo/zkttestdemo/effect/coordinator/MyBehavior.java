@@ -1,6 +1,7 @@
 package demo.zkttestdemo.effect.coordinator;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -39,6 +40,15 @@ public class MyBehavior extends CoordinatorLayout.Behavior<Button> {
         setPosition(child, x, y);
 
         return true;
+    }
+
+    @Override
+    public void onNestedPreScroll(@NonNull CoordinatorLayout coordinatorLayout,
+                                  @NonNull Button child, @NonNull View target,
+                                  int dx, int dy, @NonNull int[] consumed, int type) {
+        super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed, type);
+
+
     }
 
     private void setPosition(View v, int x, int y) {

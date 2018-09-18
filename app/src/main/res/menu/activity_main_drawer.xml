@@ -108,6 +108,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="仿饿了么购物车按钮"/>
             <item
+                android:id="@+id/nav_screenMatch"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="自定义View屏幕适配"/>
+            <item
                 android:id="@+id/nav_eatBaoZi"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="仿大众点评加载动画"/>
@@ -191,6 +195,10 @@
                 android:id="@+id/nav_BDSearch"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="仿百度searchview动画"/>
+            <item
+                android:id="@+id/nav_lottery"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="抽奖转盘效果"/>
             <item
                 android:id="@+id/nav_58Loading"
                 android:icon="@drawable/ic_menu_gallery"

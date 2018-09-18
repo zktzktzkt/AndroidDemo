@@ -28,14 +28,15 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        tools:replace="android:allowBackup"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:allowBackup, android:label">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
@@ -45,10 +46,13 @@
         <activity android:name=".recyclerview.singlechoice.SingleChoiceActivity"/>
         <activity android:name=".recyclerview.multichoice.MultiChoiceActivity"/>
         <activity android:name=".effect.loadingdialog.LoadingActivity">
-          <!--  <intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity android:name=".effect.pullAndload.MTPtrActivity"/>
         <activity android:name=".effect.pullAndload.AliPtrActivity"/>
@@ -153,10 +157,11 @@
         <activity android:name=".effect.city_58.Loading58Activity">
         </activity>
         <activity android:name=".effect.verticaldrag.VerticalDragActivity">
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN"/>-->
-            <!--<category android:name="android.intent.category.LAUNCHER"/>-->
-            <!--</intent-filter>-->
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN"/> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER"/> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".effect.lettersidebar.LetterSideBarActivity">
         </activity>
@@ -185,13 +190,17 @@
         <activity android:name=".effect.sportprogress.SportProgressActivity">
         </activity>
         <activity android:name=".effect.reveal.RevealActivity">
-
         </activity>
         <activity android:name=".effect.dragbubble.DragBubbleActivity">
-            <!--<intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>-->
+            </intent-filter>
+            -->
+        </activity>
+        <activity android:name=".effect.screenmatch.ScreenMatchActivity">
         </activity>
     </application>
 

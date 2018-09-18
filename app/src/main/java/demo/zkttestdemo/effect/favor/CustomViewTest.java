@@ -68,14 +68,14 @@ public class CustomViewTest extends View {
         mSrcCanvas.drawRect(0, 0, mRadius - 600, mRadius - 600, mBluePaint);
         //        mSrcBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.night1);
 
-        porterDuffXfermode = new PorterDuffXfermode(PorterDuff.Mode.XOR);
+        porterDuffXfermode = new PorterDuffXfermode(PorterDuff.Mode.SRC_IN);
 
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        //        canvas.translate(mWidth / 2, mHeight / 2);
+        //使用xfermode需要新建一个画布，否则会不显示的
         int saved = canvas.saveLayer(null, null, Canvas.ALL_SAVE_FLAG);
 
         canvas.drawBitmap(mDstBitmap, 0, 0, mPaint);

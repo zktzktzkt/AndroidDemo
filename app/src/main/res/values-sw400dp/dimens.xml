@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<dimen name="nav_header_vertical_spacing">17.7778dp</dimen>
+	<dimen name="nav_header_height">177.7778dp</dimen>
+	<dimen name="activity_horizontal_margin">17.7778dp</dimen>
+	<dimen name="activity_vertical_margin">17.7778dp</dimen>
+	<dimen name="fab_margin">17.7778dp</dimen>
+	<dimen name="popup_upload_height">277.7778dp</dimen>
+	<dimen name="toolbar_height">55.5556dp</dimen>
+	<dimen name="min_panel_height">244.4444dp</dimen>
+	<dimen name="max_panel_height">422.2222dp</dimen>
+	<dimen name="min_keyboard_height">88.8889dp</dimen>
+	<dimen name="text_size_large">31.1111sp</dimen>
+	<dimen name="indicator_size">11.1111dp</dimen>
+	<dimen name="indicator_spacing">2.2222dp</dimen>
+</resources>
