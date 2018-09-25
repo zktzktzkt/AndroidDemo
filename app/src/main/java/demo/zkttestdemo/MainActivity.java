@@ -35,6 +35,8 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.ypzn.basemodule.ARouterManager;
 import com.zkt.lottery.LotteryActivity;
 
 import java.io.BufferedOutputStream;
@@ -277,6 +279,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_activityJump) {
             Intent intent = new Intent(this, OneActivity.class);
             startActivity(intent);
+        }
+        // itemTouchHelper示例
+        else if (id == R.id.nav_itemTouchHelper) {
+            ARouter.getInstance().build(ARouterManager.ItemTouchHelperActivity).navigation();
         }
         // 流式布局
         else if (id == R.id.nav_flow) {

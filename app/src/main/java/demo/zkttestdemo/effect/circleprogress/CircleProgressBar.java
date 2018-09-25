@@ -133,7 +133,7 @@ public class CircleProgressBar extends View {
             canvas.drawText(centerText, getMeasuredWidth() / 2 - textWidth / 2, getMeasuredHeight() / 2 - textHeight / 2, fontPaint);
         }
 
-        // TODO: 2018-8-9 画点
+        // 画点
         canvas.save();
         for (int i = 0; i < 60; i++) {
             canvas.concat(matrix);
@@ -150,4 +150,5 @@ public class CircleProgressBar extends View {
         this.centerText = text;
         postInvalidate();
     }
+
 }

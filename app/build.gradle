@@ -8,16 +8,26 @@ apply plugin: 'com.github.dcendents.android-maven'
 group = 'com.github.zktzktzkt'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.3'
+
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
     defaultConfig {
         applicationId "demo.zkttestdemo"
-        minSdkVersion 21
-        targetSdkVersion 25
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        //路 由
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -25,26 +35,44 @@ android {
         }
     }
 }
-
-
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:support-v4:26.1.0'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support:percent:26.1.0'
-    implementation 'com.android.support:design:26.1.0'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    implementation project(':bubble')
+    implementation project(':springview')
+    implementation project(':revealview')
+    implementation project(':basemodule')
+    if (!isModuleRun.toBoolean()) {
+        implementation project(':lottery')
+        implementation project(':waterbubble')
+        implementation project(':pathmeasure')
+        implementation project(':itemtouchhelper')
+    }
+    //路由
+    implementation "com.alibaba:arouter-api:$rootProject.arouterApi"
+    annotationProcessor "com.alibaba:arouter-compiler:$rootProject.arouterCompiler"
+    //
+    implementation "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:percent:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:design:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    //
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$rootProject.kotlin_version"
+    //
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    //
     implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    //
     implementation 'org.jetbrains.anko:anko-commons:0.10.0'
     implementation 'com.github.razerdp:BasePopup:1.8.2'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.35'
@@ -55,12 +83,7 @@ dependencies {
     implementation 'com.blankj:utilcode:1.9.11'
     implementation 'com.github.bumptech.glide:glide:4.3.1'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.+'
-
-    implementation project(path: ':springview')
-    implementation project(':revealview')
-    implementation project(':bubble')
-    implementation project(':waterbubble')
-    implementation project(':lottery')
-    implementation project(':pathmeasure')
 }
+
+
 

@@ -79,6 +79,10 @@
                 android:icon="@drawable/ic_menu_camera"
                 android:title="DiffUtil"/>
             <item
+                android:id="@+id/nav_itemTouchHelper"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="itemTouchHelper示例"/>
+            <item
                 android:id="@+id/nav_bannerHeaderRecycler"
                 android:icon="@drawable/ic_menu_camera"
                 android:title="RecyclerView添加头部轮播图"/>

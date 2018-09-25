@@ -1,5 +1,5 @@
 //【组件化:plugin】
-if (isDebug.toBoolean()) {
+if (isModuleRun.toBoolean()) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
@@ -9,12 +9,12 @@ android {
     compileSdkVersion 26
     defaultConfig {
         // 【组件化:applicationId】作为library时不能有applicationId,只有作为一个独立应用时才能够如下设置
-        if (isDebug.toBoolean()) {
+        if (isModuleRun.toBoolean()) {
             applicationId "com.zkt.lottery"
         }
 
-        minSdkVersion 19
-        targetSdkVersion 26
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -24,7 +24,7 @@ android {
     sourceSets {
         main {
             //【组件化:manifest】
-            if (isDebug.toBoolean()) {
+            if (isModuleRun.toBoolean()) {
                 manifest.srcFile 'src/main/debug/AndroidManifest.xml'
             } else {
                 manifest.srcFile 'src/main/release/AndroidManifest.xml'
@@ -48,7 +48,12 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation 'com.android.support:appcompat-v7:26.1.0'
     testImplementation 'junit:junit:4.12'
+
+    implementation "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+
+    //所有module都要依赖的
+    implementation project(':basemodule')
+
 }
