@@ -70,8 +70,8 @@ public class CameraCropUtil implements EasyPermissions.PermissionCallbacks {
     private File mFilepath = MyApplication.getContext().getExternalCacheDir();
     private static final String TAG = "CameraCropUtil";
     private static final int PERMISSIONS_CODE_1 = 101;
-    private static final int REQUEST_CODE_1 = 0x11;
-    private static final int REQUEST_CODE_2 = 0x22;
+    private static final int REQUEST_CAMERA = 0x11;
+    private static final int REQUEST_ALBUM = 0x22;
     // 所需要的权限
     private String[] mPerms = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
 
@@ -114,7 +114,7 @@ public class CameraCropUtil implements EasyPermissions.PermissionCallbacks {
             intent.putExtra(MediaStore.EXTRA_OUTPUT, mUri);
         }
         try {
-            activity.startActivityForResult(intent, REQUEST_CODE_1);
+            activity.startActivityForResult(intent, REQUEST_CAMERA);
         } catch (ActivityNotFoundException anf) {
             Toast.makeText(MyApplication.getContext(), "摄像头未准备好！", Toast.LENGTH_SHORT).show();
         }
@@ -127,20 +127,20 @@ public class CameraCropUtil implements EasyPermissions.PermissionCallbacks {
         Intent pickIntent = new Intent(Intent.ACTION_PICK,
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         pickIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-        activity.startActivityForResult(pickIntent, REQUEST_CODE_2);
+        activity.startActivityForResult(pickIntent, REQUEST_ALBUM);
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
-                case REQUEST_CODE_1:
+                case REQUEST_CAMERA:
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                         cropRawPhoto(mProviderUri);
                     } else {
                         cropRawPhoto(mUri);
                     }
                     break;
-                case REQUEST_CODE_2:
+                case REQUEST_ALBUM:
                     Log.e(TAG, "onActivityResult: " + data.getData());
                     cropRawPhoto(data.getData());
                     break;

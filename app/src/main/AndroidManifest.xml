@@ -75,8 +75,6 @@
         </activity>
         <activity android:name=".effect.progress.ProgressArcActivity">
         </activity>
-        <activity android:name=".kotlin.KotlinActivity">
-        </activity>
         <activity android:name=".effect.slidemenu.SlideMenuActivity">
         </activity>
         <activity android:name=".effect.viewdraghelper.ViewDragHelperDemoActivity">
@@ -124,6 +122,16 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths_public"/>
+        </provider>
+
+        <provider
+            android:name=".provider.PictureProvider"
+            android:authorities="${applicationId}.picture"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/fileprovider_picture"/>
         </provider>
 
         <activity

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+
+    <!--需要共享的文件目录-->
+    <external-cache-path
+        name="external_cache"
+        path="."/>
+
+</paths>

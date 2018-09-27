@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -14,6 +15,7 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -92,7 +94,6 @@ import demo.zkttestdemo.effect.viewdraghelper.ViewDragHelperDemoActivity;
 import demo.zkttestdemo.effect.wavrecord.WAVActivity;
 import demo.zkttestdemo.effect.window.FloatWindowActivity;
 import demo.zkttestdemo.effect.wxaudio.AudioActivity;
-import demo.zkttestdemo.kotlin.KotlinActivity;
 import demo.zkttestdemo.realm.RealmActivity;
 import demo.zkttestdemo.recyclerview.diffUtil.DiffUtilActivity;
 import demo.zkttestdemo.recyclerview.header.BannerRecyclerActivity;
@@ -272,8 +273,8 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, RetrofitActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_kotlin) {
-            Intent intent = new Intent(this, KotlinActivity.class);
-            startActivity(intent);
+            /*Intent intent = new Intent(this, KotlinActivity.class);
+            startActivity(intent);*/
         } else if (id == R.id.nav_Daggar2) {
 
         } else if (id == R.id.nav_activityJump) {
@@ -509,6 +510,7 @@ public class MainActivity extends AppCompatActivity
     private File tempFile;
     private String path;//图片的路径
     private String imgName;
+    private Uri mUri;
 
     Handler handler = new Handler() {
         @Override
@@ -528,41 +530,37 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO Auto-generated method stub
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case CAMERA_REQUEST:
-                switch (resultCode) {
-                    case -1:// -1表示拍照成功
-                        photoClip(Uri.fromFile(tempFile));
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            case PHOTO_REQUEST:
-                if (data != null) {
-                    photoClip(data.getData());
-                }
-                break;
-            case PHOTO_CLIP:
-                if (data != null) {
-                    Bundle extras = data.getExtras();
-                    if (extras != null) {
-                        Bitmap photo = extras.getParcelable("data");
-                        image_head.setImageBitmap(photo);
-                        //压缩头像大小
-                        photo = FileUtils.decodeSampledBitmapFromBitmap(photo, 70, 70);
-                        try {
-                            path = saveFile(photo, "demo.jpg");
-                            //  uploadImg(path);
-                        } catch (Exception e) {
-                            e.printStackTrace();
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case CAMERA_REQUEST:
+                    photoClip(mUri);
+                    break;
+                case PHOTO_REQUEST:
+                    if (data != null) {
+                        photoClip(data.getData());
+                    }
+                    break;
+                case PHOTO_CLIP:
+                    if (data != null) {
+                        Bundle extras = data.getExtras();
+                        if (extras != null) {
+                            Bitmap photo = extras.getParcelable("data");
+                            image_head.setImageBitmap(photo);
+                            //压缩头像大小
+                            photo = FileUtils.decodeSampledBitmapFromBitmap(photo, 70, 70);
+                            try {
+                                path = saveFile(photo, "demo.jpg");
+                                //  uploadImg(path);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
-                }
-                break;
+                    break;
+            }
         }
+
     }
 
     /**
@@ -570,11 +568,12 @@ public class MainActivity extends AppCompatActivity
      *
      * @param savedInstanceState
      */
+
     private void createCameraTempFile(Bundle savedInstanceState) {
         if (savedInstanceState != null && savedInstanceState.containsKey("tempFile")) {
             tempFile = (File) savedInstanceState.getSerializable("tempFile");
         } else {
-            tempFile = new File(checkDirPath(getExternalFilesDir(null) + "/image/"),
+            tempFile = new File(checkDirPath(getExternalCacheDir() + "/image/"),
                     System.currentTimeMillis() + ".jpg");
         }
     }
@@ -610,6 +609,9 @@ public class MainActivity extends AppCompatActivity
     private void photoClip(Uri uri) {
         // 调用系统中自带的图片剪裁
         Intent intent = new Intent("com.android.camera.action.CROP");
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
         intent.setDataAndType(uri, "image/*");
         // 下面这个crop=true是设置在开启的Intent中设置显示的VIEW可裁剪
         intent.putExtra("crop", "true");
@@ -653,7 +655,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(MainActivity.this,
-                            new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                            new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_SETTINGS, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
                 } else {
                     //跳转到调用系统相机
                     getPicFromCamera();
@@ -706,7 +708,14 @@ public class MainActivity extends AppCompatActivity
     private void getPicFromCamera() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // 下面这句指定调用相机拍照后的照片存储的路径
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(tempFile));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            mUri = FileProvider.getUriForFile(getApplicationContext(), BuildConfig.APPLICATION_ID + ".picture", tempFile);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, mUri);
+        } else {
+            mUri = Uri.fromFile(tempFile);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, mUri);
+        }
         startActivityForResult(intent, CAMERA_REQUEST);
     }
 }

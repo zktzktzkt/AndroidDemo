@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
 apply plugin: 'realm-android'
 
 // JitPack Maven
@@ -62,8 +61,6 @@ dependencies {
     implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     //
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$rootProject.kotlin_version"
-    //
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
@@ -73,7 +70,6 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
     //
-    implementation 'org.jetbrains.anko:anko-commons:0.10.0'
     implementation 'com.github.razerdp:BasePopup:1.8.2'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.35'
     implementation 'com.kailashdabhi:om-recorder:1.1.5'
