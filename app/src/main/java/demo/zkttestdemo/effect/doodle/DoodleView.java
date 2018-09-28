@@ -22,7 +22,7 @@ import java.io.FileOutputStream;
 public class DoodleView extends View {
 
     private Path path;
-    private int preX, preY;
+    private int downX, downY;
     private Paint paint;
     private Bitmap bufferBitmap;
     private Canvas bufferBitmapCanvas;
@@ -61,9 +61,6 @@ public class DoodleView extends View {
         super.onDraw(canvas);
         //1. 先画已经保存的路径
         canvas.drawBitmap(bufferBitmap, 0, 0, null);
-
-        //2. 再画当前的轨迹
-        canvas.drawPath(path, paint);
     }
 
     @Override
@@ -72,28 +69,20 @@ public class DoodleView extends View {
         int y = (int) event.getY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                downX = x;
+                downY = y;
                 path.reset();
-                preX = x;
-                preY = y;
-                path.moveTo(x, y);
+                path.moveTo(downX, downY);
                 break;
 
             case MotionEvent.ACTION_MOVE:
-                //手指移动过程中只显示绘制过程
-                //使用贝塞尔曲线进行绘图，需要一个起点（preX,preY）
-                //一个终点（x, y），一个控制点((preX + x) / 2, (preY + y) / 2))
-                int controlX = (x + preX) / 2;
-                int controlY = (y + preY) / 2;
+                int controlX = (x + downX) / 2;
+                int controlY = (y + downY) / 2;
                 path.quadTo(controlX, controlY, x, y);
-                invalidate();
-                preX = x;
-                preY = y;
-                break;
-
-            case MotionEvent.ACTION_UP:
-                //up的时候把路径存起来
                 bufferBitmapCanvas.drawPath(path, paint);
                 invalidate();
+                downX = x;
+                downY = y;
                 break;
         }
         return true;

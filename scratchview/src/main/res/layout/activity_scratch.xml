@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.zkt.scratchview.ScratchActivity">
+
+    <FrameLayout
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp">
+        <!--刮层下遮住的内容-->
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_launcher"/>
+        <!--刮层-->
+        <com.zkt.scratchview.ScratchView
+            android:id="@+id/scratch_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
+
+</FrameLayout>

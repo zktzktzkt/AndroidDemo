@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ScratchView">
+        <!--蒙层的颜色-->
+        <attr name="maskColor" format="color|reference"/>
+    </declare-styleable>
+</resources>

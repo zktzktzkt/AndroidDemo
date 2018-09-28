@@ -80,11 +80,12 @@ public class CustomViewTest extends View {
 
         canvas.drawBitmap(mDstBitmap, 0, 0, mPaint);
         mPaint.setXfermode(porterDuffXfermode);
-        //        canvas.drawBitmap(mSrcBitmap, 0, 0, mPaint);
-        canvas.save();
-        canvas.translate(mRadius / 4, mRadius / 4);
-        canvas.drawRect(0, 0, mRadius - 600, mRadius - 600, mPaint);
-        canvas.restore();
+        canvas.drawBitmap(mSrcBitmap, 0, 0, mPaint);
+
+        //        canvas.save();
+        //        canvas.translate(mRadius / 4, mRadius / 4);
+        //        canvas.drawRect(0, 0, mRadius - 500, mRadius - 500, mPaint);
+        //        canvas.restore();
         mPaint.setXfermode(null);
 
         canvas.restoreToCount(saved);

@@ -5,13 +5,14 @@ if (isModuleRun.toBoolean()) {
     apply plugin: 'com.android.library'
 }
 
+
 android {
     compileSdkVersion 26
 
     defaultConfig {
         // 2.【组件化:applicationId】作为library时不能有applicationId,只有作为一个独立应用时才能够如下设置
         if (isModuleRun.toBoolean()) {
-            applicationId "com.ypzn.pathmeasure"
+            applicationId "com.zkt.scratchview"
         }
 
         minSdkVersion rootProject.minSdkVersion
@@ -20,6 +21,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
 
     sourceSets {
@@ -47,9 +49,10 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
-    implementation project(':basemodule')
+
 }
