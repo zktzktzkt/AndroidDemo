@@ -59,7 +59,6 @@ public class DoodleView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        //1. 先画已经保存的路径
         canvas.drawBitmap(bufferBitmap, 0, 0, null);
     }
 
