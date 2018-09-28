@@ -108,6 +108,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="Paint效果Demo"/>
             <item
+                android:id="@+id/nav_scratchView"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="刮刮卡效果"/>
+            <item
                 android:id="@+id/nav_elemeShopBtn"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="仿饿了么购物车按钮"/>

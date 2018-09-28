@@ -1,13 +1,17 @@
 package com.zkt.scratchview;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
+
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.ypzn.basemodule.ARouterManager;
 
 /**
  * 刮刮乐，刮奖效果
  */
+@Route(path = ARouterManager.ScratchActivity)
 public class ScratchActivity extends AppCompatActivity {
 
     private ScratchView scratchView;

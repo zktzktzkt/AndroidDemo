@@ -285,6 +285,10 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_itemTouchHelper) {
             ARouter.getInstance().build(ARouterManager.ItemTouchHelperActivity).navigation();
         }
+        // 刮刮卡效果
+        else if (id == R.id.nav_scratchView) {
+            ARouter.getInstance().build(ARouterManager.ScratchActivity).navigation();
+        }
         // 流式布局
         else if (id == R.id.nav_flow) {
             Intent intent = new Intent(this, FlowActivity.class);

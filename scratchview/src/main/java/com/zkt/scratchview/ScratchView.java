@@ -194,7 +194,9 @@ public class ScratchView extends View {
             protected void onProgressUpdate(Integer... values) {
                 super.onProgressUpdate(values);
                 mPercent = values[0];
-                onPercentUpdate();
+                if (mEraseStatusListener != null) {
+                    mEraseStatusListener.onProgress(mPercent);
+                }
             }
 
             @Override
@@ -209,12 +211,6 @@ public class ScratchView extends View {
             }
 
         }.execute(width, height);
-    }
-
-    private void onPercentUpdate() {
-        if (mEraseStatusListener != null) {
-            mEraseStatusListener.onProgress(mPercent);
-        }
     }
 
 

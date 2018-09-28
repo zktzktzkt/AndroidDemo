@@ -49,6 +49,7 @@ dependencies {
         implementation project(':waterbubble')
         implementation project(':pathmeasure')
         implementation project(':itemtouchhelper')
+        implementation project(':scratchview')
     }
     //路由
     implementation "com.alibaba:arouter-api:$rootProject.arouterApi"

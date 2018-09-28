@@ -11,4 +11,6 @@ public final class ARouterManager {
 
     public static final String ItemTouchHelperActivity = "/itemtouchhelper/ItemTouchHelperActivity";
 
+    public static final String ScratchActivity = "/scratchview/ScratchActivity";
+
 }
