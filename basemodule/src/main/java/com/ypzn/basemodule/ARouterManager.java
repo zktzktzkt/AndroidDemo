@@ -12,5 +12,6 @@ public final class ARouterManager {
     public static final String ItemTouchHelperActivity = "/itemtouchhelper/ItemTouchHelperActivity";
     public static final String ScratchActivity = "/scratchview/ScratchActivity";
     public static final String LotteryActivity = "/lottery/LotteryActivity";
+    public static final String CircleLayoutActivity = "/circlelayout/CircleLayoutActivity";
 
 }

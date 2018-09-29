@@ -50,6 +50,7 @@ dependencies {
         implementation project(':pathmeasure')
         implementation project(':itemtouchhelper')
         implementation project(':scratchview')
+        implementation project(':circlelayout')
     }
     //路由
     implementation "com.alibaba:arouter-api:$rootProject.arouterApi"

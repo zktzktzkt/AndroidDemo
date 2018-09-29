@@ -3,3 +3,7 @@ https://www.jianshu.com/p/2514a08d8217
 
 日夜间模式切换：
 https://www.jianshu.com/p/3b55e84742e5
+
+仿支付宝蚂蚁森林水滴浮动效果
+https://github.com/yangyong915/UIDemo/blob/master/app/src/main/java/com/example/a55014/mytest/water/WaterActivity.java
+https://blog.csdn.net/H176Nhx7/article/details/79225297

@@ -341,6 +341,10 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, StatusBarActivity.class);
             startActivity(intent);
         }
+        //圆形layout布局
+        else if (id == R.id.nav_circleLayout) {
+            ARouter.getInstance().build(ARouterManager.CircleLayoutActivity).navigation();
+        }
         //屏幕适配
         else if (id == R.id.nav_screenMatch) {
             Intent intent = new Intent(this, ScreenMatchActivity.class);
