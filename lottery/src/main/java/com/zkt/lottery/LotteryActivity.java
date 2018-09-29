@@ -6,6 +6,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.ypzn.basemodule.ARouterManager;
+
+@Route(path = ARouterManager.LotteryActivity)
 public class LotteryActivity extends AppCompatActivity {
 
     @Override

@@ -13,6 +13,9 @@ import java.util.List;
 
 import demo.zkttestdemo.R;
 
+/**
+ * CoordinatorLayout实现悬浮头
+ */
 public class StikyHeadActivity extends AppCompatActivity {
 
     @Override
@@ -39,7 +42,7 @@ public class StikyHeadActivity extends AppCompatActivity {
         list.add("123");
         list.add("123");
 
-        RecyclerView recycler =  findViewById(R.id.recyclerView);
+        RecyclerView recycler = findViewById(R.id.recyclerView);
         recycler.setAdapter(new BaseQuickAdapter<String, BaseViewHolder>(R.layout.item_recorder, list) {
             @Override
             protected void convert(BaseViewHolder helper, String item) {

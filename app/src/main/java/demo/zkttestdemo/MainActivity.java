@@ -39,7 +39,6 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.ypzn.basemodule.ARouterManager;
-import com.zkt.lottery.LotteryActivity;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -357,8 +356,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         }//转盘效果
         else if (id == R.id.nav_lottery) {
-            Intent intent = new Intent(this, LotteryActivity.class);
-            startActivity(intent);
+            ARouter.getInstance().build(ARouterManager.LotteryActivity).navigation();
         } else if (id == R.id.nav_58Loading) {
             Intent intent = new Intent(this, Loading58Activity.class);
             startActivity(intent);
@@ -383,8 +381,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_snow) {
             Intent intent = new Intent(this, SnowActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_loadingView) {
-            Intent intent = new Intent(this, demo.zkttestdemo.effect.loadingview.LoadingActivity.class);
+        }
+        //缩放loding加载
+        else if (id == R.id.nav_loadingView) {
+            Intent intent = new Intent(this, LoadingActivity.class);
             startActivity(intent);
         }
         //paint 实验
