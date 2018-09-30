@@ -1,1 +1,1 @@
-include ':app', ':springview', ':addsubview', ':revealview', ':bubble', ':pathmeasure', ':lottery', ':waterbubble', ':itemtouchhelper', ':basemodule', ':scratchview', ':circlelayout'
+include ':app', ':springview', ':addsubview', ':revealview', ':bubble', ':pathmeasure', ':lottery', ':waterbubble', ':itemtouchhelper', ':basemodule', ':scratchview', ':circlelayout', ':progress'

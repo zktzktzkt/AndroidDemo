@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="triangleProgressView">
+        <attr name="background_color" format="color"/>
+        <attr name="progress_Color" format="color"/>
+    </declare-styleable>
+</resources>
