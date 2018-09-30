@@ -1,6 +1,7 @@
 package com.zkt.circlelayout;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.ViewGroup;
@@ -25,17 +26,24 @@ public class CircleLayout extends ViewGroup {
 
     public CircleLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-
         mRadius = dp2px(120);
+
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CircleLayout);
+        array.getDimension(R.styleable.CircleLayout_radius, mRadius);
+        array.recycle();
+
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         measureChildren(widthMeasureSpec, heightMeasureSpec);
-
-        int size = Math.max(mRadius * 2, getChildAt(0).getMeasuredWidth() * 3);
+        int size = 0;
+        if (getChildCount() > 0) {
+            size = Math.max(mRadius * 2, getChildAt(0).getMeasuredWidth() * 3);
+        }
         setMeasuredDimension(size + mRadius, size + mRadius);
+
     }
 
     @Override

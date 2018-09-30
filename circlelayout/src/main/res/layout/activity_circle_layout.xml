@@ -1,50 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zkt.circlelayout.CircleLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.zkt.circlelayout.CircleLayoutActivity">
 
-    <com.zkt.circlelayout.CircleView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        />
+    <com.zkt.circlelayout.CircleLayout
+        android:id="@+id/circleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
-    <com.zkt.circlelayout.CircleView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        />
+        <com.zkt.circlelayout.CircleView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            />
 
-    <com.zkt.circlelayout.CircleView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        />
+        <com.zkt.circlelayout.CircleView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            />
 
-    <com.zkt.circlelayout.CircleView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        />
+        <com.zkt.circlelayout.CircleView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            />
 
-    <com.zkt.circlelayout.CircleView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        />
+        <com.zkt.circlelayout.CircleView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            />
 
-    <com.zkt.circlelayout.CircleView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        />
+        <com.zkt.circlelayout.CircleView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            />
 
-    <com.zkt.circlelayout.CircleView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        />
+        <com.zkt.circlelayout.CircleView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            />
 
-    <com.zkt.circlelayout.CircleView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        />
+    </com.zkt.circlelayout.CircleLayout>
 
-</com.zkt.circlelayout.CircleLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="addView"
+        android:text="加一个View"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="clear"
+        android:text="清空"/>
+</LinearLayout>
+
+
