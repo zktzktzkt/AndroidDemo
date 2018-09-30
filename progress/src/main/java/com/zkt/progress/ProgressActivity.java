@@ -2,6 +2,7 @@ package com.zkt.progress;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.SeekBar;
 
 public class ProgressActivity extends AppCompatActivity {
 
@@ -10,7 +11,26 @@ public class ProgressActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_progress);
 
-        TriangleProgressView triangleProgress = findViewById(R.id.triangleProgress);
-        triangleProgress.setProgress(150, 1000);
+        final TriangleProgressView triangleProgress = findViewById(R.id.triangleProgress);
+        triangleProgress.setProgress(0, 10000);
+
+        SeekBar seekbar = findViewById(R.id.seekbar);
+        seekbar.setMax(10000);
+        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                triangleProgress.setProgress(progress, 10000);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 }

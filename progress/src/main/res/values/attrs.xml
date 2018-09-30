@@ -2,6 +2,11 @@
 <resources>
     <declare-styleable name="triangleProgressView">
         <attr name="background_color" format="color"/>
-        <attr name="progress_Color" format="color"/>
+        <attr name="progress_color" format="color"/>
+        <attr name="triangle_side_length" format="dimension"/>
+        <attr name="gap" format="dimension"/>
+        <attr name="triangle_color" format="color"/>
+        <attr name="number_size" format="dimension"/>
+        <attr name="number_color" format="color"/>
     </declare-styleable>
 </resources>

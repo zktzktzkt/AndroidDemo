@@ -21,19 +21,28 @@ public class TriangleProgressView extends View {
     private static final int DEFAULT_BACKGROUND_COLOR = Color.GRAY;
     private static final int DEFAULT_PROGRESS_COLOR = Color.BLUE;
     private static final int DEFAULT_TRIANGLE_COLOR = Color.RED;
+    private static final int DEFAULT_NUMBER_COLOR = Color.BLACK;
 
     private int mWidth;
     private int mHeight;
     private int mProgress = 0;
     private int mProgressHeight = 0;
-    private int mTotalProgress;
+    private int mTotalProgress = 100;
 
     private final Paint mTrianglePaint;
     private final Paint mProgressPaint;
     private Paint mBgPaint;
     private Path mTrianglePath;
-    private int mSideLenth;
     private int mTriangleHeight;
+    private float mNumberSize;
+    private Paint mNumberPaint;
+    private int mProgressColor;
+    private int mBackgroundColor;
+    private int mTriangleColor;
+    private int mNumberColor;
+    private int mTriangleSideLength;
+    private int mGap;
+    private int mProgressLenth;
 
     public TriangleProgressView(Context context) {
         this(context, null);
@@ -51,7 +60,25 @@ public class TriangleProgressView extends View {
             int attr = array.getIndex(i);
             switch (attr) {
                 case R.styleable.triangleProgressView_background_color:
-                    array.getColor(attr, DEFAULT_BACKGROUND_COLOR);
+                    mBackgroundColor = array.getColor(attr, DEFAULT_BACKGROUND_COLOR);
+                    break;
+                case R.styleable.triangleProgressView_progress_color:
+                    mProgressColor = array.getColor(attr, DEFAULT_PROGRESS_COLOR);
+                    break;
+                case R.styleable.triangleProgressView_triangle_color:
+                    mTriangleColor = array.getColor(attr, DEFAULT_TRIANGLE_COLOR);
+                    break;
+                case R.styleable.triangleProgressView_triangle_side_length:
+                    mTriangleSideLength = (int) array.getDimension(attr, 15);
+                    break;
+                case R.styleable.triangleProgressView_number_size:
+                    mNumberSize = array.getDimension(attr, 18);
+                    break;
+                case R.styleable.triangleProgressView_number_color:
+                    mNumberColor = array.getColor(attr, DEFAULT_NUMBER_COLOR);
+                    break;
+                case R.styleable.triangleProgressView_gap:
+                    mGap = (int) array.getDimension(attr, 5);
                     break;
             }
         }
@@ -60,22 +87,32 @@ public class TriangleProgressView extends View {
         mBgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mBgPaint.setDither(true);
         mBgPaint.setStyle(Paint.Style.FILL);
-        mBgPaint.setColor(DEFAULT_BACKGROUND_COLOR);
+        mBgPaint.setColor(mBackgroundColor);
 
         mProgressPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mProgressPaint.setDither(true);
         mProgressPaint.setStyle(Paint.Style.FILL);
-        mProgressPaint.setColor(DEFAULT_PROGRESS_COLOR);
+        mProgressPaint.setColor(mProgressColor);
 
         mTrianglePaint = new Paint();
-        mTrianglePaint.setColor(DEFAULT_TRIANGLE_COLOR);
+        mTrianglePaint.setColor(mTriangleColor);
+
+        mNumberPaint = new Paint();
+        mNumberPaint.setColor(mNumberColor);
+        mNumberPaint.setTextSize(mNumberSize);
+        mNumberPaint.setTextAlign(Paint.Align.CENTER);
 
         mTrianglePath = new Path();
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int height = dp2px(25);
+        mProgressHeight = dp2px(5);
+        double triangleHeight_2 = mTriangleSideLength * mTriangleSideLength - mTriangleSideLength / 2 * mTriangleSideLength / 2;
+        mTriangleHeight = (int) Math.sqrt(triangleHeight_2); //三角形的高
+
+        int height = (int) (mProgressHeight + mTriangleHeight + mNumberSize + mGap * 2);
+
         setMeasuredDimension(widthMeasureSpec, resolveSize(height, heightMeasureSpec));
     }
 
@@ -84,30 +121,59 @@ public class TriangleProgressView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
         mWidth = w;
         mHeight = h;
-
-        mProgressHeight = dp2px(5);
-        mSideLenth = dp2px(15); //三角形的边长
-        double triangleHeight_2 = mSideLenth * mSideLenth - mSideLenth / 2 * mSideLenth / 2;
-        mTriangleHeight = (int) Math.sqrt(triangleHeight_2); //三角形的高
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        mProgress = mWidth * mProgress / mTotalProgress;
-        canvas.drawRoundRect(0, mHeight - mProgressHeight, mWidth, mHeight, 100, 100, mBgPaint);
-        canvas.drawRoundRect(0, mHeight - mProgressHeight, mProgress, mHeight, 100, 100, mProgressPaint);
+        //测量文字的宽度
+        int numberWidth = (int) mNumberPaint.measureText("12345");
+        mProgressLenth = (mWidth - numberWidth) * mProgress / mTotalProgress;
+
+        //进度条
+        //1.背景
+        canvas.drawRoundRect(
+                numberWidth / 2,
+                mHeight - mProgressHeight,
+                mWidth - numberWidth / 2,
+                mHeight,
+                100, 100, mBgPaint
+        );
+        //2.进度
+        canvas.drawRoundRect(
+                numberWidth / 2,
+                mHeight - mProgressHeight,
+                mProgressLenth + numberWidth / 2,
+                mHeight,
+                100, 100, mProgressPaint
+        );
+
         //画三角形
         mTrianglePath.reset();
-        mTrianglePath.moveTo(mProgress, mHeight - mProgressHeight - dp2px(3));
-        mTrianglePath.lineTo(mProgress - mSideLenth / 2, mHeight - mProgressHeight - dp2px(3) - mTriangleHeight);
-        mTrianglePath.lineTo(mProgress + mSideLenth / 2, mHeight - mProgressHeight - dp2px(3) - mTriangleHeight);
+        int x = mProgressLenth + numberWidth / 2;
+        int y = mHeight - mProgressHeight - mGap;
+        mTrianglePath.moveTo(x, y);
+        int x1 = mProgressLenth - mTriangleSideLength / 2 + numberWidth / 2;
+        int y1 = mHeight - mProgressHeight - mGap - mTriangleHeight;
+        mTrianglePath.lineTo(x1, y1);
+        int x2 = mProgressLenth + mTriangleSideLength / 2 + numberWidth / 2;
+        int y2 = mHeight - mProgressHeight - mGap - mTriangleHeight;
+        mTrianglePath.lineTo(x2, y2);
         mTrianglePath.close();
         canvas.drawPath(mTrianglePath, mTrianglePaint);
+
+        //画文字
+        canvas.drawText(mProgress + "",
+                mProgressLenth + numberWidth / 2,
+                mHeight - mProgressHeight - mGap - mTriangleHeight - mGap,
+                mNumberPaint);
+
     }
 
     public void setProgress(int progress, int totalProgress) {
         this.mTotalProgress = totalProgress;
         this.mProgress = progress;
+
+        invalidate();
     }
 
     private int dp2px(int dp) {

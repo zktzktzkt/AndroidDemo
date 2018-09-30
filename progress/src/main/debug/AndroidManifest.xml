@@ -5,7 +5,7 @@
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
-        android:label="itemtouchhelper"
+        android:label="triangleProgress"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ProgressActivity">
