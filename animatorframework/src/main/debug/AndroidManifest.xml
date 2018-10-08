@@ -5,7 +5,7 @@
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
-        android:label="triangleProgress"
+        android:label="自定义动画框架"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".AnimatorFrameworkActivity">

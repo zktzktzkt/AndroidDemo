@@ -329,10 +329,14 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_behaviorDemo) {
             Intent intent = new Intent(this, BehaviorActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_temp_control) {
+        }
+        //温度旋转按钮
+        else if (id == R.id.nav_temp_control) {
             Intent intent = new Intent(this, TemControlActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_JSSearch) {
+        }
+        //仿简书的搜索栏动画
+        else if (id == R.id.nav_JSSearch) {
             Intent intent = new Intent(this, JSSearchActivity.class);
             startActivity(intent);
         }
@@ -344,6 +348,14 @@ public class MainActivity extends AppCompatActivity
         //圆形layout布局
         else if (id == R.id.nav_circleLayout) {
             ARouter.getInstance().build(ARouterManager.CircleLayoutActivity).navigation();
+        }
+        //自定义动画框架
+        else if (id == R.id.nav_animatorFrameWork) {
+            ARouter.getInstance().build(ARouterManager.AnimatorFrameworkActivity).navigation();
+        }
+        //自定义带三角指示器的progress
+        else if (id == R.id.nav_progress) {
+            ARouter.getInstance().build(ARouterManager.ProgressActivity).navigation();
         }
         //屏幕适配
         else if (id == R.id.nav_screenMatch) {
@@ -358,10 +370,13 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_BDSearch) {
             Intent intent = new Intent(this, BDSearchActivity.class);
             startActivity(intent);
-        }//转盘效果
+        }
+        //转盘效果
         else if (id == R.id.nav_lottery) {
             ARouter.getInstance().build(ARouterManager.LotteryActivity).navigation();
-        } else if (id == R.id.nav_58Loading) {
+        }
+        //仿58同城的加载动画
+        else if (id == R.id.nav_58Loading) {
             Intent intent = new Intent(this, Loading58Activity.class);
             startActivity(intent);
         } else if (id == R.id.nav_overFlying) {

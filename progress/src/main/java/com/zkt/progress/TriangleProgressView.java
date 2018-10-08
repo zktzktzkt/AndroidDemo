@@ -55,33 +55,13 @@ public class TriangleProgressView extends View {
     public TriangleProgressView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.triangleProgressView);
-        int count = array.getIndexCount();
-        for (int i = 0; i < count; i++) {
-            int attr = array.getIndex(i);
-            switch (attr) {
-                case R.styleable.triangleProgressView_background_color:
-                    mBackgroundColor = array.getColor(attr, DEFAULT_BACKGROUND_COLOR);
-                    break;
-                case R.styleable.triangleProgressView_progress_color:
-                    mProgressColor = array.getColor(attr, DEFAULT_PROGRESS_COLOR);
-                    break;
-                case R.styleable.triangleProgressView_triangle_color:
-                    mTriangleColor = array.getColor(attr, DEFAULT_TRIANGLE_COLOR);
-                    break;
-                case R.styleable.triangleProgressView_triangle_side_length:
-                    mTriangleSideLength = (int) array.getDimension(attr, 15);
-                    break;
-                case R.styleable.triangleProgressView_number_size:
-                    mNumberSize = array.getDimension(attr, 18);
-                    break;
-                case R.styleable.triangleProgressView_number_color:
-                    mNumberColor = array.getColor(attr, DEFAULT_NUMBER_COLOR);
-                    break;
-                case R.styleable.triangleProgressView_gap:
-                    mGap = (int) array.getDimension(attr, 5);
-                    break;
-            }
-        }
+        mBackgroundColor = array.getColor(R.styleable.triangleProgressView_background_color, DEFAULT_BACKGROUND_COLOR);
+        mProgressColor = array.getColor(R.styleable.triangleProgressView_progress_color, DEFAULT_PROGRESS_COLOR);
+        mTriangleColor = array.getColor(R.styleable.triangleProgressView_triangle_color, DEFAULT_TRIANGLE_COLOR);
+        mTriangleSideLength = (int) array.getDimension(R.styleable.triangleProgressView_triangle_side_length, 15);
+        mNumberSize = array.getDimension(R.styleable.triangleProgressView_number_size, 18);
+        mNumberColor = array.getColor(R.styleable.triangleProgressView_number_color, DEFAULT_NUMBER_COLOR);
+        mGap = (int) array.getDimension(R.styleable.triangleProgressView_gap, 5);
         array.recycle();
 
         mBgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);

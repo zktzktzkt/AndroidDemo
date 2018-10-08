@@ -13,5 +13,7 @@ public final class ARouterManager {
     public static final String ScratchActivity = "/scratchview/ScratchActivity";
     public static final String LotteryActivity = "/lottery/LotteryActivity";
     public static final String CircleLayoutActivity = "/circlelayout/CircleLayoutActivity";
+    public static final String ProgressActivity = "/progress/ProgressActivity";
+    public static final String AnimatorFrameworkActivity = "/animatorframework/AnimatorFrameworkActivity";
 
 }

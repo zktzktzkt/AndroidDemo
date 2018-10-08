@@ -57,33 +57,26 @@ public class BDSearchActivity extends AppCompatActivity {
 
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                int abs_y = Math.abs(scrollY);
-
                 //如果在变化的范围内
-                if ((scrollLength - abs_y) > 0) {
+                if ((scrollLength - scrollY) > 0) {
                     // 算法：开始值 +（结束值 - 开始值）* 进度
                     IntEvaluator evaluator = new IntEvaluator();
 
                     // 总数-变动的值/总数 （ 变动的值范围：0~总数 ）
                     // 结果比例：1 ~ 0
-                    float percent = (float) (scrollLength - abs_y) / scrollLength;
+                    float percent = (float) (scrollLength - scrollY) / scrollLength;
 
                     //标题栏透明度
                     int evaluate = evaluator.evaluate(percent, 255, 0);
                     rv_bar.getBackground().setAlpha(evaluate);
 
-                    //搜索栏左右margin值
+                    //搜索栏左右、上下的margin值
                     evaluatemargin = evaluator.evaluate(percent, DensityUtil.dip2px(BDSearchActivity.this, ENDMARGINLEFT),
                             DensityUtil.dip2px(BDSearchActivity.this, STARTMARGINLEFT));
-
-                    //搜索栏顶部margin值
                     evaluatetop = evaluator.evaluate(percent, DensityUtil.dip2px(BDSearchActivity.this, ENDMARGINTOP),
                             DensityUtil.dip2px(BDSearchActivity.this, STARTMARGINTOP));
-
                     layoutParams = (FrameLayout.LayoutParams) rv_search.getLayoutParams();
                     layoutParams.setMargins(evaluatemargin, evaluatetop, evaluatemargin, 0);
-
-                    rv_search.requestLayout();
 
                 } else {
                     rv_bar.getBackground().setAlpha(255);
@@ -91,9 +84,10 @@ public class BDSearchActivity extends AppCompatActivity {
                         layoutParams.setMargins(DensityUtil.dip2px(BDSearchActivity.this, ENDMARGINLEFT),
                                 DensityUtil.dip2px(BDSearchActivity.this, 5),
                                 DensityUtil.dip2px(BDSearchActivity.this, ENDMARGINLEFT), 0);
-                        rv_search.requestLayout();
                     }
                 }
+
+                rv_search.setLayoutParams(layoutParams);
 
             }
         });

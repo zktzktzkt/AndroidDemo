@@ -51,6 +51,8 @@ dependencies {
         implementation project(':itemtouchhelper')
         implementation project(':scratchview')
         implementation project(':circlelayout')
+        implementation project(':progress')
+        implementation project(':animatorframework')
     }
     //路由
     implementation "com.alibaba:arouter-api:$rootProject.arouterApi"
