@@ -47,6 +47,8 @@ public class SnowObject {
         isSpeedRandom = snowObject.isSpeedRandom;
         isSizeRandom = snowObject.isSizeRandom;
 
+        viewHeight = height;
+
         random = new Random();
         currX = random.nextInt(width);//随机物体的X坐标
         currY = random.nextInt(height) - height;//随机物体的Y坐标，并让物体一开始从屏幕顶部下落
