@@ -288,6 +288,8 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration
     private boolean mClick = false;
 
     private final OnItemTouchListener mOnItemTouchListener = new OnItemTouchListener() {
+        float initX;
+
         @Override
         public boolean onInterceptTouchEvent(RecyclerView recyclerView, MotionEvent event) {
             mGestureDetector.onTouchEvent(event);
@@ -296,6 +298,7 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration
             }
             final int action = event.getActionMasked();
             if (action == MotionEvent.ACTION_DOWN) {
+                initX = event.getX();
                 // TODO: 2018-9-24
                 mClick = true;
                 mActivePointerId = event.getPointerId(0);
@@ -325,8 +328,6 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration
                 mActivePointerId = ACTIVE_POINTER_ID_NONE;
                 select(null, ACTION_STATE_IDLE);
             } else if (mActivePointerId != ACTIVE_POINTER_ID_NONE) {
-                // TODO: 2018-9-24
-                mClick = false;
                 // in a non scroll orientation, if distance change is above threshold, we
                 // can select the item
                 final int index = event.findPointerIndex(mActivePointerId);
@@ -367,6 +368,12 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration
             }
             switch (action) {
                 case MotionEvent.ACTION_MOVE: {
+                    // TODO: 2018-10-3
+                    float absX = Math.abs(initX - event.getX());
+                    if (absX > 60) {
+                        mClick = false;
+                    }
+
                     // Find the index of the active pointer and fetch its position
                     if (activePointerIndex >= 0) {
                         updateDxDy(event, mSelectedFlags, activePointerIndex);
@@ -2448,7 +2455,7 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration
         }
     }
 
-    public void doChildClickEvent(MotionEvent event) {
+    private void doChildClickEvent(MotionEvent event) {
         if (null == mSelected) {
             return;
         }
