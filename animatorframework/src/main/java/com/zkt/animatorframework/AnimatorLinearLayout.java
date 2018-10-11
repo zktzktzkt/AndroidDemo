@@ -49,12 +49,12 @@ public class AnimatorLinearLayout extends LinearLayout {
         } else {
             AnimatorFrameLayout frameLayout = new AnimatorFrameLayout(getContext());
             AnimatorLayoutParams layoutParams = (AnimatorLayoutParams) params;
-            frameLayout.setmDiscrollveAlpha(layoutParams.mDiscrollveAlpha);
-            frameLayout.setmDiscrollveFromBgColor(layoutParams.mDiscrollveFromBgColor);
-            frameLayout.setmDiscrollveScaleX(layoutParams.mDiscrollveScaleX);
-            frameLayout.setmDiscrollveScaleY(layoutParams.mDiscrollveScaleY);
-            frameLayout.setmDisCrollveTranslation(layoutParams.mDisCrollveTranslation);
-            frameLayout.setmDiscrollveToBgColor(layoutParams.mDiscrollveToBgColor);
+            frameLayout.setDiscrollAlpha(layoutParams.mDiscrollveAlpha);
+            frameLayout.setDiscrollFromBgColor(layoutParams.mDiscrollveFromBgColor);
+            frameLayout.setDiscrollScaleX(layoutParams.mDiscrollveScaleX);
+            frameLayout.setDiscrollScaleY(layoutParams.mDiscrollveScaleY);
+            frameLayout.setDiscrollTranslation(layoutParams.mDisCrollveTranslation);
+            frameLayout.setDiscrollToBgColor(layoutParams.mDiscrollveToBgColor);
             frameLayout.addView(child);
 
             //添加自己的view

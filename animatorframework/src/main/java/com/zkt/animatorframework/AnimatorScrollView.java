@@ -19,7 +19,7 @@ public class AnimatorScrollView extends ScrollView {
     @Override
     protected void onFinishInflate() {//渲染完毕回掉的
         super.onFinishInflate();
-        mContent = (AnimatorLinearLayout)getChildAt(0);
+        mContent = (AnimatorLinearLayout) getChildAt(0);
     }
 
     @Override
@@ -33,10 +33,36 @@ public class AnimatorScrollView extends ScrollView {
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
         super.onScrollChanged(l, t, oldl, oldt);
 
+        for (int i = 0; i < mContent.getChildCount(); i++) {
+            View child = mContent.getChildAt(i);
+
+            if (!(child instanceof DiscrollInterface)) {
+                continue;
+            }
+
+            DiscrollInterface discrollInterface = (DiscrollInterface) child;
+
+            //得到滑动出来的距离
+            int childTop = child.getTop();
+            int absoluteTop = childTop - t;
+            int scrollViewHeight = getHeight();
+
+            if (absoluteTop <= scrollViewHeight) {
+                int visibleHeight = scrollViewHeight - absoluteTop;
+                float ratio = visibleHeight / (float) child.getHeight();
+                discrollInterface.onDiscroll(clamp(ratio, 1, 0));
+            } else {
+                discrollInterface.onResetDiscroll();
+            }
+
+        }
+
+
     }
 
     //求三个数的中间大小的一个数。
-    public static float clamp(float value, float max, float min){
+    public static float clamp(float value, float max, float min) {
+        //最大不能大过max，最小不能小过min
         return Math.max(Math.min(value, max), min);
     }
 }

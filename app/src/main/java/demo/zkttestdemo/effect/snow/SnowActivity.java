@@ -34,7 +34,6 @@ public class SnowActivity extends AppCompatActivity {
         bitmapCanvas = new Canvas(bitmap);
         bitmapCanvas.drawCircle(25, 25, 25, snowPaint);
 
-
         //先初始化SnowObject
         SnowObject snowObject = new SnowObject.Builder(ContextCompat.getDrawable(this, R.drawable.ic_snow))
                 .setSpeed(10, true)
