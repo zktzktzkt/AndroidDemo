@@ -97,6 +97,7 @@ import demo.zkttestdemo.realm.RealmActivity;
 import demo.zkttestdemo.recyclerview.diffUtil.DiffUtilActivity;
 import demo.zkttestdemo.recyclerview.header.BannerRecyclerActivity;
 import demo.zkttestdemo.recyclerview.multichoice.MultiChoiceActivity;
+import demo.zkttestdemo.recyclerview.nested.NestedRecyclerActivity;
 import demo.zkttestdemo.recyclerview.singlechoice.SingleChoiceActivity;
 import demo.zkttestdemo.recyclerview.suspendmulti.SuspendMultiActivity;
 import demo.zkttestdemo.recyclerview.suspendsingle.SuspendSingleActivity;
@@ -278,6 +279,11 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_activityJump) {
             Intent intent = new Intent(this, OneActivity.class);
+            startActivity(intent);
+        }
+        //嵌套滑动RecyclerView
+        else if (id == R.id.nav_nestedRecycler) {
+            Intent intent = new Intent(this, NestedRecyclerActivity.class);
             startActivity(intent);
         }
         // itemTouchHelper示例

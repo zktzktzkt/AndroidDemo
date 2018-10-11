@@ -86,6 +86,10 @@
                 android:id="@+id/nav_bannerHeaderRecycler"
                 android:icon="@drawable/ic_menu_camera"
                 android:title="RecyclerView添加头部轮播图"/>
+            <item
+                android:id="@+id/nav_nestedRecycler"
+                android:icon="@drawable/ic_menu_camera"
+                android:title="RecyclerView嵌套滑动"/>
         </menu>
     </item>
 
