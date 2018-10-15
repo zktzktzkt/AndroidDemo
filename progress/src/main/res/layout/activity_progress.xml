@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context="com.zkt.progress.ProgressActivity">
 
-    <com.zkt.progress.TriangleProgressView
+    <com.zkt.progress.triangleprogress.TriangleProgressView
         android:id="@+id/triangleProgress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

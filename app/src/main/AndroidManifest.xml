@@ -194,8 +194,6 @@
         </activity>
         <activity android:name=".effect.window.FloatWindowActivity">
         </activity>
-        <activity android:name=".effect.sportprogress.SportProgressActivity">
-        </activity>
         <activity android:name=".effect.reveal.RevealActivity">
         </activity>
         <activity android:name=".effect.dragbubble.DragBubbleActivity">

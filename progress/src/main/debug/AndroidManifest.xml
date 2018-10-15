@@ -9,6 +9,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ProgressActivity">
+
+        </activity>
+
+        <activity android:name=".sportprogress.SportProgressActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

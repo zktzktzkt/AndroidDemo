@@ -7,9 +7,9 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_light"
     android:orientation="vertical"
-    tools:context="demo.zkttestdemo.effect.sportprogress.SportProgressActivity">
+    tools:context="com.zkt.progress.sportprogress.SportProgressActivity">
 
-    <demo.zkttestdemo.effect.sportprogress.SportProgressView
+    <com.zkt.progress.sportprogress.SportProgressView
         android:id="@+id/sport_view"
         android:layout_width="200dp"
         android:layout_height="200dp"

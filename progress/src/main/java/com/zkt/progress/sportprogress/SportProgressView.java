@@ -1,4 +1,4 @@
-package demo.zkttestdemo.effect.sportprogress;
+package com.zkt.progress.sportprogress;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -8,13 +8,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 
-import demo.zkttestdemo.R;
-import io.reactivex.annotations.NonNull;
+import com.zkt.progress.R;
 
 /**
  * Created by zkt on 2018-8-9.
@@ -186,7 +186,7 @@ public class SportProgressView extends View {
                 }
             });
             animator.start();
-        }else {
+        } else {
             mSweepAngle = mArcAngle;
         }
     }

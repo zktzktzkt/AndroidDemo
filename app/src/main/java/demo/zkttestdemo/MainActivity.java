@@ -81,7 +81,7 @@ import demo.zkttestdemo.effect.qqslidemenu.QQSlideMenuActivity;
 import demo.zkttestdemo.effect.screenmatch.ScreenMatchActivity;
 import demo.zkttestdemo.effect.slidemenu.SlideMenuActivity;
 import demo.zkttestdemo.effect.snow.SnowActivity;
-import demo.zkttestdemo.effect.sportprogress.SportProgressActivity;
+
 import demo.zkttestdemo.effect.statusbar.StatusBarActivity;
 import demo.zkttestdemo.effect.stikyhead.StikyHeadActivity;
 import demo.zkttestdemo.effect.tablayout.MyTablayoutActivity;
@@ -451,8 +451,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         }//运动步数progress
         else if (id == R.id.nav_sportProgress) {
-            Intent intent = new Intent(this, SportProgressActivity.class);
-            startActivity(intent);
+            ARouter.getInstance().build(ARouterManager.SportProgressActivity).navigation();
         } else if (id == R.id.nav_slideMenu) {
             Intent intent = new Intent(this, SlideMenuActivity.class);
             startActivity(intent);

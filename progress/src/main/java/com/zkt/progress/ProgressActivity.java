@@ -6,6 +6,7 @@ import android.widget.SeekBar;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.ypzn.basemodule.ARouterManager;
+import com.zkt.progress.triangleprogress.TriangleProgressView;
 
 @Route(path = ARouterManager.ProgressActivity)
 public class ProgressActivity extends AppCompatActivity {

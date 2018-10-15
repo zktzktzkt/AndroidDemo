@@ -1,4 +1,4 @@
-package com.zkt.progress;
+package com.zkt.progress.triangleprogress;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,6 +10,8 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
+
+import com.zkt.progress.R;
 
 /**
  * Created by zkt on 2018-9-30.

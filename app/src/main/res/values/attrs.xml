@@ -101,13 +101,16 @@
         <attr name="menuRightMargin" format="float"/>
     </declare-styleable>
 
-    <!--******************** 运动进度条 ********************************-->
-    <declare-styleable name="SportProgressView">
-        <attr name="circleColor" format="color"/>
-        <attr name="progressColor" format="color"/>
-        <attr name="unSelectPointColor" format="color"/>
-        <attr name="selectPointColor" format="color"/>
-        <attr name="percentTextSize" format="dimension"/>
+
+    <!-- ********************* RecyclerView下拉刷新 *********************-->
+    <declare-styleable name="PullRefreshRecyclerView">
+        <attr name="refresh_header_view" format="reference"/>
     </declare-styleable>
+
+    <declare-styleable name="PullScrollRefreshView">
+        <attr name="scroll_refresh_header_view" format="reference"/>
+        <attr name="content_view" format="reference"/>
+    </declare-styleable>
+
 
 </resources>
