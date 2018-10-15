@@ -90,6 +90,10 @@
                 android:id="@+id/nav_nestedRecycler"
                 android:icon="@drawable/ic_menu_camera"
                 android:title="RecyclerView嵌套滑动"/>
+            <item
+                android:id="@+id/nav_refreshRecycler"
+                android:icon="@drawable/ic_menu_camera"
+                android:title="RecyclerView下拉刷新"/>
         </menu>
     </item>
 

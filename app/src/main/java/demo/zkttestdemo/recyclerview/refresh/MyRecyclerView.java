@@ -3,14 +3,19 @@ package demo.zkttestdemo.recyclerview.refresh;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
+import android.widget.Toast;
 
 import demo.zkttestdemo.R;
 
@@ -74,17 +79,13 @@ public class MyRecyclerView extends LinearLayout {
         //      如果第一次获取的值为0，则不去initView
         //       在这里以flag作为一个标识，第一遍走initAttrs时，将flag设为true，也就是第二次才走initView
         initAttrs(context, attrs);
-        if (flag) {
-            initView(context);
-        }
+        initView(context);
     }
 
     private void initAttrs(Context context, AttributeSet attrs) {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.PullRefreshRecyclerView);
         refreshHeadviewId = typedArray.getResourceId(R.styleable.PullRefreshRecyclerView_refresh_header_view, 0);
         typedArray.recycle();
-
-        flag = true;
     }
 
     private void initView(Context context) {
@@ -110,20 +111,16 @@ public class MyRecyclerView extends LinearLayout {
 
         addView(mRefreshHeaderView);
 
-        // 以下代码主要是为了设置头布局的marginTop值为-headerviewHeight
-        // 注意必须等到一小会才会得到正确的头布局宽高，滑动时差
-        postDelayed(new Runnable() {
+        mRefreshHeaderView.post(new Runnable() {
             @Override
             public void run() {
                 rfreshHeaderWidth = mRefreshHeaderView.getWidth();
                 refreshHeadviewHeight = mRefreshHeaderView.getHeight();
-
                 MarginLayoutParams lp = new LayoutParams(rfreshHeaderWidth, refreshHeadviewHeight);
                 lp.setMargins(0, -refreshHeadviewHeight, 0, 0);
                 mRefreshHeaderView.setLayoutParams(lp);
-
             }
-        }, 10);
+        });
 
         //      添加RecyclerView
         mRecyclerView = new RecyclerView(context);
@@ -131,8 +128,217 @@ public class MyRecyclerView extends LinearLayout {
         setLoadMore();
     }
 
+    /**
+     * 加载更多
+     */
+    private void setLoadMore() {
+        // 当目前的可见条目是所有数据的最后一个时，开始加载新的数据
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                //找到最后一个显示出来的item的position
+                int lastCompletelyVisibleItemPosition = -1;
+                //线性
+                if (mLayoutManager instanceof LinearLayoutManager) {
+                    LinearLayoutManager manager = (LinearLayoutManager) mLayoutManager;
+                    lastCompletelyVisibleItemPosition = manager.findLastVisibleItemPosition();
+                }
+                //网格
+                else if (mLayoutManager instanceof GridLayoutManager) {
+                    GridLayoutManager manager = (GridLayoutManager) mLayoutManager;
+                    lastCompletelyVisibleItemPosition = manager.findLastVisibleItemPosition();
+                }
+                //瀑布流
+                else if (mLayoutManager instanceof StaggeredGridLayoutManager) {
+                    StaggeredGridLayoutManager manager = (StaggeredGridLayoutManager) mLayoutManager;
+                    lastCompletelyVisibleItemPosition = manager.findLastVisibleItemPositions(new int[manager.getSpanCount()])[0];
+                }
+                //最后一个item显示出来了，加载更多
+                if (lastCompletelyVisibleItemPosition + 1 == mAdapter.getItemCount()) {
+                    if (mOnPullListener != null && STATE == DEFAULT) {
+                        STATE = LOAD_MORE;
+                        mOnPullListener.onLoadMore();
+                    }
+                }
+            }
+        });
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        boolean intercepted = false;
+
+        int x = (int) ev.getX();
+        int y = (int) ev.getY();
+
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                intercepted = false;
+                if (STATE != DEFAULT || STATE != REFRESHING) {
+                    if (!mScroller.isFinished()) {
+                        mScroller.abortAnimation();
+                    }
+                }
+                break;
+            case MotionEvent.ACTION_MOVE:
+                int deltaX = x - mLastXIntercept;
+                int deltaY = y - mLastYIntercept;
+                //找到最后一个显示出来的item的position
+                int firstCompletelyVisibleItemPosition = -1;
+                //线性
+                if (mLayoutManager instanceof LinearLayoutManager) {
+                    LinearLayoutManager manager = (LinearLayoutManager) mLayoutManager;
+                    firstCompletelyVisibleItemPosition = manager.findFirstCompletelyVisibleItemPosition();
+                }
+                //网格
+                else if (mLayoutManager instanceof GridLayoutManager) {
+                    GridLayoutManager manager = (GridLayoutManager) mLayoutManager;
+                    firstCompletelyVisibleItemPosition = manager.findFirstCompletelyVisibleItemPosition();
+                }
+                //瀑布流
+                else if (mLayoutManager instanceof StaggeredGridLayoutManager) {
+                    StaggeredGridLayoutManager manager = (StaggeredGridLayoutManager) mLayoutManager;
+                    firstCompletelyVisibleItemPosition = manager.findFirstVisibleItemPositions(new int[manager.getSpanCount()])[0];
+                }
+
+                if (firstCompletelyVisibleItemPosition == 0 && deltaY > 0 && Math.abs(deltaY) > Math.abs(deltaX)) {
+                    intercepted = true;
+                } else if (getScrollY() < 0 && deltaY > 0 && Math.abs(deltaY) > Math.abs(deltaX)) {
+                    intercepted = true;
+                } else if (deltaY < 0) {
+                    intercepted = false;
+                } else {
+                    intercepted = false;
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                intercepted = false;
+                break;
+        }
+
+        mLastX = x;
+        mLastY = y;
+        mLastXIntercept = x;
+        mLastYIntercept = y;
+
+        return intercepted;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        mVelocityTracker.addMovement(event);
+        int x = (int) event.getX();
+        int y = (int) event.getY();
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                if (STATE != DEFAULT || STATE != REFRESHING) {
+                    if (!mScroller.isFinished()) {
+                        mScroller.abortAnimation();
+                    }
+                }
+                break;
+            case MotionEvent.ACTION_MOVE:
+                //                Log.e("MyRecyclerView", "getScrollY() -> " + getScrollY() + "   -refreshHeadviewHeight * 5  -> " + -refreshHeadviewHeight * 5);
+                int deltaY = y - mLastY;
+                if (getScrollY() > 0) {
+                    //防止在正在刷新状态下 下拉出现空白
+
+                } else if (getScrollY() <= 0 && getScrollY() > -refreshHeadviewHeight * 5) {
+                    scrollBy(0, -deltaY / 2);
+                }
+
+                //头部显示不全时
+                if (getScrollY() > -refreshHeadviewHeight && STATE != REFRESHING) {
+                    STATE = PULL_DOWN_REFRESH;
+                    if (mRecyclerViewRefreshStateCall != null) {
+                        mRecyclerViewRefreshStateCall.onPullDownRefreshState(getScrollY(), refreshHeadviewHeight, deltaY);
+                    }
+                }
+                //头部显示完全时，为释放刷新状态（表示可以刷新了）
+                if (getScrollY() < -refreshHeadviewHeight && STATE != REFRESHING) {
+                    STATE = RELEASE_REFRESH;
+                    if (mRecyclerViewRefreshStateCall != null) {
+                        mRecyclerViewRefreshStateCall.onReleaseRefreshState(getScrollY(), deltaY);
+                    }
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                int scrollY = getScrollY();
+                switch (STATE) {
+                    case PULL_DOWN_REFRESH:
+                        STATE = DEFAULT;
+                        smoothScrollBy(0, -scrollY);
+                        break;
+                    case RELEASE_REFRESH:
+                        STATE = REFRESHING;
+                        smoothScrollBy(0, -refreshHeadviewHeight - scrollY);
+                        if (null != mRecyclerViewRefreshStateCall) {
+                            mRecyclerViewRefreshStateCall.onRefreshingState();
+                        }
+                        if (null != mOnPullListener) {
+                            mOnPullListener.onRefresh();
+                        }
+                        break;
+                    case REFRESHING:
+                        if (getScrollY() < -refreshHeadviewHeight) {
+                            smoothScrollBy(0, -refreshHeadviewHeight - scrollY);
+                        } else {
+                            smoothScrollBy(0, -refreshHeadviewHeight);
+                        }
+                        break;
+                }
+                break;
+        }
+
+        mVelocityTracker.clear();
+
+        mLastX = x;
+        mLastY = y;
+
+        return true;
+    }
+
+    private void smoothScrollBy(int dx, int dy) {
+        mScroller.startScroll(0, getScrollY(), dx, dy, 500);
+        invalidate();
+    }
+
+    @Override
+    public void computeScroll() {
+        if (mScroller.computeScrollOffset()) {
+            scrollTo(mScroller.getCurrX(), mScroller.getCurrY());
+            postInvalidate();
+        }
+    }
+
     public RecyclerView getRecyclerView() {
         return mRecyclerView;
+    }
+
+    /**
+     * 当用户使用完下拉刷新回调时，需要调用此方法，将头不去隐藏，将STATE恢复
+     */
+    public void refreshFinish() {
+        smoothScrollBy(0, 0 - getScrollY());
+        getRecyclerView().getAdapter().notifyDataSetChanged();
+        STATE = DEFAULT;
+        if (mRecyclerViewRefreshStateCall != null) {
+            mRecyclerViewRefreshStateCall.onDefaultState();
+        }
+
+        Toast.makeText(getContext(), "刷新成功!", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * 当用户使用完加载更多后回调时，需要调用此方法，将STATE恢复
+     */
+    public void loadMroeFinish() {
+        getRecyclerView().getAdapter().notifyDataSetChanged();
+        STATE = DEFAULT;
+
+        Toast.makeText(getContext(), "加载成功了!", Toast.LENGTH_SHORT).show();
     }
 
     public void setLayoutManager(RecyclerView.LayoutManager manager) {

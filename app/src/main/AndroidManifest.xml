@@ -209,6 +209,8 @@
         </activity>
         <activity android:name=".recyclerview.nested.NestedRecyclerActivity">
         </activity>
+        <activity android:name=".recyclerview.refresh.RefreshActivity">
+        </activity>
     </application>
 
 </manifest>
