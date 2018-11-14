@@ -1,11 +1,9 @@
 package demo.zkttestdemo.effect.wxaudio;
 
 import android.Manifest;
-import android.content.pm.PackageManager;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,25 +12,34 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import demo.zkttestdemo.R;
 import demo.zkttestdemo.effect.wxaudio.bean.Recorder;
 import demo.zkttestdemo.effect.wxaudio.managers.PlayerManager;
 import demo.zkttestdemo.effect.wxaudio.views.AudioRecorderButton;
+import pub.devrel.easypermissions.AppSettingsDialog;
+import pub.devrel.easypermissions.EasyPermissions;
+import pub.devrel.easypermissions.PermissionRequest;
 
 /**
  * 仿微信录制语音
  */
-public class AudioActivity extends AppCompatActivity {
+public class AudioActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
 
     private ListView mListView;
     private ArrayAdapter<Recorder> mAdapter;
     private List<Recorder> mDatas = new ArrayList<Recorder>();
+    private View mAnimView;
 
     private AudioRecorderButton mAudioRecorderButton;
 
-    private View mAnimView;//
+    String[] perms = {
+            android.Manifest.permission.READ_EXTERNAL_STORAGE,
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.RECORD_AUDIO
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,21 +48,14 @@ public class AudioActivity extends AppCompatActivity {
 
         mListView = (ListView) findViewById(R.id.id_listview);
         mAudioRecorderButton = (AudioRecorderButton) findViewById(R.id.id_recorder_button);
-
-        // Check for permissions
-        int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
-        // If we don't have permissions, ask user for permissions
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            String[] PERMISSIONS_STORAGE = {
-                    android.Manifest.permission.READ_EXTERNAL_STORAGE,
-                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.RECORD_AUDIO
-            };
-            int REQUEST_EXTERNAL_STORAGE = 1;
-
-            ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE, REQUEST_EXTERNAL_STORAGE);
-
+        //权限
+        if (!EasyPermissions.hasPermissions(this, perms)) {
+            EasyPermissions.requestPermissions(
+                    new PermissionRequest.Builder(this, 1, perms)
+                            .setRationale("需要开启录音权限~")
+                            .setPositiveButtonText("开启")
+                            .setNegativeButtonText("关闭")
+                            .build());
         }
 
         mAudioRecorderButton.setAudioFinishRecorderListener(new AudioRecorderButton.AudioFinishRecorderListener() {
@@ -96,5 +96,27 @@ public class AudioActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> list) {
+        Toast.makeText(this, "权限被授予", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> list) {
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, Arrays.asList(perms))) {
+            new AppSettingsDialog.Builder(this)
+                    .setTitle("未开启相关权限")
+                    .setRationale("录音功能需要权限，否则无法使用")
+                    .build()
+                    .show();
+        }
     }
 }
