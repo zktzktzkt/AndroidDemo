@@ -40,7 +40,7 @@ public class AudioActivity extends AppCompatActivity implements EasyPermissions.
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.RECORD_AUDIO
     };
-
+//
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,7 +106,7 @@ public class AudioActivity extends AppCompatActivity implements EasyPermissions.
 
     @Override
     public void onPermissionsGranted(int requestCode, List<String> list) {
-        Toast.makeText(this, "权限被授予", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "权限被授予", Toast.LENGTH_SHORT).show();//
     }
 
     @Override
