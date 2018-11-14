@@ -66,7 +66,7 @@ public class AudioActivity extends AppCompatActivity implements EasyPermissions.
                 mAdapter.notifyDataSetChanged();
                 mListView.setSelection(mDatas.size() - 1);
             }
-        });
+        });//
 
         mAdapter = new RecorderAdapter(this, mDatas);
         mListView.setAdapter(mAdapter);
