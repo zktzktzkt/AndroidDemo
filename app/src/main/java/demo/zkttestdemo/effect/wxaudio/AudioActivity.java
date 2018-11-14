@@ -30,7 +30,7 @@ public class AudioActivity extends AppCompatActivity {
 
     private AudioRecorderButton mAudioRecorderButton;
 
-    private View mAnimView;
+    private View mAnimView;//
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
