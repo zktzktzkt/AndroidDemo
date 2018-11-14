@@ -40,7 +40,7 @@ public class AudioActivity extends AppCompatActivity implements EasyPermissions.
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.RECORD_AUDIO
     };
-//
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +66,7 @@ public class AudioActivity extends AppCompatActivity implements EasyPermissions.
                 mAdapter.notifyDataSetChanged();
                 mListView.setSelection(mDatas.size() - 1);
             }
-        });//
+        });
 
         mAdapter = new RecorderAdapter(this, mDatas);
         mListView.setAdapter(mAdapter);
