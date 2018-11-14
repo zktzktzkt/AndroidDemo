@@ -21,7 +21,9 @@ import demo.zkttestdemo.effect.wxaudio.bean.Recorder;
 import demo.zkttestdemo.effect.wxaudio.managers.PlayerManager;
 import demo.zkttestdemo.effect.wxaudio.views.AudioRecorderButton;
 
-
+/**
+ * 仿微信录制语音
+ */
 public class AudioActivity extends AppCompatActivity {
 
     private ListView mListView;
