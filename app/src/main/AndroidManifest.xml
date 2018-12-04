@@ -34,11 +34,11 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
+           <!-- <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+            </intent-filter>-->
         </activity>
         <activity android:name=".recyclerview.suspendsingle.SuspendSingleActivity"/>
         <activity android:name=".recyclerview.suspendmulti.SuspendMultiActivity"/>
@@ -197,13 +197,6 @@
         <activity android:name=".effect.reveal.RevealActivity">
         </activity>
         <activity android:name=".effect.dragbubble.DragBubbleActivity">
-
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-            -->
         </activity>
         <activity android:name=".effect.screenmatch.ScreenMatchActivity">
         </activity>
@@ -212,6 +205,10 @@
         <activity android:name=".recyclerview.refresh.RefreshActivity">
         </activity>
         <activity android:name=".effect.dashboard.DashBoardActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 
