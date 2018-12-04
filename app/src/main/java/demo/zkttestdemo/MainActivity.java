@@ -76,13 +76,13 @@ import demo.zkttestdemo.effect.multipage.MultiPageActivity;
 import demo.zkttestdemo.effect.overflyview.OverFlyActivity;
 import demo.zkttestdemo.effect.paint.PaintActivity;
 import demo.zkttestdemo.effect.paykeyboard.PayKeyboardActivity;
+import demo.zkttestdemo.effect.piechart.PieChartActivity;
 import demo.zkttestdemo.effect.progress.ProgressArcActivity;
 import demo.zkttestdemo.effect.pullAndload.PtrAndloadActivity;
 import demo.zkttestdemo.effect.qqslidemenu.QQSlideMenuActivity;
 import demo.zkttestdemo.effect.screenmatch.ScreenMatchActivity;
 import demo.zkttestdemo.effect.slidemenu.SlideMenuActivity;
 import demo.zkttestdemo.effect.snow.SnowActivity;
-
 import demo.zkttestdemo.effect.statusbar.StatusBarActivity;
 import demo.zkttestdemo.effect.stikyhead.StikyHeadActivity;
 import demo.zkttestdemo.effect.tablayout.MyTablayoutActivity;
@@ -288,7 +288,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, NestedRecyclerActivity.class);
             startActivity(intent);
         }
-        //嵌套滑动RecyclerView
+        //自定义下拉刷新
         else if (id == R.id.nav_refreshRecycler) {
             Intent intent = new Intent(this, RefreshActivity.class);
             startActivity(intent);
@@ -305,9 +305,15 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_flow) {
             Intent intent = new Intent(this, FlowActivity.class);
             startActivity(intent);
-        }// 仪表盘
+        }
+        // 仪表盘
         else if (id == R.id.nav_dashBoard) {
             Intent intent = new Intent(this, DashBoardActivity.class);
+            startActivity(intent);
+        }
+        // 饼状图
+        else if (id == R.id.nav_piechart) {
+            Intent intent = new Intent(this, PieChartActivity.class);
             startActivity(intent);
         }
         //Window悬浮窗

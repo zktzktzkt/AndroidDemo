@@ -136,6 +136,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="仪表盘"/>
             <item
+                android:id="@+id/nav_piechart"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="饼状图"/>
+            <item
                 android:id="@+id/nav_progress"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="三角指示progress"/>
