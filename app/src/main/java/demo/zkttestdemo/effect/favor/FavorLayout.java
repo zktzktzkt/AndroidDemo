@@ -40,13 +40,11 @@ public class FavorLayout extends RelativeLayout {
     private int drawableHeight;
 
     public FavorLayout(Context context) {
-        super(context);
-        init();
+        this(context, null);
     }
 
     public FavorLayout(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init();
+        this(context, attrs, 0);
     }
 
     public FavorLayout(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -56,8 +54,8 @@ public class FavorLayout extends RelativeLayout {
 
     private void init() {
         /*
-        * 初始化显示的图片
-        */
+         * 初始化显示的图片
+         */
         Drawable red = getResources().getDrawable(R.mipmap.ic_heart_red);
         Drawable yellow = getResources().getDrawable(R.mipmap.ic_heart_yellow);
         Drawable blue = getResources().getDrawable(R.mipmap.ic_heart_blue);
@@ -67,8 +65,8 @@ public class FavorLayout extends RelativeLayout {
         drawables[2] = blue;
 
         /*
-        * 初始化插值器
-        */
+         * 初始化插值器
+         */
         Interpolator line = new LinearInterpolator();//线性
         Interpolator acc = new AccelerateInterpolator();//加速
         Interpolator dce = new DecelerateInterpolator();//减速
