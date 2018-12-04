@@ -34,11 +34,11 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
-           <!-- <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>-->
+            </intent-filter>
         </activity>
         <activity android:name=".recyclerview.suspendsingle.SuspendSingleActivity"/>
         <activity android:name=".recyclerview.suspendmulti.SuspendMultiActivity"/>
@@ -46,13 +46,6 @@
         <activity android:name=".recyclerview.singlechoice.SingleChoiceActivity"/>
         <activity android:name=".recyclerview.multichoice.MultiChoiceActivity"/>
         <activity android:name=".effect.loadingdialog.LoadingActivity">
-
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-            -->
         </activity>
         <activity android:name=".effect.pullAndload.MTPtrActivity"/>
         <activity android:name=".effect.pullAndload.AliPtrActivity"/>
@@ -205,10 +198,6 @@
         <activity android:name=".recyclerview.refresh.RefreshActivity">
         </activity>
         <activity android:name=".effect.dashboard.DashBoardActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
     </application>
 
