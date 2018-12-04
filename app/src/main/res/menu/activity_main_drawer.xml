@@ -132,6 +132,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="自定义动画框架"/>
             <item
+                android:id="@+id/nav_dashBoard"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="仪表盘"/>
+            <item
                 android:id="@+id/nav_progress"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="三角指示progress"/>

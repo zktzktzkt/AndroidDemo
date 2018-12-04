@@ -55,6 +55,7 @@ import demo.zkttestdemo.effect.bottomsheet.ZHBottomSheetActivity;
 import demo.zkttestdemo.effect.circleprogress.CircleProgressActivity;
 import demo.zkttestdemo.effect.city_58.Loading58Activity;
 import demo.zkttestdemo.effect.coordinator.CoordinatorActivity;
+import demo.zkttestdemo.effect.dashboard.DashBoardActivity;
 import demo.zkttestdemo.effect.doodle.DoodleActivity;
 import demo.zkttestdemo.effect.dragbubble.DragBubbleActivity;
 import demo.zkttestdemo.effect.draglayout.DragActivity;
@@ -303,6 +304,10 @@ public class MainActivity extends AppCompatActivity
         // 流式布局
         else if (id == R.id.nav_flow) {
             Intent intent = new Intent(this, FlowActivity.class);
+            startActivity(intent);
+        }// 仪表盘
+        else if (id == R.id.nav_dashBoard) {
+            Intent intent = new Intent(this, DashBoardActivity.class);
             startActivity(intent);
         }
         //Window悬浮窗
