@@ -27,15 +27,6 @@ public class XfermodeTest extends View {
     private Paint mPaint;
     PorterDuffXfermode porterDuffXfermode = new PorterDuffXfermode(PorterDuff.Mode.SRC_IN);
 
-
-    public XfermodeTest(Context context) {
-        this(context, null);
-    }
-
-    public XfermodeTest(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
-
     public XfermodeTest(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
