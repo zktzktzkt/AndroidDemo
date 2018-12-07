@@ -71,13 +71,14 @@ public class DashBoardView extends View {
         //中间的点
         paint.setColor(Color.parseColor("#000000"));
         canvas.drawCircle(getWidth() / 2, getHeight() / 2, dp2px(5), paint);
+
     }
 
-    public int dp2px(int dp) {
+    private int dp2px(int dp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
     }
 
-    private int getAngleFromMark(int mark) {
+    public int getAngleFromMark(int mark) {
         return (int) (90 + (float) ANGLE / 2 + (360 - (float) ANGLE) / 20 * mark);
     }
 }

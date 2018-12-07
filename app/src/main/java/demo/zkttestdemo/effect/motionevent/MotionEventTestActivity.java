@@ -11,7 +11,6 @@ public class MotionEventTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_motion_event_test);
-
         //总结
         //1、如果View的clickable = true，则该View和它所在的ViewGroup的dispatch，onIntercept, onTouch的down move up都会执行
 

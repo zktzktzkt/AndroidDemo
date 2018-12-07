@@ -112,5 +112,10 @@
         <attr name="content_view" format="reference"/>
     </declare-styleable>
 
+    <!-- ********************* RecyclerView下拉刷新 *********************-->
+    <declare-styleable name="AlignTextView">
+        <attr name="alignOnlyOneLine" format="boolean"/>
+    </declare-styleable>
+
 
 </resources>

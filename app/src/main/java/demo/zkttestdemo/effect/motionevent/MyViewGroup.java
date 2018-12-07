@@ -62,7 +62,7 @@ public class MyViewGroup extends LinearLayout {
         }
        // Log.e("ViewGroup的onInterceptTouchEvent返回值", true + "");
 
-        return true;
+        return super.onInterceptTouchEvent(ev);
     }
 
 
@@ -87,7 +87,6 @@ public class MyViewGroup extends LinearLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-
         Log.e("ViewGroup生命周期测试", "onFinishInflate");
     }
 
@@ -96,6 +95,12 @@ public class MyViewGroup extends LinearLayout {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         Log.e("ViewGroup生命周期测试", "onMeasure");
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        Log.e("ViewGroup生命周期测试", "onSizeChanged");
     }
 
     @Override

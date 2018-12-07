@@ -30,8 +30,17 @@ public class AnimatorLinearLayout extends LinearLayout {
     }
 
     /**
-     * 1. 解析属性
-     * LayoutParams 的作用就是把xml中的属性解析到了LayoutParams中，这样就能在java代码中调用xml中的属性值
+     * 流程：解析xml -> 创建View，并传入对应的属性 -> 添加View到ViewGroup
+     * （1）先createViewFromTag；
+     * （2）createViewFromTag中，会回调Factory2#onCreateView，创建View；
+     * （3）把View添加进xml布局的根ViewGroup中；
+     */
+
+    /**
+     * 1. 此时View已经创建完。
+     * 在addView之前，会先回调generateLayoutParams，把xml中的属性转换成可调用的java对象
+     *
+     * @param attrs 子View的属性
      */
     @Override
     public LayoutParams generateLayoutParams(AttributeSet attrs) {
@@ -39,7 +48,7 @@ public class AnimatorLinearLayout extends LinearLayout {
     }
 
     /**
-     * 2. 偷天换日
+     * 2. generateLayoutParams后，ViewGroup会把view添加到其中，并把params传入，回调该方法
      * 在addview的时候，换成自己的View
      */
     @Override

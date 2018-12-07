@@ -31,6 +31,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -105,6 +106,7 @@ import demo.zkttestdemo.recyclerview.suspendmulti.SuspendMultiActivity;
 import demo.zkttestdemo.recyclerview.suspendsingle.SuspendSingleActivity;
 import demo.zkttestdemo.retrofit.RetrofitActivity;
 import demo.zkttestdemo.rxjava.RxJavaActivity;
+import demo.zkttestdemo.utils.ClickUtil;
 import demo.zkttestdemo.utils.FileUtils;
 import demo.zkttestdemo.utils.ImgUtil;
 
@@ -118,6 +120,23 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ClickUtil.init(new ClickUtil.IProxyClickListener() {
+            @Override
+            public boolean onProxyClick(WrapClickListener wrap, View v) {
+                Log.e("点击了按钮", v.getId() + "");
+                return false;
+            }
+        });
+        final View decorView = getWindow().getDecorView();
+        decorView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                //在onDestroy中加入
+                // decorView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                ClickUtil.hookViews(decorView, 0);
+            }
+        });
 
         /*new Thread(new Runnable() {
 
@@ -185,6 +204,7 @@ public class MainActivity extends AppCompatActivity
         Log.e("singInfo_MD5", singInfo_MD5.get(0));
         Log.e("singInfo_SHA1", singInfo_SHA1.get(0));
         Log.e("singInfo_SHA256", singInfo_SHA256.get(0));*/
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -452,7 +472,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_bannerHeaderRecycler) {
             Intent intent = new Intent(this, BannerRecyclerActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_MotionEventTest) {
+        }
+        //事件分发测试
+        else if (id == R.id.nav_MotionEventTest) {
             Intent intent = new Intent(this, MotionEventTestActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_multi_page) {

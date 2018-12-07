@@ -26,7 +26,6 @@ public class XfermodeTest extends View {
     private Bitmap mDstBitmap;
     private Paint mPaint;
     PorterDuffXfermode porterDuffXfermode = new PorterDuffXfermode(PorterDuff.Mode.SRC_IN);
-
     public XfermodeTest(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
@@ -54,17 +53,20 @@ public class XfermodeTest extends View {
         mRadius = Math.min(w, h);
     }
 
+    /**
+     *
+     */
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        //使用xfermode需要新建一个画布，否则会不显示的
+        //https://blog.csdn.net/cquwentao/article/details/51423371
+        //离屏缓冲，创建一个新的透明图层。在restore之后，绘制到上一个图层。
+        //为什么会需要一个新的图层？ 在处理xfermode的时候，原canvas上的图（包括背景）会影响src和dst的合成，这个时候，使用一个新的透明图层是一个很好的选择
         int saved = canvas.saveLayer(0, 0, getHeight(), getWidth(), mPaint);
-
         canvas.drawBitmap(createDstBitmap(), 0, 0, mPaint);
         mPaint.setXfermode(porterDuffXfermode);
         canvas.drawBitmap(createSrcBitmap(), 0, 0, mPaint);
         mPaint.setXfermode(null);
-
         canvas.restoreToCount(saved);
     }
 

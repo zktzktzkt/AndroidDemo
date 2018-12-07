@@ -16,6 +16,10 @@ public class AnimatorScrollView extends ScrollView {
         super(context, attrs);
     }
 
+    /**
+     * xml解析完后回调
+     * {@link android.view.LayoutInflater#rInflate}
+     */
     @Override
     protected void onFinishInflate() {//渲染完毕回掉的
         super.onFinishInflate();
@@ -40,8 +44,7 @@ public class AnimatorScrollView extends ScrollView {
                 continue;
             }
 
-            DiscrollInterface discrollInterface = (DiscrollInterface) child;
-
+            DiscrollInterface discrollInterface = (AnimatorFrameLayout) child;
             //得到滑动出来的距离
             int childTop = child.getTop();
             int absoluteTop = childTop - t;
@@ -61,7 +64,7 @@ public class AnimatorScrollView extends ScrollView {
     }
 
     //求三个数的中间大小的一个数。
-    public static float clamp(float value, float max, float min) {
+    private float clamp(float value, float max, float min) {
         //最大不能大过max，最小不能小过min
         return Math.max(Math.min(value, max), min);
     }
