@@ -16,12 +16,24 @@
         android:background="@color/colorAccent"
         android:textColor="@color/white"/>
 
-    <demo.zkttestdemo.views.AlignTextView
+    <!--<demo.zkttestdemo.views.AlignTextView
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈"
         android:textColor="@color/white"
         android:textSize="14sp"
-        app:alignOnlyOneLine="true"/>
+        app:alignOnlyOneLine="true"/>-->
+
+    <FrameLayout
+        android:background="#30ff0000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <demo.zkttestdemo.views.MaterialEditText
+            android:id="@+id/edittext"
+            android:hint="UserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </FrameLayout>
 
 </demo.zkttestdemo.effect.motionevent.MyViewGroup>
