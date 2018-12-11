@@ -25,15 +25,16 @@
         app:alignOnlyOneLine="true"/>-->
 
     <FrameLayout
-        android:background="#30ff0000"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#30ff0000">
 
         <demo.zkttestdemo.views.MaterialEditText
             android:id="@+id/edittext"
-            android:hint="UserName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:hint="UserName"
+            app:useFloatingLabel="true"/>
     </FrameLayout>
 
 </demo.zkttestdemo.effect.motionevent.MyViewGroup>

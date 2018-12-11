@@ -117,5 +117,9 @@
         <attr name="alignOnlyOneLine" format="boolean"/>
     </declare-styleable>
 
+    <!--********************* MaterialEdittext *********************-->
+    <declare-styleable name="MaterialEditText">
+        <attr name="useFloatingLabel" format="boolean"/>
+    </declare-styleable>
 
 </resources>
