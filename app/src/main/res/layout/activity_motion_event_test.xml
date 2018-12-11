@@ -24,17 +24,67 @@
         android:textSize="14sp"
         app:alignOnlyOneLine="true"/>-->
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#30ff0000">
 
-        <demo.zkttestdemo.views.MaterialEditText
-            android:id="@+id/edittext"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="UserName"
-            app:useFloatingLabel="true"/>
-    </FrameLayout>
+    <!--       <demo.zkttestdemo.views.MaterialEditText
+               android:id="@+id/edittext"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:hint="UserName"
+               app:useFloatingLabel="true"/>-->
+    <demo.zkttestdemo.views.TagLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <View
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:background="@color/red"/>
+
+        <View
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:background="@color/orange"/>
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/red"/>
+
+        <View
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:background="@color/orange"/>
+
+        <View
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:background="@color/red"/>
+
+        <View
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:background="@color/orange"/>
+
+        <View
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:background="@color/red"/>
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="50dp"
+            android:background="@color/orange"/>
+
+        <View
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:background="@color/red"/>
+
+        <View
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:background="@color/orange"/>
+    </demo.zkttestdemo.views.TagLayout>
 
 </demo.zkttestdemo.effect.motionevent.MyViewGroup>
