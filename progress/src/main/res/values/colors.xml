@@ -25,6 +25,8 @@
     <color name="blue_black">#1673b8</color>
 
     <color name="gray_9">#999999</color>
+    <color name="progress_bg_color">#FFF5F7FA</color>
+    <color name="progress_color">#FFF2C04C</color>
 
     <color name="orange">#ff9600</color>
     <color name="aqua">#02d1ac</color>

@@ -85,8 +85,8 @@ public class MyView extends View {
                 Log.e("MyView", "onTouchEvent ACTION_UP");
                 break;
         }
-        return super.onTouchEvent(ev);
-        //        return true;
+//        return super.onTouchEvent(ev);
+                return true;
     }
 
 }

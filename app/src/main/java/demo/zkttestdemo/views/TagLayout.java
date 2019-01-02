@@ -26,19 +26,19 @@ public class TagLayout extends ViewGroup {
         Log.e("TagLayout", "onMeasure");
         int widthUsed = 0; //总宽度
         int heightUsed = 0; //总高度
-        int lineMaxHeight = 0; //单行最高的高度
-        int lineMaxWidth = 0; //单行最宽的宽度
+        int lineHeight = 0; //单行最高的高度
+        int lineWidth = 0; //单行最宽的宽度
         int specWidth = MeasureSpec.getSize(widthMeasureSpec);
         int specMode = MeasureSpec.getMode(widthMeasureSpec);
         for (int i = 0; i < getChildCount(); i++) {
             View child = getChildAt(i);
             measureChildWithMargins(child, widthMeasureSpec, 0, heightMeasureSpec, heightUsed);
             //换行
-            if (specMode != MeasureSpec.UNSPECIFIED &&
-                    lineMaxWidth + child.getMeasuredWidth() > specWidth) {
-                lineMaxWidth = 0;
-                heightUsed += lineMaxHeight;
-                lineMaxHeight = 0;
+            if (lineWidth + child.getMeasuredWidth() > specWidth &&
+                    specMode != MeasureSpec.UNSPECIFIED) {
+                lineWidth = 0;
+                heightUsed += lineHeight;
+                lineHeight = 0;
                 measureChildWithMargins(child, widthMeasureSpec, 0, heightMeasureSpec, heightUsed);
             }
             // 因onMeasure会执行两次，作如下处理
@@ -49,14 +49,14 @@ public class TagLayout extends ViewGroup {
             } else {
                 childBound = childrenBounds.get(i);
             }
-            childBound.set(lineMaxWidth, heightUsed, lineMaxWidth + child.getMeasuredWidth(), heightUsed + child.getMeasuredHeight());
-            lineMaxWidth += child.getMeasuredWidth();
-            widthUsed = Math.max(lineMaxWidth, widthUsed);
-            lineMaxHeight = Math.max(lineMaxHeight, child.getMeasuredHeight());
+            childBound.set(lineWidth, heightUsed, lineWidth + child.getMeasuredWidth(), heightUsed + child.getMeasuredHeight());
+            lineWidth += child.getMeasuredWidth();
+            widthUsed = Math.max(lineWidth, widthUsed);
+            lineHeight = Math.max(lineHeight, child.getMeasuredHeight());
         }
 
         int width = widthUsed;
-        int height = heightUsed + lineMaxHeight;
+        int height = heightUsed + lineHeight;
         setMeasuredDimension(width, height);
     }
 

@@ -91,16 +91,7 @@ public class CustomViewPager extends ViewGroup {
         }
     }
 
-    /**
-     * 事件分发分两种情况
-     * 1. 子view处理了down事件，所以viewGroup的onTouchEvent不会被触发；
-     * 2. 子view没有处理down事件，所以事件会被回溯到viewGroup的onTouchEvent，
-     * 2.1  如果onTouchEvent为true，则接下来的事件都由自己处理
-     * 2.2  否则事件接着向上回溯
-     * <p>
-     * 子View消费了事件，所以ViewGroup的onInterceptTouchEvent的‘MOVE’会被调用
-     * 子view没有消费事件，所以ViewGroup的onTouchEvent会被调用
-     */
+
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         boolean intercept = false;

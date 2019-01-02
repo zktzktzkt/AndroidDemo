@@ -17,14 +17,14 @@ public class ProgressActivity extends AppCompatActivity {
         setContentView(R.layout.activity_progress);
 
         final TriangleProgressView triangleProgress = findViewById(R.id.triangleProgress);
-        triangleProgress.setProgress(0, 10000);
+        triangleProgress.setProgress(0, 100);
 
         SeekBar seekbar = findViewById(R.id.seekbar);
-        seekbar.setMax(10000);
+        seekbar.setMax(100);
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                triangleProgress.setProgress(progress, 10000);
+                triangleProgress.setProgress(progress, 100);
             }
 
             @Override

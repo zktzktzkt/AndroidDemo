@@ -82,6 +82,7 @@ public class CountdownProgress extends View {
 
         canvas.translate(width / 2, width / 2);
         canvas.rotate(45);
+        canvas.scale(width / 2, width / 2);
         canvas.drawRect(rect, paint);
     }
 

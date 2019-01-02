@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FF569EF7"
     android:orientation="vertical"
     tools:context="com.zkt.progress.ProgressActivity">
 
@@ -12,13 +13,13 @@
         android:id="@+id/triangleProgress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:background_color="@color/gray_9"
-        app:gap="5dp"
-        app:number_color="@color/orange"
-        app:number_size="32sp"
-        app:progress_color="@color/red"
-        app:triangle_color="@color/orange"
-        app:triangle_side_length="15dp"
+        app:background_color="@color/progress_bg_color"
+        app:gap="4dp"
+        app:number_color="@color/white"
+        app:number_size="14sp"
+        app:progress_color="@color/progress_color"
+        app:triangle_color="@color/white"
+        app:triangle_side_length="5dp"
         />
 
     <SeekBar

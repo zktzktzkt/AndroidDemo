@@ -108,7 +108,7 @@ public class TriangleProgressView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         //测量文字的宽度
-        int numberWidth = (int) mNumberPaint.measureText("12345");
+        int numberWidth = (int) mNumberPaint.measureText(mTotalProgress + "%");
         mProgressLenth = (mWidth - numberWidth) * mProgress / mTotalProgress;
 
         //进度条
@@ -144,7 +144,7 @@ public class TriangleProgressView extends View {
         canvas.drawPath(mTrianglePath, mTrianglePaint);
 
         //画文字
-        canvas.drawText(mProgress + "",
+        canvas.drawText(mProgress + "%",
                 mProgressLenth + numberWidth / 2,
                 mHeight - mProgressHeight - mGap - mTriangleHeight - mGap,
                 mNumberPaint);

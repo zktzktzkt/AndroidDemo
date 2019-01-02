@@ -110,7 +110,7 @@ public class WaterfallFlowLayout extends ViewGroup {
             int iChildWidth = 0;
 
             int iCurRowWidth = 0;
-            int iCurHeight = 0;
+            int iCurRowHeight = 0;
 
             //数量
             int childCount = getChildCount();
@@ -134,13 +134,13 @@ public class WaterfallFlowLayout extends ViewGroup {
                 if (iChildWidth + iCurRowWidth > widthSize) {
                     //1.保存当前行信息
                     measureWidth = Math.max(measureWidth, iCurRowWidth);
-                    measureHeight += iCurHeight;
-                    lstLineHegiht.add(iCurHeight);
+                    measureHeight += iCurRowHeight;
+                    lstLineHegiht.add(iCurRowHeight);
                     lstLineView.add(viewList);
 
                     //更新的行信息
                     iCurRowWidth = iChildWidth;
-                    iCurHeight = iChildHeight;
+                    iCurRowHeight = iChildHeight;
 
                     viewList = new ArrayList<>();
                     viewList.add(child);
@@ -148,7 +148,7 @@ public class WaterfallFlowLayout extends ViewGroup {
                     //2.记录新行信息
                 } else {
                     iCurRowWidth += iChildWidth;
-                    iCurHeight = Math.max(iCurHeight, iChildHeight);
+                    iCurRowHeight = Math.max(iCurRowHeight, iChildHeight);
 
                     viewList.add(child);
 
@@ -158,11 +158,11 @@ public class WaterfallFlowLayout extends ViewGroup {
                 if (i == childCount - 1) {
                     //6.1.记录当前行的最大宽度，高度累加
                     measureWidth = Math.max(measureWidth, iCurRowWidth);
-                    measureHeight += iCurHeight;
+                    measureHeight += iCurRowHeight;
 
                     //6.2.将当前行的viewList添加至总的mViewsList，将行高添加至总的行高List
                     lstLineView.add(viewList);
-                    lstLineHegiht.add(iCurHeight);
+                    lstLineHegiht.add(iCurRowHeight);
 
                 }
             }
