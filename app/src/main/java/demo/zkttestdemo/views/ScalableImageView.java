@@ -149,6 +149,10 @@ public class ScalableImageView extends View {
         }
     }
 
+    //====================================================================================================
+    //                                       GestureDetector
+    //====================================================================================================
+
     class MyFlingRunner implements Runnable {
         @Override
         public void run() {
@@ -160,10 +164,6 @@ public class ScalableImageView extends View {
             }
         }
     }
-
-    //====================================================================================================
-    //                                       GestureDetector
-    //====================================================================================================
 
     class MyGestureListener extends android.view.GestureDetector.SimpleOnGestureListener {
         /**

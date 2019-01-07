@@ -39,6 +39,7 @@ public class AnimatorLinearLayout extends LinearLayout {
     /**
      * 1. 此时View已经创建完。
      * 在addView之前，会先回调generateLayoutParams，把xml中的属性转换成可调用的java对象
+     * 注意：LayoutParams是给子View用的，不是给ViewGroup本身用
      *
      * @param attrs 子View的属性
      */
