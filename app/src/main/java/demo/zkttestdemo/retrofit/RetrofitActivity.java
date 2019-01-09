@@ -1,5 +1,6 @@
 package demo.zkttestdemo.retrofit;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -145,6 +146,7 @@ public class RetrofitActivity extends Activity implements View.OnClickListener {
     /**
      * RxJava + Retrofit
      */
+    @SuppressLint("CheckResult")
     private void getDataByRx() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         // “按照顺序” 添加拦截器，自动追加参数
@@ -165,20 +167,19 @@ public class RetrofitActivity extends Activity implements View.OnClickListener {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(builder.build())
                 .build();
-        ApiURL apiURL = retrofit.create(ApiURL.class);
-        Observable<ApiBean> api = apiURL.getApiBean("北京市");
 
+        Observable<ApiBean> api = retrofit.create(ApiURL.class).getApiBean("北京市");
         api.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<ApiBean>() {
                                @Override
-                               public void accept(ApiBean apiBean) throws Exception {
+                               public void accept(ApiBean apiBean) {
                                    Toast.makeText(RetrofitActivity.this, "成功了", Toast.LENGTH_SHORT).show();
                                }
                            },
                         new Consumer<Throwable>() {
                             @Override
-                            public void accept(Throwable e) throws Exception {
+                            public void accept(Throwable e) {
                                 Toast.makeText(RetrofitActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
