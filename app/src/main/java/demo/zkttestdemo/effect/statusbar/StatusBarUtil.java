@@ -42,9 +42,9 @@ public class StatusBarUtil {
             contentView.setPadding(0, getStatusBarHeight(activity), 0, 0);
 
             // 方式二
-            // View activityView = contentView.getChildAt(0);
-            // activityView.setFitsSystemWindows(true);
-            // activityView.setPadding(0, getStatusBarHeight(activity), 0, 0);
+           /*  View activityView = contentView.getChildAt(0);
+             activityView.setFitsSystemWindows(true);
+             activityView.setPadding(0, getStatusBarHeight(activity), 0, 0);*/
         }
     }
 

@@ -29,7 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -162,7 +162,7 @@ public class RetrofitActivity extends Activity implements View.OnClickListener {
                 // .addConverterFactory(GsonConverterFactory.create())
                 // 加入我们自定义的Gson解析库，就可以更友好的处理错误
                 .addConverterFactory(CstGsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(builder.build())
                 .build();
         ApiURL apiURL = retrofit.create(ApiURL.class);
