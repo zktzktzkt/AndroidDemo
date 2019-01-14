@@ -24,7 +24,7 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/night1"/>
 
-            <View
+            <demo.zkttestdemo.effect.jssearchdemo.TestView
                 android:layout_width="match_parent"
                 android:layout_height="1500dp"/>
         </FrameLayout>
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             >
 
-            <LinearLayout
+            <demo.zkttestdemo.effect.jssearchdemo.TestLinearLayout
                 android:id="@+id/ll_search"
                 android:layout_width="80dp"
                 android:layout_height="30dp"
@@ -61,7 +61,7 @@
                     android:gravity="center_vertical"
                     android:text="搜索"
                     android:textColor="#8A8A8A"/>
-            </LinearLayout>
+            </demo.zkttestdemo.effect.jssearchdemo.TestLinearLayout>
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 </RelativeLayout>
