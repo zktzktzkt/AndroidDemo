@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".effect.nestedscroll.NestedScrollTestActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@color/orange"
+                    android:gravity="center"
+                    android:text="content"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@color/blue"
+                    android:gravity="center"
+                    android:text="content"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@color/red"
+                    android:gravity="center"
+                    android:text="content"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@color/pink"
+                    android:gravity="center"
+                    android:text="content"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@color/green"
+                    android:gravity="center"
+                    android:text="content"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:text="content"/>
+
+            </LinearLayout>
+
+            <demo.zkttestdemo.effect.nestedscroll.ChildScrollView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_300"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/dp_200"
+                android:layout_marginTop="@dimen/dp_300">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:background="@color/black"
+                        android:gravity="center"
+                        android:text="content"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:background="@color/grey"
+                        android:gravity="center"
+                        android:text="content"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:background="@color/black"
+                        android:gravity="center"
+                        android:text="content"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:background="@color/grey"
+                        android:gravity="center"
+                        android:text="content"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:background="@color/black"
+                        android:gravity="center"
+                        android:text="content"/>
+
+                </LinearLayout>
+            </demo.zkttestdemo.effect.nestedscroll.ChildScrollView>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

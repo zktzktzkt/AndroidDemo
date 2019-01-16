@@ -74,6 +74,7 @@ import demo.zkttestdemo.effect.lockpattern.LockPatternActivity;
 import demo.zkttestdemo.effect.meituan2list.MeiTuanListActivity;
 import demo.zkttestdemo.effect.motionevent.MotionEventTestActivity;
 import demo.zkttestdemo.effect.multipage.MultiPageActivity;
+import demo.zkttestdemo.effect.nestedscroll.NestedScrollTestActivity;
 import demo.zkttestdemo.effect.overflyview.OverFlyActivity;
 import demo.zkttestdemo.effect.paint.PaintActivity;
 import demo.zkttestdemo.effect.paykeyboard.PayKeyboardActivity;
@@ -301,6 +302,11 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_activityJump) {
             Intent intent = new Intent(this, OneActivity.class);
+            startActivity(intent);
+        }
+        //嵌套滑动测试
+        else if (id == R.id.nav_nestedScrollTest) {
+            Intent intent = new Intent(this, NestedScrollTestActivity.class);
             startActivity(intent);
         }
         //嵌套滑动RecyclerView

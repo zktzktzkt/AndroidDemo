@@ -201,6 +201,8 @@
         </activity>
         <activity android:name=".effect.piechart.PieChartActivity">
         </activity>
+        <activity android:name=".effect.nestedscroll.NestedScrollTestActivity">
+        </activity>
     </application>
 
 </manifest>

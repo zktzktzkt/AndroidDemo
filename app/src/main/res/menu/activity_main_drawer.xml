@@ -104,6 +104,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="事件分发测试"/>
             <item
+                android:id="@+id/nav_nestedScrollTest"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="嵌套滑动测试"/>
+            <item
                 android:id="@+id/nav_statusBar"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="沉浸式状态栏"/>
