@@ -22,26 +22,6 @@ public class ChildScrollView extends ScrollView {
     }
 
     @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        //反射获取mLastMotionY和mTouchSlop
-        /*try {
-            Class<?> clazz = this.getClass();
-            Field mTouchSlopField = clazz.getDeclaredField("mTouchSlop");
-            mTouchSlopField.setAccessible(true);
-            mTouchSlop = (int) mTouchSlopField.get(this);
-
-            Field mLastMotionYField = clazz.getDeclaredField("mLastMotionY");
-            mLastMotionYField.setAccessible(true);
-            mLastMotionY = (int) mLastMotionYField.get(this);
-
-            Log.e("ChildScrollView", "mTouchSlop -> " + mTouchSlop + "  mLastMotionY -> " + mLastMotionY);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
-    }
-
-    @Override
     public boolean onTouchEvent(MotionEvent ev) {
         switch (ev.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:

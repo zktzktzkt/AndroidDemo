@@ -1,7 +1,7 @@
 package demo.zkttestdemo.retrofit.api;
 
 import demo.zkttestdemo.retrofit.bean.ApiBean;
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -11,7 +11,7 @@ import retrofit2.http.Query;
 
 public interface ApiURL {
     @GET("geocoding")
-    Observable<ApiBean> getApiBean(@Query("a") String city); //@Query是向后追加的效果 等同于 geocoding?a=city
+    Single<ApiBean> getApiBean(@Query("a") String city); //@Query是向后追加的效果 等同于 geocoding?a=city
 }
 
 //    @GET("group/users")

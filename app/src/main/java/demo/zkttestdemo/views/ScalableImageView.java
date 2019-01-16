@@ -47,7 +47,6 @@ public class ScalableImageView extends View {
 
     public ScalableImageView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-
         bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.night1);
         bitmap = setImgSize(this.bitmap, IMAGE_WIDTH, IMAGE_WIDTH);
 
