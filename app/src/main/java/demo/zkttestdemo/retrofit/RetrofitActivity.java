@@ -23,6 +23,7 @@ import io.reactivex.Single;
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
@@ -63,6 +64,38 @@ public class RetrofitActivity extends Activity implements View.OnClickListener {
         initToolbar();
         btn_get.setOnClickListener(this);
         btn_get_1.setOnClickListener(this);
+
+        /**
+         * 1. 每调一个操作符方法，其内部就会创建对应的操作符对象，并且把调用者传给创建的操作符对象
+         * 2. 整个流程是对象套对象，A->B, (A->B)->C, (A->B->C)->D
+         * 3. 当最后一个操作符对象调用subscribe，这时就会不断往上调，调用上一个对象的subscribe
+         * 4. 调用到最顶的时候，如果成功了，就会往下不断调用onSuccess，直至用户自定义的Observer
+         */
+        //创建SingleJust
+        Single<Integer> singleJust = Single.just(1);
+        //创建SingleFlatMap，同时传入SingleJust
+        Single<String> singleMap = singleJust.map(new Function<Integer, String>() {
+            @Override
+            public String apply(Integer integer) {
+                return String.valueOf(integer);
+            }
+              });
+        singleMap.subscribe(new SingleObserver<String>() {
+                @Override
+                public void onSubscribe(Disposable d) {
+
+                }
+
+                @Override
+                public void onSuccess(String o) {
+
+                }
+
+                @Override
+                public void onError(Throwable e) {
+
+            }
+        });
     }
 
 
