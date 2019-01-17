@@ -31,21 +31,21 @@ public class SingleChoiceActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_choice);
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recyclerView);
         tv1 = findViewById(R.id.tv_1);
         tv2 = findViewById(R.id.tv_2);
 
-        mScreenWidth = getResources().getDisplayMetrics().widthPixels;
+        /*mScreenWidth = getResources().getDisplayMetrics().widthPixels;
         mMinWidth = (int) (mScreenWidth * 0.28f);
-        mMaxWidth = mScreenWidth - 2 * mMinWidth;
+        mMaxWidth = mScreenWidth - 2 * mMinWidth;*/
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(new SingleChoiceAdapter(this));
         //取消item的动画，防止item刷新产生闪烁
         ((DefaultItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
 
-        recyclerView.addOnScrollListener(mOnScrollListener);
+        // recyclerView.addOnScrollListener(mOnScrollListener);
     }
 
 
