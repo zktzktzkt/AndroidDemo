@@ -9,9 +9,9 @@
     android:orientation="vertical"
     tools:context="demo.zkttestdemo.effect.motionevent.MotionEventTestActivity">
 
-    <demo.zkttestdemo.effect.motionevent.TouchView
+    <!--<demo.zkttestdemo.effect.motionevent.TouchView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"/>-->
 
     <demo.zkttestdemo.effect.motionevent.MyView
         android:layout_width="match_parent"

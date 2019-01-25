@@ -158,13 +158,25 @@ public class ScalableImageView extends View {
             if (scroller.computeScrollOffset()) {
                 offsetX = scroller.getCurrX();
                 offsetY = scroller.getCurrY();
-                invalidate();
-                postOnAnimation(this);
+                invalidate(); //到了下一帧刷新界面
+                postOnAnimation(this); //到了下一帧执行Runnable
             }
         }
     }
 
+    private void fixOffsets() {
+        //从左往右滑
+        offsetX = Math.min(offsetX, (bitmap.getWidth() * bigScale - getWidth()) / 2);
+        //从右往左滑
+        offsetX = Math.max(offsetX, -(bitmap.getWidth() * bigScale - getWidth()) / 2);
+        //从上往下滑
+        offsetY = Math.min(offsetY, (bitmap.getHeight() * bigScale - getHeight()) / 2);
+        //从下往上滑
+        offsetY = Math.max(offsetY, -(bitmap.getHeight() * bigScale - getHeight()) / 2);
+    }
+
     class MyGestureListener extends android.view.GestureDetector.SimpleOnGestureListener {
+
         /**
          * 一个很重要的回调，它的作用，相当于在onTouchEvent里，ACTION_DOWN事件的返回值
          */
@@ -195,11 +207,8 @@ public class ScalableImageView extends View {
         public boolean onScroll(MotionEvent down, MotionEvent event, float distanceX, float distanceY) {
             if (big) {
                 offsetX -= distanceX;
-                offsetX = Math.min(offsetX, (bitmap.getWidth() * bigScale - getWidth()) / 2);
-                offsetX = Math.max(offsetX, -(bitmap.getWidth() * bigScale - getWidth()) / 2);
                 offsetY -= distanceY;
-                offsetY = Math.min(offsetY, (bitmap.getHeight() * bigScale - getHeight()) / 2);
-                offsetY = Math.max(offsetY, -(bitmap.getHeight() * bigScale - getHeight()) / 2);
+                fixOffsets();
                 invalidate();
             }
             return false;
@@ -270,6 +279,7 @@ public class ScalableImageView extends View {
         public boolean onDoubleTapEvent(MotionEvent e) {
             return false;
         }
+
     }
 
 

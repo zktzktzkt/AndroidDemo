@@ -203,6 +203,8 @@
         </activity>
         <activity android:name=".effect.nestedscroll.NestedScrollTestActivity">
         </activity>
+        <activity android:name=".effect.draggridview.DragHelperGridActivity">
+        </activity>
     </application>
 
 </manifest>

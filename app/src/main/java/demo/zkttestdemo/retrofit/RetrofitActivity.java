@@ -50,6 +50,7 @@ public class RetrofitActivity extends Activity implements View.OnClickListener {
     private String mRepo = "retrofit";
     private TextView tv_content;
 
+    @SuppressLint("CheckResult")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,20 +80,20 @@ public class RetrofitActivity extends Activity implements View.OnClickListener {
             public String apply(Integer integer) {
                 return String.valueOf(integer);
             }
-              });
+        });
         singleMap.subscribe(new SingleObserver<String>() {
-                @Override
-                public void onSubscribe(Disposable d) {
+            @Override
+            public void onSubscribe(Disposable d) {
 
-                }
+            }
 
-                @Override
-                public void onSuccess(String o) {
+            @Override
+            public void onSuccess(String o) {
 
-                }
+            }
 
-                @Override
-                public void onError(Throwable e) {
+            @Override
+            public void onError(Throwable e) {
 
             }
         });
@@ -198,13 +199,12 @@ public class RetrofitActivity extends Activity implements View.OnClickListener {
                 // .addConverterFactory(GsonConverterFactory.create())
                 // 加入我们自定义的Gson解析库，就可以更友好的处理错误
                 .addConverterFactory(CstGsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
                 .client(builder.build())
                 .build();
 
         Single<ApiBean> api = retrofit.create(ApiURL.class).getApiBean("北京市");
-        api.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+        api.observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new SingleObserver<ApiBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {

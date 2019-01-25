@@ -59,6 +59,7 @@ import demo.zkttestdemo.effect.coordinator.CoordinatorActivity;
 import demo.zkttestdemo.effect.dashboard.DashBoardActivity;
 import demo.zkttestdemo.effect.doodle.DoodleActivity;
 import demo.zkttestdemo.effect.dragbubble.DragBubbleActivity;
+import demo.zkttestdemo.effect.draggridview.DragHelperGridActivity;
 import demo.zkttestdemo.effect.draglayout.DragActivity;
 import demo.zkttestdemo.effect.elemebtn.ElemeShopBtnActivity;
 import demo.zkttestdemo.effect.favor.FavorActivity;
@@ -307,6 +308,11 @@ public class MainActivity extends AppCompatActivity
         //嵌套滑动测试
         else if (id == R.id.nav_nestedScrollTest) {
             Intent intent = new Intent(this, NestedScrollTestActivity.class);
+            startActivity(intent);
+        }
+        //viewDragHelper
+        else if (id == R.id.nav_viewDragHelperTest) {
+            Intent intent = new Intent(this, DragHelperGridActivity.class);
             startActivity(intent);
         }
         //嵌套滑动RecyclerView

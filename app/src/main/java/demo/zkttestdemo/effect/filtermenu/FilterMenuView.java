@@ -73,7 +73,7 @@ public class FilterMenuView extends LinearLayout implements View.OnClickListener
         mShadowView.setVisibility(GONE);
         mShadowView.setOnClickListener(this);
         mMenuMiddleView.addView(mShadowView);
-        //创建菜单 存放菜单内容
+        //创建内容布局
         mMenuContainerView = new FrameLayout(mContext);
         mMenuContainerView.setBackgroundColor(Color.WHITE);
         mMenuMiddleView.addView(mMenuContainerView);
@@ -88,11 +88,16 @@ public class FilterMenuView extends LinearLayout implements View.OnClickListener
 
         mMenuContainerHeight = (int) (h * 0.75);
 
-        ViewGroup.LayoutParams layoutParams = mMenuContainerView.getLayoutParams();
-        layoutParams.height = mMenuContainerHeight;
-        mMenuContainerView.setLayoutParams(layoutParams);
+        mMenuContainerView.post(new Runnable() {
+            @Override
+            public void run() {
+                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) mMenuContainerView.getLayoutParams();
+                layoutParams.height = mMenuContainerHeight;
+                mMenuContainerView.setLayoutParams(layoutParams);
+                mMenuContainerView.animate().translationY(-mMenuContainerHeight).setDuration(0);
+            }
+        });
 
-        mMenuContainerView.animate().translationY(-mMenuContainerHeight).setDuration(2000);
     }
 
 
@@ -140,7 +145,7 @@ public class FilterMenuView extends LinearLayout implements View.OnClickListener
                     if (mCurrentPosition == position) {
                         closeMenu();
                     } else {
-                        //切换一下
+                        //隐藏当前显示的，显示所点击的
                         mMenuContainerView.getChildAt(mCurrentPosition).setVisibility(GONE);
                         mAdapter.menuClose(mMenuTabView.getChildAt(mCurrentPosition));
                         mCurrentPosition = position;

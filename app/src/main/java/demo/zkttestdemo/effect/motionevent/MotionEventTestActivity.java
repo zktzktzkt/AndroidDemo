@@ -17,4 +17,6 @@ public class MotionEventTestActivity extends AppCompatActivity {
 
         findViewById(R.id.edittext);
     }
+
+
 }

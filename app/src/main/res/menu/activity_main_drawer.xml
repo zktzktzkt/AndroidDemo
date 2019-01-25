@@ -108,6 +108,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="嵌套滑动测试"/>
             <item
+                android:id="@+id/nav_viewDragHelperTest"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="ViewDragHelper拖拽测试"/>
+            <item
                 android:id="@+id/nav_statusBar"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="沉浸式状态栏"/>
