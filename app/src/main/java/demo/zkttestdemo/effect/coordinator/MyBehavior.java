@@ -10,11 +10,18 @@ import android.widget.Button;
 
 /**
  * Created by zkt on 2017-11-10.
+ *
+ * 1. CoordinatorLayout根据子View的Attrs创建了Behavior，
+ * 2. 当有触摸事件时，会把事件转发给Behavior
+ * 3. Behavior的作用是 所依赖的View发生了变化，那设置Behavior的View该做些什么
  */
 
 public class MyBehavior extends CoordinatorLayout.Behavior<Button> {
     private final int widthPixels;
 
+    /**
+     * 如果初始化，必须在两个参数的构造函数中实现，CoordinatorLayout源码中通过反射调用的两个参数的构造函数创建对象
+     */
     public MyBehavior(Context context, AttributeSet attrs) {
         super(context, attrs);
 

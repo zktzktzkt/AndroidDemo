@@ -43,6 +43,7 @@ dependencies {
     implementation project(':springview')
     implementation project(':revealview')
     implementation project(':basemodule')
+    //组件化后，下面的就是application了，而不是library，所以不能依赖
     if (!isModuleRun.toBoolean()) {
         implementation project(':lottery')
         implementation project(':waterbubble')
