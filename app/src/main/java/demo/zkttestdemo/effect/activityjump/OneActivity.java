@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import demo.zkttestdemo.R;
+import demo.zkttestdemo.utils.SelectableTextHelper;
 
 public class OneActivity extends AppCompatActivity {
     public static final int ONE_REQUEST = 1;
@@ -15,6 +17,21 @@ public class OneActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_one);
+
+
+        SelectableTextHelper mSelectableTextHelper = new SelectableTextHelper.Builder((TextView) findViewById(R.id.textView))
+                .setSelectedColor(getResources().getColor(R.color.pink))
+                .setCursorHandleSizeInDp(20)
+                .setCursorHandleColor(getResources().getColor(R.color.pink))
+                .build();
+
+        mSelectableTextHelper.setOnNotesClickListener(new SelectableTextHelper.OnNoteBookClickListener() {
+            @Override
+            public void onTextSelect(CharSequence charSequence) {
+                String content = charSequence.toString();
+                Toast.makeText(OneActivity.this, content, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         findViewById(R.id.btn_1).setOnClickListener(new View.OnClickListener() {
             @Override
