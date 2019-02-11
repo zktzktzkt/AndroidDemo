@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<demo.zkttestdemo.effect.behavior.custom.BehaviorCoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".effect.behavior.CustomCoordinatorActivity">
+
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/night1"
+        app:layout_behavior="demo.zkttestdemo.effect.behavior.custom.ImageBehavior"/>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#00f"
+        app:layout_behavior="demo.zkttestdemo.effect.behavior.custom.ToolbarBehavior"/>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/img">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:lineSpacingExtra="@dimen/dp_10"
+            android:text="氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地"/>
+    </android.support.v4.widget.NestedScrollView>
+
+</demo.zkttestdemo.effect.behavior.custom.BehaviorCoordinatorLayout>

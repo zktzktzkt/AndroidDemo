@@ -64,7 +64,7 @@
     <!-- ========================== the dragging and related views -->
 
 
-    <demo.zkttestdemo.effect.draglayout.DragLayout
+    <demo.zkttestdemo.effect.draglayout.DragBottomLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

@@ -205,6 +205,8 @@
         </activity>
         <activity android:name=".effect.draggridview.DragHelperGridActivity">
         </activity>
+        <activity android:name=".effect.behavior.CustomCoordinatorActivity">
+        </activity>
     </application>
 
 </manifest>

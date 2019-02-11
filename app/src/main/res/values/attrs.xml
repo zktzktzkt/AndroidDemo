@@ -122,4 +122,9 @@
         <attr name="useFloatingLabel" format="boolean"/>
     </declare-styleable>
 
+    <!--********************* 自定义CoordinatorLayout *********************-->
+    <declare-styleable name="BehaviorCoordinatorLayout">
+        <attr name="layout_behavior" format="string"/>
+    </declare-styleable>
+
 </resources>
