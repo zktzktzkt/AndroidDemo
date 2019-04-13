@@ -124,6 +124,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="Paint效果Demo"/>
             <item
+                android:id="@+id/nav_countdownView"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="手势定时闹钟"/>
+            <item
                 android:id="@+id/nav_scratchView"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="刮刮卡效果"/>

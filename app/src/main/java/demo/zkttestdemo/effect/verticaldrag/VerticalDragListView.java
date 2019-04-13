@@ -126,6 +126,12 @@ public class VerticalDragListView extends FrameLayout {
         return super.onInterceptTouchEvent(ev);
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        mDragHelper.processTouchEvent(event);
+        return true;
+    }
+
     /**
      * 判断View是否滚动到了最顶部。SwipeRefreshLayout里的方法
      */
@@ -134,11 +140,5 @@ public class VerticalDragListView extends FrameLayout {
             return ListViewCompat.canScrollList((ListView) mDragListView, -1);
         }
         return mDragListView.canScrollVertically(-1);
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        mDragHelper.processTouchEvent(event);
-        return true;
     }
 }

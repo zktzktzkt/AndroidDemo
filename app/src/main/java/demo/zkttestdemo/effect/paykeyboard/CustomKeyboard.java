@@ -39,10 +39,10 @@ public class CustomKeyboard extends LinearLayout implements View.OnClickListener
      * 设置子view的点击事件
      */
     private void setItemClickListener(View view) {
+        //遍历，递归，给每个view设置点击事件。
         if (view instanceof ViewGroup) {
             ViewGroup viewGroup = (ViewGroup) view;
             int childCount = viewGroup.getChildCount();
-            //如果是viewgroup，那就不断递归，让子view设置点击事件
             for (int i = 0; i < childCount; i++) {
                 View childView = viewGroup.getChildAt(i);
                 setItemClickListener(childView);

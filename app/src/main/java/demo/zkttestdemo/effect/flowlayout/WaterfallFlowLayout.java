@@ -13,6 +13,10 @@ import java.util.List;
  * 流式布局
  */
 public class WaterfallFlowLayout extends ViewGroup {
+
+    List<Integer> lstLineHegiht = new ArrayList<>();
+    List<List<View>> lstLineView = new ArrayList<>();
+
     public WaterfallFlowLayout(Context context) {
         super(context);
     }
@@ -29,57 +33,6 @@ public class WaterfallFlowLayout extends ViewGroup {
     //而不同的布局，他们自己的实现不一样，所以才有了我们使用的这些基本布局组件
     //那么我们现在自己来开发一个瀑布式的流式布局
     //不规则控件进行流式
-
-    @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
-
-        int left, top, right, bottom;
-
-
-        int curLeft = 0;
-        int curTop = 0;
-
-        //开始迭代
-        for (int i = 0; i < lstLineView.size(); i++) {
-            List<View> lineviews = lstLineView.get(i);
-
-            for (int j = 0; j < lineviews.size(); j++) {
-                View view = lineviews.get(j);
-
-                MarginLayoutParams layoutParams = (MarginLayoutParams) view.getLayoutParams();
-
-                left = curLeft + layoutParams.leftMargin;
-                top = curTop + layoutParams.topMargin;
-                right = left + view.getMeasuredWidth();
-                bottom = top + view.getMeasuredHeight();
-
-                view.layout(left, top, right, bottom);
-
-                curLeft += view.getMeasuredWidth() + layoutParams.leftMargin + layoutParams.rightMargin;
-
-            }
-
-            curLeft = 0;
-            curTop += lstLineHegiht.get(i);
-
-        }
-
-        lstLineView.clear();
-        lstLineHegiht.clear();
-    }
-
-
-    @Override
-    public LayoutParams generateLayoutParams(AttributeSet attrs) {
-        return new MarginLayoutParams(getContext(), attrs);
-    }
-
-
-    List<Integer> lstLineHegiht = new ArrayList<>();
-    List<List<View>> lstLineView = new ArrayList<>();
-
-
-    boolean isFirstLoad = true;
 
     /**
      * 1. 测量每个子View
@@ -170,4 +123,49 @@ public class WaterfallFlowLayout extends ViewGroup {
 
         setMeasuredDimension(measureWidth, measureHeight);
     }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+
+        int left, top, right, bottom;
+
+
+        int curLeft = 0;
+        int curTop = 0;
+
+        //开始迭代
+        for (int i = 0; i < lstLineView.size(); i++) {
+            List<View> lineviews = lstLineView.get(i);
+
+            for (int j = 0; j < lineviews.size(); j++) {
+                View view = lineviews.get(j);
+
+                MarginLayoutParams layoutParams = (MarginLayoutParams) view.getLayoutParams();
+
+                left = curLeft + layoutParams.leftMargin;
+                top = curTop + layoutParams.topMargin;
+                right = left + view.getMeasuredWidth();
+                bottom = top + view.getMeasuredHeight();
+
+                view.layout(left, top, right, bottom);
+
+                curLeft += view.getMeasuredWidth() + layoutParams.leftMargin + layoutParams.rightMargin;
+
+            }
+
+            curLeft = 0;
+            curTop += lstLineHegiht.get(i);
+
+        }
+
+        lstLineView.clear();
+        lstLineHegiht.clear();
+    }
+
+
+    @Override
+    public LayoutParams generateLayoutParams(AttributeSet attrs) {
+        return new MarginLayoutParams(getContext(), attrs);
+    }
+
 }

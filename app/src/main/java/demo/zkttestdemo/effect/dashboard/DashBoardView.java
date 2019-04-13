@@ -34,6 +34,7 @@ public class DashBoardView extends View {
         arc.addArc(getWidth() / 2 - RADIUS, getHeight() / 2 - RADIUS,
                 getWidth() / 2 + RADIUS, getHeight() / 2 + RADIUS,
                 90 + ANGLE / 2, 360 - ANGLE);
+
         PathMeasure pathMeasure = new PathMeasure(arc, false);
         effect = new PathDashPathEffect(dashPath, (pathMeasure.getLength() - DASH_WIDTH) / 20, 0, PathDashPathEffect.Style.ROTATE);
     }

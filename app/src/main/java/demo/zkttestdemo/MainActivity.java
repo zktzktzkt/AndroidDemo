@@ -56,6 +56,7 @@ import demo.zkttestdemo.effect.bottomsheet.ZHBottomSheetActivity;
 import demo.zkttestdemo.effect.circleprogress.CircleProgressActivity;
 import demo.zkttestdemo.effect.city_58.Loading58Activity;
 import demo.zkttestdemo.effect.coordinator.CoordinatorActivity;
+import demo.zkttestdemo.effect.countdownView.CountDownActivity;
 import demo.zkttestdemo.effect.dashboard.DashBoardActivity;
 import demo.zkttestdemo.effect.doodle.DoodleActivity;
 import demo.zkttestdemo.effect.dragbubble.DragBubbleActivity;
@@ -140,66 +141,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        /*new Thread(new Runnable() {
-
-            public String getRandomString(int length) {
-                //        String str = "0123456789";
-                String str = "abcdefghijklmnopqrstuvwxyz0123456789";
-                Random random = new Random();
-                StringBuffer sb = new StringBuffer();
-                for (int i = 0; i < length; i++) {
-                    //            int number = random.nextInt(36);
-                    int number = random.nextInt(str.length());
-                    sb.append(str.charAt(number));
-                }
-                return sb.toString();
-            }
-
-            @Override
-            public void run() {
-                try {
-                    // TODO: 2018-7-7
-                    List<String> list = new ArrayList<>();
-                    File file = new File(getExternalCacheDir(), "F码文件.txt");
-                    if (file.exists()) {
-                        boolean delete = file.delete();
-                        Log.e("测试F", "删除->" + delete);
-                    }
-                    File dir = new File(file.getParent());
-                    dir.mkdirs();
-                    file.createNewFile();
-
-                    // 001 手环 //002 体脂称
-                    StringBuilder sb = new StringBuilder();
-                    for (int i = 0; i < 10000; i++) {
-                        String randomString = getRandomString(16);
-                        if (!list.contains(randomString)) {
-                            list.add("001" + randomString);
-                        } else {
-                            i--;
-                        }
-                    }
-                    Log.e("测试F", "List长度->" + list.size());
-
-                    for (int i = 0; i < list.size(); i++) {
-                        sb.append(list.get(i));
-                        sb.append("\n");
-                    }
-                    Log.e("测试F", "添加完成");
-
-                    FileWriter writer = new FileWriter(file);
-                    writer.write(sb.toString());
-                    writer.flush();
-                    writer.close();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }).start();*/
-
-
         /*ArrayList<String> singInfo_MD5 = KeystoreStr.getSingInfo(this, getPackageName(), KeystoreStr.MD5);
         ArrayList<String> singInfo_SHA1 = KeystoreStr.getSingInfo(this, getPackageName(), KeystoreStr.SHA1);
         ArrayList<String> singInfo_SHA256 = KeystoreStr.getSingInfo(this, getPackageName(), KeystoreStr.SHA256);
@@ -244,7 +185,7 @@ public class MainActivity extends AppCompatActivity
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
-        drawer.openDrawer(GravityCompat.END); //从右往左打开菜单，布局中设置打开方向 android:layout_gravity="end"
+        drawer.openDrawer(GravityCompat.END);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -464,6 +405,11 @@ public class MainActivity extends AppCompatActivity
         //paint 实验
         else if (id == R.id.nav_paint) {
             Intent intent = new Intent(this, PaintActivity.class);
+            startActivity(intent);
+        }
+        //手势定时闹钟
+        else if (id == R.id.nav_countdownView) {
+            Intent intent = new Intent(this, CountDownActivity.class);
             startActivity(intent);
         }
         //仿汽车之家

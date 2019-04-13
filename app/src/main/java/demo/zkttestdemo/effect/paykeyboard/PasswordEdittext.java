@@ -28,35 +28,35 @@ public class PasswordEdittext extends AppCompatEditText {
      */
     private int mPasswordItemWidth;
     /**
-     * 密码的个数默认为6位数
+     * 密码个数 默认为6位数
      */
     private int mPasswordNumber = 6;
     /**
-     * 背景边框颜色
+     * 背景边框 颜色
      */
     private int mBgColor = Color.parseColor("#d1d2d6");
     /**
-     * 背景边框大小
+     * 背景边框 大小
      */
     private int mBgSize = 1;
     /**
-     * 背景边框圆角大小
+     * 背景边框 圆角大小
      */
     private int mBgCorner = 0;
     /**
-     * 分割线颜色
+     * 分割线 颜色
      */
     private int mDivisionLineColor = mBgColor;
     /**
-     * 分割线的大小
+     * 分割线 大小
      */
     private int mDivisionLineSize = 1;
     /**
-     * 密码圆点的颜色
+     * 密码圆点 颜色
      */
     private int mPasswordColor = mDivisionLineColor;
     /**
-     * 密码圆点的半径大小
+     * 密码圆点 半径
      */
     private int mPasswordRadius = 4;
 
@@ -78,9 +78,8 @@ public class PasswordEdittext extends AppCompatEditText {
      * 初始化画笔
      */
     private void initPaint() {
-        mPaint = new Paint();
-        mPaint.setAntiAlias(true); //抗锯齿
-        mPaint.setDither(true); //防抖动
+        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        mPaint.setDither(true);
     }
 
     /**

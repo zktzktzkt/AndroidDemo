@@ -24,7 +24,7 @@ import demo.zkttestdemo.R;
 
 /**
  * Created by zkt on 19/02/11.
- * Description:
+ * Description: textview选中文字自定义pop弹窗
  */
 public class SelectableTextHelper {
 

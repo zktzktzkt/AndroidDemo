@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
@@ -59,7 +60,11 @@ public class FloatWindowActivity extends AppCompatActivity {
         final WindowManager.LayoutParams mParams = new WindowManager.LayoutParams();
         mParams.width = 800;
         mParams.height = 800;
-        mParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            mParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+        } else {
+            mParams.type = WindowManager.LayoutParams.TYPE_PHONE;
+        }
         mParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL;
         //                | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
         //                | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
