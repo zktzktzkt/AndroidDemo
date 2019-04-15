@@ -6,12 +6,17 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
+import android.view.MotionEvent;
 import android.view.View;
+
+import java.util.Locale;
 
 /**
  * Created by zkt on 19/04/09.
- * Description:
+ * Description: 定时闹钟view
+ * https://github.com/alidili/Demos/blob/master/CountdownDemo/app/src/main/java/com/yl/countdown/CountdownView.java
  */
 public class CountdownView extends View {
 
@@ -24,7 +29,7 @@ public class CountdownView extends View {
     // 刻度盘半径
     private int dialRadius;
     // 时间-分
-    private int time = 20;
+    private int time = 0;
     // 当前旋转的角度
     private float rotateAngle;
     // 小时刻度高
@@ -33,6 +38,10 @@ public class CountdownView extends View {
     private float minuteScaleHeight = dp2px(4);
     // 定时进度条宽
     private float arcWidth = dp2px(6);
+    // 当前的角度
+    private float currentAngle;
+    // 是否移动
+    private boolean isMove;
 
     private Paint dialPaint;
     private Paint timePaint;
@@ -84,7 +93,19 @@ public class CountdownView extends View {
         drawArc(canvas);
 
         //绘制时间
-        //drawTime(canvas);
+        drawTime(canvas);
+    }
+
+    /**
+     * 绘制时间
+     */
+    private void drawTime(Canvas canvas) {
+        String timeText = String.format(Locale.CHINA, "%02d", time) + " : 00";
+        // 获取时间的宽高
+        float timeWidth = timePaint.measureText(timeText);
+        float timeHeight = Math.abs(timePaint.ascent() + timePaint.descent());
+        // 居中显示
+        canvas.drawText(timeText, -timeWidth / 2, timeHeight / 2, timePaint);
     }
 
     /**
@@ -152,6 +173,120 @@ public class CountdownView extends View {
         canvas.restore();
 
 
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getActionMasked()) {
+            case MotionEvent.ACTION_DOWN:
+                currentAngle = calcAngle(event.getX(), event.getY());
+                break;
+
+            case MotionEvent.ACTION_MOVE:
+                isMove = true;
+                // 移动的角度
+                float moveAngle = calcAngle(event.getX(), event.getY());
+                Log.e("当前角度 moveAngle", moveAngle + "");
+                Log.e("上一个角度 currentAngle", currentAngle + "");
+                // 滑过的角度偏移量
+                float angleOffset = moveAngle - currentAngle;
+                Log.e("滑过的角度偏移量", angleOffset + "");
+
+                // 防止越界
+                // 从第一象限滑到第四象限： 270~0(360)
+                // -270 ~ -359
+                if (angleOffset < -270) {
+                    angleOffset = angleOffset + 360;
+                }
+                // 从第四象限滑到第一象限： 0~270
+                else if (angleOffset > 270) {
+                    angleOffset = angleOffset - 360;
+                }
+                currentAngle = moveAngle;
+
+                // 计算时间
+                calcTime(angleOffset);
+
+                break;
+
+            case MotionEvent.ACTION_CANCEL:
+            case MotionEvent.ACTION_UP:
+                if (isMove && onCountdownListener != null) {
+                    // 回调倒计时改变方法
+                    onCountdownListener.countdown(time);
+                    isMove = false;
+                }
+                break;
+
+
+        }
+        return true;
+    }
+
+    /**
+     * 计算时间
+     *
+     * @param angle 增加的角度
+     */
+    private void calcTime(float angle) {
+        rotateAngle += angle;
+        if (rotateAngle < 0) {
+            rotateAngle = 0;
+        } else if (rotateAngle > 360) {
+            rotateAngle = 360;
+        }
+        time = (int) rotateAngle / 6;
+        invalidate();
+    }
+
+
+    /**
+     * 以刻度盘圆心为坐标圆点，建立坐标系，求出(targetX, targetY)坐标与x轴的夹角
+     *
+     * @param targetX x坐标
+     * @param targetY y坐标
+     * @return (targetX, targetY)坐标与x轴的夹角
+     */
+    private float calcAngle(float targetX, float targetY) {
+        // 以刻度盘圆心为坐标圆点
+        float x = targetX - width / 2;
+        float y = targetY - height / 2;
+        // 滑过的弧度
+        double radian;
+
+        if (x != 0) {
+            float tan = Math.abs(y / x);
+            if (x > 0) {
+                if (y >= 0) {
+                    // 第四象限
+                    radian = Math.atan(tan);
+                } else {
+                    // 第一象限
+                    radian = 2 * Math.PI - Math.atan(tan);
+                }
+            } else {
+                if (y >= 0) {
+                    // 第三象限
+                    radian = Math.PI - Math.atan(tan);
+                } else {
+                    // 第二象限
+                    radian = Math.PI + Math.atan(tan);
+                }
+            }
+        } else {
+            if (y > 0) {
+                // Y轴向下方向
+                radian = Math.PI / 2;
+            } else {
+                // Y轴向上方向
+                radian = Math.PI + Math.PI / 2;
+            }
+        }
+
+        // 完整圆的弧度为2π，角度为360度，所以180度等于π弧度
+        // 弧度 = 角度 / 180 * π
+        // 角度 = 弧度 / π * 180
+        return (float) (radian / Math.PI * 180);
     }
 
     /**
