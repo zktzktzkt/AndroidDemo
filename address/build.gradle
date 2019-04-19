@@ -6,12 +6,12 @@ if (isModuleRun.toBoolean()) {
 }
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 28
 
     defaultConfig {
         // 2.【组件化:applicationId】作为library时不能有applicationId,只有作为一个独立应用时才能够如下设置
         if (isModuleRun.toBoolean()) {
-            applicationId "com.zkt.progress"
+            applicationId "com.zkt.address"
         }
 
         minSdkVersion rootProject.minSdkVersion
@@ -47,7 +47,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -56,11 +56,15 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+
     testImplementation 'junit:junit:4.12'
-    implementation project(':basemodule')
+//    implementation project(':basemodule')
     //路由
-    implementation "com.alibaba:arouter-api:$rootProject.arouterApi"
-    annotationProcessor "com.alibaba:arouter-compiler:$rootProject.arouterCompiler"
+//    implementation "com.alibaba:arouter-api:$rootProject.arouterApi"
+//    annotationProcessor "com.alibaba:arouter-compiler:$rootProject.arouterCompiler"
+    //索引
+    implementation 'com.github.qdxxxx:IndexBarLayout:1.0.2'
+//    implementation 'com.github.qdxxxx:StickyHeaderDecoration:1.0.1'
 }

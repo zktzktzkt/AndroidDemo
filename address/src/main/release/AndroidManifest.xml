@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.zkt.progress">
+
+    <application>
+
+        <activity
+            android:name="com.zkt.address.AddressActivity"/>
+
+    </application>
+
+</manifest>

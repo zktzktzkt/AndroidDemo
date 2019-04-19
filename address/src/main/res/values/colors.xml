@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="red">#EE2C2C</color>
+    <color name="grey">#BDBDBD</color>
+    <color name="black">#000000</color>
+    <color name="color_one">#FDE4BB</color>
+    <color name="color_two">#FCD2A1</color>
+    <color name="color_three">#EF8273</color>
+
+    <color name="line_bg">#CDCDCD</color>
+    <color name="popup_bg">#8f000000</color>
+
+    <color name="text_hint">#999999</color>
+    <color name="btn_red">#FA5557</color>
+    <color name="text_title">#333333</color>
+    <color name="white">#fff</color>
+    <color name="blue_dark">#1983d1</color>
+    <color name="transparent">#00000000</color>
+    <color name="blue_light">#aaaaff</color>
+    <color name="blue_mask">#001983d1</color>
+    <color name="blue_black">#1673b8</color>
+
+    <color name="gray_9">#999999</color>
+    <color name="progress_bg_color">#FFF5F7FA</color>
+    <color name="progress_color">#FFF2C04C</color>
+
+    <color name="orange">#ff9600</color>
+    <color name="aqua">#02d1ac</color>
+    <color name="yellow">#ffd200</color>
+    <color name="blue">#00c6ff</color>
+    <color name="green">#00e099</color>
+    <color name="pink">#ff3891</color>
+
+    <array name="splash_circle_colors">
+        <item>@color/blue</item>
+        <item>@color/pink</item>
+        <item>@color/green</item>
+        <item>@color/aqua</item>
+        <item>@color/yellow</item>
+        <item>@color/orange</item>
+    </array>
+
+</resources>

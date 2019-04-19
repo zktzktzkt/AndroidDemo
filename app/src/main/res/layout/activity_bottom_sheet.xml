@@ -52,8 +52,8 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/shape_stroke_blue"
             android:gravity="center"
             android:text="textview"
@@ -62,24 +62,42 @@
     </LinearLayout>
 
 
+    <!--layout_height 这个高度决定了BottomSheetBehavior的总高度-->
     <LinearLayout
         android:id="@+id/bottom_sheet"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/grey"
         android:orientation="vertical"
         app:behavior_hideable="true"
         app:behavior_peekHeight="0dp"
         app:layout_behavior="@string/bottom_sheet_behavior">
 
-        <TextView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="@color/colorPrimaryDark"
-            android:gravity="center"
-            android:text="向上/向下拖动"
-            android:textColor="@android:color/white"
-            />
+            android:layout_height="50dp">
+
+            <TextView
+                android:id="@+id/tv_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:background="@color/colorPrimaryDark"
+                android:padding="@dimen/dp_10"
+                android:text="取消"
+                android:textColor="@android:color/white"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:background="@color/colorPrimaryDark"
+                android:padding="@dimen/dp_10"
+                android:text="确定"
+                android:textColor="@android:color/white"
+                />
+        </FrameLayout>
 
         <include layout="@layout/include_bottom_sheet_layout"/>
 

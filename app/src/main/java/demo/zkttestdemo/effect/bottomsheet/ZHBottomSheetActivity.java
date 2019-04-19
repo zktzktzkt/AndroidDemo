@@ -42,7 +42,6 @@ public class ZHBottomSheetActivity extends AppCompatActivity {
          * getState	获取状态
          * setBottomSheetCallback	设置状态改变回调
          *
-         *
          * STATE_COLLAPSED： bottom sheets只在底部显示一部分布局。显示高度可以通过 app:behavior_peekHeight 设置（默认是0）
          * STATE_DRAGGING ： 过渡状态，此时用户正在向上或者向下拖动bottom sheet
          * STATE_SETTLING: 视图从脱离手指自由滑动到最终停下的这一小段时间
@@ -51,22 +50,36 @@ public class ZHBottomSheetActivity extends AppCompatActivity {
          */
 
         View bottomSheet = findViewById(R.id.bottom_sheet);
-        // 1.拿到这个tab_layout对应的BottomSheetBehavior
-        behavior = BottomSheetBehavior.from(bottomSheet);
-        //设置折叠的高度
-        behavior.setPeekHeight(DisplayUtil.dip2px(150, this));
 
+        behavior = BottomSheetBehavior.from(bottomSheet);
+        behavior.setPeekHeight(DisplayUtil.dip2px(500, this));//设置折叠的高度
+        behavior.setHideable(false);
+
+        findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                behavior.setHideable(true); //如果要用STATE_HIDDEN，必须设置true
+                behavior.setState(BottomSheetBehavior.STATE_HIDDEN); // BottomSheet完全隐藏
+            }
+        });
         findViewById(R.id.btnBehavior).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 2. 获取状态，是展开还是隐藏
-                int state = behavior.getState();
+                int state = behavior.getState();//是展开还是隐藏
+                switch (state) {
+                    case BottomSheetBehavior.STATE_EXPANDED:
+                        behavior.setHideable(false);
+                        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                        break;
+                    case BottomSheetBehavior.STATE_COLLAPSED:
+                        behavior.setHideable(false);
+                        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                        break;
+                    case BottomSheetBehavior.STATE_HIDDEN:
+                        behavior.setHideable(false);
+                        behavior.setState(BottomSheetBehavior.STATE_COLLAPSED); // 被触发时，完全展示
+                        break;
 
-                if (state == BottomSheetBehavior.STATE_EXPANDED) {
-                    behavior.setState(BottomSheetBehavior.STATE_HIDDEN); // 被触发时，整个BottomSheet完全隐藏
-                    behavior.setState(BottomSheetBehavior.STATE_COLLAPSED);// 被触发时，BottomSheet不会全部隐藏，会露出peekHeight的高度
-                } else {
-                    behavior.setState(BottomSheetBehavior.STATE_EXPANDED); // 被触发时，完全展示
                 }
             }
         });
@@ -95,7 +108,8 @@ public class ZHBottomSheetActivity extends AppCompatActivity {
             }
         });
 
-        /************************************BottomSheetDialog*******************************/
+        /**======================================== BottomSheetDialog ========================================*/
+
         final BottomSheetDialog bsDialog = new BottomSheetDialog(this);
         bsDialog.setContentView(R.layout.include_bottom_sheet_layout);
 
@@ -111,7 +125,8 @@ public class ZHBottomSheetActivity extends AppCompatActivity {
             }
         });
 
-        /************************************BottomSheetDialogFragment*******************************/
+        /**======================================== BottomSheetDialogFragment ========================================*/
+
         final CustomBottomSheetDialogFragment dialogFragment = new CustomBottomSheetDialogFragment();
 
         findViewById(R.id.btnDialogFragment).setOnClickListener(new View.OnClickListener() {
@@ -130,6 +145,7 @@ public class ZHBottomSheetActivity extends AppCompatActivity {
         }*/
 
         /***********************************Popupwindow显示在某个布局上方*****************/
+
         findViewById(R.id.btnPopupOnTop).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,6 +154,7 @@ public class ZHBottomSheetActivity extends AppCompatActivity {
         });
 
         /***********************************Dialog显示在某个布局上方*****************/
+
         findViewById(R.id.btnDialogOnTop).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
