@@ -23,11 +23,12 @@ import java.util.List;
  */
 public class ChartView extends View {
 
-    PathEffect pathEffect = new DashPathEffect(new float[]{3, 10}, 0);
-    //圆环的半径
+    //点的stroke的半径
     private float RADIUS_RING = SizeUtils.dp2px(5);
-    //中间的白色圆的半径
-    private float RADIUS_INNER_CIRCLE = SizeUtils.dp2px(4);
+    //点的stroke的宽度
+    private float RING_STROKE_WIDTH = SizeUtils.dp2px(1); //strokeWidth其实是一半在圆内，一半在圆外
+    //点的内圆的半径
+    private float RADIUS_INNER_CIRCLE = RADIUS_RING - RING_STROKE_WIDTH / 2;
     //虚线path
     Path bgDashPath = new Path();
     //连接线的path
@@ -38,6 +39,8 @@ public class ChartView extends View {
     private Paint linesPaint;
     private Paint pointStrokePaint;
     private Paint pointInnerPaint;
+    //PathEffect
+    PathEffect pathEffect = new DashPathEffect(new float[]{3, 10}, 0);
     //Y轴的宽度
     private int yTextWidth = SizeUtils.dp2px(80);
     //存放绘制点的x、y坐标
@@ -72,7 +75,7 @@ public class ChartView extends View {
         pointStrokePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         pointStrokePaint.setColor(Color.parseColor("#FF2C93EC"));
         pointStrokePaint.setStyle(Paint.Style.STROKE);
-        pointStrokePaint.setStrokeWidth(SizeUtils.dp2px(2));
+        pointStrokePaint.setStrokeWidth(SizeUtils.dp2px(RING_STROKE_WIDTH));
         //点的内圆
         pointInnerPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         pointInnerPaint.setColor(Color.parseColor("#ffffff"));
@@ -82,7 +85,7 @@ public class ChartView extends View {
         linesPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         linesPaint.setColor(Color.parseColor("#FF2C93EC"));
         linesPaint.setStyle(Paint.Style.STROKE);
-        linesPaint.setStrokeWidth(SizeUtils.dp2px(3));
+        linesPaint.setStrokeWidth(SizeUtils.dp2px(2));
     }
 
     public ChartView(Context context) {
