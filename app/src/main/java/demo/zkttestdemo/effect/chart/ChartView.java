@@ -3,6 +3,7 @@ package demo.zkttestdemo.effect.chart;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.CornerPathEffect;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -26,16 +27,21 @@ public class ChartView extends View {
     private Paint bgLinePaint;
     PathEffect pathEffect = new DashPathEffect(new float[]{3, 10}, 0);
     Path bgDashPath = new Path();
+    Path linesPath = new Path();
     private Paint textPaint;
+    private final Paint linesPaint;
     private int yTextWidth = SizeUtils.dp2px(80);
     List<PointF> pointList = new ArrayList<>(8);
 
+    //X轴坐标
     String[] xArr = {"12:00", "01/09", "01/10", "01/11", "01/12", "01/13", "01/14"};
-    String[] yArr = {"0.60", "0.50", "0.40", "0.30", "0.20", "0.10"};
-
-    String[] pointArr = {"0.40", "0.50", "0.30", "0.55", "0.20", "0.60", "0.30"};
+    //Y轴坐标
+    String[] yArr = {"0.610", "0.510", "0.403", "0.302", "0.201", "0.109"};
+    //要绘制的坐标点
+    String[] pointArr = {"0.407", "0.501", "0.410", "0.505", "0.210", "0.303", "0.303"};
 
     private final Paint pointPaint;
+
 
     {
         for (int i = 0; i < pointArr.length; i++) {
@@ -59,6 +65,12 @@ public class ChartView extends View {
         pointPaint.setColor(Color.parseColor("#FF2C93EC"));
         pointPaint.setStyle(Paint.Style.STROKE);
         pointPaint.setStrokeWidth(SizeUtils.dp2px(2));
+
+        //连接线
+        linesPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        linesPaint.setColor(Color.parseColor("#FF2C93EC"));
+        linesPaint.setStyle(Paint.Style.STROKE);
+        linesPaint.setStrokeWidth(SizeUtils.dp2px(3));
     }
 
     public ChartView(Context context) {
@@ -87,13 +99,37 @@ public class ChartView extends View {
         drawX(canvas);
         //画Y轴
         drawY(canvas);
+        //画点与点连接的线
+        drawLines(canvas);
         //画点
         drawPoint(canvas);
     }
 
+    private void drawLines(Canvas canvas) {
+        double itemHeight = (double) getHeight() / 6;
+        int itemWidth = (getWidth() - yTextWidth) / 7;
+        //已知值[0]-[1]/对应的高度 = 随机值[i]/y
+        for (int i = 0; i < pointArr.length; i++) {
+            double y = Double.parseDouble(pointArr[i]) / ((Double.parseDouble(yArr[0]) - Double.parseDouble(yArr[1])) / itemHeight);
+            pointList.get(i).y = (float) y;
+        }
+        for (int i = 0; i < pointArr.length; i++) {
+            float x = (i + 1) * itemWidth - itemWidth / 2;
+            pointList.get(i).x = x;
+        }
+
+        linesPath.reset();
+        linesPath.moveTo(pointList.get(0).x, (float) (getHeight() - pointList.get(0).y + itemHeight / 2));
+        for (int i = 1; i < pointList.size(); i++) {
+            linesPath.lineTo(pointList.get(i).x, (float) (getHeight() - pointList.get(i).y + itemHeight / 2));
+        }
+        PathEffect pathEffect = new CornerPathEffect(20);
+        linesPaint.setPathEffect(pathEffect);
+        canvas.drawPath(linesPath, linesPaint);
+    }
+
     private void drawPoint(Canvas canvas) {
         double itemHeight = (double) getHeight() / 6;
-        //先算出最小的点对应的y
         int itemWidth = (getWidth() - yTextWidth) / 7;
         //已知值[0]-[1]/对应的高度 = 随机值[i]/y
         for (int i = 0; i < pointArr.length; i++) {
