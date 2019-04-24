@@ -161,8 +161,5 @@ public class ZHBottomSheetActivity extends AppCompatActivity {
                 startActivity(new Intent(ZHBottomSheetActivity.this, DialogOnTopActivity.class));
             }
         });
-
     }
-
-
 }

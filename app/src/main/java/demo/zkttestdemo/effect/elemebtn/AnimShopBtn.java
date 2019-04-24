@@ -19,6 +19,10 @@ import android.widget.Toast;
 
 /**
  * Created by zkt on 2018-3-31.
+ * 仿饿了么加入购物车
+ *
+ * 1.画俩按钮和中间的数字
+ * 2.
  */
 
 public class AnimShopBtn extends View {
@@ -313,6 +317,7 @@ public class AnimShopBtn extends View {
             int animAlphaMax = 255;
             //旋转
             int animRotateMax = 360;
+
             mDelPaint.setAlpha((int) (animAlphaMax * (1 - mAnimFraction)));
             mDelPaint.setStrokeWidth(mStrokeWidth);
             //考虑动画 硬件加速(API 19)

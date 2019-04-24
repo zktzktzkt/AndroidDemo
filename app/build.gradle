@@ -9,7 +9,6 @@ group = 'com.github.zktzktzkt'
 android {
 
     compileSdkVersion rootProject.compileSdkVersion
-    buildToolsVersion rootProject.buildToolsVersion
 
     defaultConfig {
         applicationId "demo.zkttestdemo"

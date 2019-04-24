@@ -15,7 +15,6 @@
         android:background="#d2d2c9"
         android:visibility="visible"/>
 
-
     <demo.zkttestdemo.effect.favor.XfermodeTest
         android:background="@color/black"
         android:layout_width="match_parent"

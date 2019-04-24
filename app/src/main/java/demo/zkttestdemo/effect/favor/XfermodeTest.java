@@ -26,9 +26,6 @@ public class XfermodeTest extends View {
     private Bitmap mDstBitmap;
     private Paint mPaint;
     PorterDuffXfermode porterDuffXfermode = new PorterDuffXfermode(PorterDuff.Mode.SRC_IN);
-    public XfermodeTest(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-    }
 
     {
         mBluePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -40,6 +37,14 @@ public class XfermodeTest extends View {
         mRedPaint.setStyle(Paint.Style.FILL);
 
         mPaint = new Paint();
+    }
+
+    public XfermodeTest(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    public XfermodeTest(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
     }
 
     /**

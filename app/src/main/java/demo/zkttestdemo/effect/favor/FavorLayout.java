@@ -102,14 +102,15 @@ public class FavorLayout extends RelativeLayout {
         startAnimator(imageView);
     }
 
+    //属性动画 是一个值到另一个值的改变
     private void startAnimator(View target) {
-        //1.透明度+缩放
+        //1.先设置缩放动画
         ObjectAnimator enterAnimtor = getEnterAnimtor(target);
-        //2.贝塞尔曲线路径
+        //2.再设置路径
         ValueAnimator bezierValueAnimator = getBezierValueAnimator(target);
         //3.依次执行上面两个动画，结束后销毁View
         AnimatorSet finalSet = new AnimatorSet();
-        finalSet.playSequentially(enterAnimtor, bezierValueAnimator);
+        finalSet.playSequentially(enterAnimtor, bezierValueAnimator);//有先后顺序
         finalSet.setInterpolator(interpolators[random.nextInt(4)]);
         finalSet.addListener(new AnimEndListener(target));
         finalSet.start();
@@ -138,7 +139,7 @@ public class FavorLayout extends RelativeLayout {
      * @return
      */
     private ValueAnimator getBezierValueAnimator(View target) {
-        //初始化一个贝塞尔计算器- - 传入
+        //初始化一个贝塞尔估值器
         BezierEvaluator evaluator = new BezierEvaluator(getPointF(1), getPointF(2));
         //这里最好画个图 理解一下 传入了起点 和 终点
         ValueAnimator animator = ValueAnimator.ofObject(

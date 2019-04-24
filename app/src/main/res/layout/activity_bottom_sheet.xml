@@ -61,7 +61,6 @@
             />
     </LinearLayout>
 
-
     <!--layout_height 这个高度决定了BottomSheetBehavior的总高度-->
     <LinearLayout
         android:id="@+id/bottom_sheet"
