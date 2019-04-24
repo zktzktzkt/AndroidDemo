@@ -7,7 +7,7 @@ import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathEffect;
-import android.graphics.Point;
+import android.graphics.PointF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -28,16 +28,20 @@ public class ChartView extends View {
     Path bgDashPath = new Path();
     private Paint textPaint;
     private int yTextWidth = SizeUtils.dp2px(80);
-    List<Point> pointList = new ArrayList<>();
+    List<PointF> pointList = new ArrayList<>(8);
 
     String[] xArr = {"12:00", "01/09", "01/10", "01/11", "01/12", "01/13", "01/14"};
-    String[] yArr = {"6", "5", "4", "3", "2", "1"};
+    String[] yArr = {"0.60", "0.50", "0.40", "0.30", "0.20", "0.10"};
 
-    String[] pointArr = {"3", "4", "4.5", "5", "5.5", "6"};
+    String[] pointArr = {"0.60", "0.50", "0.40", "0.30", "0.20", "0.10", "0.40"};
 
     private final Paint pointPaint;
 
     {
+        for (int i = 0; i < pointArr.length; i++) {
+            pointList.add(new PointF());
+        }
+
         //背景线
         bgLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         bgLinePaint.setColor(Color.parseColor("#FF2C93EC"));
@@ -89,10 +93,24 @@ public class ChartView extends View {
 
     private void drawPoint(Canvas canvas) {
         double itemHeight = (double) getHeight() / 6;
-
+        //先算出最小的点对应的y
+        //        Double.parseDouble(pointArr[0]) / itemHeight = Double.parseDouble(pointArr[i]) / y;
+        //        y = Double.parseDouble(pointArr[i]) / Double.parseDouble(pointArr[0]) / itemHeight;
+        int itemWidth = (getWidth() - yTextWidth) / 7;
+        //FIXME y计算的还是有问题
         for (int i = 0; i < pointArr.length; i++) {
-            double y = itemHeight * Double.parseDouble(pointArr[i]);
-            canvas.drawCircle(30, (float) (getHeight() - y + itemHeight / 2), 10, pointPaint);
+            double y = getHeight() - Double.parseDouble(pointArr[i]) / (Double.parseDouble(pointArr[0]) / itemHeight);
+            pointList.get(i).y = (float) y;
+        }
+        for (int i = 0; i < pointArr.length; i++) {
+            float x = (i + 1) * itemWidth - itemWidth / 2;
+            pointList.get(i).x = x;
+        }
+
+        for (int i = 0; i < pointList.size(); i++) {
+            canvas.drawCircle(pointList.get(i).x,
+                    (float) (getHeight() - pointList.get(i).y + itemHeight / 2),
+                    10, pointPaint);
         }
 
     }
@@ -100,15 +118,15 @@ public class ChartView extends View {
     private void drawY(Canvas canvas) {
         int itemHeight = getHeight() / 6;
         int x = getWidth() - yTextWidth / 2;
-        for (int i = 1; i <= yArr.length; i++) {
-            canvas.drawText(yArr[i - 1], x, i * itemHeight - itemHeight / 2, textPaint);
+        for (int i = 0; i < yArr.length; i++) {
+            canvas.drawText(yArr[i], x, (i + 1) * itemHeight - itemHeight / 2, textPaint);
         }
     }
 
     private void drawX(Canvas canvas) {
         int itemX = (getWidth() - yTextWidth) / 7;
-        for (int i = 1; i <= xArr.length; i++) {
-            canvas.drawText(xArr[i - 1], i * itemX - itemX / 2, getHeight() - SizeUtils.dp2px(5), textPaint);
+        for (int i = 0; i < xArr.length; i++) {
+            canvas.drawText(xArr[i], (i + 1) * itemX - itemX / 2, getHeight() - SizeUtils.dp2px(5), textPaint);
         }
     }
 
