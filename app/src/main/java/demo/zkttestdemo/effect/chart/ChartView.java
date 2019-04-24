@@ -33,7 +33,7 @@ public class ChartView extends View {
     String[] xArr = {"12:00", "01/09", "01/10", "01/11", "01/12", "01/13", "01/14"};
     String[] yArr = {"0.60", "0.50", "0.40", "0.30", "0.20", "0.10"};
 
-    String[] pointArr = {"0.60", "0.50", "0.40", "0.30", "0.20", "0.10", "0.40"};
+    String[] pointArr = {"0.40", "0.50", "0.30", "0.55", "0.20", "0.60", "0.30"};
 
     private final Paint pointPaint;
 
@@ -94,12 +94,10 @@ public class ChartView extends View {
     private void drawPoint(Canvas canvas) {
         double itemHeight = (double) getHeight() / 6;
         //先算出最小的点对应的y
-        //        Double.parseDouble(pointArr[0]) / itemHeight = Double.parseDouble(pointArr[i]) / y;
-        //        y = Double.parseDouble(pointArr[i]) / Double.parseDouble(pointArr[0]) / itemHeight;
         int itemWidth = (getWidth() - yTextWidth) / 7;
-        //FIXME y计算的还是有问题
+        //已知值[0]-[1]/对应的高度 = 随机值[i]/y
         for (int i = 0; i < pointArr.length; i++) {
-            double y = getHeight() - Double.parseDouble(pointArr[i]) / (Double.parseDouble(pointArr[0]) / itemHeight);
+            double y = Double.parseDouble(pointArr[i]) / ((Double.parseDouble(yArr[0]) - Double.parseDouble(yArr[1])) / itemHeight);
             pointList.get(i).y = (float) y;
         }
         for (int i = 0; i < pointArr.length; i++) {
