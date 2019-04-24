@@ -3,7 +3,6 @@ package demo.zkttestdemo.effect.chart;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.CornerPathEffect;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -24,13 +23,24 @@ import java.util.List;
  */
 public class ChartView extends View {
 
-    private Paint bgLinePaint;
     PathEffect pathEffect = new DashPathEffect(new float[]{3, 10}, 0);
+    //圆环的半径
+    private float RADIUS_RING = SizeUtils.dp2px(5);
+    //中间的白色圆的半径
+    private float RADIUS_INNER_CIRCLE = SizeUtils.dp2px(4);
+    //虚线path
     Path bgDashPath = new Path();
+    //连接线的path
     Path linesPath = new Path();
+    //画笔
+    private Paint bgLinePaint;
     private Paint textPaint;
-    private final Paint linesPaint;
+    private Paint linesPaint;
+    private Paint pointStrokePaint;
+    private Paint pointInnerPaint;
+    //Y轴的宽度
     private int yTextWidth = SizeUtils.dp2px(80);
+    //存放绘制点的x、y坐标
     List<PointF> pointList = new ArrayList<>(8);
 
     //X轴坐标
@@ -39,8 +49,6 @@ public class ChartView extends View {
     String[] yArr = {"0.610", "0.510", "0.403", "0.302", "0.201", "0.109"};
     //要绘制的坐标点
     String[] pointArr = {"0.407", "0.501", "0.410", "0.505", "0.210", "0.303", "0.303"};
-
-    private final Paint pointPaint;
 
 
     {
@@ -60,11 +68,15 @@ public class ChartView extends View {
         textPaint.setTextSize(SizeUtils.sp2px(10));
         textPaint.setTextAlign(Paint.Align.CENTER);
 
-        //点
-        pointPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        pointPaint.setColor(Color.parseColor("#FF2C93EC"));
-        pointPaint.setStyle(Paint.Style.STROKE);
-        pointPaint.setStrokeWidth(SizeUtils.dp2px(2));
+        //点的描边
+        pointStrokePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        pointStrokePaint.setColor(Color.parseColor("#FF2C93EC"));
+        pointStrokePaint.setStyle(Paint.Style.STROKE);
+        pointStrokePaint.setStrokeWidth(SizeUtils.dp2px(2));
+        //点的内圆
+        pointInnerPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        pointInnerPaint.setColor(Color.parseColor("#ffffff"));
+        pointInnerPaint.setStyle(Paint.Style.FILL);
 
         //连接线
         linesPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -123,8 +135,9 @@ public class ChartView extends View {
         for (int i = 1; i < pointList.size(); i++) {
             linesPath.lineTo(pointList.get(i).x, (float) (getHeight() - pointList.get(i).y + itemHeight / 2));
         }
-        PathEffect pathEffect = new CornerPathEffect(20);
-        linesPaint.setPathEffect(pathEffect);
+        //        PathEffect pathEffect = new CornerPathEffect(SizeUtils.dp2px(5));
+        //        linesPaint.setPathEffect(pathEffect);
+        linesPaint.setStrokeJoin(Paint.Join.BEVEL);//拐角平头
         canvas.drawPath(linesPath, linesPaint);
     }
 
@@ -144,7 +157,11 @@ public class ChartView extends View {
         for (int i = 0; i < pointList.size(); i++) {
             canvas.drawCircle(pointList.get(i).x,
                     (float) (getHeight() - pointList.get(i).y + itemHeight / 2),
-                    10, pointPaint);
+                    RADIUS_RING, pointStrokePaint);
+
+            canvas.drawCircle(pointList.get(i).x,
+                    (float) (getHeight() - pointList.get(i).y + itemHeight / 2),
+                    RADIUS_INNER_CIRCLE, pointInnerPaint);
         }
 
     }
