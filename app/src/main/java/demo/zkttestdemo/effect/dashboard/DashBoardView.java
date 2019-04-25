@@ -36,6 +36,15 @@ public class DashBoardView extends View {
                 90 + ANGLE / 2, 360 - ANGLE);
 
         PathMeasure pathMeasure = new PathMeasure(arc, false);
+        /**
+         * shape Path画的图形
+         * advance 间隔
+         * phase 偏移
+         * style 样式
+         * TRANSLATE 直接平移
+         * ROTATE旋转成跟路径一致的方向
+         * MORPH 衔接线条交汇处，但是有可能会拉伸
+         */
         effect = new PathDashPathEffect(dashPath, (pathMeasure.getLength() - DASH_WIDTH) / 20, 0, PathDashPathEffect.Style.ROTATE);
     }
 
