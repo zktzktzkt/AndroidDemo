@@ -102,8 +102,9 @@ public class ChartView extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        //        setMeasuredDimension(resolveSize(), resolveSize());
+        // super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        setMeasuredDimension(resolveSize(SizeUtils.dp2px(230), widthMeasureSpec),
+                resolveSize(SizeUtils.dp2px(230), heightMeasureSpec));
     }
 
     @Override

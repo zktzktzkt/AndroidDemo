@@ -53,6 +53,7 @@ import demo.zkttestdemo.effect.baidusearch.BDSearchActivity;
 import demo.zkttestdemo.effect.behavior.BehaviorActivity;
 import demo.zkttestdemo.effect.bezier.BezierActivity;
 import demo.zkttestdemo.effect.bottomsheet.ZHBottomSheetActivity;
+import demo.zkttestdemo.effect.chart.ChartActivity;
 import demo.zkttestdemo.effect.circleprogress.CircleProgressActivity;
 import demo.zkttestdemo.effect.city_58.Loading58Activity;
 import demo.zkttestdemo.effect.coordinator.CoordinatorActivity;
@@ -282,6 +283,11 @@ public class MainActivity extends AppCompatActivity
         // 仪表盘
         else if (id == R.id.nav_dashBoard) {
             Intent intent = new Intent(this, DashBoardActivity.class);
+            startActivity(intent);
+        }
+        // 图表
+        else if (id == R.id.nav_chart) {
+            Intent intent = new Intent(this, ChartActivity.class);
             startActivity(intent);
         }
         // 饼状图
