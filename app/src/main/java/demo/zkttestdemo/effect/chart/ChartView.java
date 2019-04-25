@@ -198,6 +198,7 @@ public class ChartView extends View {
             bgDashPath.lineTo(i * itemWidth, getHeight());
         }
         canvas.drawPath(bgDashPath, bgLinePaint);
+        bgLinePaint.setPathEffect(null);
     }
 
 }
