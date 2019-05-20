@@ -14,7 +14,6 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
 import android.graphics.Rect;
-import android.graphics.Region;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -144,6 +143,7 @@ public class DragBubbleView extends View {
 
     public DragBubbleView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+//        TypedArray array = context.obtainStyledAttributes(R.styleable.DragBubbleView);
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.DragBubbleView, defStyleAttr, 0);
         mBubbleRadius = array.getDimension(R.styleable.DragBubbleView_bubble_radius, mBubbleRadius);
         mBubbleColor = array.getColor(R.styleable.DragBubbleView_bubble_color, Color.RED);

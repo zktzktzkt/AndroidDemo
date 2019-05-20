@@ -134,14 +134,14 @@ public class ScratchView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        float downX = 0, downY = 0;
-        int action = event.getAction();
-        switch (action) {
+        float downX = 0;
+        float downY = 0;
+        switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
-                mErasePath.reset();
-                mErasePath.moveTo(event.getX(), event.getY());
                 downX = event.getX();
                 downY = event.getY();
+                mErasePath.reset();
+                mErasePath.moveTo(event.getX(), event.getY());
                 invalidate();
                 break;
             case MotionEvent.ACTION_MOVE:
