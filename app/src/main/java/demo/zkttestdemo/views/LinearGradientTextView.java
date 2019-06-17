@@ -1,4 +1,4 @@
-package demo.zkttestdemo.effect.paint;
+package demo.zkttestdemo.views;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -12,7 +12,7 @@ import android.util.AttributeSet;
 
 /**
  * Created by zkt on 2018-8-3.
- * Description:
+ * Description: 渐变颜色textview
  */
 
 public class LinearGradientTextView extends AppCompatTextView {

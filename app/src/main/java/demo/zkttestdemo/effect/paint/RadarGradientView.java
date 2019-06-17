@@ -44,6 +44,7 @@ public class RadarGradientView extends View {
         init();
     }
 
+
     private void init() {
         // 画圆用到的paint
         mPaintCircle = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -66,12 +67,17 @@ public class RadarGradientView extends View {
         @Override
         public void run() {
             degree += 5;
-           // matrix.postRotate(scanSpeed, mWidth / 2, mHeight / 2); // 旋转矩阵
+            matrix.postRotate(scanSpeed, mWidth / 2, mHeight / 2); // 旋转矩阵
             invalidate(); // 通知view重绘
 
             postDelayed(run, 50); // 调用自身 重复绘制
         }
     };
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        setMeasuredDimension(resolveSize(500, widthMeasureSpec), resolveSize(500, widthMeasureSpec));
+    }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -97,8 +103,8 @@ public class RadarGradientView extends View {
 
         // 画布的旋转变换 需要调用save() 和 restore()
         canvas.save();
-        //canvas.concat(matrix);
-        canvas.rotate(degree);
+        //        canvas.concat(matrix);
+        canvas.rotate(degree, mWidth / 2, mHeight / 2);
         canvas.drawCircle(mWidth / 2, mHeight / 2, mWidth * pots[4], mPaintRadar);
         canvas.restore();
     }

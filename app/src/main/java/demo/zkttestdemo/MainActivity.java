@@ -408,7 +408,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, LoadingActivity.class);
             startActivity(intent);
         }
-        //paint 实验
+        //paint效果demo 实验
         else if (id == R.id.nav_paint) {
             Intent intent = new Intent(this, PaintActivity.class);
             startActivity(intent);

@@ -41,7 +41,6 @@ public class BDSearchActivity extends AppCompatActivity {
         sv_search = findViewById(R.id.sv_search);
         iv_search = findViewById(R.id.iv_search);
         lv_searchview = findViewById(R.id.lv_searchview);
-
         lv_searchview.setAdapter(new searchAdapter(BDSearchActivity.this));
 
         /***** 防止scrollview置顶 ***********/
