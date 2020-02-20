@@ -252,7 +252,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, NestedScrollTestActivity.class);
             startActivity(intent);
         }
-        //viewDragHelper
+        //ViewDragHelper拖拽测试
         else if (id == R.id.nav_viewDragHelperTest) {
             Intent intent = new Intent(this, DragHelperGridActivity.class);
             startActivity(intent);
@@ -347,7 +347,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, StatusBarActivity.class);
             startActivity(intent);
         }
-        //圆形layout布局
+        //自定义圆形布局
         else if (id == R.id.nav_circleLayout) {
             ARouter.getInstance().build(ARouterManager.CircleLayoutActivity).navigation();
         }

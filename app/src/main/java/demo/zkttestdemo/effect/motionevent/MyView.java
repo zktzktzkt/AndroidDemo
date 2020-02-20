@@ -86,7 +86,7 @@ public class MyView extends View {
                 break;
         }
 //        return super.onTouchEvent(ev);
-                return true;
+                return false;
     }
 
 }

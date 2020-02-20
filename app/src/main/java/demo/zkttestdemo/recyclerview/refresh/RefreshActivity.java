@@ -13,7 +13,7 @@ import demo.zkttestdemo.recyclerview.refresh.bean.Body;
 
 public class RefreshActivity extends AppCompatActivity {
 
-    private MyRecyclerView mPullRefreshRecyclerView;
+    private MyRecyclerRefreshView mPullRefreshRecyclerView;
 
     private ArrayList<Body> mBodies;
 
@@ -29,14 +29,14 @@ public class RefreshActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_refresh);
         initData();
-        mPullRefreshRecyclerView = (MyRecyclerView) findViewById(R.id.real_pull_refresh_view);
+        mPullRefreshRecyclerView = (MyRecyclerRefreshView) findViewById(R.id.real_pull_refresh_view);
 
         mLayoutManager = new LinearLayoutManager(this);
         mMyAdapter = new MyAdapter(this, mBodies);
         mPullRefreshRecyclerView.setLayoutManager(mLayoutManager);
         mPullRefreshRecyclerView.setAdapter(mMyAdapter);
 
-        mPullRefreshRecyclerView.setOnPullListener(new MyRecyclerView.OnPullListener() {
+        mPullRefreshRecyclerView.setOnPullListener(new MyRecyclerRefreshView.OnPullListener() {
             @Override
             public void onRefresh() {
                 mHandler.postDelayed(new Runnable() {

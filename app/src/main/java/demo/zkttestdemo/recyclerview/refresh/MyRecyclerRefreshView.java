@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
@@ -24,56 +25,57 @@ import demo.zkttestdemo.R;
  * Description:
  */
 
-public class MyRecyclerView extends LinearLayout {
-    private int mTouchSlop;
+public class MyRecyclerRefreshView extends LinearLayout {
+    private static final String TAG    = "MyRecyclerView";
+    private              int    mTouchSlop;
     //分别记录上次滑动的坐标
-    private int mLastX = 0;
-    private int mLastY = 0;
+    private              int    mLastX = 0;
+    private              int    mLastY = 0;
 
     private int mLastXIntercept = 0;
     private int mLastYIntercept = 0;
 
-    private Scroller mScroller;
+    private Scroller        mScroller;
     private VelocityTracker mVelocityTracker;
 
-    private RecyclerView mRecyclerView;
+    private RecyclerView               mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.Adapter       mAdapter;
 
     private RecyclerViewRefreshStateCall mRecyclerViewRefreshStateCall;
 
     //状态
     //默认状态
-    private int DEFAULT = 0;
+    private       int DEFAULT           = 0;
     //头部显示不全
     private final int PULL_DOWN_REFRESH = 1;
     //头部显示全
-    private final int RELEASE_REFRESH = 2;
+    private final int RELEASE_REFRESH   = 2;
     //刷新中
-    private final int REFRESHING = 3;
+    private final int REFRESHING        = 3;
     //加载更多
-    private final int LOAD_MORE = 4;
+    private final int LOAD_MORE         = 4;
     //状态标记
-    private int STATE = DEFAULT;
+    private       int STATE             = DEFAULT;
     //刷新头部宽度
-    private int rfreshHeaderWidth;
+    private       int rfreshHeaderWidth;
     //刷新头部高度
-    private int refreshHeadviewHeight;
+    private       int refreshHeadviewHeight;
 
     private OnPullListener mOnPullListener;
-    private View mRefreshHeaderView;
-    int refreshHeadviewId;
+    private View           mRefreshHeaderView;
+    int     refreshHeadviewId;
     boolean flag = false;
 
-    public MyRecyclerView(Context context) {
+    public MyRecyclerRefreshView(Context context) {
         this(context, null);
     }
 
-    public MyRecyclerView(Context context, @Nullable AttributeSet attrs) {
+    public MyRecyclerRefreshView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public MyRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public MyRecyclerRefreshView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         //      ★★★★★一个坑initAttrs方法里的typedArray去获取属性时，第一次获取的属性全是0，他会马上重走一次构造方法，再次获取一次，才能获得正确的值
         //      如果第一次获取的值为0，则不去initView
@@ -175,6 +177,7 @@ public class MyRecyclerView extends LinearLayout {
 
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                Log.e(TAG, "onInterceptTouchEvent -> DOWN");
                 intercepted = false;
                 if (STATE != DEFAULT || STATE != REFRESHING) {
                     if (!mScroller.isFinished()) {
@@ -183,6 +186,7 @@ public class MyRecyclerView extends LinearLayout {
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
+                Log.e(TAG, "onInterceptTouchEvent -> MOVE");
                 int deltaX = x - mLastXIntercept;
                 int deltaY = y - mLastYIntercept;
                 //找到最后一个显示出来的item的position
@@ -214,6 +218,7 @@ public class MyRecyclerView extends LinearLayout {
                 }
                 break;
             case MotionEvent.ACTION_UP:
+                Log.e(TAG, "onInterceptTouchEvent -> UP");
                 intercepted = false;
                 break;
         }
@@ -233,6 +238,7 @@ public class MyRecyclerView extends LinearLayout {
         int y = (int) event.getY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                Log.e(TAG, "onTouchEvent -> DOWN");
                 if (STATE != DEFAULT || STATE != REFRESHING) {
                     if (!mScroller.isFinished()) {
                         mScroller.abortAnimation();
@@ -240,6 +246,7 @@ public class MyRecyclerView extends LinearLayout {
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
+                Log.e(TAG, "onTouchEvent -> MOVE");
                 //                Log.e("MyRecyclerView", "getScrollY() -> " + getScrollY() + "   -refreshHeadviewHeight * 5  -> " + -refreshHeadviewHeight * 5);
                 int deltaY = y - mLastY;
                 if (getScrollY() > 0) {
@@ -265,6 +272,7 @@ public class MyRecyclerView extends LinearLayout {
                 }
                 break;
             case MotionEvent.ACTION_UP:
+                Log.e(TAG, "onTouchEvent -> UP");
                 int scrollY = getScrollY();
                 switch (STATE) {
                     case PULL_DOWN_REFRESH:

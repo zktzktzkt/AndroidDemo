@@ -11,7 +11,7 @@ import android.widget.TextView;
 import demo.zkttestdemo.R;
 
 
-public class ImplRecyclerViewRefreshStateCall implements MyRecyclerView.RecyclerViewRefreshStateCall {
+public class ImplRecyclerViewRefreshStateCall implements MyRecyclerRefreshView.RecyclerViewRefreshStateCall {
 
     private TextView mTv;
     private ImageView mIv;
@@ -19,7 +19,7 @@ public class ImplRecyclerViewRefreshStateCall implements MyRecyclerView.Recycler
     View mHeaderView;
 
 
-    public ImplRecyclerViewRefreshStateCall(MyRecyclerView pullRefreshRecyclerView) {
+    public ImplRecyclerViewRefreshStateCall(MyRecyclerRefreshView pullRefreshRecyclerView) {
         mHeaderView = pullRefreshRecyclerView.getRefreshHeaderView();
         mTv = (TextView) mHeaderView.findViewById(R.id.tv);
         mIv = (ImageView) mHeaderView.findViewById(R.id.iv);

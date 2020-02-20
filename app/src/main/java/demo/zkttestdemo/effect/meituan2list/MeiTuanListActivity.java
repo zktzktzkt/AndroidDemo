@@ -1,6 +1,5 @@
 package demo.zkttestdemo.effect.meituan2list;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -21,11 +20,11 @@ import demo.zkttestdemo.effect.meituan2list.stikylist.PinnedHeaderListView;
 
 public class MeiTuanListActivity extends AppCompatActivity {
 
-    private RecyclerView left_list;
+    private RecyclerView         left_list;
     private PinnedHeaderListView right_list;
-    private boolean isScroll = true;
-    private List<String> strings;
-    private SectionAdapter sectionAdapter;
+    private boolean              isScroll = true;
+    private List<String>         strings;
+    private SectionAdapter       sectionAdapter;
 
 
     @Override
@@ -52,12 +51,10 @@ public class MeiTuanListActivity extends AppCompatActivity {
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
                 isScroll = false;
+                view.setSelected(true);
+
                 for (int i = 0; i < left_list.getChildCount(); i++) {
-                    if (i == position) {
-                        left_list.getChildAt(i).setBackgroundColor(Color.rgb(255, 255, 255));
-                    } else {
-                        left_list.getChildAt(i).setBackgroundColor(Color.TRANSPARENT);
-                    }
+                    view.setSelected(i == position);
                 }
 
                 //记录选中的item对应的右边section的位置
@@ -86,13 +83,9 @@ public class MeiTuanListActivity extends AppCompatActivity {
                 if (isScroll) {
                     //判断右边第一个显示的position的Section
                     for (int i = 0; i < left_list.getChildCount(); i++) {
-                        if (i == sectionAdapter.getSectionForPosition(firstVisibleItem)) {
-                            left_list.getChildAt(i)
-                                    .setBackgroundColor(Color.rgb(255, 255, 255));
-                        } else {
-                            left_list.getChildAt(i)
-                                    .setBackgroundColor(Color.TRANSPARENT);
-                        }
+                        left_list.getChildAt(i).setSelected(
+                                i == sectionAdapter.getSectionForPosition(firstVisibleItem)
+                        );
                     }
                 } else {
                     isScroll = true;
