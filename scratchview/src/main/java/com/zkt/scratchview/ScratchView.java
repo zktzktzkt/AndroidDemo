@@ -29,31 +29,31 @@ import android.view.ViewConfiguration;
 
 public class ScratchView extends View {
 
-    private Paint mMaskPaint;
-    private int mMaskColor;
-    private int default_masker_color;
-    private Canvas mMaskCanvas;
-    private Bitmap mMaskBitmap;
-    private Path mErasePath;
-    private int mEraseSize;
-    private int mTouchSlop;
-    private Paint mErasePaint;
+    private Paint          mMaskPaint;
+    private int            mMaskColor;
+    private int            default_masker_color;
+    private Canvas         mMaskCanvas;
+    private Bitmap         mMaskBitmap;
+    private Path           mErasePath;
+    private int            mEraseSize;
+    private int            mTouchSlop;
+    private Paint          mErasePaint;
     /**
      * 存放蒙层像素信息的数组
      */
-    private int mPixels[];
+    private int            mPixels[];
     /**
      * 最大擦除比例
      */
-    private int mMaxPercent = 70;
+    private int            mMaxPercent  = 70;
     /**
      * 当前擦除比例
      */
-    private int mPercent = 0;
+    private int            mPercent     = 0;
     /**
      * 完成擦除
      */
-    private boolean mIsCompleted = false;
+    private boolean        mIsCompleted = false;
     /**
      * 水印
      */
@@ -113,11 +113,15 @@ public class ScratchView extends View {
      * 创建蒙层
      */
     private void createMasker(int width, int height) {
+        //创建一个指定大小的画布
         mMaskBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        //根据bitmap创建canvas，以便对bitmap进行绘制
         mMaskCanvas = new Canvas(mMaskBitmap);
+        //再创建一个指定大小的Rect
         Rect rect = new Rect(0, 0, width, height);
+        //在画布上绘制指定颜色(灰色)和大小的Rect
         mMaskCanvas.drawRect(rect, mMaskPaint);
-
+        //如果有水印的话，在画布上再绘制水印
         if (mWatermark != null) {
             Rect bounds = new Rect(rect);
             mWatermark.setBounds(bounds);
@@ -162,12 +166,12 @@ public class ScratchView extends View {
 
     @SuppressLint("StaticFieldLeak")
     private void updateErasePercent() {
-        int width = getWidth();
+        int width  = getWidth();
         int height = getHeight();
         new AsyncTask<Integer, Integer, Boolean>() {
             @Override
             protected Boolean doInBackground(Integer... params) {
-                int width = params[0];
+                int width  = params[0];
                 int height = params[1];
                 //stride用于表示一行的像素个数有多少
                 mMaskBitmap.getPixels(mPixels, 0, width, 0, 0, width, height);
@@ -260,7 +264,7 @@ public class ScratchView extends View {
     public void reset() {
         mIsCompleted = false;
 
-        int width = getWidth();
+        int width  = getWidth();
         int height = getHeight();
         createMasker(width, height);
         invalidate();
@@ -272,7 +276,7 @@ public class ScratchView extends View {
      * 清除蒙层
      */
     public void clear() {
-        int width = getWidth();
+        int width  = getWidth();
         int height = getHeight();
         mMaskBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         mMaskCanvas = new Canvas(mMaskBitmap);
