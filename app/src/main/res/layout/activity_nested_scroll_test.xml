@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".effect.nestedscroll.NestedScrollTestActivity">
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -64,7 +64,7 @@
 
             </LinearLayout>
 
-            <android.support.v4.widget.NestedScrollView
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_300"
                 android:layout_centerInParent="true"
@@ -112,8 +112,8 @@
                         android:text="content"/>
 
                 </LinearLayout>
-            </android.support.v4.widget.NestedScrollView>
+            </androidx.core.widget.NestedScrollView>
         </RelativeLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>

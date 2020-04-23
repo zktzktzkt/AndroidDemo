@@ -17,13 +17,13 @@
         android:fitsSystemWindows="true"
         tools:context="demo.zkttestdemo.effect.stikyhead.StikyHeadActivity">
 
-        <android.support.design.widget.AppBarLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
             android:orientation="vertical">
 
-            <android.support.design.widget.CollapsingToolbarLayout
+            <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
                 app:contentScrim="@color/yellow"
@@ -53,7 +53,7 @@
 
                 </RelativeLayout>
 
-                <android.support.v7.widget.Toolbar
+                <androidx.appcompat.widget.Toolbar
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     app:contentInsetEnd="0dp"
@@ -71,8 +71,8 @@
                         android:text="标题栏"
                         android:textColor="#ffffff"
                         />
-                </android.support.v7.widget.Toolbar>
-            </android.support.design.widget.CollapsingToolbarLayout>
+                </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -81,9 +81,9 @@
                 android:text="悬浮的部分"
                 />
 
-        </android.support.design.widget.AppBarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

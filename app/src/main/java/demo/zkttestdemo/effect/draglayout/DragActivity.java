@@ -1,8 +1,8 @@
 package demo.zkttestdemo.effect.draglayout;
 
 import android.os.Bundle;
-import android.support.v4.widget.ViewDragHelper;
-import android.support.v7.app.AppCompatActivity;
+import androidx.customview.widget.ViewDragHelper;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;

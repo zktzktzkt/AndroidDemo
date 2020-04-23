@@ -2,8 +2,8 @@ package demo.zkttestdemo.effect.behavior.custom;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.NonNull;
-import android.support.v4.view.NestedScrollingParent2;
+import androidx.annotation.NonNull;
+import androidx.core.view.NestedScrollingParent2;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.MotionEvent;

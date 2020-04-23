@@ -1,7 +1,7 @@
 package demo.zkttestdemo.effect.kugouguide;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import demo.zkttestdemo.R;
 import demo.zkttestdemo.effect.kugouguide.parallax.ParallaxViewPager;

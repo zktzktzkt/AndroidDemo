@@ -1,6 +1,6 @@
 package com.zkt.lottery;
 
-import android.support.annotation.IntRange;
+import androidx.annotation.IntRange;
 
 import java.util.ArrayList;
 import java.util.List;

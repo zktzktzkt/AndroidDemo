@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,35 +12,35 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnBehavior"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="BottomSheetBehavior"
             android:textAllCaps="false"/>
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnDialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="BottomSheetDialog"
             android:textAllCaps="false"/>
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnDialogFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="BottomSheetDialogFragment"
             android:textAllCaps="false"/>
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnPopupOnTop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="底部弹出PopupWindow"
             android:textAllCaps="false"/>
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnDialogOnTop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -103,4 +103,4 @@
     </LinearLayout>
 
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,6 +1,8 @@
 package demo.zkttestdemo.recyclerview.diffUtil;
 
-import android.support.v7.util.DiffUtil;
+import androidx.recyclerview.widget.DiffUtil;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
@@ -57,7 +59,7 @@ public class DiffCallBack extends DiffUtil.Callback {
      * so that you can change its behavior depending on your UI.
      * 所以你可以根据你的UI去改变它的返回值
      * For example, if you are using DiffUtil with a
-     * {@link android.support.v7.widget.RecyclerView.Adapter RecyclerView.Adapter}, you should
+     * {@link RecyclerView.Adapter RecyclerView.Adapter}, you should
      * return whether the items' visual representations are the same.
      * 例如，如果你用RecyclerView.Adapter 配合DiffUtil使用，你需要返回Item的视觉表现是否相同。
      * This method is called only if {@link #areItemsTheSame(int, int)} returns

@@ -3,7 +3,7 @@ package demo.zkttestdemo.effect.wavrecord;
 import android.Manifest;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;

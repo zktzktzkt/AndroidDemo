@@ -3,7 +3,7 @@ package demo.zkttestdemo.effect.wavrecord;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Environment;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 import demo.zkttestdemo.effect.wavrecord.model.AudioChannel;
 import demo.zkttestdemo.effect.wavrecord.model.AudioSampleRate;

@@ -16,14 +16,14 @@
         android:src="@drawable/night1"
         app:layout_behavior="demo.zkttestdemo.effect.behavior.custom.ImageBehavior"/>
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#00f"
         app:layout_behavior="demo.zkttestdemo.effect.behavior.custom.ToolbarBehavior"/>
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/img">
@@ -33,6 +33,6 @@
             android:layout_height="match_parent"
             android:lineSpacingExtra="@dimen/dp_10"
             android:text="氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地氨基酸低价四基地"/>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </demo.zkttestdemo.effect.behavior.custom.BehaviorCoordinatorLayout>

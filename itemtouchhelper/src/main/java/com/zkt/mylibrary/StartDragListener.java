@@ -1,6 +1,6 @@
 package com.zkt.mylibrary;
 
-import android.support.v7.widget.RecyclerView.ViewHolder;
+import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 public interface StartDragListener {
 	

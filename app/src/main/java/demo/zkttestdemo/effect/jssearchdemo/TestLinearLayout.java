@@ -2,7 +2,7 @@ package demo.zkttestdemo.effect.jssearchdemo;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.LinearLayout;

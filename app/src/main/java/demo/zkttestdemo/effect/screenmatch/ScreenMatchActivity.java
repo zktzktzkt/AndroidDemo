@@ -1,7 +1,7 @@
 package demo.zkttestdemo.effect.screenmatch;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import demo.zkttestdemo.R;
 

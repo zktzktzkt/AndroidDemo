@@ -47,7 +47,7 @@
             android:textColor="#ff777777"/>
     </RelativeLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_horizontal"
         android:visibility="gone"
         android:layout_width="match_parent"

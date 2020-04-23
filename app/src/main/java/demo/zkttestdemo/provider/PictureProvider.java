@@ -1,6 +1,6 @@
 package demo.zkttestdemo.provider;
 
-import android.support.v4.content.FileProvider;
+import androidx.core.content.FileProvider;
 
 /**
  * Created by zkt on 2018-9-27.

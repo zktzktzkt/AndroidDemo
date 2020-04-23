@@ -30,7 +30,7 @@
         </FrameLayout>
     </ScrollView>
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -63,5 +63,5 @@
                     android:textColor="#8A8A8A"/>
             </demo.zkttestdemo.effect.jssearchdemo.TestLinearLayout>
         </RelativeLayout>
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 </RelativeLayout>

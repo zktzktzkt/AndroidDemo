@@ -2,11 +2,13 @@ package com.zkt.mylibrary.itemTouchHelper;
 
 
 import android.graphics.Canvas;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.recyclerview.R;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchUIUtil;
 import android.view.View;
+
+import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.ItemTouchUIUtil;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.zkt.mylibrary.R;
 
 /**
  * Package private class to keep implementations. Putting them inside ItemTouchUIUtil makes them

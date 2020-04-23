@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context="demo.zkttestdemo.effect.activityjump.OneActivity">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary">
@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:text="Activity THREE"
             android:textColor="@android:color/white"/>
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
     <Button
         android:id="@+id/btn_3"

@@ -1,7 +1,7 @@
 package demo.zkttestdemo.effect.tempcontrol;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Toast;
 
 import demo.zkttestdemo.R;

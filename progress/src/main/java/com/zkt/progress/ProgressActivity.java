@@ -1,7 +1,7 @@
 package com.zkt.progress;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.SeekBar;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
