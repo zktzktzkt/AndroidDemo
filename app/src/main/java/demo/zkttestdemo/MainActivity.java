@@ -57,6 +57,7 @@ import demo.zkttestdemo.effect.bottomsheet.ZHBottomSheetActivity;
 import demo.zkttestdemo.effect.chart.ChartActivity;
 import demo.zkttestdemo.effect.circleprogress.CircleProgressActivity;
 import demo.zkttestdemo.effect.city_58.Loading58Activity;
+import demo.zkttestdemo.effect.compass.CompassTestActivity;
 import demo.zkttestdemo.effect.coordinator.CoordinatorActivity;
 import demo.zkttestdemo.effect.countdownView.CountDownActivity;
 import demo.zkttestdemo.effect.dashboard.DashBoardActivity;
@@ -336,6 +337,11 @@ public class MainActivity extends AppCompatActivity
         //温度旋转按钮
         else if (id == R.id.nav_temp_control) {
             Intent intent = new Intent(this, TemControlActivity.class);
+            startActivity(intent);
+        }
+        //指南针
+        else if (id == R.id.nav_compass) {
+            Intent intent = new Intent(this, CompassTestActivity.class);
             startActivity(intent);
         }
         //仿简书的搜索栏动画
