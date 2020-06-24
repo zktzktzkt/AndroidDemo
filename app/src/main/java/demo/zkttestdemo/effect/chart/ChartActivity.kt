@@ -1,22 +1,29 @@
 package demo.zkttestdemo.effect.chart
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.Legend
+import com.github.mikephil.charting.components.MarkerView
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
+import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.github.mikephil.charting.utils.MPPointF
 import demo.zkttestdemo.R
 import demo.zkttestdemo.databinding.ActivityChartBinding
 import java.util.*
 import kotlin.collections.ArrayList
+
 
 class ChartActivity : AppCompatActivity() {
     private lateinit var b: ActivityChartBinding
@@ -42,8 +49,8 @@ class ChartActivity : AppCompatActivity() {
             //对点和线进行配置
             val lineDataSet = LineDataSet(list, "我是${i}")  //list是你这条线的数据  "语文" 是你对这条线的描述（也就是图例上的文字）
             lineDataSet.apply {
-                //设置折线的式样   这个是圆滑的曲线（有好几种自己试试）  默认是直线
-//                mode = LineDataSet.Mode.CUBIC_BEZIER
+                // 设置折线的式样   这个是圆滑的曲线（有好几种自己试试）  默认是直线
+                //mode = LineDataSet.Mode.CUBIC_BEZIER
                 color = Color.GREEN  //线颜色
                 lineWidth = 2F       //线粗细
                 setDrawValues(false) //数值
@@ -54,11 +61,12 @@ class ChartActivity : AppCompatActivity() {
                 circleRadius = 1F      //圆点半径
                 valueTextColor = ColorTemplate.getHoloBlue() //设置节点文字颜色
                 isHighlightEnabled = true //设置是否显示十字线
-                //定义折线上的数据显示    可以实现加单位    以及显示整数（默认是显示小数）
-                /*lineDataSet.valueFormatter = object : ValueFormatter() {
+                setDrawFilled(true) //曲线下方渐变的阴影
+                fillDrawable = resources.getDrawable(R.drawable.line_gradient_bg_shape)
+                // 定义折线上的数据显示    可以实现加单位    以及显示整数（默认是显示小数）
+                /*valueFormatter = object : ValueFormatter() {
                     override fun getFormattedValue(v: Float, entry: Entry, dataSetIndex: Int,
                                                    viewPortHandler: ViewPortHandler): String {
-                        Log.e("这呵呵额呵呵", v.toString())
                         return "0"
                     }
                 }*/
@@ -67,6 +75,9 @@ class ChartActivity : AppCompatActivity() {
             dataSets.add(lineDataSet)
         }
 
+        //折线图点的标记
+        val mv = MyMarkerView(this)
+        b.chart.marker = mv
 
         //对于右下角一串字母的操作
         b.chart.description.apply {
@@ -140,5 +151,24 @@ class ChartActivity : AppCompatActivity() {
     }
 
 
+    class MyMarkerView(context: Context) : MarkerView(context, R.layout.layout_markerview) {
+
+        private val tvContent: TextView
+
+        init {
+            tvContent = findViewById<View>(R.id.tvContent) as TextView
+        }
+
+        //显示的内容
+        override fun refreshContent(e: Entry, highlight: Highlight) {
+            tvContent.text = "x=${e.x} y=${e.y}"
+            super.refreshContent(e, highlight)
+        }
+
+        //标记相对于折线图的偏移量
+        override fun getOffset(): MPPointF {
+            return MPPointF((-(width / 2)).toFloat(), (-height).toFloat())
+        }
+    }
 }
 
