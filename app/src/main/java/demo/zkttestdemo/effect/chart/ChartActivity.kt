@@ -153,11 +153,7 @@ class ChartActivity : AppCompatActivity() {
 
     class MyMarkerView(context: Context) : MarkerView(context, R.layout.layout_markerview) {
 
-        private val tvContent: TextView
-
-        init {
-            tvContent = findViewById<View>(R.id.tvContent) as TextView
-        }
+        private val tvContent: TextView = findViewById<View>(R.id.tvContent) as TextView
 
         //显示的内容
         override fun refreshContent(e: Entry, highlight: Highlight) {
