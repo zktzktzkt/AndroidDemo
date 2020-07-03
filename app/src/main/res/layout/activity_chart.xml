@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".effect.chart.ChartActivity"
-    >
+    android:layout_height="match_parent">
 
-    <demo.zkttestdemo.effect.chart.ChartView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="100dp"
-        />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".effect.chart.ChartActivity">
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/chart"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginTop="100dp"
-        />
-</LinearLayout>
+        <demo.zkttestdemo.effect.chart.ChartView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="100dp" />
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChart"
+            android:layout_width="match_parent"
+            android:layout_height="250dp" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="50dp" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

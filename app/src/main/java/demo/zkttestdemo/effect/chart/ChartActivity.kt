@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.MarkerView
@@ -33,10 +35,13 @@ class ChartActivity : AppCompatActivity() {
         b = ActivityChartBinding.bind(v)
         setContentView(v)
 
-        initMPChart()
+        // 折线图
+        initLineChart()
+        //柱状图
+        initBarChart(b.barChart)
     }
 
-    fun initMPChart() {
+    fun initLineChart() {
         val dataSets: ArrayList<ILineDataSet> = ArrayList() //线条数据集合
 
         for (i in 0 until 2) {
@@ -150,7 +155,6 @@ class ChartActivity : AppCompatActivity() {
 
     }
 
-
     class MyMarkerView(context: Context) : MarkerView(context, R.layout.layout_markerview) {
 
         private val tvContent: TextView = findViewById<View>(R.id.tvContent) as TextView
@@ -165,6 +169,48 @@ class ChartActivity : AppCompatActivity() {
         override fun getOffset(): MPPointF {
             return MPPointF((-(width / 2)).toFloat(), (-height).toFloat())
         }
+    }
+
+
+    lateinit var mManager: BarChartManager
+    val xValues = mutableListOf<Float>()
+    val colours = mutableListOf<Int>()
+
+    /**
+     * 初始化 BarChart
+     */
+    fun initBarChart(chart: BarChart) {
+
+        mManager = BarChartManager(chart)
+
+        //设置X轴数据
+        for (i in 0 until 8) {
+            xValues.add(i.toFloat())
+        }
+
+        //设置y轴的数据()
+        val yValues = mutableListOf<MutableList<Float>>()
+
+        //2组数据，每组数据的值是8000上下
+        for (i in 0 until 2) {
+            val yValue = mutableListOf<Float>()
+            for (j in 0 until 8) {
+                yValue.add((Math.random() * 8000).toFloat())
+            }
+            yValues.add(yValue)
+        }
+
+        //颜色集合
+        colours.add(Color.parseColor("#FF2E5BFF"))
+        colours.add(Color.parseColor("#FF8C54FF"))
+
+        //线的名字集合
+        val names: ArrayList<String> = ArrayList()
+        names.add("今日")
+        names.add("昨日")
+
+        //创建多条折线的图表
+        mManager.showBarChart(xValues, yValues, names, colours)
     }
 }
 
