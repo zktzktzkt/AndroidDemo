@@ -101,6 +101,7 @@ import demo.zkttestdemo.effect.viewdraghelper.ViewDragHelperDemoActivity;
 import demo.zkttestdemo.effect.wavrecord.WAVActivity;
 import demo.zkttestdemo.effect.window.FloatWindowActivity;
 import demo.zkttestdemo.effect.wxaudio.AudioActivity;
+import demo.zkttestdemo.jetpack.TestNaviActivity;
 import demo.zkttestdemo.realm.RealmActivity;
 import demo.zkttestdemo.recyclerview.diffUtil.DiffUtilActivity;
 import demo.zkttestdemo.recyclerview.header.BannerRecyclerActivity;
@@ -188,7 +189,7 @@ public class MainActivity extends AppCompatActivity
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
-        drawer.openDrawer(GravityCompat.END);
+        drawer.openDrawer(GravityCompat.START);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -247,6 +248,11 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_activityJump) {
             Intent intent = new Intent(this, OneActivity.class);
+            startActivity(intent);
+        }
+        // Navigation和ViewModel
+        else if (id == R.id.nav_navigation) {
+            Intent intent = new Intent(this, TestNaviActivity.class);
             startActivity(intent);
         }
         //嵌套滑动测试
@@ -540,15 +546,15 @@ public class MainActivity extends AppCompatActivity
     /***************************************************************************************
      * 以下都是相机拍照相关，注意在onCreate里调用 createCameraTempFile(savedInstanceState);
      ****************************************************************************************/
-    private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE2 = 7;
-    private static final int PHOTO_REQUEST = 1;
-    private static final int CAMERA_REQUEST = 2;
-    private static final int PHOTO_CLIP = 3;
+    private static final int    MY_PERMISSIONS_REQUEST_CALL_PHONE2 = 7;
+    private static final int    PHOTO_REQUEST                      = 1;
+    private static final int    CAMERA_REQUEST                     = 2;
+    private static final int    PHOTO_CLIP                         = 3;
     //调用照相机返回图片临时文件
-    private File tempFile;
-    private String path;//图片的路径
-    private String imgName;
-    private Uri mUri;
+    private              File   tempFile;
+    private              String path;//图片的路径
+    private              String imgName;
+    private              Uri    mUri;
 
     Handler handler = new Handler() {
         @Override
@@ -612,7 +618,7 @@ public class MainActivity extends AppCompatActivity
             tempFile = (File) savedInstanceState.getSerializable("tempFile");
         } else {
             tempFile = new File(checkDirPath(getExternalCacheDir() + "/image/"),
-                    System.currentTimeMillis() + ".jpg");
+                                System.currentTimeMillis() + ".jpg");
         }
     }
 
@@ -636,8 +642,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void run() {
                 super.run();
-                String string = ImgUtil.uploadFile(imgUrl, path);
-                Message msg = Message.obtain();
+                String  string = ImgUtil.uploadFile(imgUrl, path);
+                Message msg    = Message.obtain();
                 msg.obj = string;
                 handler.sendMessage(msg);
             }
@@ -667,10 +673,10 @@ public class MainActivity extends AppCompatActivity
      * 上传头像
      */
     private void initPopWindow() {
-        View view = LayoutInflater.from(this).inflate(R.layout.layout_popupwindow, null);
-        TextView btnCarema = (TextView) view.findViewById(R.id.btn_camera);
-        TextView btnPhoto = (TextView) view.findViewById(R.id.btn_photo);
-        TextView btnCancel = (TextView) view.findViewById(R.id.btn_cancel);
+        View              view        = LayoutInflater.from(this).inflate(R.layout.layout_popupwindow, null);
+        TextView          btnCarema   = (TextView) view.findViewById(R.id.btn_camera);
+        TextView          btnPhoto    = (TextView) view.findViewById(R.id.btn_photo);
+        TextView          btnCancel   = (TextView) view.findViewById(R.id.btn_cancel);
         final PopupWindow popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         popupWindow.setBackgroundDrawable(getResources().getDrawable(android.R.color.transparent));
         popupWindow.setOutsideTouchable(true);
@@ -693,7 +699,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(MainActivity.this,
-                            new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_SETTINGS, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                                                      new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_SETTINGS, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
                 } else {
                     //跳转到调用系统相机
                     getPicFromCamera();
@@ -723,13 +729,13 @@ public class MainActivity extends AppCompatActivity
     }
 
     public String saveFile(Bitmap bm, String fileName) throws IOException {
-        String path = getFilesDir() + "/temp/";
-        File dirFile = new File(path);
+        String path    = getFilesDir() + "/temp/";
+        File   dirFile = new File(path);
         if (!dirFile.exists()) {
             dirFile.mkdir();
         }
-        File myCaptureFile = new File(path + fileName);
-        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(myCaptureFile));
+        File                 myCaptureFile = new File(path + fileName);
+        BufferedOutputStream bos           = new BufferedOutputStream(new FileOutputStream(myCaptureFile));
         bm.compress(Bitmap.CompressFormat.JPEG, 100, bos);
         bos.flush();
         bos.close();
@@ -739,7 +745,7 @@ public class MainActivity extends AppCompatActivity
     private void getPicFromPhoto() {
         Intent intent = new Intent(Intent.ACTION_PICK, null);
         intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                "image/*");
+                              "image/*");
         startActivityForResult(intent, PHOTO_REQUEST);
     }
 

@@ -205,6 +205,7 @@
         <activity android:name=".effect.behavior.CustomCoordinatorActivity">
         </activity>
         <activity android:name=".effect.compass.CompassTestActivity" />
+        <activity android:name=".jetpack.TestNaviActivity" />
     </application>
 
 </manifest>

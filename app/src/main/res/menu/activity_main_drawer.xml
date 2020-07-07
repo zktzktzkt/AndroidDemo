@@ -6,12 +6,12 @@
             <item
                 android:id="@+id/nav_Retrofit"
                 android:icon="@drawable/ic_menu_camera"
-                android:title="Retrofit"/>
+                android:title="Retrofit" />
 
             <item
                 android:id="@+id/nav_Volley"
                 android:icon="@drawable/ic_menu_manage"
-                android:title="Volley"/>
+                android:title="Volley" />
         </menu>
     </item>
 
@@ -20,7 +20,7 @@
             <item
                 android:id="@+id/nav_kotlin"
                 android:icon="@drawable/ic_menu_camera"
-                android:title="kotlin"/>
+                android:title="kotlin" />
         </menu>
     </item>
 
@@ -29,12 +29,12 @@
             <item
                 android:id="@+id/nav_realm"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="Realm"/>
+                android:title="Realm" />
 
             <item
                 android:id="@+id/nav_GreenDAO"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="GreenDAO"/>
+                android:title="GreenDAO" />
         </menu>
     </item>
 
@@ -43,7 +43,7 @@
             <item
                 android:id="@+id/nav_RxJava"
                 android:icon="@drawable/ic_menu_slideshow"
-                android:title="RxJava"/>
+                android:title="RxJava" />
         </menu>
     </item>
 
@@ -52,7 +52,16 @@
             <item
                 android:id="@+id/nav_Daggar2"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="Daggar2"/>
+                android:title="Daggar2" />
+        </menu>
+    </item>
+
+    <item android:title="JetPack">
+        <menu>
+            <item
+                android:id="@+id/nav_navigation"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="Navigation和ViewModel" />
         </menu>
     </item>
 
@@ -61,39 +70,39 @@
             <item
                 android:id="@+id/nav_recycler_singleChoice"
                 android:icon="@drawable/ic_menu_share"
-                android:title="RecyclerView 单选"/>
+                android:title="RecyclerView 单选" />
             <item
                 android:id="@+id/nav_recycler_multiChoice"
                 android:icon="@drawable/ic_menu_send"
-                android:title="RecyclerView 多选"/>
+                android:title="RecyclerView 多选" />
             <item
                 android:id="@+id/nav_suspend_single"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Recyclerview 单悬浮"/>
+                android:title="Recyclerview 单悬浮" />
             <item
                 android:id="@+id/nav_suspend_multi"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Recyclerview 多悬浮"/>
+                android:title="Recyclerview 多悬浮" />
             <item
                 android:id="@+id/nav_recycler_diff_util"
                 android:icon="@drawable/ic_menu_camera"
-                android:title="DiffUtil"/>
+                android:title="DiffUtil" />
             <item
                 android:id="@+id/nav_itemTouchHelper"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="itemTouchHelper示例"/>
+                android:title="itemTouchHelper示例" />
             <item
                 android:id="@+id/nav_bannerHeaderRecycler"
                 android:icon="@drawable/ic_menu_camera"
-                android:title="RecyclerView添加头部轮播图"/>
+                android:title="RecyclerView添加头部轮播图" />
             <item
                 android:id="@+id/nav_nestedRecycler"
                 android:icon="@drawable/ic_menu_camera"
-                android:title="RecyclerView嵌套滑动"/>
+                android:title="RecyclerView嵌套滑动" />
             <item
                 android:id="@+id/nav_refreshRecycler"
                 android:icon="@drawable/ic_menu_camera"
-                android:title="RecyclerView下拉刷新"/>
+                android:title="RecyclerView下拉刷新" />
         </menu>
     </item>
 
@@ -102,248 +111,248 @@
             <item
                 android:id="@+id/nav_MotionEventTest"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="事件分发测试"/>
+                android:title="事件分发测试" />
             <item
                 android:id="@+id/nav_nestedScrollTest"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="嵌套滑动测试"/>
+                android:title="嵌套滑动测试" />
             <item
                 android:id="@+id/nav_viewDragHelperTest"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="ViewDragHelper拖拽测试"/>
+                android:title="ViewDragHelper拖拽测试" />
             <item
                 android:id="@+id/nav_statusBar"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="沉浸式状态栏"/>
+                android:title="沉浸式状态栏" />
             <item
                 android:id="@+id/nav_floatWindow"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="Window悬浮窗"/>
+                android:title="Window悬浮窗" />
             <item
                 android:id="@+id/nav_paint"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="Paint效果Demo"/>
+                android:title="Paint效果Demo" />
             <item
                 android:id="@+id/nav_countdownView"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="手势定时闹钟"/>
+                android:title="手势定时闹钟" />
             <item
                 android:id="@+id/nav_scratchView"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="刮刮卡效果"/>
+                android:title="刮刮卡效果" />
             <item
                 android:id="@+id/nav_elemeShopBtn"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="仿饿了么购物车按钮"/>
+                android:title="仿饿了么购物车按钮" />
             <item
                 android:id="@+id/nav_circleLayout"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="自定义圆形布局"/>
+                android:title="自定义圆形布局" />
             <item
                 android:id="@+id/nav_animatorFrameWork"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="自定义动画框架"/>
+                android:title="自定义动画框架" />
             <item
                 android:id="@+id/nav_chart"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="图表"/>
+                android:title="图表" />
             <item
                 android:id="@+id/nav_dashBoard"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="仪表盘"/>
+                android:title="仪表盘" />
             <item
                 android:id="@+id/nav_piechart"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="饼状图"/>
+                android:title="饼状图" />
             <item
                 android:id="@+id/nav_progress"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="三角指示progress"/>
+                android:title="三角指示progress" />
             <item
                 android:id="@+id/nav_screenMatch"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="自定义View屏幕适配"/>
+                android:title="自定义View屏幕适配" />
             <item
                 android:id="@+id/nav_eatBaoZi"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="仿大众点评加载动画"/>
+                android:title="仿大众点评加载动画" />
             <item
                 android:id="@+id/nav_lockPattern"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="九宫格锁屏"/>
+                android:title="九宫格锁屏" />
             <item
                 android:id="@+id/nav_filterMenu"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="多条目筛选菜单"/>
+                android:title="多条目筛选菜单" />
             <item
                 android:id="@+id/nav_overFlying"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="仿夸克浏览器底部拖拽"/>
+                android:title="仿夸克浏览器底部拖拽" />
             <item
                 android:id="@+id/nav_activityJump"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="三级Activity跳转"/>
+                android:title="三级Activity跳转" />
             <item
                 android:id="@+id/nav_flow"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="流式布局"/>
+                android:title="流式布局" />
             <item
                 android:id="@+id/nav_kugou_parallax"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="仿酷狗视差引导页"/>
+                android:title="仿酷狗视差引导页" />
             <item
                 android:id="@+id/nav_kugou_menu"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="仿酷狗侧滑菜单"/>
+                android:title="仿酷狗侧滑菜单" />
             <item
                 android:id="@+id/nav_temp_control"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="温度旋转按钮"/>
+                android:title="温度旋转按钮" />
             <item
                 android:id="@+id/nav_behaviorDemo"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="仿知乎behavior"/>
+                android:title="仿知乎behavior" />
             <item
                 android:id="@+id/nav_stikyHead"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="CoordinatorLayout实现悬浮头"/>
+                android:title="CoordinatorLayout实现悬浮头" />
             <item
                 android:id="@+id/nav_coordinator"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="CoordinatorLayout使用"/>
+                android:title="CoordinatorLayout使用" />
             <item
                 android:id="@+id/nav_mt2List"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="仿美团级联菜单列表"/>
+                android:title="仿美团级联菜单列表" />
             <item
                 android:id="@+id/nav_dragBubble"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="仿QQ拖拽气泡"/>
+                android:title="仿QQ拖拽气泡" />
             <item
                 android:id="@+id/nav_wavRecord"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="wav格式录音"/>
+                android:title="wav格式录音" />
             <item
                 android:id="@+id/nav_bezier"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="贝塞尔曲线"/>
+                android:title="贝塞尔曲线" />
             <item
                 android:id="@+id/nav_viewDragHelper"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="ViewDragHelper练习"/>
+                android:title="ViewDragHelper练习" />
             <item
                 android:id="@+id/nav_lettesSideBar"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="字母索引"/>
+                android:title="字母索引" />
             <item
                 android:id="@+id/nav_pullAndLoad"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="自定义下拉刷新头"/>
+                android:title="自定义下拉刷新头" />
             <item
                 android:id="@+id/nav_JSSearch"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="仿简书searchview伸展动画"/>
+                android:title="仿简书searchview伸展动画" />
             <item
                 android:id="@+id/nav_BDSearch"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="仿百度searchview动画"/>
+                android:title="仿百度searchview动画" />
             <item
                 android:id="@+id/nav_lottery"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="抽奖转盘效果"/>
+                android:title="抽奖转盘效果" />
             <item
                 android:id="@+id/nav_58Loading"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="仿58同城加载动画"/>
+                android:title="仿58同城加载动画" />
             <item
                 android:id="@+id/nav_bottomSheet"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="BottomSheet示例"/>
+                android:title="BottomSheet示例" />
             <item
                 android:id="@+id/nav_doodle"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="涂鸦板"/>
+                android:title="涂鸦板" />
             <item
                 android:id="@+id/nav_progress_arc"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="自定义弧形progress"/>
+                android:title="自定义弧形progress" />
             <item
                 android:id="@+id/nav_alipayHomeAnim"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="仿alipay首页头部伸缩动画"/>
+                android:title="仿alipay首页头部伸缩动画" />
             <item
                 android:id="@+id/nav_snow"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="下雪效果"/>
+                android:title="下雪效果" />
             <item
                 android:id="@+id/nav_loadingView"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="仿雅虎的splash页"/>
+                android:title="仿雅虎的splash页" />
 
             <item
                 android:id="@+id/nav_verticalDrag"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="仿汽车之家垂直拖拽"/>
+                android:title="仿汽车之家垂直拖拽" />
             <item
                 android:id="@+id/nav_favor"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="点赞飘心效果"/>
+                android:title="点赞飘心效果" />
             <item
                 android:id="@+id/nav_drag"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="拖拽布局效果"/>
+                android:title="拖拽布局效果" />
             <item
                 android:id="@+id/nav_verificationInput"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="仿滴滴出行验证码输入"/>
+                android:title="仿滴滴出行验证码输入" />
             <item
                 android:id="@+id/nav_multi_page"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="ViewPager一屏显示显示多页面"/>
+                android:title="ViewPager一屏显示显示多页面" />
             <item
                 android:id="@+id/nav_alphaToolbar"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="渐变Toolbar"/>
+                android:title="渐变Toolbar" />
             <item
                 android:id="@+id/nav_slideMenu"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="侧滑菜单"/>
+                android:title="侧滑菜单" />
             <item
                 android:id="@+id/nav_qqSlideMenu"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="仿QQ6.0侧滑菜单"/>
+                android:title="仿QQ6.0侧滑菜单" />
             <item
                 android:id="@+id/nav_myIndicator"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="自定义tablayout"/>
+                android:title="自定义tablayout" />
             <item
                 android:id="@+id/nav_sportProgress"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="运动步数progress"/>
+                android:title="运动步数progress" />
             <item
                 android:id="@+id/nav_circleProgress"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="圆形进度progress按钮"/>
+                android:title="圆形进度progress按钮" />
             <item
                 android:id="@+id/nav_transition"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="转场动画"/>
+                android:title="转场动画" />
             <item
                 android:id="@+id/nav_keyboard_bug"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="键盘不遮挡Edittext"/>
+                android:title="键盘不遮挡Edittext" />
             <item
                 android:id="@+id/nav_audio_reord"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="仿微信语音录制"/>
+                android:title="仿微信语音录制" />
             <item
                 android:id="@+id/nav_pay_keyboard"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="仿支付宝支付键盘"/>
+                android:title="仿支付宝支付键盘" />
             <item
                 android:id="@+id/nav_compass"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="指南针"/>
+                android:title="指南针" />
         </menu>
     </item>
 
