@@ -24,9 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup, android:label">
-        <activity android:name=".effect.chart.ChartActivity"/>
-        <activity android:name=".effect.countdownView.CountDownActivity">
-        </activity>
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -206,6 +204,9 @@
         </activity>
         <activity android:name=".effect.compass.CompassTestActivity" />
         <activity android:name=".jetpack.TestNaviActivity" />
+        <activity android:name=".room.RoomActivity" />
+        <activity android:name=".effect.chart.ChartActivity"/>
+        <activity android:name=".effect.countdownView.CountDownActivity"/>
     </application>
 
 </manifest>

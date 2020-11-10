@@ -2,11 +2,6 @@ package demo.zkttestdemo.recyclerview.refresh;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +12,12 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import demo.zkttestdemo.R;
 
@@ -247,18 +248,21 @@ public class MyRecyclerRefreshView extends LinearLayout {
                 break;
             case MotionEvent.ACTION_MOVE:
                 Log.e(TAG, "onTouchEvent -> MOVE");
-                //                Log.e("MyRecyclerView", "getScrollY() -> " + getScrollY() + "   -refreshHeadviewHeight * 5  -> " + -refreshHeadviewHeight * 5);
+                // Log.e("MyRecyclerView", "getScrollY() -> " + getScrollY() + "   -refreshHeadviewHeight * 5  -> " + -refreshHeadviewHeight * 5);
                 int deltaY = y - mLastY;
                 if (getScrollY() > 0) {
                     //防止在正在刷新状态下 下拉出现空白
+                    Log.e(TAG, "onTouchEvent -> MOVE 1");
 
                 } else if (getScrollY() <= 0 && getScrollY() > -refreshHeadviewHeight * 5) {
                     scrollBy(0, -deltaY / 2);
+                    Log.e(TAG, "onTouchEvent -> MOVE 2");
                 }
 
                 //头部显示不全时
                 if (getScrollY() > -refreshHeadviewHeight && STATE != REFRESHING) {
                     STATE = PULL_DOWN_REFRESH;
+                    Log.e(TAG, "onTouchEvent -> MOVE 3");
                     if (mRecyclerViewRefreshStateCall != null) {
                         mRecyclerViewRefreshStateCall.onPullDownRefreshState(getScrollY(), refreshHeadviewHeight, deltaY);
                     }
@@ -266,6 +270,7 @@ public class MyRecyclerRefreshView extends LinearLayout {
                 //头部显示完全时，为释放刷新状态（表示可以刷新了）
                 if (getScrollY() < -refreshHeadviewHeight && STATE != REFRESHING) {
                     STATE = RELEASE_REFRESH;
+                    Log.e(TAG, "onTouchEvent -> MOVE 4");
                     if (mRecyclerViewRefreshStateCall != null) {
                         mRecyclerViewRefreshStateCall.onReleaseRefreshState(getScrollY(), deltaY);
                     }

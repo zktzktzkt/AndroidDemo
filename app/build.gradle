@@ -21,12 +21,17 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        //路 由
+
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
+                arguments = [
+                        //路 由
+                        AROUTER_MODULE_NAME  : project.getName(),
+                        // room数据库自动生成文件
+                        "room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
+
     }
 
     buildTypes {
@@ -99,4 +104,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //图表
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    //数据库
+    def room_version = "2.2.5"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 }

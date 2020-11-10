@@ -112,6 +112,7 @@ import demo.zkttestdemo.recyclerview.singlechoice.SingleChoiceActivity;
 import demo.zkttestdemo.recyclerview.suspendmulti.SuspendMultiActivity;
 import demo.zkttestdemo.recyclerview.suspendsingle.SuspendSingleActivity;
 import demo.zkttestdemo.retrofit.RetrofitActivity;
+import demo.zkttestdemo.room.RoomActivity;
 import demo.zkttestdemo.rxjava.RxJavaActivity;
 import demo.zkttestdemo.utils.ClickUtil;
 import demo.zkttestdemo.utils.FileUtils;
@@ -474,8 +475,15 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_qqSlideMenu) {
             Intent intent = new Intent(this, QQSlideMenuActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_realm) {
+        }
+        // realm数据库
+        else if (id == R.id.nav_realm) {
             Intent intent = new Intent(this, RealmActivity.class);
+            startActivity(intent);
+        }
+        // room数据库
+        else if (id == R.id.nav_room) {
+            Intent intent = new Intent(this, RoomActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_RxJava) {
             Intent intent = new Intent(this, RxJavaActivity.class);
@@ -496,7 +504,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_audio_reord) {
             Intent intent = new Intent(this, AudioActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_coordinator) {
+        }
+        //CoordinatorLayout使用
+        else if (id == R.id.nav_coordinator) {
             Intent intent = new Intent(this, CoordinatorActivity.class);
             startActivity(intent);
         }
