@@ -3,9 +3,6 @@ package demo.zkttestdemo.effect.jssearchdemo;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.transition.TransitionManager;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -15,6 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.transition.TransitionManager;
 
 import demo.zkttestdemo.R;
 
@@ -112,26 +113,26 @@ public class JSSearchActivity extends AppCompatActivity {
     }
 
     private void expand() {
+        //过渡动画
+        TransitionManager.beginDelayedTransition(llSearch);
         //设置伸展状态时的布局
         tvSearch.setText("搜索简书的内容和朋友");
         RelativeLayout.LayoutParams LayoutParams = (RelativeLayout.LayoutParams) llSearch.getLayoutParams();
         LayoutParams.width = LayoutParams.MATCH_PARENT;
         LayoutParams.setMargins(dip2px(10), dip2px(10), dip2px(10), dip2px(10));
         llSearch.setLayoutParams(LayoutParams);
-        //开始动画
-        TransitionManager.beginDelayedTransition(llSearch);
     }
 
 
     private void reduce() {
+        //过渡动画
+        TransitionManager.beginDelayedTransition(llSearch);
         //设置收缩状态时的布局
         tvSearch.setText("搜索");
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) llSearch.getLayoutParams();
         layoutParams.width = dip2px(80);
         layoutParams.setMargins(dip2px(10), dip2px(10), dip2px(10), dip2px(10));
         llSearch.setLayoutParams(layoutParams);
-        //开始动画
-        TransitionManager.beginDelayedTransition(llSearch);
     }
 
 

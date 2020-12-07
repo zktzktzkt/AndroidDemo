@@ -4,25 +4,26 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by zkt on 2018-1-27.
  */
 
 public class LetterSideBar extends View {
-    private static final String TAG = "LetterSideBar";
-    private Paint mPaint;
-    private Paint mTouchPaint;
+    private static final String   TAG     = "LetterSideBar";
+    private              Paint    mPaint;
+    private              Paint    mTouchPaint;
     //定义26个字母
-    public static String[] letters = {"A", "B", "C", "D", "E", "F", "G", "H", "I",
+    public static        String[] letters = {"A", "B", "C", "D", "E", "F", "G", "H", "I",
             "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V",
             "W", "X", "Y", "Z", "#"};
-    private String mCurrTouchLetter;
+    private              String   mCurrTouchLetter;
 
     public LetterSideBar(Context context) {
         this(context, null);
@@ -55,7 +56,7 @@ public class LetterSideBar extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         //计算指定宽度 = 左右padding + 字母宽度(取决于画笔)
         int textWidth = (int) mPaint.measureText("A");
-        int width = getPaddingLeft() + getPaddingRight() + textWidth;
+        int width     = getPaddingLeft() + getPaddingRight() + textWidth;
 
         //高度可以直接获取
         int height = MeasureSpec.getSize(heightMeasureSpec);
@@ -66,7 +67,7 @@ public class LetterSideBar extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         //画26个字母
-        int x = getWidth() / 2;
+        int x          = getWidth() / 2;
         int itemHeight = (getHeight() - getPaddingTop() - getPaddingBottom()) / letters.length;
 
         for (int i = 0, len = letters.length; i < len; i++) {
@@ -74,8 +75,8 @@ public class LetterSideBar extends View {
             Paint.FontMetricsInt fontMetricsInt = mPaint.getFontMetricsInt();
             // 单格高度的一半 + 前面格子的高度
             int letterCenterY = i * itemHeight + itemHeight / 2 + getPaddingTop();
-            int dy = (fontMetricsInt.bottom - fontMetricsInt.top) / 2 - fontMetricsInt.bottom;
-            int baseLine = letterCenterY + dy;
+            int dy            = (fontMetricsInt.bottom - fontMetricsInt.top) / 2 - fontMetricsInt.bottom;
+            int baseLine      = letterCenterY + dy;
 
             //当前字母高亮，用两个画笔(最好)，改变字母颜色
             if (letters[i].equals(mCurrTouchLetter)) {
@@ -89,6 +90,7 @@ public class LetterSideBar extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_MOVE:
                 //计算当前触摸的字母 获取当前的位置
                 float currMoveY = event.getY();
@@ -112,9 +114,11 @@ public class LetterSideBar extends View {
                 break;
 
             case MotionEvent.ACTION_UP:
+                mCurrTouchLetter = "NaN";
                 if (null != onTouchLetterListener) {
                     onTouchLetterListener.onTouch(mCurrTouchLetter, false);
                 }
+                invalidate();
                 break;
         }
         return true;
