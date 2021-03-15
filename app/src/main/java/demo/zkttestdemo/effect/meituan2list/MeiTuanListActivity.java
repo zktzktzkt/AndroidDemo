@@ -1,10 +1,11 @@
 package demo.zkttestdemo.effect.meituan2list;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.AbsListView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -51,11 +52,11 @@ public class MeiTuanListActivity extends AppCompatActivity {
             @Override
             public void onSimpleItemClick(BaseQuickAdapter adapter, View view, int position) {
                 isScroll = false;
-                view.setSelected(true);
 
                 for (int i = 0; i < left_list.getChildCount(); i++) {
-                    view.setSelected(i == position);
+                    left_list.getChildAt(i).setSelected(false);
                 }
+                view.setSelected(true);
 
                 //记录选中的item对应的右边section的位置
                 int rightSection = 0;

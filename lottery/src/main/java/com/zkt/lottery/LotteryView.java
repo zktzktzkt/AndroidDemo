@@ -4,12 +4,13 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,31 +24,34 @@ import java.util.Random;
 
 public class LotteryView extends FrameLayout {
 
-    private TextView tvLottery;
-    private View[] views;
+    private TextView      tvLottery;
+    private View[]        views;
     private List<Integer> mAllTimesList;
 
     int timeIndex = 0;
-    int viewsIndex = 0;
+    //int viewsIndex = 0;
 
     @SuppressLint("HandlerLeak")
     Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            views[viewsIndex % views.length].setSelected(false);
-            viewsIndex++;
-            views[viewsIndex % views.length].setSelected(true);
+            //views[viewsIndex % views.length].setSelected(false);
+            //viewsIndex++;
+            //views[viewsIndex % views.length].setSelected(true);
 
             //取时间，依次执行
             if (timeIndex < mAllTimesList.size()) {
                 sendEmptyMessageDelayed(0, mAllTimesList.get(timeIndex));
                 timeIndex++;
+
+                views[timeIndex % views.length].setSelected(true);
+                views[timeIndex - 1 % views.length].setSelected(false);
             }
             //时间都跑完了，重置数据
             else {
                 tvLottery.setClickable(true);
                 timeIndex = 0;
-                viewsIndex = 0;
+                //viewsIndex = 0;
             }
         }
     };
@@ -157,7 +161,7 @@ public class LotteryView extends FrameLayout {
         int max = 150;
 
         Random random = new Random();
-        int s = random.nextInt(max) % (max - min + 1) + min;
+        int    s      = random.nextInt(max) % (max - min + 1) + min;
 
         return s;
     }
@@ -174,7 +178,7 @@ public class LotteryView extends FrameLayout {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        int width = MeasureSpec.getSize(widthMeasureSpec);
+        int width  = MeasureSpec.getSize(widthMeasureSpec);
         int height = MeasureSpec.getSize(heightMeasureSpec);
 
         int size = Math.min(width, height);
