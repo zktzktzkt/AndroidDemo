@@ -7,9 +7,11 @@ import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import demo.zkttestdemo.R;
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrDefaultHandler;
+import in.srain.cube.views.ptr.PtrFrameLayout;
 
 /**
  * 嵌套滑动测试
@@ -24,8 +26,8 @@ public class NestedScrollTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nested_scroll_test);
 
-        final SwipeRefreshLayout swipe    = findViewById(R.id.swipe);
-        final RelativeLayout     rootView = findViewById(R.id.rootView);
+        final PtrClassicFrameLayout ptr      = findViewById(R.id.ptr);
+        final RelativeLayout        rootView = findViewById(R.id.rootView);
         final LinearLayout       ll_c1    = findViewById(R.id.ll_c1);
         final NestedScrollView   nsv      = findViewById(R.id.nsv);
 
@@ -44,16 +46,19 @@ public class NestedScrollTestActivity extends AppCompatActivity {
             }
         });
 
-        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        nsv.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
-            public void onRefresh() {
-                swipe.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        swipe.setRefreshing(false);
-                    }
-                }, 1000);
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                ptr.setEnabled(scrollY <= 0);
             }
         });
+
+        ptr.setPtrHandler(new PtrDefaultHandler() {
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                ptr.refreshComplete();
+            }
+        });
+
     }
 }
