@@ -1,13 +1,14 @@
 package demo.zkttestdemo.effect.motionevent;
 
 import android.content.Context;
-import androidx.annotation.AttrRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+
+import androidx.annotation.AttrRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Created by zkt on 2017/7/24.
@@ -74,19 +75,19 @@ public class MyView extends View {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 //                getParent().requestDisallowInterceptTouchEvent(true);
-                Log.e("MyView", "onTouchEvent ACTION_DOWN");
+                Log.e("MyView", "按下 y->" + ev.getRawY());
                 break;
 
             case MotionEvent.ACTION_MOVE:
-                Log.e("MyView", "onTouchEvent ACTION_MOVE");
+                Log.e("MyView", "移动 距离屏幕 y->" + ev.getRawY() + "   距离View y->" + ev.getY());
                 break;
 
             case MotionEvent.ACTION_UP:
-                Log.e("MyView", "onTouchEvent ACTION_UP");
+                Log.e("MyView", "抬起 y->" + ev.getRawY());
                 break;
         }
-//        return super.onTouchEvent(ev);
-                return false;
+        //        return super.onTouchEvent(ev);
+        return true;
     }
 
 }

@@ -1,7 +1,13 @@
 package demo.zkttestdemo.effect.nestedscroll;
 
 import android.os.Bundle;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import demo.zkttestdemo.R;
 
@@ -10,9 +16,44 @@ import demo.zkttestdemo.R;
  */
 public class NestedScrollTestActivity extends AppCompatActivity {
 
+    private int c1Height;
+    private int rootHeight;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nested_scroll_test);
+
+        final SwipeRefreshLayout swipe    = findViewById(R.id.swipe);
+        final RelativeLayout     rootView = findViewById(R.id.rootView);
+        final LinearLayout       ll_c1    = findViewById(R.id.ll_c1);
+        final NestedScrollView   nsv      = findViewById(R.id.nsv);
+
+        rootView.post(new Runnable() {
+            @Override
+            public void run() {
+                //最外层的布局高度
+                rootHeight = rootView.getMeasuredHeight();
+                //第一个布局的高度
+                c1Height = ll_c1.getMeasuredHeight();
+                //获取剩余空间，设置给NSV
+                int                    height = rootHeight - c1Height;
+                ViewGroup.LayoutParams params = nsv.getLayoutParams();
+                params.height = height;
+                nsv.setLayoutParams(params);
+            }
+        });
+
+        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipe.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipe.setRefreshing(false);
+                    }
+                }, 1000);
+            }
+        });
     }
 }

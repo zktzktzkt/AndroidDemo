@@ -4,15 +4,16 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
-import androidx.appcompat.widget.AppCompatButton;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import androidx.appcompat.widget.AppCompatButton;
+
 import demo.zkttestdemo.R;
-import demo.zkttestdemo.effect.wxaudio.managers.RecorderManager;
 import demo.zkttestdemo.effect.wxaudio.managers.DialogManager;
+import demo.zkttestdemo.effect.wxaudio.managers.RecorderManager;
 
 
 /**
@@ -20,9 +21,9 @@ import demo.zkttestdemo.effect.wxaudio.managers.DialogManager;
  */
 public class AudioRecorderButton extends AppCompatButton implements RecorderManager.AudioStateListener {
 
-    private static final int DISTANCE_CANCEL = 50;
-    private static final int STATE_NORMAL = 1;
-    private static final int STATE_RECORDING = 2;
+    private static final int DISTANCE_CANCEL      = 50;
+    private static final int STATE_NORMAL         = 1;
+    private static final int STATE_RECORDING      = 2;
     private static final int STATE_WANT_TO_CANCEL = 3;
 
     private int mCurState = STATE_NORMAL;
@@ -103,11 +104,11 @@ public class AudioRecorderButton extends AppCompatButton implements RecorderMana
     };
 
     private static final int MSG_AUDIO_PREPARED = 0x110;
-    private static final int MSG_VOICE_CHANGE = 0x111;
-    private static final int MSG_DIALOG_DIMISS = 0x112;
+    private static final int MSG_VOICE_CHANGE   = 0x111;
+    private static final int MSG_DIALOG_DIMISS  = 0x112;
 
     @SuppressLint("HandlerLeak")
-    private  Handler mHandler = new Handler() {
+    private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -146,15 +147,17 @@ public class AudioRecorderButton extends AppCompatButton implements RecorderMana
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int action = event.getAction();
-        int x = (int) event.getX();
-        int y = (int) event.getY();
+        int x      = (int) event.getX();
+        int y      = (int) event.getY();
 
         switch (action) {
             case MotionEvent.ACTION_DOWN:
+                Log.d("手势事件", "按下 y->" + y);
                 changeState(STATE_RECORDING);
                 break;
 
             case MotionEvent.ACTION_MOVE:
+                Log.d("手势事件", "移动 y->" + y);
                 // 根据x, y的坐标，判断是否想要取消
                 if (wantToCancel(x, y)) {
                     changeState(STATE_WANT_TO_CANCEL);
@@ -164,6 +167,7 @@ public class AudioRecorderButton extends AppCompatButton implements RecorderMana
                 break;
 
             case MotionEvent.ACTION_UP:
+                Log.d("手势事件", "抬起 y->" + y);
                 /**
                  * 1. 未触发onLongClick
                  * 2. prepared没有完毕已经up
