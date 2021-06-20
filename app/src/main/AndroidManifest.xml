@@ -207,6 +207,7 @@
         <activity android:name=".room.RoomActivity" />
         <activity android:name=".effect.chart.ChartActivity"/>
         <activity android:name=".effect.countdownView.CountDownActivity"/>
+        <activity android:name=".effect.nestedscroll.NestedScrollTest2Activity" />
     </application>
 
 </manifest>

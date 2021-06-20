@@ -119,7 +119,11 @@
             <item
                 android:id="@+id/nav_nestedScrollTest"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="嵌套滑动测试" />
+                android:title="嵌套滑动测试(带下拉刷新)" />
+            <item
+                android:id="@+id/nav_nestedScrollTest2"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="嵌套滑动测试（内部嵌套RV）" />
             <item
                 android:id="@+id/nav_viewDragHelperTest"
                 android:icon="@drawable/ic_menu_gallery"
