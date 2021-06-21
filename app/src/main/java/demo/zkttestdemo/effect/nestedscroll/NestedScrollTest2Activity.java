@@ -45,6 +45,18 @@ public class NestedScrollTest2Activity extends AppCompatActivity {
             }
         });
 
+        //recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+        //    @Override
+        //    public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+        //        //sv滑到底，但是rv没到顶
+        //        boolean rvIsTop = !recyclerView.canScrollVertically(-1);
+        //        boolean svIsBottom = scrollView.canScrollVertically(1);
+        //        if(svIsBottom && !rvIsTop){
+        //            recyclerView.setNestedScrollingEnabled(true);
+        //        }
+        //    }
+        //});
+
 
         scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
@@ -53,7 +65,7 @@ public class NestedScrollTest2Activity extends AppCompatActivity {
                 //-1代表顶部,返回true表示没到顶,还可以滑
                 //1代表底部,返回true表示没到底部,还可以滑
                 boolean rvIsTop = !recyclerView.canScrollVertically(-1);
-                boolean svIsBottom = v.canScrollVertically(1);
+                boolean svIsBottom = !v.canScrollVertically(1);
                 if (svIsBottom) {
                     if (!recyclerView.isNestedScrollingEnabled()) {
                         recyclerView.setNestedScrollingEnabled(true);
