@@ -68,7 +68,13 @@
         <item name="android:layout_margin">4dp</item>
         <item name="android:background">@drawable/flag_01</item>
         <item name="android:textColor">#ffffff</item>
-
     </style>
+
+    <declare-styleable name="BadgeTextView">
+        <attr name="badge_background_color" format="color" />
+        <attr name="badge_stroke_color" format="color" />
+        <attr name="badge_stroke_width" format="dimension" />
+        <attr name="badge_multi_gap" format="dimension" />
+    </declare-styleable>
 
 </resources>
