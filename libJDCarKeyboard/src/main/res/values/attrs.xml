@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="JDPlateKeyboardLinearView">
+        <attr name="customLayout" format="reference" />
+        <attr name="showScan" format="boolean" />
+    </declare-styleable>
+
+</resources>

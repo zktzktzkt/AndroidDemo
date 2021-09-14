@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.jdcar.lib.keyboard"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+
+        <!--    车牌手输键盘    -->
+        <activity
+            android:name=".TestPlateKeyBoardActivity"
+            android:screenOrientation="portrait" />
+    </application>
+</manifest>

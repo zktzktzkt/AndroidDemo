@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
+    android:horizontalGap="1.6%p"
+    android:verticalGap="10dp">
+
+    <!--  0到9  -->
+    <Row
+        android:keyWidth="8%p"
+        android:horizontalGap="1.3%p"
+        android:keyHeight="40dp">
+        <Key
+            android:codes="49"
+            android:horizontalGap="0%p"
+            android:keyEdgeFlags="left"
+            android:keyLabel="1" />
+        <Key
+            android:codes="50"
+            android:keyLabel="2" />
+        <Key
+            android:codes="51"
+            android:keyLabel="3" />
+        <Key
+            android:codes="52"
+            android:keyLabel="4" />
+        <Key
+            android:codes="53"
+            android:keyLabel="5" />
+        <Key
+            android:codes="54"
+            android:keyLabel="6" />
+        <Key
+            android:codes="55"
+            android:keyLabel="7" />
+        <Key
+            android:codes="56"
+            android:keyLabel="8" />
+        <Key
+            android:codes="57"
+            android:keyLabel="9" />
+        <Key
+            android:codes="48"
+            android:keyEdgeFlags="right"
+            android:keyLabel="0" />
+    </Row>
+
+    <!-- Q-P   -->
+    <Row
+        android:keyWidth="8.8%p"
+        android:keyHeight="43dp">
+        <Key
+            android:codes="81"
+            android:horizontalGap="0%p"
+            android:keyEdgeFlags="left"
+            android:keyLabel="Q" />
+        <Key
+            android:codes="87"
+            android:keyLabel="W" />
+        <Key
+            android:codes="69"
+            android:keyLabel="E" />
+        <Key
+            android:codes="82"
+            android:keyLabel="R" />
+        <Key
+            android:codes="84"
+            android:keyLabel="T" />
+        <Key
+            android:codes="89"
+            android:keyLabel="Y" />
+        <Key
+            android:codes="85"
+            android:keyLabel="U" />
+<!--        <Key-->
+<!--            android:codes="73"-->
+<!--            android:keyLabel="I" />-->
+        <Key
+            android:codes="79"
+            android:keyLabel="O" />
+        <Key
+            android:codes="80"
+            android:keyEdgeFlags="right"
+            android:keyLabel="P" />
+    </Row>
+
+    <!-- A-L  -->
+    <Row
+        android:keyWidth="8.8%p"
+        android:keyHeight="43dp">
+        <Key
+            android:codes="65"
+            android:horizontalGap="0%p"
+            android:keyEdgeFlags="left"
+            android:keyLabel="A" />
+        <Key
+            android:codes="83"
+            android:keyLabel="S" />
+        <Key
+            android:codes="68"
+            android:keyLabel="D" />
+        <Key
+            android:codes="70"
+            android:keyLabel="F" />
+        <Key
+            android:codes="71"
+            android:keyLabel="G" />
+        <Key
+            android:codes="72"
+            android:keyLabel="H" />
+        <Key
+            android:codes="74"
+            android:keyLabel="J" />
+        <Key
+            android:codes="75"
+            android:keyLabel="K" />
+        <Key
+            android:codes="76"
+            android:keyEdgeFlags="right"
+            android:keyLabel="L" />
+    </Row>
+
+    <!--  z-m 、删除  -->
+    <Row
+        android:keyWidth="8.8%p"
+        android:keyHeight="43dp">
+        <Key
+            android:codes="90"
+            android:horizontalGap="0%p"
+            android:keyEdgeFlags="left"
+            android:keyLabel="Z" />
+        <Key
+            android:codes="88"
+            android:keyLabel="X" />
+        <Key
+            android:codes="67"
+            android:keyLabel="C" />
+        <Key
+            android:codes="86"
+            android:keyLabel="V" />
+        <Key
+            android:codes="66"
+            android:keyLabel="B" />
+        <Key
+            android:codes="78"
+            android:keyLabel="N" />
+        <Key
+            android:codes="77"
+            android:popupCharacters="m"
+            android:keyLabel="M" />
+        <Key
+            android:codes="-5"
+            android:iconPreview="@drawable/default_key_delete_bg"
+            android:keyWidth="19.2%p"
+            android:keyEdgeFlags="right" />
+    </Row>
+
+    <!-- 省份、港、澳、学、警、领 、完成   -->
+    <!--    public static final int KEYCODE_SHIFT = -1;-->
+    <!--    public static final int KEYCODE_MODE_CHANGE = -2;-->
+    <!--    public static final int KEYCODE_CANCEL = -3;-->
+    <!--    public static final int KEYCODE_DONE = -4;-->
+    <!--    public static final int KEYCODE_DELETE = -5;-->
+    <!--    public static final int KEYCODE_ALT = -6;-->
+    <Row
+        android:keyWidth="8.8%p"
+        android:keyHeight="43dp">
+        <Key
+            android:codes="-2"
+            android:horizontalGap="0%p"
+            android:iconPreview="@drawable/shape_solid_b7bbc0_corners_4"
+            android:keyEdgeFlags="left"
+            android:keyLabel="省份" />
+
+        <Key
+            android:codes="20351"
+            android:keyLabel="使" />
+        <Key
+            android:codes="28207"
+            android:keyLabel="港" />
+        <Key
+            android:codes="28595"
+            android:keyLabel="澳" />
+        <Key
+            android:codes="23398"
+            android:keyLabel="学" />
+        <Key
+            android:codes="35686"
+            android:keyLabel="警" />
+        <Key
+            android:codes="39046"
+            android:keyLabel="领" />
+
+        <Key
+            android:codes="-4"
+            android:iconPreview="@drawable/default_key_complete_bg"
+            android:keyWidth="19.2%p"
+            android:keyEdgeFlags="right"
+            android:keyLabel="完成" />
+    </Row>
+
+</Keyboard>

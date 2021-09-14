@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="15dp">
+
+    <!--  Guideline控制输入框高   -->
+    <android.support.constraint.Guideline
+        android:id="@+id/gLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="42dp" />
+
+    <com.jdcar.lib.keyboard.inputbox.DisplayTextView
+        android:id="@+id/tvPositionA"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
+        app:layout_constraintBottom_toBottomOf="@id/gLine"
+        app:layout_constraintEnd_toStartOf="@id/tvPositionB"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.jdcar.lib.keyboard.inputbox.DisplayTextView
+        android:id="@+id/tvPositionB"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="9dp"
+        app:layout_constraintBottom_toBottomOf="@id/gLine"
+        app:layout_constraintEnd_toStartOf="@id/viewPoint"
+        app:layout_constraintStart_toEndOf="@id/tvPositionA"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/viewPoint"
+        android:layout_width="5dp"
+        android:layout_height="5dp"
+        android:layout_marginHorizontal="5dp"
+        android:background="@drawable/shape_solid_929292_shape_oval"
+        app:layout_constraintBottom_toBottomOf="@id/gLine"
+        app:layout_constraintEnd_toStartOf="@id/tvPositionC"
+        app:layout_constraintStart_toEndOf="@id/tvPositionB"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.jdcar.lib.keyboard.inputbox.DisplayTextView
+        android:id="@+id/tvPositionC"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/gLine"
+        app:layout_constraintEnd_toStartOf="@id/tvPositionD"
+        app:layout_constraintStart_toEndOf="@id/viewPoint"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.jdcar.lib.keyboard.inputbox.DisplayTextView
+        android:id="@+id/tvPositionD"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="9dp"
+        app:layout_constraintBottom_toBottomOf="@id/gLine"
+        app:layout_constraintEnd_toStartOf="@id/tvPositionE"
+        app:layout_constraintStart_toEndOf="@id/tvPositionC"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.jdcar.lib.keyboard.inputbox.DisplayTextView
+        android:id="@+id/tvPositionE"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="9dp"
+        app:layout_constraintBottom_toBottomOf="@id/gLine"
+        app:layout_constraintEnd_toStartOf="@id/tvPositionF"
+        app:layout_constraintStart_toEndOf="@id/tvPositionD"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.jdcar.lib.keyboard.inputbox.DisplayTextView
+        android:id="@+id/tvPositionF"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="9dp"
+        app:layout_constraintBottom_toBottomOf="@id/gLine"
+        app:layout_constraintEnd_toStartOf="@id/tvPositionG"
+        app:layout_constraintStart_toEndOf="@id/tvPositionE"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.jdcar.lib.keyboard.inputbox.DisplayTextView
+        android:id="@+id/tvPositionG"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="9dp"
+        app:layout_constraintBottom_toBottomOf="@id/gLine"
+        app:layout_constraintEnd_toStartOf="@id/tvPositionH"
+        app:layout_constraintStart_toEndOf="@id/tvPositionF"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.jdcar.lib.keyboard.inputbox.DisplayTextView
+        android:id="@+id/tvPositionH"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="9dp"
+        app:layout_constraintBottom_toBottomOf="@id/gLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvPositionG"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="新能源"
+        android:textColor="#929292"
+        android:textSize="10dp"
+        app:layout_constraintEnd_toEndOf="@id/tvPositionH"
+        app:layout_constraintStart_toStartOf="@id/tvPositionH"
+        app:layout_constraintTop_toBottomOf="@id/tvPositionH" />
+</android.support.constraint.ConstraintLayout>

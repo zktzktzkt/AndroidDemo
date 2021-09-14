@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    android:orientation="vertical">
+
+    <!--输入展示-->
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:background="@drawable/lib_shape_solid_ffffff_corners_top_18"
+        app:layout_constraintBottom_toTopOf="@id/bottomKeyboardContainer">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:text="请输入车牌号码"
+            android:textColor="#333333"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--     删除：背景   -->
+        <View
+            android:id="@+id/viewBgClose"
+            android:layout_width="47dp"
+            android:layout_height="57dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--    删除：按钮    -->
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:src="@mipmap/lib_icon_close"
+            app:layout_constraintBottom_toBottomOf="@id/viewBgClose"
+            app:layout_constraintEnd_toEndOf="@id/viewBgClose"
+            app:layout_constraintTop_toTopOf="@id/viewBgClose" />
+
+        <com.jdcar.lib.keyboard.inputbox.DisplayWrapLayout
+            android:id="@+id/topDisplayContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewBgClose" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <!--  键盘  -->
+    <com.jdcar.lib.keyboard.keys.JDKeyboardViewImpl
+        android:id="@+id/bottomKeyboardContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFD4D8DC"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:keyBackground="@drawable/default_key_common_bg"
+        android:keyPreviewLayout="@null"
+        android:keyTextColor="#333333"
+        android:keyTextSize="16dp"
+        android:padding="15dp"
+        android:shadowRadius="0" />
+
+</LinearLayout>

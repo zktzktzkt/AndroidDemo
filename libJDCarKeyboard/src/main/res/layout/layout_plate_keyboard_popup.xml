@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.jdcar.lib.keyboard.keys.JDKeyboardViewImpl
+        android:id="@+id/layoutPlateKeyboardView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#E8E8E8"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:keyBackground="@drawable/default_key_common_bg"
+        android:keyPreviewLayout="@null"
+        android:keyTextColor="#333333"
+        android:keyTextSize="18dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:shadowRadius="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</android.support.constraint.ConstraintLayout>

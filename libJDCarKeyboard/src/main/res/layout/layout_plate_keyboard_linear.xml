@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <!--  车牌  -->
+    <TextView
+        android:id="@+id/tvPlateDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="车牌号码"
+        android:textColor="#000000"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--   省  -->
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutPlateProvince"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvPlateDesc"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvPlateProvince"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@mipmap/icon_arrow_down"
+            android:drawablePadding="10dp"
+            android:text="浙"
+            android:textColor="#E1251B"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+    <!--  输入车牌  -->
+    <EditText
+        android:id="@+id/etPlateInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="12dp"
+        android:background="@null"
+        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ港澳学警领"
+        android:hint="请输入车牌号"
+        android:inputType="text"
+        android:maxLength="8"
+        android:maxLines="1"
+        android:paddingVertical="12dp"
+        android:textColor="#333333"
+        android:textColorHint="#999999"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/layoutPlateScan"
+        app:layout_constraintStart_toEndOf="@id/layoutPlateProvince"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--  扫一扫  -->
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/layoutPlateScan"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:paddingHorizontal="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_plate_scan"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+    <com.jdcar.lib.keyboard.keys.JDKeyboardViewImpl
+        android:id="@+id/layoutPlateKeyboard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#E8E8E8"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:keyBackground="@drawable/default_key_common_bg"
+        android:keyPreviewLayout="@null"
+        android:keyTextColor="#333333"
+        android:keyTextSize="18dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:shadowRadius="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</android.support.constraint.ConstraintLayout>
