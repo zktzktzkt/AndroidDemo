@@ -2,6 +2,7 @@ package demo.zkttestdemo.effect.nestedscroll;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
@@ -33,15 +34,28 @@ public class NestedScrollTest2Activity extends AppCompatActivity {
                 add("");
                 add("");
                 add("");
+                add("");
+                add("");
+                add("");
             }
         };
 
-        final NestedScrollView scrollView = findViewById(R.id.scrollView);
-        final RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        final NestedScrollView scrollView   = findViewById(R.id.scrollView);
+        final LinearLayout     ll_c1        = findViewById(R.id.ll_c1);
+        final RecyclerView     recyclerView = findViewById(R.id.recyclerView);
+
+        scrollView.post(() -> {
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) recyclerView.getLayoutParams();
+            //不必纠结这个数值，就是为了效果一点点调出来的，具体阈值的根据业务处理
+            params.height = scrollView.getMeasuredHeight() - 638;
+            recyclerView.setLayoutParams(params);
+        });
+
+
         recyclerView.setAdapter(new BaseQuickAdapter<String, BaseViewHolder>(R.layout.item_color_rect, list) {
             @Override
             protected void convert(BaseViewHolder helper, String item) {
-
+                Log.e("测试测试", "convert");
             }
         });
 
@@ -58,7 +72,7 @@ public class NestedScrollTest2Activity extends AppCompatActivity {
         //});
 
 
-        scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+        /*scrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                 Log.e("嵌套滑动测试", "scrollY：" + scrollY);
@@ -76,6 +90,6 @@ public class NestedScrollTest2Activity extends AppCompatActivity {
                     }
                 }
             }
-        });
+        });*/
     }
 }

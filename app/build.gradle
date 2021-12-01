@@ -52,6 +52,16 @@ android {
         preDexLibraries = true
     }
 
+    // 引用某些用kotlin写的库报错，加这个配置
+    kotlinOptions {
+        jvmTarget = 1.8
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -119,11 +129,11 @@ dependencies {
     //录音
     implementation 'com.kailashdabhi:om-recorder:1.1.5'
     //kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     //图表
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     //数据库
-    def room_version = "2.2.5"
+    def room_version = "2.3.0"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     //下拉刷新
