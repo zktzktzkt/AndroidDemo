@@ -93,6 +93,7 @@ import demo.zkttestdemo.effect.slidemenu.SlideMenuActivity;
 import demo.zkttestdemo.effect.snow.SnowActivity;
 import demo.zkttestdemo.effect.statusbar.StatusBarActivity;
 import demo.zkttestdemo.effect.stikyhead.StikyHeadActivity;
+import demo.zkttestdemo.effect.stikyhead.StikyHeadActivity2;
 import demo.zkttestdemo.effect.tablayout.MyTablayoutActivity;
 import demo.zkttestdemo.effect.tempcontrol.TemControlActivity;
 import demo.zkttestdemo.effect.transition.TransitionActivity;
@@ -517,6 +518,11 @@ public class MainActivity extends AppCompatActivity
         // CoordinatorLayout实现悬浮头
         else if (id == R.id.nav_stikyHead) {
             Intent intent = new Intent(this, StikyHeadActivity.class);
+            startActivity(intent);
+        }
+        // CoordinatorLayout实现悬浮头2
+        else if (id == R.id.nav_stikyHead2) {
+            Intent intent = new Intent(this, StikyHeadActivity2.class);
             startActivity(intent);
         } else if (id == R.id.nav_pay_keyboard) {
             Intent intent = new Intent(this, PayKeyboardActivity.class);

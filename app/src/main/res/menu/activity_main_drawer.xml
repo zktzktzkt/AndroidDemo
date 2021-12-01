@@ -223,7 +223,11 @@
             <item
                 android:id="@+id/nav_stikyHead"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="CoordinatorLayout实现悬浮头" />
+                android:title="CoordinatorLayout悬浮头" />
+            <item
+                android:id="@+id/nav_stikyHead2"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="CoordinatorLayout悬浮头2" />
             <item
                 android:id="@+id/nav_coordinator"
                 android:icon="@drawable/ic_menu_gallery"

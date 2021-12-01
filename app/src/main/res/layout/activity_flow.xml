@@ -68,11 +68,7 @@
 
         <TextView
             style="@style/text_flag_01"
-            android:text="hel"/>
-
-        <TextView
-            style="@style/text_flag_01"
-            android:text="hel2"/>
+            android:text="helhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhelhel"/>
 
     </demo.zkttestdemo.effect.flowlayout.WaterfallFlowLayout>
 

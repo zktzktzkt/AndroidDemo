@@ -127,6 +127,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".effect.stikyhead.StikyHeadActivity">
         </activity>
+        <activity android:name=".effect.stikyhead.StikyHeadActivity2"/>
         <activity android:name=".effect.doodle.DoodleActivity">
         </activity>
         <activity android:name=".effect.qqslidemenu.QQSlideMenuActivity">
