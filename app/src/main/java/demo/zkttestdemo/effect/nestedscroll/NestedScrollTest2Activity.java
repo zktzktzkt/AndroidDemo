@@ -5,7 +5,6 @@ import android.util.Log;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -40,9 +39,12 @@ public class NestedScrollTest2Activity extends AppCompatActivity {
             }
         };
 
-        final NestedScrollView scrollView   = findViewById(R.id.scrollView);
-        final LinearLayout     ll_c1        = findViewById(R.id.ll_c1);
-        final RecyclerView     recyclerView = findViewById(R.id.recyclerView);
+        final FixNestedScrollView scrollView   = findViewById(R.id.scrollView);
+        final LinearLayout        ll_c1        = findViewById(R.id.ll_c1);
+        final RecyclerView        recyclerView = findViewById(R.id.recyclerView);
+
+        //设置子RV
+        scrollView.setchildRV(recyclerView);
 
         scrollView.post(() -> {
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) recyclerView.getLayoutParams();
