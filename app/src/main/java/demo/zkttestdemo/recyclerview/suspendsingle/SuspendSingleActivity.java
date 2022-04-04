@@ -43,6 +43,7 @@ public class SuspendSingleActivity extends Activity {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+                // 重点：获取下一个position的View
                 View view = linearLayoutManager.findViewByPosition(mCurrentPosition + 1);
                 if(view != null){
                     if(view.getTop() <= mSuspensionHeight){
