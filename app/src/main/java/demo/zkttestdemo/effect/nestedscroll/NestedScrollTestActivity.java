@@ -53,6 +53,11 @@ public class NestedScrollTestActivity extends AppCompatActivity {
             }
         });
 
+        ptr.post(() -> {
+            ptr.setHeaderView(getLayoutInflater().inflate(R.layout.headerview_default, null));
+            ptr.setShowHeader(true);
+            // ptr.setShowHeaderHideDistance(100);
+        });
         ptr.setPtrHandler(new PtrDefaultHandler() {
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {

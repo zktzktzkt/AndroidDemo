@@ -3,8 +3,6 @@ package demo.zkttestdemo.effect.baidusearch;
 import android.animation.IntEvaluator;
 import android.content.Context;
 import android.os.Bundle;
-import androidx.core.widget.NestedScrollView;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -13,6 +11,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 
 import demo.zkttestdemo.R;
 
@@ -43,11 +44,8 @@ public class BDSearchActivity extends AppCompatActivity {
         lv_searchview = findViewById(R.id.lv_searchview);
         lv_searchview.setAdapter(new searchAdapter(BDSearchActivity.this));
 
-        /***** 防止scrollview置顶 ***********/
-        sv_search.setFocusable(true);
-        sv_search.setFocusableInTouchMode(true);
-        sv_search.requestFocus();
-        /***********************************/
+        // 算法：开始值 +（结束值 - 开始值）* 进度
+        IntEvaluator evaluator = new IntEvaluator();
 
         sv_search.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             private int evaluatemargin;
@@ -56,18 +54,12 @@ public class BDSearchActivity extends AppCompatActivity {
 
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                //如果在变化的范围内
                 if ((scrollLength - scrollY) > 0) {
-                    // 算法：开始值 +（结束值 - 开始值）* 进度
-                    IntEvaluator evaluator = new IntEvaluator();
-
-                    // 总数-变动的值/总数 （ 变动的值范围：0~总数 ）
-                    // 结果比例：1 ~ 0
+                    // 1 ~ 0
                     float percent = (float) (scrollLength - scrollY) / scrollLength;
-
                     //标题栏透明度
-                    int evaluate = evaluator.evaluate(percent, 255, 0);
-                    rv_bar.getBackground().setAlpha(evaluate);
+                    int alpha = evaluator.evaluate(percent, 255, 0);
+                    rv_bar.getBackground().setAlpha(alpha);
 
                     //搜索栏左右、上下的margin值
                     evaluatemargin = evaluator.evaluate(percent, DensityUtil.dip2px(BDSearchActivity.this, ENDMARGINLEFT),
@@ -86,7 +78,9 @@ public class BDSearchActivity extends AppCompatActivity {
                     }
                 }
 
-                rv_search.setLayoutParams(layoutParams);
+                if (layoutParams != null) {
+                    rv_search.setLayoutParams(layoutParams);
+                }
 
             }
         });
