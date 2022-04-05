@@ -19,7 +19,7 @@ public class SuspendSingleActivity extends Activity {
     private RecyclerView recyclerView;
     private RelativeLayout suspensionBar;
     private int mSuspensionHeight;
-    private int mCurrentPosition = 0;
+    private int mFirstPosition = 0;
     private TextView tv_nickname;
 
     @Override
@@ -29,8 +29,8 @@ public class SuspendSingleActivity extends Activity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         suspensionBar = (RelativeLayout) findViewById(R.id.suspension_bar);
         tv_nickname = (TextView) findViewById(R.id.tv_nickname);
-        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(new SuspendSingleAdapter());
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -43,23 +43,19 @@ public class SuspendSingleActivity extends Activity {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+                if (mFirstPosition != layoutManager.findFirstVisibleItemPosition()) {
+                    mFirstPosition = layoutManager.findFirstVisibleItemPosition();
+                    updateSuspensionBar();
+                }
                 // 重点：获取下一个position的View
-                View view = linearLayoutManager.findViewByPosition(mCurrentPosition + 1);
-                if(view != null){
-                    if(view.getTop() <= mSuspensionHeight){
+                View view = layoutManager.findViewByPosition(mFirstPosition + 1);
+                if (view != null) {
+                    if (view.getTop() <= mSuspensionHeight) {
                         suspensionBar.setY(-(mSuspensionHeight - view.getTop()));
-                    }else {
+                    } else {
                         suspensionBar.setY(0);
                     }
                 }
-
-                if (mCurrentPosition != linearLayoutManager.findFirstVisibleItemPosition()) {
-                    mCurrentPosition = linearLayoutManager.findFirstVisibleItemPosition();
-                    suspensionBar.setY(0);
-
-                    updateSuspensionBar();
-                }
-
             }
         });
 
@@ -68,6 +64,6 @@ public class SuspendSingleActivity extends Activity {
 
     private void updateSuspensionBar() {
 
-        tv_nickname.setText("zkt " + mCurrentPosition);
+        tv_nickname.setText("zkt " + mFirstPosition);
     }
 }
