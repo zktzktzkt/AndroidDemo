@@ -8,11 +8,10 @@
     android:layout_height="match_parent"
     tools:context=".effect.nestedscroll.NestedScrollTestActivity">
 
-    <in.srain.cube.views.ptr.PtrClassicFrameLayout xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
+    <demo.zkttestdemo.effect.nestedscroll.CustomPtrClassicFrameLayout xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/ptr"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="50dp"
         cube_ptr:ptr_duration_to_close="200"
         cube_ptr:ptr_duration_to_close_header="1000"
         cube_ptr:ptr_keep_header_when_refresh="true"
@@ -43,47 +42,12 @@
                         android:gravity="center"
                         android:text="content" />
 
-                    <!-- <TextView
-                         android:layout_width="match_parent"
-                         android:layout_height="150dp"
-                         android:background="@color/blue"
-                         android:gravity="center"
-                         android:text="content" />
-
-                      <TextView
-                          android:layout_width="match_parent"
-                          android:layout_height="150dp"
-                          android:background="@color/red"
-                          android:gravity="center"
-                          android:text="content" />
-
-                      <TextView
-                          android:layout_width="match_parent"
-                          android:layout_height="150dp"
-                          android:background="@color/pink"
-                          android:gravity="center"
-                          android:text="content" />
-
-                      <TextView
-                          android:layout_width="match_parent"
-                          android:layout_height="150dp"
-                          android:background="@color/green"
-                          android:gravity="center"
-                          android:text="content" />
-
-                      <TextView
-                          android:layout_width="match_parent"
-                          android:layout_height="150dp"
-                          android:background="@color/colorPrimary"
-                          android:gravity="center"
-                          android:text="content" />-->
-
                 </LinearLayout>
 
                 <androidx.core.widget.NestedScrollView
                     android:id="@+id/nsv"
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
+                    android:layout_height="match_parent"
                     android:layout_centerInParent="true">
 
                     <LinearLayout
@@ -146,6 +110,6 @@
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
-    </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+    </demo.zkttestdemo.effect.nestedscroll.CustomPtrClassicFrameLayout>
 
 </RelativeLayout>
