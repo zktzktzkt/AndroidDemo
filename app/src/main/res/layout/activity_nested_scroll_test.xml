@@ -44,10 +44,11 @@
 
                 </LinearLayout>
 
+                <!--注意！！！高度用wrap_content-->
                 <demo.zkttestdemo.effect.nestedscroll.CustomNestedScrollView
                     android:id="@+id/nsv"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_centerInParent="true">
 
                     <LinearLayout
