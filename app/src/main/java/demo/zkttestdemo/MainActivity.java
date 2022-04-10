@@ -80,6 +80,7 @@ import demo.zkttestdemo.effect.meituan2list.MeiTuanListActivity;
 import demo.zkttestdemo.effect.motionevent.MotionEventTestActivity;
 import demo.zkttestdemo.effect.multipage.MultiPageActivity;
 import demo.zkttestdemo.effect.nestedscroll.NestedScrollTest2Activity;
+import demo.zkttestdemo.effect.nestedscroll.NestedScrollTest3Activity;
 import demo.zkttestdemo.effect.nestedscroll.NestedScrollTestActivity;
 import demo.zkttestdemo.effect.overflyview.OverFlyActivity;
 import demo.zkttestdemo.effect.paint.PaintActivity;
@@ -264,6 +265,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_nestedScrollTest2) {
             Intent intent = new Intent(this, NestedScrollTest2Activity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_nestedScrollTest3) {
+            Intent intent = new Intent(this, NestedScrollTest3Activity.class);
             startActivity(intent);
         }
         //ViewDragHelper拖拽测试

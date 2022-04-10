@@ -209,6 +209,12 @@
         <activity android:name=".effect.chart.ChartActivity"/>
         <activity android:name=".effect.countdownView.CountDownActivity"/>
         <activity android:name=".effect.nestedscroll.NestedScrollTest2Activity" />
+        <activity android:name=".effect.nestedscroll.NestedScrollTest3Activity" >
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>-->
+        </activity>
     </application>
 
 </manifest>

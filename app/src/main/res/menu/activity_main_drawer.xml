@@ -125,6 +125,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="嵌套滑动测试（内部嵌套RV）" />
             <item
+                android:id="@+id/nav_nestedScrollTest3"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="嵌套滑动测试（behavior）" />
+            <item
                 android:id="@+id/nav_viewDragHelperTest"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="ViewDragHelper拖拽测试" />

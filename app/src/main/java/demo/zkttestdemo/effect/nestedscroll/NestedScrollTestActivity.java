@@ -18,9 +18,14 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
 
 /**
  * 嵌套滑动测试
- *
- * 类似coodinator协同的效果，scrollview滑动的时候，其它view也translationY位移；
- * 是从根本上在手势的级别上进行translationY
+ * <p>
+ * 方式1、【推荐】NestedScroll机制，parent和child协调消费滑动距离
+ * （不管是通过CoordinatorLayout+behavior或实现NestedScrollParent/child接口都可以）
+ * <p>
+ * 方式2、必须先触摸可滚动的child，通过手势的偏移量，对child和其它View做translationY。
+ * 原理是不断平移child本身，而内部的滚动是在其所处的child平移之后，一外一内偏移一致，所以无违和感。
+ * 为什么不能监听child滚动事件？因为需求是child和其所在parent刷新控件头部一起滑动，所以需要整体一起滑动，参考七鲜首页效果
+ * （当translationY为0时，child就会进行自己的滑动。场景是Toolbar+RecyclerView）
  */
 public class NestedScrollTestActivity extends AppCompatActivity {
 
@@ -35,11 +40,11 @@ public class NestedScrollTestActivity extends AppCompatActivity {
         final CustomPtrClassicFrameLayout ptr = findViewById(R.id.ptr);
         final RelativeLayout rootView = findViewById(R.id.rootView);
         final LinearLayout ll_c1 = findViewById(R.id.ll_c1);
-        final NestedScrollView nsv = findViewById(R.id.nsv);
+        final CustomNestedScrollView nsv = findViewById(R.id.nsv);
 
         int maxY = SizeUtils.dp2px(40);
 
-        ptr.setDispatchTouchEventListener(new CustomPtrClassicFrameLayout.DispatchTouchEventListener() {
+        nsv.setDispatchTouchEventListener(new CustomNestedScrollView.DispatchTouchEventListener() {
             @Override
             public boolean down() {
                 return false;
@@ -61,6 +66,9 @@ public class NestedScrollTestActivity extends AppCompatActivity {
                 }
                 //下滑
                 else {
+                    if (nsv.getScrollY() != 0 || ll_c1.getTranslationY() != 0) {
+                        ptr.setEnabled(false);
+                    }
                     if (ll_c1.getTranslationY() < 0) {
                         ll_c1.setTranslationY(ll_c1.getTranslationY() + moveY);
                         nsv.setTranslationY(nsv.getTranslationY() + moveY);
