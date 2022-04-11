@@ -23,9 +23,6 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
  * （不管是通过CoordinatorLayout+behavior或实现NestedScrollParent/child接口都可以）
  * <p>
  * 方式2、必须先触摸可滚动的child，通过手势的偏移量，对child和其它View做translationY。
- * 原理是不断平移child本身，而内部的滚动是在其所处的child平移之后，一外一内偏移一致，所以无违和感。
- * 为什么不能监听child滚动事件？因为需求是child和其所在parent刷新控件头部一起滑动，所以需要整体一起滑动，参考七鲜首页效果
- * （当translationY为0时，child就会进行自己的滑动。场景是Toolbar+RecyclerView）
  */
 public class NestedScrollTestActivity extends AppCompatActivity {
 
