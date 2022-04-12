@@ -51,14 +51,12 @@ public class NestedScrollTestActivity extends AppCompatActivity {
             public void move(float moveY, float distance) {
                 //上滑
                 if (moveY < 0) {
-                    if (ll_c1.getTranslationY() > -maxY) {
+                    if (ll_c1.getTranslationY() + moveY > -maxY) {
                         ll_c1.setTranslationY(ll_c1.getTranslationY() + moveY);
                         nsv.setTranslationY(nsv.getTranslationY() + moveY);
-                        //边界限制
-                        if (ll_c1.getTranslationY() < -maxY) {
-                            ll_c1.setTranslationY(-maxY);
-                            nsv.setTranslationY(-maxY);
-                        }
+                    } else {
+                        ll_c1.setTranslationY(-maxY);
+                        nsv.setTranslationY(-maxY);
                     }
                 }
                 //下滑
@@ -66,14 +64,12 @@ public class NestedScrollTestActivity extends AppCompatActivity {
                     if (nsv.getScrollY() != 0 || ll_c1.getTranslationY() != 0) {
                         ptr.setEnabled(false);
                     }
-                    if (ll_c1.getTranslationY() < 0) {
+                    if (ll_c1.getTranslationY() + moveY < 0) {
                         ll_c1.setTranslationY(ll_c1.getTranslationY() + moveY);
                         nsv.setTranslationY(nsv.getTranslationY() + moveY);
-                        //边界限制
-                        if (ll_c1.getTranslationY() >= 0) {
-                            ll_c1.setTranslationY(0);
-                            nsv.setTranslationY(0);
-                        }
+                    } else {
+                        ll_c1.setTranslationY(0);
+                        nsv.setTranslationY(0);
                     }
                 }
             }
