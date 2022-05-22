@@ -18,12 +18,11 @@ class FixNestedScrollView @JvmOverloads constructor(
 
     private var mChildVelocityY: Float = 0.0f
     private var mChildRV: RecyclerView? = null
-
-    //TODO 不必纠结这个数值，就是为了效果一点点调出来的，具体阈值的根据业务处理
-    private var mDefaultValue: Int = 600
-
     private var mVelocityY: Int = 0
     private var mFlingHelper: FlingHelper = FlingHelper(getContext())
+
+    //限制滑动的最大距离 调用attachRV()方法时赋值
+    private var mLimitHeight: Int = 0
 
     init {
 
@@ -34,7 +33,7 @@ class FixNestedScrollView @JvmOverloads constructor(
                 //当child没有滑到顶的时候，控制外层不允许滑动
                 mChildRV?.let {
                     if (it.computeVerticalScrollOffset() > 0) {
-                        scrollTo(0, mDefaultValue)
+                        scrollTo(0, mLimitHeight)
                         return
                     }
                 }
@@ -43,7 +42,7 @@ class FixNestedScrollView @JvmOverloads constructor(
                     // refreshLayout.setEnabled(true);
                 }
                 // 处理子View的fling
-                if (scrollY >= mDefaultValue && !v.canScrollVertically(1)) {
+                if (scrollY >= mLimitHeight && !v.canScrollVertically(1)) {
                     Log.e("FixNestedScrollView", "onScrollChange scrollY:${scrollY} 不能滑了")
                     childFling()
                 }
@@ -55,17 +54,21 @@ class FixNestedScrollView @JvmOverloads constructor(
         if (mVelocityY > 0) {
             //速度转距离
             val splineFlingDistance = mFlingHelper.getSplineFlingDistance(mVelocityY)
-            if (splineFlingDistance > mDefaultValue) {
+            if (splineFlingDistance > mLimitHeight) {
                 // 距离转速度
-                val velocityByDistance = mFlingHelper.getVelocityByDistance(splineFlingDistance - mDefaultValue)
+                val velocityByDistance = mFlingHelper.getVelocityByDistance(splineFlingDistance - mLimitHeight)
                 mChildRV?.fling(0, velocityByDistance)
             }
             mVelocityY = 0
         }
     }
 
-    fun setchildRV(recyclerView: RecyclerView) {
+    /**
+     * 绑定内层的rv
+     */
+    fun attachRV(recyclerView: RecyclerView, limitHeight: Int) {
         mChildRV = recyclerView
+        mLimitHeight = limitHeight
     }
 
 
@@ -87,7 +90,7 @@ class FixNestedScrollView @JvmOverloads constructor(
     override fun onNestedPreScroll(target: View, dx: Int, dy: Int, consumed: IntArray, type: Int) {
         //super.onNestedPreScroll(target, dx, dy, consumed, type)
         Log.e("FixNestedScrollView", "view:${target.javaClass.simpleName} getTop:${target.top} dy:${dy} consumed[1]:${consumed[1]}  scrollY:${scrollY}")
-        if (scrollY < mDefaultValue) {
+        if (scrollY < mLimitHeight) {
             consumed[1] = dy
             scrollBy(0, dy)
         }

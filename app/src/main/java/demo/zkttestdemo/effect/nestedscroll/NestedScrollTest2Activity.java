@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.blankj.utilcode.util.SizeUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -19,7 +20,6 @@ import demo.zkttestdemo.R;
  * 嵌套滑动测试
  */
 public class NestedScrollTest2Activity extends AppCompatActivity {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,18 +39,26 @@ public class NestedScrollTest2Activity extends AppCompatActivity {
             }
         };
 
-        final FixNestedScrollView scrollView   = findViewById(R.id.scrollView);
-        final LinearLayout        ll_c1        = findViewById(R.id.ll_c1);
-        final RecyclerView        recyclerView = findViewById(R.id.recyclerView);
+        final FixNestedScrollView scrollView = findViewById(R.id.scrollView);
+        final LinearLayout ll_c1 = findViewById(R.id.ll_c1);
+        final RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
         //设置子RV
-        scrollView.setchildRV(recyclerView);
-
         scrollView.post(() -> {
+
+            scrollView.scrollTo(0, 0);
+
+            //getMeasuredHeight()或getHeight() 测量出来的高度是屏幕的高度
+            Log.e("scrollView高度", "getMeasuredHeight->" + scrollView.getMeasuredHeight() + " getHeight->" + scrollView.getHeight());
+
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) recyclerView.getLayoutParams();
             //不必纠结这个数值，就是为了效果一点点调出来的，具体阈值的根据业务处理
-            params.height = scrollView.getMeasuredHeight() - 638;
+            params.height = scrollView.getMeasuredHeight() - (ll_c1.getLayoutParams().height / 2);
             recyclerView.setLayoutParams(params);
+
+            //设置高度之后再绑定Rv
+            scrollView.attachRV(recyclerView, ll_c1.getLayoutParams().height / 2);
+
         });
 
 
