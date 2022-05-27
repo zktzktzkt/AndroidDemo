@@ -149,7 +149,12 @@ public class OverScrollLayout extends LinearLayout {
      * 位置还原
      */
     private void recoverLayout() {
-        TranslateAnimation anim = new TranslateAnimation(0, 0, childView.getTop() - original.top, 0);
+        TranslateAnimation anim;
+        if (scrollOrientation == ScrollOrientation.VERTICAL) {
+            anim = new TranslateAnimation(0, 0, childView.getTop() - original.top, 0);
+        } else {
+            anim = new TranslateAnimation(childView.getLeft() - original.left, 0, 0, 0);
+        }
         anim.setDuration(ANIM_TIME);
         childView.startAnimation(anim);
         childView.layout(original.left, original.top, original.right, original.bottom);
