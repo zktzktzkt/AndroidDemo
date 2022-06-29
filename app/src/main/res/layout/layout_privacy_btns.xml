@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_btm"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="15dp">
+
+    <!--<LinearLayout
+        android:id="@+id/ll_btmMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/cb_protocal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/selector_cb"
+            android:paddingRight="5dp"
+            android:paddingBottom="5dp" />-->
+
+    <TextView
+        android:id="@+id/privacy_bottom_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="3dp"
+        android:textColor="#ff808080"
+        tools:text="隐私协议隐私协议隐私协议隐私协议隐私协议隐私协议隐私协议隐私协议隐私协议隐私协议隐私协议隐私协议隐私协议隐私协议隐私协议隐私协议隐私协议隐私协议隐私协议隐私协议隐私协议隐私协议隐私协议隐私协议隐私协议隐私协议隐私协议隐私协议" />
+
+    <!--    </LinearLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="23dp"
+        android:paddingRight="23dp"
+        android:gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/privacy_bottom_agree"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@drawable/shape_gradient_round_btn"
+            android:gravity="center"
+            android:minWidth="104dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="同意"
+            android:textColor="#ffffff"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/privacy_bottom_deny"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:minWidth="104dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="不同意"
+            android:textColor="#ff808080"
+            android:textSize="14dp" />
+
+
+    </LinearLayout>
+</LinearLayout>
+
