@@ -1,13 +1,14 @@
 package demo.zkttestdemo.effect.motionevent;
 
 import android.content.Context;
-import androidx.annotation.AttrRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.LinearLayout;
+
+import androidx.annotation.AttrRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Created by zkt on 2017/7/24.
@@ -81,7 +82,7 @@ public class MyViewGroup extends LinearLayout {
                 Log.e("ViewGroup", "onTouchEvent ACTION_UP");
                 break;
         }
-        return true;
+        return super.onTouchEvent(ev);
     }
 
     @Override

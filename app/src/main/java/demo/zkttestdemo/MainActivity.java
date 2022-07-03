@@ -95,6 +95,7 @@ import demo.zkttestdemo.effect.snow.SnowActivity;
 import demo.zkttestdemo.effect.statusbar.StatusBarActivity;
 import demo.zkttestdemo.effect.stikyhead.StikyHeadActivity;
 import demo.zkttestdemo.effect.stikyhead.StikyHeadActivity2;
+import demo.zkttestdemo.effect.surfaceview.SurfaceViewTestActivity;
 import demo.zkttestdemo.effect.tablayout.MyTablayoutActivity;
 import demo.zkttestdemo.effect.tempcontrol.TemControlActivity;
 import demo.zkttestdemo.effect.transition.TransitionActivity;
@@ -268,6 +269,11 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_nestedScrollTest3) {
             Intent intent = new Intent(this, NestedScrollTest3Activity.class);
+            startActivity(intent);
+        }
+        //surfaceview实现倒计时
+        else if (id == R.id.nav_surfaceDownTime) {
+            Intent intent = new Intent(this, SurfaceViewTestActivity.class);
             startActivity(intent);
         }
         //ViewDragHelper拖拽测试

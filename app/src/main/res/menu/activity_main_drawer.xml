@@ -145,6 +145,10 @@
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="Paint效果Demo" />
             <item
+                android:id="@+id/nav_surfaceDownTime"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="SurfaceView实现倒计时" />
+            <item
                 android:id="@+id/nav_countdownView"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="手势定时闹钟" />

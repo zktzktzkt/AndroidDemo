@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="demo.zkttestdemo">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="demo.zkttestdemo">
     <!-- 相机权限 -->
-    <uses-feature android:name="android.hardware.camera"/>
-    <uses-feature android:name="android.hardware.camera.autofocus"/>
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
-    <uses-permission android:name="android.permission.CAMERA"/> <!-- 存储卡权限 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> <!-- 写文件的权限 -->
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"/> <!-- 录音的权限 -->
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/> <!-- 判断是否有网络权限 -->
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/> <!-- 悬浮窗权限 -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 存储卡权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 写文件的权限 -->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" /> <!-- 录音的权限 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" /> <!-- 判断是否有网络权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 悬浮窗权限 -->
 
     <application
         android:name=".MyApplication"
@@ -30,77 +30,53 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".recyclerview.suspendsingle.SuspendSingleActivity"/>
-        <activity android:name=".recyclerview.suspendmulti.SuspendMultiActivity"/>
-        <activity android:name=".retrofit.RetrofitActivity"/>
-        <activity android:name=".recyclerview.singlechoice.SingleChoiceActivity"/>
-        <activity android:name=".recyclerview.multichoice.MultiChoiceActivity"/>
-        <activity android:name=".effect.loadingdialog.LoadingActivity">
-        </activity>
-        <activity android:name=".effect.pullAndload.MTPtrActivity"/>
-        <activity android:name=".effect.pullAndload.AliPtrActivity"/>
-        <activity android:name=".effect.pullAndload.PtrAndloadActivity"/>
-        <activity android:name=".effect.alphatoolbar.AlphaToolbarActivity"/>
-        <activity android:name=".effect.transition.TransitionActivity"/>
-        <activity android:name=".effect.transition.TransitionTwoActivity"/>
-        <activity android:name=".recyclerview.diffUtil.DiffUtilActivity"/>
-        <activity android:name=".rxjava.RxJavaActivity"/>
-        <activity android:name=".realm.RealmActivity"/>
+        <activity android:name=".recyclerview.suspendsingle.SuspendSingleActivity" />
+        <activity android:name=".recyclerview.suspendmulti.SuspendMultiActivity" />
+        <activity android:name=".retrofit.RetrofitActivity" />
+        <activity android:name=".recyclerview.singlechoice.SingleChoiceActivity" />
+        <activity android:name=".recyclerview.multichoice.MultiChoiceActivity" />
+        <activity android:name=".effect.loadingdialog.LoadingActivity"></activity>
+        <activity android:name=".effect.pullAndload.MTPtrActivity" />
+        <activity android:name=".effect.pullAndload.AliPtrActivity" />
+        <activity android:name=".effect.pullAndload.PtrAndloadActivity" />
+        <activity android:name=".effect.alphatoolbar.AlphaToolbarActivity" />
+        <activity android:name=".effect.transition.TransitionActivity" />
+        <activity android:name=".effect.transition.TransitionTwoActivity" />
+        <activity android:name=".recyclerview.diffUtil.DiffUtilActivity" />
+        <activity android:name=".rxjava.RxJavaActivity" />
+        <activity android:name=".realm.RealmActivity" />
         <activity
             android:name=".effect.keyboardbug.KeyBoardBugActivity"
             android:windowSoftInputMode="adjustResize"> <!-- adjustResize是收缩 adjustPan是向上挤 -->
         </activity>
-        <activity android:name=".effect.wxaudio.AudioActivity">
-        </activity>
-        <activity android:name=".effect.coordinator.StikyTabActivity">
-        </activity>
-        <activity android:name=".effect.paykeyboard.PayKeyboardActivity">
-        </activity>
-        <activity android:name=".effect.progress.ProgressArcActivity">
-        </activity>
-        <activity android:name=".effect.slidemenu.SlideMenuActivity">
-        </activity>
-        <activity android:name=".effect.viewdraghelper.ViewDragHelperDemoActivity">
-        </activity>
-        <activity android:name=".effect.activityjump.OneActivity">
-        </activity>
-        <activity android:name=".effect.activityjump.TwoActivity">
-        </activity>
-        <activity android:name=".effect.activityjump.ThreeActivity">
-        </activity>
-        <activity android:name=".effect.jssearchdemo.JSSearchActivity">
-        </activity>
-        <activity android:name=".effect.circleprogress.CircleProgressActivity">
-        </activity>
-        <activity android:name=".effect.bottomsheet.ZHBottomSheetActivity">
-        </activity>
-        <activity android:name=".effect.bottomsheet.PopUpBottomSheetActivity">
-        </activity>
-        <activity android:name=".effect.tablayout.MyTablayoutActivity">
-        </activity>
-        <activity android:name=".effect.multipage.MultiPageActivity">
-        </activity>
-        <activity android:name=".effect.bottomsheet.DialogOnTopActivity">
-        </activity>
-        <activity android:name=".effect.alipayhome.AlipayHomeActivity">
-        </activity>
-        <activity android:name=".effect.motionevent.MotionEventTestActivity">
-        </activity>
-        <activity android:name=".effect.behavior.BehaviorActivity">
-        </activity>
-        <activity android:name=".effect.wavrecord.WAVActivity">
-        </activity>
-        <activity android:name=".effect.meituan2list.MeiTuanListActivity">
-        </activity>
-        <activity android:name=".recyclerview.header.BannerRecyclerActivity">
-        </activity>
-        <activity android:name=".effect.baidusearch.BDSearchActivity">
-        </activity>
+        <activity android:name=".effect.wxaudio.AudioActivity"></activity>
+        <activity android:name=".effect.coordinator.StikyTabActivity"></activity>
+        <activity android:name=".effect.paykeyboard.PayKeyboardActivity"></activity>
+        <activity android:name=".effect.progress.ProgressArcActivity"></activity>
+        <activity android:name=".effect.slidemenu.SlideMenuActivity"></activity>
+        <activity android:name=".effect.viewdraghelper.ViewDragHelperDemoActivity"></activity>
+        <activity android:name=".effect.activityjump.OneActivity"></activity>
+        <activity android:name=".effect.activityjump.TwoActivity"></activity>
+        <activity android:name=".effect.activityjump.ThreeActivity"></activity>
+        <activity android:name=".effect.jssearchdemo.JSSearchActivity"></activity>
+        <activity android:name=".effect.circleprogress.CircleProgressActivity"></activity>
+        <activity android:name=".effect.bottomsheet.ZHBottomSheetActivity"></activity>
+        <activity android:name=".effect.bottomsheet.PopUpBottomSheetActivity"></activity>
+        <activity android:name=".effect.tablayout.MyTablayoutActivity"></activity>
+        <activity android:name=".effect.multipage.MultiPageActivity"></activity>
+        <activity android:name=".effect.bottomsheet.DialogOnTopActivity"></activity>
+        <activity android:name=".effect.alipayhome.AlipayHomeActivity"></activity>
+        <activity android:name=".effect.motionevent.MotionEventTestActivity"></activity>
+        <activity android:name=".effect.behavior.BehaviorActivity"></activity>
+        <activity android:name=".effect.wavrecord.WAVActivity"></activity>
+        <activity android:name=".effect.meituan2list.MeiTuanListActivity"></activity>
+        <activity android:name=".recyclerview.header.BannerRecyclerActivity"></activity>
+        <activity android:name=".effect.baidusearch.BDSearchActivity"></activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -109,7 +85,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths_public"/>
+                android:resource="@xml/file_paths_public" />
         </provider>
         <provider
             android:name=".provider.PictureProvider"
@@ -118,40 +94,27 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/fileprovider_picture"/>
+                android:resource="@xml/fileprovider_picture" />
         </provider>
 
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name=".effect.stikyhead.StikyHeadActivity">
-        </activity>
-        <activity android:name=".effect.stikyhead.StikyHeadActivity2"/>
-        <activity android:name=".effect.doodle.DoodleActivity">
-        </activity>
-        <activity android:name=".effect.qqslidemenu.QQSlideMenuActivity">
-        </activity>
-        <activity android:name=".effect.coordinator.CoordinatorBehaviorActivity">
-        </activity>
-        <activity android:name=".effect.coordinator.CoordinatorActivity">
-        </activity>
-        <activity android:name=".effect.bezier.BezierActivity">
-        </activity>
-        <activity android:name=".effect.verificationinput.VerificationInputActivity">
-        </activity>
-        <activity android:name=".effect.ruler.RulerActivity">
-        </activity>
-        <activity android:name=".effect.snow.SnowActivity">
-        </activity>
-        <activity android:name=".effect.favor.FavorActivity">
-        </activity>
-        <activity android:name=".effect.draglayout.DragActivity">
-        </activity>
-        <activity android:name=".effect.loadingview.LoadingActivity">
-        </activity>
-        <activity android:name=".effect.city_58.Loading58Activity">
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".effect.stikyhead.StikyHeadActivity"></activity>
+        <activity android:name=".effect.stikyhead.StikyHeadActivity2" />
+        <activity android:name=".effect.doodle.DoodleActivity"></activity>
+        <activity android:name=".effect.qqslidemenu.QQSlideMenuActivity"></activity>
+        <activity android:name=".effect.coordinator.CoordinatorBehaviorActivity"></activity>
+        <activity android:name=".effect.coordinator.CoordinatorActivity"></activity>
+        <activity android:name=".effect.bezier.BezierActivity"></activity>
+        <activity android:name=".effect.verificationinput.VerificationInputActivity"></activity>
+        <activity android:name=".effect.ruler.RulerActivity"></activity>
+        <activity android:name=".effect.snow.SnowActivity"></activity>
+        <activity android:name=".effect.favor.FavorActivity"></activity>
+        <activity android:name=".effect.draglayout.DragActivity"></activity>
+        <activity android:name=".effect.loadingview.LoadingActivity"></activity>
+        <activity android:name=".effect.city_58.Loading58Activity"></activity>
         <activity android:name=".effect.verticaldrag.VerticalDragActivity">
 
             <!-- <intent-filter> -->
@@ -159,62 +122,41 @@
             <!-- <category android:name="android.intent.category.LAUNCHER"/> -->
             <!-- </intent-filter> -->
         </activity>
-        <activity android:name=".effect.lettersidebar.LetterSideBarActivity">
-        </activity>
-        <activity android:name=".effect.filtermenu.FilterMenuActivity">
-        </activity>
-        <activity android:name=".effect.overflyview.OverFlyActivity">
-        </activity>
-        <activity android:name=".effect.statusbar.StatusBarActivity">
-        </activity>
-        <activity android:name=".effect.lockpattern.LockPatternActivity">
-        </activity>
-        <activity android:name=".effect.tempcontrol.TemControlActivity">
-        </activity>
-        <activity android:name=".effect.kugouguide.KuGouParallaxActivity">
-        </activity>
-        <activity android:name=".effect.elemebtn.ElemeShopBtnActivity">
-        </activity>
-        <activity android:name=".effect.kugoumenu.KuGouMenuActivity">
-        </activity>
-        <activity android:name=".effect.flowlayout.FlowActivity">
-        </activity>
-        <activity android:name=".effect.paint.PaintActivity">
-        </activity>
-        <activity android:name=".effect.window.FloatWindowActivity">
-        </activity>
-        <activity android:name=".effect.reveal.RevealActivity">
-        </activity>
-        <activity android:name=".effect.dragbubble.DragBubbleActivity">
-        </activity>
-        <activity android:name=".effect.screenmatch.ScreenMatchActivity">
-        </activity>
-        <activity android:name=".recyclerview.nested.NestedRecyclerActivity">
-        </activity>
-        <activity android:name=".recyclerview.refresh.RefreshActivity">
-        </activity>
-        <activity android:name=".effect.dashboard.DashBoardActivity">
-        </activity>
-        <activity android:name=".effect.piechart.PieChartActivity">
-        </activity>
-        <activity android:name=".effect.nestedscroll.NestedScrollTestActivity">
-        </activity>
-        <activity android:name=".effect.draggridview.DragHelperGridActivity">
-        </activity>
-        <activity android:name=".effect.behavior.CustomCoordinatorActivity">
-        </activity>
+        <activity android:name=".effect.lettersidebar.LetterSideBarActivity"></activity>
+        <activity android:name=".effect.filtermenu.FilterMenuActivity"></activity>
+        <activity android:name=".effect.overflyview.OverFlyActivity"></activity>
+        <activity android:name=".effect.statusbar.StatusBarActivity"></activity>
+        <activity android:name=".effect.lockpattern.LockPatternActivity"></activity>
+        <activity android:name=".effect.tempcontrol.TemControlActivity"></activity>
+        <activity android:name=".effect.kugouguide.KuGouParallaxActivity"></activity>
+        <activity android:name=".effect.elemebtn.ElemeShopBtnActivity"></activity>
+        <activity android:name=".effect.kugoumenu.KuGouMenuActivity"></activity>
+        <activity android:name=".effect.flowlayout.FlowActivity"></activity>
+        <activity android:name=".effect.paint.PaintActivity"></activity>
+        <activity android:name=".effect.window.FloatWindowActivity"></activity>
+        <activity android:name=".effect.reveal.RevealActivity"></activity>
+        <activity android:name=".effect.dragbubble.DragBubbleActivity"></activity>
+        <activity android:name=".effect.screenmatch.ScreenMatchActivity"></activity>
+        <activity android:name=".recyclerview.nested.NestedRecyclerActivity"></activity>
+        <activity android:name=".recyclerview.refresh.RefreshActivity"></activity>
+        <activity android:name=".effect.dashboard.DashBoardActivity"></activity>
+        <activity android:name=".effect.piechart.PieChartActivity"></activity>
+        <activity android:name=".effect.nestedscroll.NestedScrollTestActivity"></activity>
+        <activity android:name=".effect.draggridview.DragHelperGridActivity"></activity>
+        <activity android:name=".effect.behavior.CustomCoordinatorActivity"></activity>
         <activity android:name=".effect.compass.CompassTestActivity" />
         <activity android:name=".jetpack.TestNaviActivity" />
         <activity android:name=".room.RoomActivity" />
-        <activity android:name=".effect.chart.ChartActivity"/>
-        <activity android:name=".effect.countdownView.CountDownActivity"/>
+        <activity android:name=".effect.chart.ChartActivity" />
+        <activity android:name=".effect.countdownView.CountDownActivity" />
         <activity android:name=".effect.nestedscroll.NestedScrollTest2Activity" />
-        <activity android:name=".effect.nestedscroll.NestedScrollTest3Activity" >
+        <activity android:name=".effect.nestedscroll.NestedScrollTest3Activity">
             <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>-->
         </activity>
+        <activity android:name=".effect.surfaceview.SurfaceViewTestActivity" />
     </application>
 
 </manifest>

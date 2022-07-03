@@ -75,19 +75,19 @@ public class MyView extends View {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 //                getParent().requestDisallowInterceptTouchEvent(true);
-                Log.e("MyView", "按下 y->" + ev.getRawY());
+                Log.e("MyView", "onTouchEvent 按下 y->" + ev.getRawY());
                 break;
 
             case MotionEvent.ACTION_MOVE:
-                Log.e("MyView", "移动 距离屏幕 y->" + ev.getRawY() + "   距离View y->" + ev.getY());
+                Log.e("MyView", "onTouchEvent 移动 距离屏幕 y->" + ev.getRawY() + "   距离View y->" + ev.getY());
                 break;
 
             case MotionEvent.ACTION_UP:
-                Log.e("MyView", "抬起 y->" + ev.getRawY());
+                Log.e("MyView", "onTouchEvent 抬起 y->" + ev.getRawY());
                 break;
         }
         //        return super.onTouchEvent(ev);
-        return true;
+        return false;
     }
 
 }

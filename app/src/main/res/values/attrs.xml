@@ -4,127 +4,137 @@
     <!--######################自定义密码键盘#######################-->
     <declare-styleable name="PasswordEdittext">
         <!--密码的个数-->
-        <attr name="passwordNumber" format="integer"/>
+        <attr name="passwordNumber" format="integer" />
         <!--密码圆点的半径-->
-        <attr name="passwordRadius" format="dimension"/>
+        <attr name="passwordRadius" format="dimension" />
         <!--密码圆点的颜色-->
-        <attr name="passwordColor" format="color"/>
+        <attr name="passwordColor" format="color" />
         <!-- 分割线的颜色-->
-        <attr name="divisionLineColor" format="color"/>
+        <attr name="divisionLineColor" format="color" />
         <!--分割线的大小-->
-        <attr name="divisionLineSize" format="dimension"/>
+        <attr name="divisionLineSize" format="dimension" />
         <!--背景边框的颜色-->
-        <attr name="bgColor" format="color"/>
+        <attr name="bgColor" format="color" />
         <!--背景边框的大小-->
-        <attr name="bgSize" format="dimension"/>
+        <attr name="bgSize" format="dimension" />
         <!--背景边框的圆角大小-->
-        <attr name="bgCorner" format="dimension"/>
+        <attr name="bgCorner" format="dimension" />
     </declare-styleable>
 
     <!--********************************自定义圆形进度条************************-->
     <declare-styleable name="CircleProgressBar">
         <!--文字大小-->
-        <attr name="text_size" format="dimension"/>
+        <attr name="text_size" format="dimension" />
         <!--文字颜色-->
-        <attr name="text_color" format="color"/>
+        <attr name="text_color" format="color" />
         <!--文本-->
-        <attr name="text" format="string"/>
+        <attr name="text" format="string" />
         <!--边框宽度-->
-        <attr name="stroke_width" format="integer"/>
+        <attr name="stroke_width" format="integer" />
         <!--未走的进度的颜色-->
-        <attr name="normal_color" format="color"/>
+        <attr name="normal_color" format="color" />
         <!--已走的进度的颜色-->
-        <attr name="progress_color" format="color"/>
+        <attr name="progress_color" format="color" />
         <!--已走的进度 0-360 -->
-        <attr name="progress" format="integer"/>
+        <attr name="progress" format="integer" />
         <!--类型：填充型还是环形-->
         <attr name="progress_style" format="enum">
-            <enum name="STROKE" value="0"/>
-            <enum name="FILL" value="1"/>
+            <enum name="STROKE" value="0" />
+            <enum name="FILL" value="1" />
         </attr>
     </declare-styleable>
     <!--********************************自定义tablayout*****************-->
     <declare-styleable name="Indicator">
-        <attr name="indicatorColor" format="color"/>
-        <attr name="array" format="integer"/>
-        <attr name="text_nomal_color" format="color"/>
-        <attr name="text_press_color" format="color"/>
-        <attr name="text_nomal_size" format="integer"/>
-        <attr name="text_press_size" format="integer"/>
-        <attr name="selected" format="integer"/>
-        <attr name="isFull" format="boolean"/>
-        <attr name="speed" format="integer"/>
-        <attr name="multiply" format="float"/>
-        <attr name="line_hegith" format="integer"/>
+        <attr name="indicatorColor" format="color" />
+        <attr name="array" format="integer" />
+        <attr name="text_nomal_color" format="color" />
+        <attr name="text_press_color" format="color" />
+        <attr name="text_nomal_size" format="integer" />
+        <attr name="text_press_size" format="integer" />
+        <attr name="selected" format="integer" />
+        <attr name="isFull" format="boolean" />
+        <attr name="speed" format="integer" />
+        <attr name="multiply" format="float" />
+        <attr name="line_hegith" format="integer" />
     </declare-styleable>
 
     <!--*********************************** 键盘  *******************************************************-->
     <declare-styleable name="KPSwitchPanelLayout">
-        <attr name="ignore_recommend_height" format="boolean"/>
+        <attr name="ignore_recommend_height" format="boolean" />
     </declare-styleable>
 
     <!--************* 仿QQ侧滑菜单 ******************-->
     <declare-styleable name="QQSlideMenu">
-        <attr name="right_padding" format="dimension"/>
+        <attr name="right_padding" format="dimension" />
     </declare-styleable>
 
     <!--**********************仿滴滴出行验证码输入框*************************-->
     <declare-styleable name="vericationCodeInput">
 
-        <attr name="box" format="integer"/>
-        <attr name="child_h_padding" format="dimension"/>
-        <attr name="child_v_padding" format="dimension"/>
-        <attr name="child_width" format="dimension"/>
-        <attr name="child_height" format="dimension"/>
-        <attr name="padding" format="dimension"/>
-        <attr name="box_bg_focus" format="reference"/>
-        <attr name="box_bg_normal" format="reference"/>
-        <attr name="inputType" format="string"/>
+        <attr name="box" format="integer" />
+        <attr name="child_h_padding" format="dimension" />
+        <attr name="child_v_padding" format="dimension" />
+        <attr name="child_width" format="dimension" />
+        <attr name="child_height" format="dimension" />
+        <attr name="padding" format="dimension" />
+        <attr name="box_bg_focus" format="reference" />
+        <attr name="box_bg_normal" format="reference" />
+        <attr name="inputType" format="string" />
     </declare-styleable>
 
     <!--**********************自定义倒计时*************************-->
     <declare-styleable name="countdownProgress">
-        <attr name="circle_color" format="color"/>
-        <attr name="stroke_color" format="color"/>
+        <attr name="circle_color" format="color" />
+        <attr name="stroke_color" format="color" />
     </declare-styleable>
 
     <!--*********************** 酷狗ViewPager视差动画 ***********************-->
     <!-- X方向上的位移 -->
-    <attr name="translationXIn" format="float"/>
-    <attr name="translationXOut" format="float"/>
+    <attr name="translationXIn" format="float" />
+    <attr name="translationXOut" format="float" />
     <!-- Y方向上的位移 -->
-    <attr name="translationYIn" format="float"/>
-    <attr name="translationYOut" format="float"/>
+    <attr name="translationYIn" format="float" />
+    <attr name="translationYOut" format="float" />
 
     <!--****************** 酷狗侧滑菜单 ***********************-->
     <declare-styleable name="KGSlidingMenu">
-        <attr name="menuRightMargin" format="float"/>
+        <attr name="menuRightMargin" format="float" />
     </declare-styleable>
-
 
     <!-- ********************* RecyclerView下拉刷新 *********************-->
     <declare-styleable name="PullRefreshRecyclerView">
-        <attr name="refresh_header_view" format="reference"/>
+        <attr name="refresh_header_view" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="PullScrollRefreshView">
-        <attr name="scroll_refresh_header_view" format="reference"/>
-        <attr name="content_view" format="reference"/>
+        <attr name="scroll_refresh_header_view" format="reference" />
+        <attr name="content_view" format="reference" />
     </declare-styleable>
 
     <!-- ********************* RecyclerView下拉刷新 *********************-->
     <declare-styleable name="AlignTextView">
-        <attr name="alignOnlyOneLine" format="boolean"/>
+        <attr name="alignOnlyOneLine" format="boolean" />
     </declare-styleable>
 
     <!--********************* MaterialEdittext *********************-->
     <declare-styleable name="MaterialEditText">
-        <attr name="useFloatingLabel" format="boolean"/>
+        <attr name="useFloatingLabel" format="boolean" />
     </declare-styleable>
 
     <!--********************* 自定义CoordinatorLayout *********************-->
     <declare-styleable name="BehaviorCoordinatorLayout">
-        <attr name="layout_behavior" format="string"/>
+        <attr name="layout_behavior" format="string" />
     </declare-styleable>
 
+    <!--********************* surface view 倒计时 *********************-->
+    <declare-styleable name="DownTimeView">
+        <attr name="downTime_textColor" format="color" />
+        <attr name="downTime_textSize" format="dimension" />
+        <attr name="downTime_text" format="string" />
+        <attr name="downTime_textGravity">
+            <enum name="left" value="1" />
+            <enum name="center" value="2" />
+            <enum name="right" value="3" />
+        </attr>
+    </declare-styleable>
 </resources>
