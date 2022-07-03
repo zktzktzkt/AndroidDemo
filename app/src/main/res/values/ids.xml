@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--隐私弹窗-->
+    <item type="id" name="privacy_title" />
+    <item type="id" name="privacy_message" />
+    <item type="id" name="privacy_bottom_content" />
+    <item type="id" name="privacy_bottom_agree" />
+    <item type="id" name="privacy_bottom_deny" />
+
+</resources>

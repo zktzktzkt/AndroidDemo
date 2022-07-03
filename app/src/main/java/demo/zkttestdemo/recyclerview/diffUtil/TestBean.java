@@ -1,11 +1,13 @@
 package demo.zkttestdemo.recyclerview.diffUtil;
 
 class TestBean implements Cloneable {
+    private int id;
     private String name;
     private String desc;
     private int pic;
 
-    public TestBean(String name, String desc, int pic) {
+    public TestBean(int id, String name, String desc, int pic) {
+        this.id = id;
         this.name = name;
         this.desc = desc;
         this.pic = pic;
@@ -21,6 +23,14 @@ class TestBean implements Cloneable {
             e.printStackTrace();
         }
         return bean;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

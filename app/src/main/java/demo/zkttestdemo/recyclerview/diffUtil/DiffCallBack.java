@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 介绍：核心类 用来判断 新旧Item是否相等
@@ -42,11 +43,12 @@ public class DiffCallBack extends DiffUtil.Callback {
      *
      * @param oldItemPosition The position of the item in the old list
      * @param newItemPosition The position of the item in the new list
-     * @return True if the two items represent the same object or false if they are different.
+     * @return 返回true，则DiffUtil会再调用下面的areContentsTheSame方法，进一步对比UI是否有变化
+     * 返回false，则说明id都不同，肯定不是一个item
      */
     @Override
     public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-        return mOldDatas.get(oldItemPosition).getName().equals(mNewDatas.get(newItemPosition).getName());
+        return mOldDatas.get(oldItemPosition).getId() == mNewDatas.get(newItemPosition).getId();
     }
 
     /**
@@ -75,12 +77,9 @@ public class DiffCallBack extends DiffUtil.Callback {
     public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
         TestBean beanOld = mOldDatas.get(oldItemPosition);
         TestBean beanNew = mNewDatas.get(newItemPosition);
-        if (!beanOld.getDesc().equals(beanNew.getDesc())) {
-            return false;//如果有内容不同，就返回false
-        }
-        if (beanOld.getPic() != beanNew.getPic()) {
-            return false;//如果有内容不同，就返回false
-        }
-        return true; //默认两个data内容是相同的
+
+        return beanOld.getName().equals(beanNew.getName())
+                && beanOld.getDesc().equals(beanNew.getDesc())
+                && beanOld.getPic() == beanNew.getPic();
     }
 }

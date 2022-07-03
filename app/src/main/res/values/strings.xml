@@ -22,4 +22,10 @@
     <string name="behavior_sample_header">demo.zkttestdemo.effect.nestedscroll.behavior.SampleHeaderBehavior</string>
     <string name="behavior_recyclerview">demo.zkttestdemo.effect.nestedscroll.behavior.RecyclerViewBehavior</string>
 
+    <string name="privacy_txt_title_new">感谢您下载京东京车会</string>
+    <string name="privacy_txt_content_new">请您了解，您需要注册成为京东用户后方可使用本软件的网上购物及线下服务功能，在您注册前，你仍然可以浏览本软件中的商品和服务内容（关于注册，您可以参考《京东用户注册协议》）。请您充分了解在使用本软件过程中我们可能收集、使用或共享您个人信息的情形，希望您着重关注：\n1.为了您便捷地浏览或搜索，我们可能会收集或使用您的购买记录、浏览记录等信息；\n2.为了完成您订单的支付、配送或售后，我们可能会收集您订单中的信息，相关必要信息可能会需要共享给平台内店铺、支付、物流等第三方合作方。</string>
+    <string name="privacy_txt_bottom_new">关于您个人信息的相关问题，详见《京东京车会隐私政策》全文，请您认真阅读并充分理解，如您同意我们的政策内容，请勾选并点击同意，继续使用本软件。我们会不断完善技术和安全管理，保护您的个人信息。</string>
+    <string name="privacy_txt_detain_once">我们将充分尊重并保护你的隐私，您可以再次查看《京东京车会隐私政策》若您仍然不同意，在登录、购买或申请功能必须的系统权限时，我们会再次询问您</string>
+    <string name="privacy_txt_detain_twice">您可再次查看《京东京车会隐私政策》全文。\n如果您同意我们的政策内容后，您可以继续使用京东京车会。</string>
+
 </resources>

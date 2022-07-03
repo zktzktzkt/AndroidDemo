@@ -113,6 +113,10 @@
     <item android:title="效果">
         <menu>
             <item
+                android:id="@+id/nav_smartrefresh"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="SmartRefresh测试" />
+            <item
                 android:id="@+id/nav_MotionEventTest"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="事件分发测试" />
@@ -128,6 +132,10 @@
                 android:id="@+id/nav_nestedScrollTest3"
                 android:icon="@drawable/ic_menu_gallery"
                 android:title="嵌套滑动测试（behavior）" />
+            <item
+                android:id="@+id/nav_rvOverScroll"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="越界回弹（RecyclerView）" />
             <item
                 android:id="@+id/nav_viewDragHelperTest"
                 android:icon="@drawable/ic_menu_gallery"

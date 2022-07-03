@@ -82,6 +82,7 @@ import demo.zkttestdemo.effect.multipage.MultiPageActivity;
 import demo.zkttestdemo.effect.nestedscroll.NestedScrollTest2Activity;
 import demo.zkttestdemo.effect.nestedscroll.NestedScrollTest3Activity;
 import demo.zkttestdemo.effect.nestedscroll.NestedScrollTestActivity;
+import demo.zkttestdemo.effect.nestedscroll.SmartRefreshTestActivity;
 import demo.zkttestdemo.effect.overflyview.OverFlyActivity;
 import demo.zkttestdemo.effect.paint.PaintActivity;
 import demo.zkttestdemo.effect.paykeyboard.PayKeyboardActivity;
@@ -106,6 +107,7 @@ import demo.zkttestdemo.effect.wavrecord.WAVActivity;
 import demo.zkttestdemo.effect.window.FloatWindowActivity;
 import demo.zkttestdemo.effect.wxaudio.AudioActivity;
 import demo.zkttestdemo.jetpack.TestNaviActivity;
+import demo.zkttestdemo.overscroll.OverScrollActivity;
 import demo.zkttestdemo.realm.RealmActivity;
 import demo.zkttestdemo.recyclerview.diffUtil.DiffUtilActivity;
 import demo.zkttestdemo.recyclerview.header.BannerRecyclerActivity;
@@ -263,6 +265,16 @@ public class MainActivity extends AppCompatActivity
         //嵌套滑动测试
         else if (id == R.id.nav_nestedScrollTest) {
             Intent intent = new Intent(this, NestedScrollTestActivity.class);
+            startActivity(intent);
+        }
+        //smartrefresh下拉刷新测试
+        else if (id == R.id.nav_smartrefresh) {
+            Intent intent = new Intent(this, SmartRefreshTestActivity.class);
+            startActivity(intent);
+        }
+        //RecyclerView越界回弹
+        else if (id == R.id.nav_rvOverScroll) {
+            Intent intent = new Intent(this, OverScrollActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_nestedScrollTest2) {
             Intent intent = new Intent(this, NestedScrollTest2Activity.class);

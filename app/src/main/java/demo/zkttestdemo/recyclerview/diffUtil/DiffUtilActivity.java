@@ -1,16 +1,19 @@
 package demo.zkttestdemo.recyclerview.diffUtil;
 
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import demo.zkttestdemo.R;
 
@@ -27,19 +30,28 @@ public class DiffUtilActivity extends AppCompatActivity {
     private List<TestBean> mDatas;
     private Button mBtnRefresh;
 
+    {
+        mDatas = new ArrayList<>();
+        mDatas.add(new TestBean(0, "张旭童0", "原始", R.drawable.ic_launcher));
+        mDatas.add(new TestBean(1, "张旭童1", "原始", R.drawable.ic_launcher));
+        mDatas.add(new TestBean(2, "张旭童2", "原始", R.drawable.ic_launcher));
+        mDatas.add(new TestBean(3, "张旭童3", "原始", R.drawable.ic_launcher));
+        mDatas.add(new TestBean(4, "张旭童4", "原始", R.drawable.ic_launcher));
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.diff_activity);
         initView();
 
-        initData();
-
         mRv = ((RecyclerView) findViewById(R.id.diff_rv));
         mRv.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new DiffAdapter(this, mDatas);
-
+        mAdapter = new DiffAdapter(this, null);
         mRv.setAdapter(mAdapter);
+
+        mAdapter.setDatas(mDatas); //设置数据
+
         mBtnRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,14 +60,6 @@ public class DiffUtilActivity extends AppCompatActivity {
         });
     }
 
-    private void initData() {
-        mDatas = new ArrayList<>();
-        mDatas.add(new TestBean("张旭童1", "Android", R.drawable.ic_launcher));
-        mDatas.add(new TestBean("张旭童2", "Java", R.drawable.ic_launcher));
-        mDatas.add(new TestBean("张旭童3", "背锅", R.drawable.ic_launcher));
-        mDatas.add(new TestBean("张旭童4", "手撕产品", R.drawable.ic_launcher));
-        mDatas.add(new TestBean("张旭童5", "手撕测试", R.drawable.ic_launcher));
-    }
 
     /**
      * 模拟刷新操作
@@ -63,36 +67,27 @@ public class DiffUtilActivity extends AppCompatActivity {
     public void onRefresh() {
         try {
             List<TestBean> newDatas = new ArrayList<>();
-            for (TestBean bean : mDatas) {
-                newDatas.add(bean.clone());//clone一遍旧数据 ，模拟刷新操作
+            //clone一遍旧数据。后面会把第一个数据移到最后一个。
+            for (int i = 1; i < mAdapter.getDatas().size(); i++) {
+                newDatas.add(mAdapter.getDatas().get(i).clone());
             }
-            newDatas.add(new TestBean("赵子龙", "帅", R.drawable.ic_menu_camera));//模拟新增数据
-            newDatas.get(0).setDesc("Android+");
-            newDatas.get(0).setPic(R.drawable.ic_menu_send);//模拟修改数据
-            TestBean testBean = newDatas.get(1);//模拟数据位移
-            newDatas.remove(testBean);
-            newDatas.add(testBean);
-            //别忘了将新数据给Adapter
-//            mDatas = newDatas;
-//            mAdapter.setDatas(mDatas);
-//            mAdapter.notifyDataSetChanged();//以前我们大多数情况下只能这样
-            notifyData(newDatas);
+            /* 新增数据 */
+            int id = new Random().nextInt(1000);
+            newDatas.add(new TestBean(id, "赵子龙" + id, "新增", R.drawable.ic_menu_camera));
+            /* 修改数据 */
+            newDatas.get(1).setDesc("修改");
+            newDatas.get(1).setPic(R.drawable.ic_menu_send);
+            /* 删除数据 */
+            newDatas.remove(newDatas.get(2));
+            /* 位移数据 注意:直接位移对象会导致onBindViewHolder实参的position错乱，所以需要viewholder获取position */
+            newDatas.add(mAdapter.getDatas().get(0).clone());
+
+            //更新数据
+            mAdapter.setDatas(newDatas);
+
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
-    }
-
-    private void notifyData(List<TestBean> newDatas) {
-        //文艺青年新宠
-        //利用DiffUtil.calculateDiff()方法，传入一个规则DiffUtil.Callback对象，和是否检测移动item的 boolean变量，得到DiffUtil.DiffResult 的对象
-        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallBack(mDatas, newDatas), true);
-
-        //利用DiffUtil.DiffResult对象的dispatchUpdatesTo（）方法，传入RecyclerView的Adapter，轻松成为文艺青年
-        diffResult.dispatchUpdatesTo(mAdapter);
-
-        //别忘了将新数据给Adapter
-        mDatas = newDatas;
-        mAdapter.setDatas(mDatas);
     }
 
     private void initView() {
