@@ -1,17 +1,18 @@
 package demo.zkttestdemo.recyclerview.nested;
 
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import demo.zkttestdemo.R;
 
 
 public class FakeAdapter extends RecyclerView.Adapter<FakeAdapter.ViewHolder> {
 
-    int DEFAULT_COUNT = 20;
+    int DEFAULT_COUNT = 3;
     int count = DEFAULT_COUNT;
 
     int mLayoutRes;
@@ -31,7 +32,7 @@ public class FakeAdapter extends RecyclerView.Adapter<FakeAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-//        holder.view.setText("Text :" + position);
+        holder.view.setText("Text :" + position);
     }
 
     public void set(int value) {
