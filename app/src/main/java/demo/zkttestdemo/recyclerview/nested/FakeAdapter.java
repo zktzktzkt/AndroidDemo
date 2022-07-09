@@ -12,7 +12,7 @@ import demo.zkttestdemo.R;
 
 public class FakeAdapter extends RecyclerView.Adapter<FakeAdapter.ViewHolder> {
 
-    int DEFAULT_COUNT = 3;
+    int DEFAULT_COUNT = 20;
     int count = DEFAULT_COUNT;
 
     int mLayoutRes;
