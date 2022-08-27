@@ -2,13 +2,17 @@ package demo.zkttestdemo.effect.bottomsheet;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.blankj.utilcode.util.SizeUtils;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import demo.zkttestdemo.R;
 import demo.zkttestdemo.utils.DisplayUtil;
@@ -19,11 +23,13 @@ public class ZHBottomSheetActivity extends AppCompatActivity {
     private BottomSheetBehavior<View> behavior;
     private TextView checkbox;
     boolean mChecked = false;
+    private FrameLayout flSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_sheet);
+        flSearch = (FrameLayout) findViewById(R.id.fl_search);
         checkbox = (TextView) findViewById(R.id.checkbox);
         checkbox.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +91,7 @@ public class ZHBottomSheetActivity extends AppCompatActivity {
         });
 
         //bottomSheet状态监听
-        behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+        behavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             /**
              * 当bottom sheets状态被改变回调
              * @param bottomSheet The bottom sheet view.
@@ -104,7 +110,7 @@ public class ZHBottomSheetActivity extends AppCompatActivity {
             @Override
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
                 Log.e(TAG, "slideOffset:" + slideOffset + "");
-
+                flSearch.setTranslationY(SizeUtils.dp2px(-50) * (1 - slideOffset));
             }
         });
 
