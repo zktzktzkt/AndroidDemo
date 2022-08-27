@@ -2,10 +2,6 @@ package demo.zkttestdemo.overscroll;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.View;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +14,7 @@ import demo.zkttestdemo.recyclerview.suspendsingle.SuspendSingleAdapter;
  */
 public class OverScrollActivity extends Activity {
 
+    private OverScrollLayout overscroll;
     private RecyclerView recyclerView;
 
     @Override
@@ -25,8 +22,11 @@ public class OverScrollActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_over_scroll);
 
+        overscroll = (OverScrollLayout) findViewById(R.id.overscroll);
+        overscroll.setOrientation(OverScrollLayout.ScrollOrientation.HORIZONTAL);
+
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setAdapter(new SuspendSingleAdapter());
     }
 

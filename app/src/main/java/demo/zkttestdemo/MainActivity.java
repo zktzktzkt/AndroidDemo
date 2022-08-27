@@ -786,8 +786,7 @@ public class MainActivity extends AppCompatActivity
 
     private void getPicFromPhoto() {
         Intent intent = new Intent(Intent.ACTION_PICK, null);
-        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                "image/*");
+        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
         startActivityForResult(intent, PHOTO_REQUEST);
     }
 

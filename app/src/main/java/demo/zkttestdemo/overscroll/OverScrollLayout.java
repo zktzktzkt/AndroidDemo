@@ -3,7 +3,7 @@ package demo.zkttestdemo.overscroll;
 import android.content.Context;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.TranslateAnimation;
@@ -20,8 +20,8 @@ public class OverScrollLayout extends LinearLayout {
     private RecyclerView childView;
     private Rect original = new Rect();
     private boolean isMoved = false;
-    private float startYpos;
-    private float startXpos;
+    //private float startYpos;
+    //private float startXpos;
     /**
      * 阻尼系数
      */
@@ -66,6 +66,11 @@ public class OverScrollLayout extends LinearLayout {
         mScrollListener = listener;
     }
 
+    private int lastX;
+    private int lastY;
+    private int startX;
+    private int startY;
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         float touchYpos = ev.getY();
@@ -77,20 +82,35 @@ public class OverScrollLayout extends LinearLayout {
         }
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                startXpos = ev.getX();
-                startYpos = ev.getY();
+                startX = lastX = (int) ev.getX();
+                startY = lastY = (int) ev.getY();
             case MotionEvent.ACTION_MOVE:
-                int scrollYpos = (int) (ev.getY() - startYpos);
-                int scrollXpos = (int) (ev.getX() - startXpos);
-                boolean pullLeft = scrollXpos < 0 && canPullLeft();
-                boolean pullRight = scrollXpos > 0 && canPullRight();
-                boolean pullDown = scrollYpos > 0 && canPullDown();
-                boolean pullUp = scrollYpos < 0 && canPullUp();
+                //获取相对偏移量
+                int offsetX = (int) ev.getX() - lastX;
+                int offsetY = (int) ev.getY() - lastY;
+                lastX = (int) ev.getX();
+                lastY = (int) ev.getY();
+                //获取总偏移量
+                int totalOffsetX = (int) (ev.getX() - startX);
+                int totalOffsetY = (int) (ev.getY() - startY);
+
+                boolean pullLeft = totalOffsetX < 0 && canPullLeft();
+                boolean pullRight = totalOffsetX > 0 && canPullRight();
+                boolean pullDown = totalOffsetY > 0 && canPullDown();
+                boolean pullUp = totalOffsetY < 0 && canPullUp();
+
+                Log.e("测试测试", "canPullDown()->" + canPullDown()
+                        + " canPullUp()->" + canPullUp()
+                        + " totalOffsetX->" + totalOffsetX
+                        + " totalOffsetY->" + totalOffsetY
+                );
 
                 if (scrollOrientation == ScrollOrientation.VERTICAL && (pullDown || pullUp)) {
                     cancelChild(ev);
-                    int offset = (int) (scrollYpos * DAMPING_COEFFICIENT);
-                    childView.layout(original.left, original.top + offset, original.right, original.bottom + offset);
+                    int offset = (int) (offsetY * DAMPING_COEFFICIENT);
+                    //int offset = (int) (scrollYpos * DAMPING_COEFFICIENT);
+                    //childView.layout(original.left, original.top + offset, original.right, original.bottom + offset);
+                    childView.offsetTopAndBottom(offset);
                     if (mScrollListener != null) {
                         mScrollListener.onScroll();
                     }
@@ -100,8 +120,9 @@ public class OverScrollLayout extends LinearLayout {
 
                 } else if (scrollOrientation == ScrollOrientation.HORIZONTAL && (pullRight || pullLeft)) {
                     cancelChild(ev);
-                    int offset = (int) (scrollXpos * DAMPING_COEFFICIENT);
-                    childView.layout(original.left + offset, original.top, original.right + offset, original.bottom);
+                    int offset = (int) (offsetX * DAMPING_COEFFICIENT);
+                    //childView.layout(original.left + offset, original.top, original.right + offset, original.bottom);
+                    childView.offsetLeftAndRight(offset);
                     if (mScrollListener != null) {
                         mScrollListener.onScroll();
                     }
@@ -110,8 +131,8 @@ public class OverScrollLayout extends LinearLayout {
                     return true;
 
                 } else {
-                    startXpos = ev.getX();
-                    startYpos = ev.getY();
+                    startX = (int) ev.getX();
+                    startY = (int) ev.getY();
                     isMoved = false;
                     isSuccess = true;
                     //没滑动到头，就继续往下分发事件
