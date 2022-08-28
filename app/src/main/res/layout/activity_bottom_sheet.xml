@@ -64,16 +64,21 @@
         android:id="@+id/bottom_sheet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
-        android:background="@color/grey"
         android:orientation="vertical"
         app:behavior_hideable="true"
         app:behavior_peekHeight="0dp"
         app:layout_behavior="@string/bottom_sheet_behavior">
 
+        <!--占位-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/transparent" />
+
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="50dp"
+            android:background="@color/grey">
 
             <TextView
                 android:id="@+id/tv_cancel"
@@ -104,8 +109,7 @@
         android:id="@+id/fl_search"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colorPrimary"
-        android:translationY="-50dp">
+        android:background="@color/colorPrimary">
 
     </FrameLayout>
 

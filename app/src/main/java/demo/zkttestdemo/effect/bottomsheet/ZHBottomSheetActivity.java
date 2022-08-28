@@ -60,6 +60,7 @@ public class ZHBottomSheetActivity extends AppCompatActivity {
         behavior = BottomSheetBehavior.from(bottomSheet);
         behavior.setPeekHeight(DisplayUtil.dip2px(500, this));//设置折叠的高度
         behavior.setHideable(false);
+        behavior.setState(BottomSheetBehavior.STATE_EXPANDED); // 展开
 
         findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
