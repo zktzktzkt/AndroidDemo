@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /**
@@ -36,30 +37,32 @@ public class MyBehavior extends CoordinatorLayout.Behavior<Button> {
 
     /**
      * Button依赖TempView的改变
-     *
+     */
+    @Override
+    public boolean layoutDependsOn(CoordinatorLayout parent, Button child, View dependency) {
+        Log.e("TAG", "layoutDependsOn->" + dependency);
+        return dependency instanceof TempView;
+    }
+
+    /**
+     * 只有当layoutDependsOn返回true时, 才会回调.
+     * 当依赖的TempView的大小或位置发生变化时，会回调
      * @param dependency 可以是CoordinatorLayout中的任意一个子view
      */
     @Override
     public boolean onDependentViewChanged(CoordinatorLayout parent, Button child, View dependency) {
         Log.e("TAG", "onDependentViewChanged");
-        return dependency instanceof TempView;
-    }
 
-    /**
-     * 当依赖的TempView的大小或位置发生变化时，会回调
-     */
-    @Override
-    public boolean layoutDependsOn(CoordinatorLayout parent, Button child, View dependency) {
-        Log.e("TAG", "layoutDependsOn->" + dependency);
+        if (dependency instanceof TempView) {
+            //根据dependency的位置，设置button的位置
+            int top = dependency.getTop();
+            int left = dependency.getLeft();
 
-        //根据dependency的位置，设置button的位置
-        int top = dependency.getTop();
-        int left = dependency.getLeft();
+            int x = widthPixels - left - child.getWidth();
+            int y = top;
 
-        int x = widthPixels - left - child.getWidth();
-        int y = top;
-
-        setPosition(child, x, y);
+            setPosition(child, x, y);
+        }
 
         return true;
     }
