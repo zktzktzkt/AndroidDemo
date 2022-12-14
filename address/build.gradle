@@ -6,7 +6,7 @@ if (isModuleRun.toBoolean()) {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion rootProject.compileSdkVersion
 
     defaultConfig {
         // 2.【组件化:applicationId】作为library时不能有applicationId,只有作为一个独立应用时才能够如下设置
@@ -57,7 +57,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'androidx.appcompat:appcompat:1.0.0'
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
 
     testImplementation 'junit:junit:4.12'
 //    implementation project(':basemodule')

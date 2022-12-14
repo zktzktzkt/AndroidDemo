@@ -6,7 +6,7 @@ if (isModuleRun.toBoolean()) {
 }
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion rootProject.compileSdkVersion
 
     defaultConfig {
         // 2.【组件化:applicationId】作为library时不能有applicationId,只有作为一个独立应用时才能够如下设置
