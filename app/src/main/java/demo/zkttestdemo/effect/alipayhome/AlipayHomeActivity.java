@@ -2,18 +2,26 @@ package demo.zkttestdemo.effect.alipayhome;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import com.google.android.material.appbar.AppBarLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import demo.zkttestdemo.R;
 
 public class AlipayHomeActivity extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener {
     private final static String TAG = "AlipayActivity";
+    private Toolbar toolbar;
     private AppBarLayout abl_bar;
+    private CollapsingToolbarLayout ctl_top;
 
     private View tl_expand, tl_collapse;
 
@@ -32,6 +40,7 @@ public class AlipayHomeActivity extends AppCompatActivity implements AppBarLayou
 
     private int mMaskColor;
     private RecyclerView rv_content;
+    private FrameLayout container2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +51,24 @@ public class AlipayHomeActivity extends AppCompatActivity implements AppBarLayou
         rv_content.setLayoutManager(new GridLayoutManager(this, 4));
         rv_content.setAdapter(new LifeAdapter(this, LifeItem.getDefault()));
 
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         abl_bar = (AppBarLayout) findViewById(R.id.abl_bar);
+        ctl_top = (CollapsingToolbarLayout) findViewById(R.id.ctl_top);
         tl_expand = (View) findViewById(R.id.tl_expand);
         tl_collapse = (View) findViewById(R.id.tl_collapse);
         v_expand_mask = (View) findViewById(R.id.v_expand_mask);
         v_collapse_mask = (View) findViewById(R.id.v_collapse_mask);
         v_pay_mask = (View) findViewById(R.id.v_pay_mask);
+        container2 = findViewById(R.id.container2);
         abl_bar.addOnOffsetChangedListener(this);
+
+        toolbar.post(new Runnable() {
+            @Override
+            public void run() {
+                ((ViewGroup.MarginLayoutParams) container2.getLayoutParams()).topMargin = toolbar.getBottom();
+                container2.requestLayout();
+            }
+        });
     }
 
     @Override
