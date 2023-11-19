@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
-apply plugin: 'realm-android'
+//apply plugin: 'realm-android'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 // JitPack Maven
-apply plugin: 'com.github.dcendents.android-maven'
+//apply plugin: 'com.github.dcendents.android-maven'
 // Your Group
-group = 'com.github.zktzktzkt'
+//group = 'com.github.zktzktzkt'
 
 kapt {
     //【优化构建速度】如果有用到kapt添加如下配置

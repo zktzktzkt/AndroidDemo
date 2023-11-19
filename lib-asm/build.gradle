@@ -1,0 +1,106 @@
+plugins {
+    id 'kotlin'
+    id 'groovy'
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+//    id 'java'
+//    id 'jd-maven-publish'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+        kotlin {
+            srcDir "src/main/kotlin"
+        }
+        groovy {
+            srcDir 'src/main/groovy'
+        }
+        resources {
+            srcDir 'src/main/resources'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: '*.jar')
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation 'org.ow2.asm:asm:9.2'
+    implementation 'org.ow2.asm:asm-commons:9.2'
+    compileOnly 'com.android.tools.build:gradle:3.5.3'
+}
+
+//java {
+//    sourceCompatibility = JavaVersion.VERSION_1_8
+//    targetCompatibility = JavaVersion.VERSION_1_8
+//}
+
+//配置发布本地 maven
+publishing {
+    repositories {
+        maven { url uri("../repo") }
+    }
+    publications {
+        debug(MavenPublication) {
+            from components.java
+            groupId 'me.zkt.asm'
+            artifactId 'lib-asm'
+            version "1.0.0"
+        }
+    }
+}
+
+/*publishTaskAutoDependsAssemble = true
+
+publishing{
+    //配置要发布的文件及POM
+    publications{
+        // 发布 debug 包
+        debug(MavenPublication){
+            artifact "$buildDir/libs/lib-asm.jar"     //指定要发布的文件
+            groupId "com.jdcar.lib"                      //配置pom的groupId
+            artifactId "asmTest"                  //配置pom的artifactId
+            version "1.0.0-SNAPSHOT"     //配置pom的version
+            configDependencies it, DEBUG_PUBLICATION,          //指定aar包为debug类型
+                    [['org.jacoco', 'org.jacoco.agent'],           //不添加到pom的依赖包的group、name
+                     ['org.jacoco', 'org.jacoco.ant'],
+                     ['com.android.tools.lint', 'lint-gradle'],
+                     ['com.android.tools.build', 'aapt2'],
+                     ['org.jetbrains.kotlin', 'kotlin-compiler-embeddable'],
+                     ['org.jetbrains.kotlin', 'kotlin-android-extensions']
+                    ]
+        }
+        // 发布 release 包
+        release(MavenPublication){
+            artifact "$buildDir/libs/lib-asm.jar"     //指定要发布的文件
+            groupId "com.jdcar.lib"                      //配置pom的groupId
+            artifactId "asmTest"                  //配置pom的artifactId
+            version "1.0.0"
+            configDependencies it, RELEASE_PUBLICATION,        //指定aar包为release类型
+                    [['org.jacoco', 'org.jacoco.agent'],           //不添加到pom的依赖包的group、name
+                     ['org.jacoco', 'org.jacoco.ant'],
+                     ['com.android.tools.lint', 'lint-gradle'],
+                     ['com.android.tools.build', 'aapt2'],
+                     ['org.jetbrains.kotlin', 'kotlin-compiler-embeddable'],
+                     ['org.jetbrains.kotlin', 'kotlin-android-extensions']
+                    ]
+        }
+    }
+
+    //配置仓库
+    repositories{
+        maven{
+            name 'snapshots'                                       //仓库名称
+            repoType it, SNOPSHOT_REPOSITORY                       //指定仓库为snapshot类型
+            url 'http://artifactory.jd.com/libs-snapshots-local/'  //仓库的url
+        }
+        maven{
+            name 'releases'
+            repoType it, RELEASE_REPOSITORY                        //指定仓库为release类型
+            url 'http://artifactory.jd.com/libs-releases-local/'
+        }
+    }
+}*/

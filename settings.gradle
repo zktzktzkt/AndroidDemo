@@ -1,1 +1,4 @@
-include ':app', ':springview', ':addsubview', ':revealview', ':bubble', ':pathmeasure', ':lottery', ':waterbubble', ':itemtouchhelper', ':basemodule', ':scratchview', ':circlelayout', ':progress', ':animatorframework', ':address', ':libJDCarKeyboard', ':ptr-lib'
+include ':app', ':springview', ':addsubview', ':revealview', ':bubble', ':pathmeasure',
+        ':lottery', ':waterbubble', ':itemtouchhelper', ':basemodule', ':scratchview',
+        ':circlelayout', ':progress', ':animatorframework', ':address', ':libJDCarKeyboard', ':ptr-lib',
+        ':lib-asm'
